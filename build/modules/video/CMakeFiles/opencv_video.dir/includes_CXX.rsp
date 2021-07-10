@@ -1,0 +1,1 @@
+-ID:/lib/OpenCV/src/modules/video/include -ID:/lib/OpenCV/build/modules/video -ID:/lib/OpenCV/src/modules/core/include -ID:/lib/OpenCV/src/modules/flann/include -ID:/lib/OpenCV/src/modules/imgproc/include -ID:/lib/OpenCV/src/modules/dnn/include -ID:/lib/OpenCV/src/modules/features2d/include -ID:/lib/OpenCV/src/modules/calib3d/include -isystem D:/lib/OpenCV/build

@@ -1,0 +1,1 @@
+-ID:/lib/OpenCV/src/modules/core/include -ID:/lib/OpenCV/build/modules/core -ID:/lib/OpenCV/src/3rdparty/zlib -ID:/lib/OpenCV/build/3rdparty/zlib -ID:/lib/OpenCV/src/3rdparty/include/opencl/1.2 -isystem D:/lib/OpenCV/build
