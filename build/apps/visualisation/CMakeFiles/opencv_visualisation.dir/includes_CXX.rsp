@@ -1,1 +1,0 @@
--ID:/lib/OpenCV/src/modules/core/include -ID:/lib/OpenCV/src/modules/highgui/include -ID:/lib/OpenCV/src/modules/imgproc/include -ID:/lib/OpenCV/src/modules/imgcodecs/include -ID:/lib/OpenCV/src/modules/videoio/include -ID:/lib/OpenCV/src/apps/visualisation/PRIVATE -ID:/lib/OpenCV/src/include/opencv -isystem D:/lib/OpenCV/build

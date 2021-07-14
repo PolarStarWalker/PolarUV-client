@@ -1,1 +1,0 @@
--ID:/lib/OpenCV/build/3rdparty/openexr -ID:/lib/OpenCV/src/3rdparty/openexr/IlmImf -ID:/lib/OpenCV/src/3rdparty/openexr/Imath -ID:/lib/OpenCV/src/3rdparty/openexr/IlmThread -ID:/lib/OpenCV/src/3rdparty/openexr/Iex -ID:/lib/OpenCV/src/3rdparty/openexr/Half -ID:/lib/OpenCV/build/3rdparty/zlib -ID:/lib/OpenCV/src/3rdparty/zlib -isystem D:/lib/OpenCV/build
