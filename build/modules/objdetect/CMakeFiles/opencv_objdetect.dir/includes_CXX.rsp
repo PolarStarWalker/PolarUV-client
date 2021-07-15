@@ -1,1 +1,0 @@
--ID:/lib/OpenCV/src/3rdparty/quirc/include -ID:/lib/OpenCV/src/modules/objdetect/include -ID:/lib/OpenCV/build/modules/objdetect -ID:/lib/OpenCV/src/modules/core/include -ID:/lib/OpenCV/src/modules/flann/include -ID:/lib/OpenCV/src/modules/imgproc/include -ID:/lib/OpenCV/src/modules/features2d/include -ID:/lib/OpenCV/src/modules/calib3d/include -isystem D:/lib/OpenCV/build

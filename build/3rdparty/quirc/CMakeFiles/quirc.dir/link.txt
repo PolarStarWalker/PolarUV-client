@@ -1,2 +1,0 @@
-C:\Qt\Tools\mingw810_64\bin\ar.exe qc ..\lib\libquirc.a CMakeFiles/quirc.dir/src/decode.c.obj CMakeFiles/quirc.dir/src/quirc.c.obj CMakeFiles/quirc.dir/src/version_db.c.obj
-C:\Qt\Tools\mingw810_64\bin\ranlib.exe ..\lib\libquirc.a

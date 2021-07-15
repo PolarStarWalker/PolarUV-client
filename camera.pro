@@ -24,14 +24,18 @@ HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
 
-INCLUDEPATH += .\build\install\include
+INCLUDEPATH += D:\lib\OpenCV\build\install\include
+DEPENDPATH += D:\lib\OpenCV\build\install\include
 
-LIBS += .\build\bin/libopencv_core3414.dll
-LIBS += .\build\bin\libopencv_highgui3414.dll
-LIBS += .\build\bin\libopencv_imgcodecs3414.dll
-LIBS += .\build\bin\libopencv_imgproc3414.dll
-LIBS += .\build\bin\libopencv_features2d3414.dll
-LIBS += .\build\bin\libopencv_calib3d3414.dll
+
+LIBS +=-LD:\lib\OpenCV\build\install\x64\mingw\lib
+
+LIBS += -lopencv_videoio451
+LIBS += -lopencv_core451
+LIBS += -lopencv_video451
+LIBS += -lopencv_highgui451
+LIBS += -lopencv_features2d451
+LIBS += -lopencv_calib3d451
 
 # more correct variant, how set includepath and libs for mingw
 # add system variable: OPENCV_SDK_DIR=D:/opencv/opencv-build/install
@@ -39,10 +43,10 @@ LIBS += .\build\bin\libopencv_calib3d3414.dll
 
 #INCLUDEPATH += $$(OPENCV_SDK_DIR)/include
 
-#LIBS += -L$$(OPENCV_SDK_DIR)/x86/mingw/lib \
-#        -lopencv_core320        \
-#        -lopencv_highgui320     \
-#        -lopencv_imgcodecs320   \
-#        -lopencv_imgproc320     \
-#        -lopencv_features2d320  \
-#        -lopencv_calib3d320
+#LIBS += -L$$(OPENCV_SDK_DIR)\x64\mingw\bin \
+#        -lopencv_core415        \
+#        -lopencv_highgui415     \
+#        -lopencv_imgcodecs415   \
+#        -lopencv_imgproc415     \
+#        -lopencv_features2d415  \
+#        -lopencv_calib3d415
