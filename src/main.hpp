@@ -3,11 +3,10 @@
 
 #include <QApplication>
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/videoio/videoio.hpp>
-#include <opencv2/highgui/highgui.hpp>
+
 
 #include "./MainWindow/MainWindow.hpp"
 #include "./DataProtocol/DataProtocol.hpp"
+#include "./Input/Input.hpp"
 
 #endif
