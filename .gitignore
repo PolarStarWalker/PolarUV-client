@@ -70,3 +70,5 @@ Thumbs.db
 # --------
 *.exe
 
+/cmake-build-release-qtcmake/
+/cmake-build-debug-qtcmake/

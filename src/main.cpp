@@ -6,12 +6,12 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
 
-    //MainWindow w;
-    //w.show();
+    MainWindow w;
+    w.show();
 
     cv::namedWindow("Main", cv::WINDOW_NORMAL);
 
-    cv::UMat frame;
+    cv::UMat inFrame, outFrame;
 
     const char pipeline[] = "udpsrc port=5000 ! gdpdepay ! rtph264depay ! decodebin ! autovideoconvert  ! appsink sync=false";
 
@@ -24,15 +24,16 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    while (1) {
-        videoStream >> frame;
+    for (;;) {
+        videoStream >> inFrame;
 
-        if (frame.empty()) {
+        if (inFrame.empty()) {
             std::cout << "Кадров больше нет\n";
             return  -2;
         }
-        cv::imshow("Main", frame);
-        cv::waitKey(5);
+
+        outFrame = std::move(inFrame);
+        cv::imshow("Main", outFrame);
 
     }
 
