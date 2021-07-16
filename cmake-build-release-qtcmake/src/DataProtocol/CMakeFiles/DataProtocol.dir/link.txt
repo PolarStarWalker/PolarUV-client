@@ -1,0 +1,2 @@
+C:/Users/savmo/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/211.7442.42/bin/cmake/win/bin/cmake.exe -E time C:\Qt\Tools\mingw810_64\bin\ar.exe qc libDataProtocol.a CMakeFiles/DataProtocol.dir/DataProtocol_autogen/mocs_compilation.cpp.obj CMakeFiles/DataProtocol.dir/DataProtocol.cpp.obj
+C:/Users/savmo/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/211.7442.42/bin/cmake/win/bin/cmake.exe -E time C:\Qt\Tools\mingw810_64\bin\ranlib.exe libDataProtocol.a

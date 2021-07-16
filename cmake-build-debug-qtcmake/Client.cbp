@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Client"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\lib\;CMake Files\lib\OpenCV\;CMake Files\lib\OpenCV\build\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\Qt\;CMake Files\..\..\..\..\Qt\5.15.2\;CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\;CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\;CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\;CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5\;CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\;CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\;CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\;CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Test\;CMake Files\src\;CMake Files\src\DataProtocol\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Client">
+				<Option output="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Client.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_TESTLIB_LIB"/>
+					<Add option="-DQT_TESTCASE_BUILDDIR=&quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake&quot;"/>
+					<Add directory="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Client_autogen/include"/>
+					<Add directory="D:/lib/OpenCV/build"/>
+					<Add directory="D:/lib/OpenCV/src/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/core/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/flann/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/imgproc/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/ml/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/photo/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/dnn/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/features2d/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/imgcodecs/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/videoio/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/calib3d/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/highgui/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/objdetect/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/stitching/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/ts/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/video/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/gapi/include"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtCore"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtGui"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtANGLE"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtWidgets"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtTest"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 Client"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Client/fast">
+				<Option output="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Client.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_TESTLIB_LIB"/>
+					<Add option="-DQT_TESTCASE_BUILDDIR=&quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake&quot;"/>
+					<Add directory="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Client_autogen/include"/>
+					<Add directory="D:/lib/OpenCV/build"/>
+					<Add directory="D:/lib/OpenCV/src/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/core/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/flann/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/imgproc/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/ml/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/photo/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/dnn/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/features2d/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/imgcodecs/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/videoio/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/calib3d/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/highgui/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/objdetect/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/stitching/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/ts/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/video/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/gapi/include"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtCore"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtGui"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtANGLE"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtWidgets"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtTest"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 Client/fast"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Client_autogen">
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 Client_autogen"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DataProtocol">
+				<Option output="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/libDataProtocol.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/DataProtocol_autogen/include"/>
+					<Add directory="D:/lib/OpenCV/build"/>
+					<Add directory="D:/lib/OpenCV/src/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/core/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/flann/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/imgproc/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/ml/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/photo/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/dnn/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/features2d/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/imgcodecs/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/videoio/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/calib3d/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/highgui/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/objdetect/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/stitching/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/ts/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/video/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/gapi/include"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 DataProtocol"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DataProtocol/fast">
+				<Option output="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/libDataProtocol.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/DataProtocol_autogen/include"/>
+					<Add directory="D:/lib/OpenCV/build"/>
+					<Add directory="D:/lib/OpenCV/src/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/core/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/flann/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/imgproc/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/ml/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/photo/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/dnn/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/features2d/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/imgcodecs/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/videoio/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/calib3d/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/highgui/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/objdetect/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/stitching/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/ts/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/video/include"/>
+					<Add directory="D:/lib/OpenCV/src/modules/gapi/include"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/Qt/Tools/mingw810_64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 DataProtocol/fast"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="DataProtocol_autogen">
+				<Option working_dir="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 DataProtocol_autogen"/>
+					<CompileFile command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Qt/Tools/mingw810_64/bin/mingw32-make.exe -f &quot;C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/Client_autogen/mocs_compilation.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/cmake-build-debug-qtcmake/src/DataProtocol/DataProtocol_autogen/mocs_compilation.cpp">
+			<Option target="DataProtocol"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/src/DataProtocol/DataProtocol.cpp">
+			<Option target="DataProtocol"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/src/DataProtocol/DataProtocol.hpp">
+			<Option target="DataProtocol"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/src/DataStruct.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/src/main.cpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/src/main.hpp">
+			<Option target="Client"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/lib/OpenCV/build/OpenCVConfig-version.cmake">
+			<Option virtualFolder="CMake Files\lib\OpenCV\build\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/lib/OpenCV/build/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\lib\OpenCV\build\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/lib/OpenCV/build/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\lib\OpenCV\build\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5/Qt5Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5/Qt5ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5/Qt5ModuleLocation.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgIconPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWebGLIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWindowsIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5Widgets_QWindowsVistaStylePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Test/Qt5TestConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Test\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Test/Qt5TestConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Test\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Test/Qt5TestConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Test\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+		<Unit filename="C:/Users/savmo/Documents/Client/src/DataProtocol/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\DataProtocol\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
