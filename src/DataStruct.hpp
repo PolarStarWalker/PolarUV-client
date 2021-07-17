@@ -44,6 +44,36 @@ struct CommandsStruct {
 extern CommandsStruct CommandsStructData;
 constexpr size_t CommandsStructLen = sizeof(CommandsStructData);
 
+std::ostream& operator << (std::ostream &s, const CommandsStruct &c)
+{
+    s << "VectorArray: ["
+      << c.VectorArray[0] << ", "
+      << c.VectorArray[1] << ", "
+      << c.VectorArray[2] << ", "
+      << c.VectorArray[3] << ", "
+      << c.VectorArray[4] << ", "
+      << c.VectorArray[5] << "]"
+      << std::endl
+
+      << "The Hand: ["
+      << c.TheHand[0] << ", "
+      << c.TheHand[1] << "]"
+      << std::endl
+
+      << "Camera: ["
+      << c.Camera[0] << ", "
+      << c.Camera[1] << "]"
+      << std::endl
+
+      << "MotorsLock: "
+      << c.MotorsLock << std::endl
+
+      << "Stabilization: "
+      << c.Stabilization << std::endl;
+
+    return s;
+}
+
 struct MotorsStruct {
 	/// Array prototype
 	///{T1CH1, T1CH2, T1CH3, T1CH4, T2CH1, T2CH2, T3CH3, T4CH1, T4CH2, T5CH1, T5CH2, T5CH4}
