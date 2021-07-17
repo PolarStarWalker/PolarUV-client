@@ -33,10 +33,8 @@ if (WIN32)
     endforeach (QT_LIB)
 endif ()
 
-add_subdirectory(DataProtocol)
-add_subdirectory(Input)
+
 add_subdirectory(MainWindow)
 
-target_link_libraries(Client DataProtocol)
-target_link_libraries(Client Input)
+
 target_link_libraries(Client MainWindow)

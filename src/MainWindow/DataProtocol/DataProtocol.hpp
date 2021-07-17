@@ -7,8 +7,7 @@ class DataProtocol {
 
 public:
 
-    bool ConnectToServer(QString ip, int port, int timeout);
-
+    bool ConnectToServer(QString ip, int port);
     void SendCommand(QByteArray command);
 
 private:

@@ -2,6 +2,8 @@
 #include "MainWindow.hpp"
 #include "./ui_mainwindow.h"
 
+#define SERVER_IP "169.254.154.5"
+#define PORT 1999
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -43,3 +45,26 @@ void MainWindow::StartVideoCapture() {
 void MainWindow::StopVideoCapture() {
     this->stream.release();
 }
+
+void MainWindow::on_socketConnectButton_clicked()
+{
+    DataProtocol dataProtocol;
+
+    std::cout << "Connecting to server\n";
+    if (dataProtocol.ConnectToServer(SERVER_IP,PORT)) {
+
+        std::cout << "Connected\n";
+
+        QByteArray qByteCommand(CommandsStructLen,0);
+
+        for (size_t i = 0;;i++) {
+
+            ((CommandsStruct*)qByteCommand.data())->VectorArray[0] = i;
+            dataProtocol.SendCommand(qByteCommand);
+            Sleep(3000);
+        }
+    }
+    else {
+        std::cout << "Can't connect to server\n";
+    };
+};

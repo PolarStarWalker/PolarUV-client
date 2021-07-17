@@ -5,8 +5,12 @@
 #include <opencv2/highgui/highgui.hpp>
 
 #include <iostream>
+#include <windows.h>
 
 #include <QMainWindow>
+
+#include "./DataProtocol/DataProtocol.hpp"
+#include "../DataStruct.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +29,9 @@ public:
 
     void StartVideoCapture();
     void StopVideoCapture();
+
+private slots:
+    void on_socketConnectButton_clicked();
 
 private:
     Ui::MainWindow *ui;

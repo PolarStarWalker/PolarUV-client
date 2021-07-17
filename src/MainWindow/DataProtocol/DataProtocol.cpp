@@ -1,10 +1,10 @@
 #include "DataProtocol.hpp"
 
-bool DataProtocol::ConnectToServer(QString ip, int port, int timeout = 30000) {
+bool DataProtocol::ConnectToServer(QString ip, int port) {
 
     this->_qTcpSocket.connectToHost("169.254.154.5",1999);
 
-    if (this->_qTcpSocket.waitForConnected(timeout)) {
+    if (this->_qTcpSocket.waitForConnected()) {
         return true;
     }
     else {
