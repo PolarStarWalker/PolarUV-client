@@ -6,9 +6,7 @@ add_executable(Client main.cpp main.hpp DataStruct.hpp)
 
 if (WIN32)
     set(DEBUG_SUFFIX)
-    if (CMAKE_BUILD_TYPE MATCHES "Debug")
-        set(DEBUG_SUFFIX "d")
-    endif ()
+
     set(QT_INSTALL_PATH "${CMAKE_PREFIX_PATH}")
     if (NOT EXISTS "${QT_INSTALL_PATH}/bin")
         set(QT_INSTALL_PATH "${QT_INSTALL_PATH}/..")
@@ -33,10 +31,7 @@ if (WIN32)
     endforeach (QT_LIB)
 endif ()
 
-add_subdirectory(DataProtocol)
-add_subdirectory(Input)
+
 add_subdirectory(MainWindow)
 
-target_link_libraries(Client DataProtocol)
-target_link_libraries(Client Input)
 target_link_libraries(Client MainWindow)
