@@ -8,3 +8,9 @@ set(CMAKE_AUTOUIC ON)
 
 add_library(MainWindow MainWindow.cpp MainWindow.hpp)
 target_link_libraries(MainWindow ${REQUIRED_LIBS_QUALIFIED})
+
+add_subdirectory(Input)
+add_subdirectory(DataProtocol)
+
+target_link_libraries(MainWindow Input)
+target_link_libraries(MainWindow DataProtocol)

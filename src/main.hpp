@@ -3,10 +3,6 @@
 
 #include <QApplication>
 
-
-
 #include "./MainWindow/MainWindow.hpp"
-#include "./DataProtocol/DataProtocol.hpp"
-#include "./Input/Input.hpp"
 
 #endif
