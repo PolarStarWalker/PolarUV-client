@@ -49,6 +49,7 @@ void DataProtocol::Start(const QString &address, uint16_t port) {
     for (size_t i = 0; _socket->IsOnline(); i++) {
 
         ///ToDo: реализовать тут протокол
+        ///По дебаггеру вроде работает, но вот переподключение как-то не очень
 
         ((CommandsStruct *) commandsStruct.data())->VectorArray[0] = i;
         _socket->SendCommand(commandsStruct);
@@ -71,8 +72,8 @@ void DataProtocol::StartAsync(const QString &address, uint16_t port) {
     if (this->IsOnline())
         return;
 
-    std::thread thread(&DataProtocol::Start, this, address, port);
-    thread.detach();
+    this->_transferThread = std::thread(&DataProtocol::Start, this, address, port);
+    this->_transferThread.detach();
 
     this->SetThreadStatus(true);
 }

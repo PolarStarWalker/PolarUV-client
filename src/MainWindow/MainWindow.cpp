@@ -1,6 +1,7 @@
 #include "MainWindow.hpp"
+#include "./ui_mainwindow.h"
 
-#define SERVER_IP "169.254.154.5"
+#define SERVER_IP "192.168.1.50"
 #define PORT 1999
 #define COMMAND_DELAY 3000
 

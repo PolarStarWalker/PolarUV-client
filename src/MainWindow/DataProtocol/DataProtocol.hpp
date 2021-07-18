@@ -34,6 +34,7 @@ private:
 
     ErrorType _errorStatus;
     Socket *_socket;
+    std::thread _transferThread;
     bool _isOnline;
     bool _isThreadActive;
 
