@@ -37,8 +37,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    cv::VideoCapture stream;
-    DataProtocol dataProtocol;
+
+    cv::VideoCapture _stream;
+    DataProtocol _dataProtocol;
 };
 #endif
 
