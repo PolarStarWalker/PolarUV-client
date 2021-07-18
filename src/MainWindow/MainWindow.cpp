@@ -4,6 +4,7 @@
 
 #define SERVER_IP "169.254.154.5"
 #define PORT 1999
+#define COMMAND_DELAY 3000
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -46,25 +47,37 @@ void MainWindow::StopVideoCapture() {
     this->stream.release();
 }
 
-void MainWindow::on_socketConnectButton_clicked()
-{
-    DataProtocol dataProtocol;
+void MainWindow::on_socketConnectButton_clicked() {
 
-    std::cout << "Connecting to server\n";
-    if (dataProtocol.ConnectToServer(SERVER_IP,PORT)) {
+    if (!dataProtocol.GetStatus()) {
 
-        std::cout << "Connected\n";
+        std::cout << "Connecting to server\n";
+        if (dataProtocol.ConnectToServer(SERVER_IP, PORT)) {
 
-        QByteArray qByteCommand(CommandsStructLen,0);
+            std::cout << "Connected\n";
 
-        for (size_t i = 0;;i++) {
+            QByteArray qByteCommand(CommandsStructLen, 0);
 
-            ((CommandsStruct*)qByteCommand.data())->VectorArray[0] = i;
-            dataProtocol.SendCommand(qByteCommand);
-            Sleep(3000);
-        }
+            for (size_t i = 0;; i++) {
+
+                ((CommandsStruct *) qByteCommand.data())->VectorArray[0] = i;
+                dataProtocol.SendCommand(qByteCommand);
+
+                /// Инновационное неблокирующее ожидание
+                std::chrono::steady_clock::time_point startingTimePoint = std::chrono::steady_clock::now();
+                std::chrono::steady_clock::time_point currentTimePoint;
+                while (1) {
+                    currentTimePoint = std::chrono::steady_clock::now();
+                    auto elapsedMs = std::chrono::duration_cast<std::chrono::milliseconds>(currentTimePoint - startingTimePoint);
+                    if (elapsedMs >= std::chrono::milliseconds(COMMAND_DELAY)) {break;}
+                }
+            }
+        } else {
+            std::cout << "Can't connect to server\n";
+        };
     }
     else {
-        std::cout << "Can't connect to server\n";
+        dataProtocol.Disconnect();
+        std::cout << "Disconnected\n";
     };
 };

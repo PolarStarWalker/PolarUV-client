@@ -7,12 +7,15 @@ class DataProtocol {
 
 public:
 
-    bool ConnectToServer(QString ip, int port);
+    bool ConnectToServer(QString address, int port);
+    void Disconnect();
+    bool GetStatus();
     void SendCommand(QByteArray command);
 
 private:
 
     QTcpSocket _qTcpSocket;
+    bool _isOnline = false;
 
 };
 

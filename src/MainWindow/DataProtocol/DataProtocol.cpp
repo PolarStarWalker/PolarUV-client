@@ -1,15 +1,27 @@
 #include "DataProtocol.hpp"
 
-bool DataProtocol::ConnectToServer(QString ip, int port) {
+bool DataProtocol::ConnectToServer(QString address, int port) {
 
-    this->_qTcpSocket.connectToHost("169.254.154.5",1999);
+    this->_qTcpSocket.connectToHost(address,port);
 
     if (this->_qTcpSocket.waitForConnected()) {
+        this->_isOnline = true;
         return true;
     }
     else {
         return false;
     }
+}
+
+void DataProtocol::Disconnect() {
+
+    this->_qTcpSocket.disconnectFromHost();
+
+    this->_isOnline = false;
+}
+
+bool DataProtocol::GetStatus() {
+    return this->_isOnline;
 }
 
 void DataProtocol::SendCommand(QByteArray command) {

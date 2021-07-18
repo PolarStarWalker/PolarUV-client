@@ -6,6 +6,8 @@
 
 #include <iostream>
 #include <windows.h>
+#include <thread>
+#include <chrono>
 
 #include <QMainWindow>
 
@@ -36,6 +38,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     cv::VideoCapture stream;
+    DataProtocol dataProtocol;
 };
 #endif
 
