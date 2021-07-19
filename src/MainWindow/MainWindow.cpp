@@ -1,7 +1,9 @@
-
 #include "MainWindow.hpp"
 #include "./ui_mainwindow.h"
 
+#define SERVER_IP "192.168.1.50"
+#define PORT 1999
+#define COMMAND_DELAY 3000
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
@@ -20,15 +22,15 @@ void MainWindow::StartVideoCapture() {
 
     cv::UMat inFrame, outFrame;
 
-    this->stream.open(pipeline, cv::CAP_GSTREAMER);
+    this->_stream.open(pipeline, cv::CAP_GSTREAMER);
 
-    if (!this->stream.isOpened()) {
+    if (!this->_stream.isOpened()) {
         std::cout << "Чё-та стримчанского я не вижу\n";
         return;
     }
 
     for (;;) {
-        this->stream >> inFrame;
+        this->_stream >> inFrame;
 
         if (inFrame.empty()) {
             std::cout << "Кадров больше нет\n";
@@ -41,5 +43,12 @@ void MainWindow::StartVideoCapture() {
 }
 
 void MainWindow::StopVideoCapture() {
-    this->stream.release();
+    this->_stream.release();
+}
+
+void MainWindow::on_socketConnectButton_clicked() {
+    if (!_dataProtocol.IsOnline())
+        _dataProtocol.StartAsync(SERVER_IP, PORT);
+    else
+        _dataProtocol.Stop();
 }
