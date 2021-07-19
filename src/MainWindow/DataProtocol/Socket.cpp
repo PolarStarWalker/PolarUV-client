@@ -30,5 +30,5 @@ bool Socket::IsOnline() const {
 void Socket::SendCommand(const QByteArray &command) {
     std::lock_guard<std::mutex> guard(this->_socketMutex);
     this->_qTcpSocket.write(command);
-    this->_isOnline = this->_qTcpSocket.waitForBytesWritten();
+    this->_isOnline = this->_qTcpSocket.waitForBytesWritten(1000);
 }

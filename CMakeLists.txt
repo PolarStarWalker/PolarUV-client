@@ -10,7 +10,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 project(Client)
 
 #путь до gst-launch-1.0.exe
-set(GSTREAMER_DIR "C:/gstreamer/1.0/mingw_x86_64/bin")
+set(GSTREAMER_DIR "/lib/1.0/mingw_x86_64/bin")
 link_directories(GSTREAMER_DIR)
 
 #чтобы сработало библиотека должна быть в PATH
@@ -18,7 +18,7 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 #Путь до Qt
-set(CMAKE_PREFIX_PATH "C:/Qt/5.15.2/mingw81_64/lib/cmake")
+set(CMAKE_PREFIX_PATH "/lib/mingw81_64/lib/cmake")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
