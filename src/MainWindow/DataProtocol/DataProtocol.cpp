@@ -43,6 +43,10 @@ void DataProtocol::Start(const QString &address, uint16_t port) {
 
     this->SetOnlineStatus(true);
 
+    /// Отправка структуры настроек перед циклом отправки команд
+    QByteArray settingsStruct(SettingsStructLen, 0);
+    this->_socket->SendSettings(settingsStruct);
+
     QByteArray commandsStruct(CommandsStructLen, 0);
 
     ///Не удивляйся, это типа while, но со счётчиком

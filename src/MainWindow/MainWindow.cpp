@@ -1,9 +1,9 @@
 #include "MainWindow.hpp"
 #include "./ui_mainwindow.h"
 
-#define SERVER_IP "192.168.1.50"
+#define SERVER_IP "169.254.154.5" // 192.168.1.50 - motov.s
+                                  // 169.254.154.5 - shushkov.d
 #define PORT 1999
-#define COMMAND_DELAY 3000
 
 MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)

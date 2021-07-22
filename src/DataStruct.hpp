@@ -46,8 +46,6 @@ struct CommandsStruct {
 extern CommandsStruct CommandsStructData;
 constexpr size_t CommandsStructLen = sizeof(CommandsStructData);
 
-
-
 struct MotorsStruct {
 	/// Array prototype
 	///{T1CH1, T1CH2, T1CH3, T1CH4, T2CH1, T2CH2, T3CH3, T4CH1, T4CH2, T5CH1, T5CH2, T5CH4}
@@ -69,7 +67,20 @@ constexpr size_t MotorsStructArrayLength = sizeof(MotorsStructData.PacketArray);
 constexpr size_t MotorsStructLen = sizeof(MotorsStructData);
 constexpr size_t MotorsStructLenMessage = MotorsStructLen + 2;
 
-/// Вынести в отдельный файл!
+struct SettingsStruct {
+    double* MoveCoefficientArray = nullptr;
+    double* HandCoefficientArray = nullptr;
+    ssize_t MaxMotorSpeed = -1;
+    int8_t ThrustersNumber = -1;
+    int8_t MotorsProtocol = -1;
+    int8_t HandFreedom = -1;
+    bool IsTurnOn = false;
+};
+
+extern SettingsStruct SettingsStructData;
+constexpr size_t SettingsStructLen = sizeof(SettingsStructData);
+
+/// ToDo: Вынести в отдельный файл!
 /*std::ostream& operator<< (std::ostream &s, const CommandsStruct &c)
 {
     s << "VectorArray: ["

@@ -5,6 +5,7 @@
 #include <opencv2/highgui/highgui.hpp>
 
 #include <iostream>
+#include <fstream>
 #include <windows.h>
 #include <thread>
 #include <chrono>
