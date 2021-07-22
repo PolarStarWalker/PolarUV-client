@@ -10,10 +10,11 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 project(Client)
 
 #путь до gst-launch-1.0.exe
-set(GSTREAMER_DIR "/lib/1.0/mingw_x86_64/bin")
+set(GSTREAMER_DIR "/lib/gstreamer-dev/1.0/msvc_x86_64/bin")
 link_directories(GSTREAMER_DIR)
 
 #чтобы сработало библиотека должна быть в PATH
+set(OpenCV_STATIC ON)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
@@ -32,4 +33,3 @@ find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 add_subdirectory(src)
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})

@@ -6,6 +6,6 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-add_library(DataProtocol DataProtocol.cpp DataProtocol.hpp Socket.cpp Socket.hpp)
+add_library(DataProtocol DataProtocol.cpp DataProtocol.hpp Socket.cpp Socket.hpp IDataStream.hpp)
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
