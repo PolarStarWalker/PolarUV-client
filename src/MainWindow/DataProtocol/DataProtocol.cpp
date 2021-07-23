@@ -42,7 +42,7 @@ void DataProtocol::Start(const QString &address, uint16_t port) {
 
     /// Отправка структуры настроек перед циклом отправки команд
     QByteArray settingsStruct(SettingsStructLen, 0);
-    this->_socket->SendSettings(settingsStruct);
+    this->_socket.SendSettings(settingsStruct);
 
     QByteArray commandsStruct(CommandsStructLen, 0);
 
