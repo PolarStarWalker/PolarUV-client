@@ -1,9 +1,5 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <opencv2/core/core.hpp>
-#include <opencv2/videoio/videoio.hpp>
-#include <opencv2/highgui/highgui.hpp>
-
 #include <iostream>
 #include <fstream>
 #include <windows.h>
@@ -11,15 +7,17 @@
 #include <chrono>
 
 #include <QMainWindow>
+#include <QThread>
 
 #include "./DataProtocol/DataProtocol.hpp"
+#include "./VideoProcessing/VideoProcessing.hpp"
 #include "../DataStruct.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-constexpr char pipeline[] = "udpsrc port=5000 ! gdpdepay ! rtph264depay ! decodebin ! autovideoconvert  ! appsink sync=false";
+constexpr char pipeline[] = "tcpclientsrc host=192.168.1.50 port=5000 ! gdpdepay ! rtph264depay ! decodebin ! autovideoconvert  ! appsink sync=false";
 
 
 class MainWindow : public QMainWindow
@@ -27,20 +25,20 @@ class MainWindow : public QMainWindow
 Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
-    void StartVideoCapture();
-    void StopVideoCapture();
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() override;
 
 private slots:
-    void on_socketConnectButton_clicked();
+    void on_CommandsProtocolButton_clicked();
+    void on_GamepadButton_clicked();
+    void on_VideoStreamButton_clicked();
 
 private:
     Ui::MainWindow *ui;
 
-    cv::VideoCapture _stream;
-    DataProtocol _dataProtocol;
+    VideoProcessing _stream;
+    DataProtocol *_dataProtocol;
+    QThread *_dataProtocolThread;
 };
 #endif
 

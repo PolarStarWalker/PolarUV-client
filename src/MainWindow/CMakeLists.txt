@@ -11,6 +11,9 @@ target_link_libraries(MainWindow ${REQUIRED_LIBS_QUALIFIED})
 
 add_subdirectory(DataProtocol)
 add_subdirectory(Input)
+add_subdirectory(VideoProcessing)
 
 target_link_libraries(MainWindow DataProtocol)
 target_link_libraries(MainWindow Input)
+target_link_libraries(MainWindow VideoProcessing)
+

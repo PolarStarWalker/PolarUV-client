@@ -10,45 +10,35 @@ MainWindow::MainWindow(QWidget *parent)
         , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //this->_dataProtocolThread = new QThread(this);
+
+    //connect(this, SIGNAL(destroyed()), this->_dataProtocolThread, SLOT(quit()));
+
+
+    this->_dataProtocol = new DataProtocol;
+
+   //this->_dataProtocol->moveToThread(this->_dataProtocolThread);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete this->_dataProtocol;
 }
 
-void MainWindow::StartVideoCapture() {
-    cv::namedWindow("Main", cv::WINDOW_NORMAL);
+void MainWindow::on_GamepadButton_clicked() {
 
-    cv::UMat inFrame, outFrame;
-
-    this->_stream.open(pipeline, cv::CAP_GSTREAMER);
-
-    if (!this->_stream.isOpened()) {
-        std::cout << "Чё-та стримчанского я не вижу\n";
-        return;
-    }
-
-    for (;;) {
-        this->_stream >> inFrame;
-
-        if (inFrame.empty()) {
-            std::cout << "Кадров больше нет\n";
-            return;
-        }
-
-        outFrame = std::move(inFrame);
-        cv::imshow("Main", outFrame);
-    }
 }
 
-void MainWindow::StopVideoCapture() {
-    this->_stream.release();
+void MainWindow::on_VideoStreamButton_clicked() {
+    this->_stream.Start(pipeline);
+
 }
 
-void MainWindow::on_socketConnectButton_clicked() {
-    if (!_dataProtocol.IsOnline())
-        _dataProtocol.StartAsync(SERVER_IP, PORT);
+void MainWindow::on_CommandsProtocolButton_clicked() {
+    if (!_dataProtocol->IsOnline())
+        _dataProtocol->StartAsync(SERVER_IP, PORT);
     else
-        _dataProtocol.Stop();
+        _dataProtocol->Stop();
 }

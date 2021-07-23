@@ -7,7 +7,7 @@
 
 #include "Socket.hpp"
 
-class DataProtocol {
+class DataProtocol : public QObject {
     enum ErrorType : uint8_t {
         Ok = 0,
         CantConnectToServer = 1,
@@ -26,17 +26,18 @@ public:
     void Stop();
 
 private:
+    Socket _socket;
 
     /// mutable нужен для того чтобы менять поля в const функциях
     mutable std::mutex _statusStatusMutex;
     mutable std::mutex _errorStatusMutex;
     mutable std::mutex _threadStatusMutex;
 
-    ErrorType _errorStatus;
-    Socket *_socket;
     std::thread _transferThread;
+
     bool _isOnline;
     bool _isThreadActive;
+    ErrorType _errorStatus;
 
     void Start(const QString &address, uint16_t port);
 
