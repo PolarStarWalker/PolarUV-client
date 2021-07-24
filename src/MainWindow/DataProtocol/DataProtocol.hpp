@@ -5,6 +5,7 @@
 #include <thread>
 #include <chrono>
 
+#include "IDataStream.hpp"
 #include "Socket.hpp"
 
 class DataProtocol : public QObject {
@@ -15,7 +16,7 @@ class DataProtocol : public QObject {
     };
 
 public:
-    DataProtocol();
+    DataProtocol(IDataStream *_dataStream);
     ~DataProtocol();
 
     bool IsOnline() const;
@@ -35,8 +36,10 @@ private:
 
     std::thread _transferThread;
 
+    IDataStream* _dataStream;
+
     bool _isOnline;
-    bool _isThreadActive;
+    bool _isThreadActive{};
     ErrorType _errorStatus;
 
     void Start(const QString &address, uint16_t port);

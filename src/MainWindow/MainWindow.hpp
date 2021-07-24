@@ -44,7 +44,7 @@ private:
     Ui::MainWindow *ui;
 
     VideoProcessing _stream;
-    DataProtocol *_dataProtocol;
+    DataProtocol *_gamepadDataProtocol;
     QThread *_dataProtocolThread;
 };
 #endif

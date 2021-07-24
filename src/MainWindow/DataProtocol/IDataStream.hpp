@@ -4,15 +4,18 @@
 #include <memory>
 
 class IDataStream{
+protected:
     struct Stream{
-        size_t Size = 0;
-        std::unique_ptr<void> Data = nullptr;
+        int Size = 0;
+        std::shared_ptr<void> Data;
     };
+
 
 public:
 
-
-    virtual void DataStream() = 0;
+    [[nodiscard]] virtual Stream GetStream() const = 0;
+    virtual std::ostream& Print(IDataStream::Stream&) const = 0;
+    virtual ~IDataStream()  = 0;
 
 private:
 

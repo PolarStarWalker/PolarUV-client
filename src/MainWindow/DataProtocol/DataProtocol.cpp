@@ -3,7 +3,8 @@
 
 #include <iostream>
 
-DataProtocol::DataProtocol() {
+DataProtocol::DataProtocol(IDataStream *_dataStream) {
+    this->_dataStream = _dataStream;
     this->_isOnline = false;
     this->_errorStatus = DataProtocol::ErrorType::Ok;
 }
@@ -12,6 +13,7 @@ DataProtocol::~DataProtocol() {
     ///ToDo: motov.s - когда-нибудь придумай что-нибудь получше этого безобразия
     while (this->IsThreadActive())
         std::this_thread::sleep_for(std::chrono::microseconds(1));
+    delete this->_dataStream;
 }
 
 bool DataProtocol::IsOnline() const {
@@ -40,14 +42,17 @@ void DataProtocol::Start(const QString &address, uint16_t port) {
 
     this->SetOnlineStatus(true);
 
-    QByteArray commandsStruct(CommandsStructLen, 0);
-
     ///Не удивляйся, это типа while, но со счётчиком
     for (size_t i = 0; _socket.IsOnline(); i++) {
 
         ///ToDo: реализовать тут протокол
 
-        ((CommandsStruct *) commandsStruct.data())->VectorArray[0] = i;
+        auto stream = this->_dataStream->GetStream();
+
+        this->_dataStream->Print(stream);
+
+        QByteArray commandsStruct((char*) stream.Data.get(), stream.Size);
+
         _socket.SendCommand(commandsStruct);
 
         ///Пока 2 мс, потом это скорее всего надо будет вынести в отдельную настройку
