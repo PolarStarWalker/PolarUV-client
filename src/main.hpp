@@ -6,6 +6,6 @@
 
 #include "./MainWindow/MainWindow.hpp"
 #include "./MainWindow/DataProtocol/DataProtocol.hpp"
-#include "./MainWindow/Input/Input.hpp"
+#include "./MainWindow/Input/Gamepad.hpp"
 
 #endif

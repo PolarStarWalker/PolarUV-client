@@ -11,14 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //this->_dataProtocolThread = new QThread(this);
-
-    //connect(this, SIGNAL(destroyed()), this->_dataProtocolThread, SLOT(quit()));
-
-
     this->_dataProtocol = new DataProtocol;
-
-   //this->_dataProtocol->moveToThread(this->_dataProtocolThread);
 }
 
 MainWindow::~MainWindow()

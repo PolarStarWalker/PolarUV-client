@@ -6,5 +6,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-add_library(Input Input.cpp Input.hpp)
-target_link_libraries(Input Qt::Gamepad)
+add_library(Input Gamepad.cpp Gamepad.hpp)
+
+SET( LIBS XInput DSound)
+TARGET_LINK_LIBRARIES(Input ${LIBS} )

@@ -4,16 +4,18 @@
 #include <memory>
 
 class IDataStream{
-public:
     struct Stream{
         size_t Size = 0;
         std::unique_ptr<void> Data = nullptr;
     };
 
-    virtual DataStream
+public:
+
+
+    virtual void DataStream() = 0;
 
 private:
 
 };
 
-#endif //CLIENT_IDATASTREAM_HPP
+#endif

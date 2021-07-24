@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 #add_executable(Client main.cpp main.hpp DataStruct.hpp ./MainWindow/MainWindow.cpp ./MainWindow/MainWindow.hpp)
 
-add_executable(Client main.cpp main.hpp DataStruct.hpp)
+add_executable(Client main.cpp main.hpp DataStruct.hpp DataStruct.cpp)
 
 if (WIN32)
     set(DEBUG_SUFFIX)
@@ -35,6 +35,5 @@ endif ()
 
 
 add_subdirectory(MainWindow)
-
 
 target_link_libraries(Client MainWindow)
