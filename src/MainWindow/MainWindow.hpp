@@ -7,6 +7,7 @@
 #include <chrono>
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QThread>
 
 #include "./DataProtocol/DataProtocol.hpp"
@@ -28,10 +29,16 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+protected:
+    void resizeEvent(QResizeEvent *event); // Вызывается при изменении размеров окна
+
 private slots:
     void on_CommandsProtocolButton_clicked();
     void on_GamepadButton_clicked();
     void on_VideoStreamButton_clicked();
+
+    void on_MotorsQuantitySpinBox_valueChanged(int value);
+    void on_HandFreedomSpinBox_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
