@@ -3,9 +3,7 @@
 
 #include <QApplication>
 
-
 #include "./MainWindow/MainWindow.hpp"
-#include "./MainWindow/DataProtocol/DataProtocol.hpp"
-#include "./MainWindow/Input/Gamepad.hpp"
+
 
 #endif

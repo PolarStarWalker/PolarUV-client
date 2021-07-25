@@ -1,6 +1,6 @@
 #include "MainWindow.hpp"
 #include "./ui_mainwindow.h"
-#include "Input/Gamepad.hpp"
+#include "Gamepad/Gamepad.hpp"
 
 #define SERVER_IP "192.168.1.50" \
 // 192.168.1.50 - motov.s
