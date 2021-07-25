@@ -15,7 +15,7 @@ public:
 
     [[nodiscard]] virtual Stream GetStream() const = 0;
     virtual std::ostream& Print(IDataStream::Stream&) const = 0;
-    virtual ~IDataStream()  = 0;
+    virtual ~IDataStream()  = default;
 
 private:
 

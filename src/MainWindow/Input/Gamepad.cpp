@@ -5,8 +5,6 @@ Gamepad::Gamepad(size_t id) {
     this->_id = id;
 }
 
-Gamepad::~Gamepad() = default;
-
 CommandsStruct *Gamepad::GetCommandsStruct() const {
     CommandsStruct *commands = new CommandsStruct{};
 

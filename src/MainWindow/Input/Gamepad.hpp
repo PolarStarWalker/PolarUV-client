@@ -15,12 +15,11 @@
 #define MAGIC_NUMBER_ONE 0x7FFF
 #define MAGIC_NUMBER_TWO 0xFF
 
-class Gamepad : public IDataStream{
+class Gamepad final : public IDataStream{
 
 
 public:
     explicit Gamepad(size_t id);
-    ~Gamepad() override;
     [[nodiscard]] Stream GetStream() const final;
     std::ostream& Print(IDataStream::Stream&) const final;
 
