@@ -8,6 +8,8 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QPainter>
+#include <QWindowStateChangeEvent>
 #include <QThread>
 
 #include "./DataProtocol/DataProtocol.hpp"
@@ -30,13 +32,22 @@ public:
     ~MainWindow() override;
 
 protected:
-    void resizeEvent(QResizeEvent *event); // Вызывается при изменении размеров окна
+    /// События
+    void paintEvent(QPaintEvent *event) override; // Вызывается на этапе рисования окна
+    void resizeEvent(QResizeEvent *event) override; // Вызывается при изменении размеров окна
+    void changeEvent(QEvent *event) override; // Вызывается при любом изменении свойств окна
 
 private slots:
+    /// Функциональные кнопки
     void on_CommandsProtocolButton_clicked();
     void on_GamepadButton_clicked();
     void on_VideoStreamButton_clicked();
 
+    /// Интерфейсные кнопки
+    void on_WindowCloseButton_clicked();
+    void on_WindowMinimizeButton_clicked();
+
+    /// Интерфейсные функции
     void on_MotorsQuantitySpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);
 
