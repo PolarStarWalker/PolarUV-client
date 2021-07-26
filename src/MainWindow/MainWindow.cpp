@@ -26,17 +26,6 @@ MainWindow::~MainWindow()
     delete this->_dataProtocol;
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event) {
-    /// Перемещаем виджет настроек
-    int x = ((ui->centralwidget->width() - ui->SettingsWidget->width()) / 2) - 13;
-    int y = ((ui->centralwidget->height() - ui->SettingsWidget->height()) / 2) - 29;
-    int width = ui->SettingsWidget->width();
-    int height = ui->SettingsWidget->height();
-    ui->SettingsWidget->setGeometry(x,y,width,height);
-
-    /// Место для перемещения еще чего-нибудь
-}
-
 void MainWindow::on_GamepadButton_clicked() {
 
 }
@@ -53,6 +42,38 @@ void MainWindow::on_CommandsProtocolButton_clicked() {
         _dataProtocol->Stop();
 }
 
+void MainWindow::resizeEvent(QResizeEvent *event) {
+    /// Изменяем размеры TabWidget
+    ui->TabWidget->setGeometry(ui->MainWidget->geometry());
+
+    /// Перемещаем кнопки закрытия и сворачивания программы
+    ui->WindowCloseButton->move(ui->MainWidget->width() - ui->WindowCloseButton->width(),0);
+    ui->WindowMinimizeButton->move(ui->WindowCloseButton->x() - ui->WindowMinimizeButton->width(),0);
+
+    /// Перемещаем виджет настроек
+    int x = ((ui->MainWidget->width() - ui->SettingsWidget->width()) / 2);
+    int y = ((ui->MainWidget->height() - ui->SettingsWidget->height()) / 2);
+    ui->SettingsWidget->move(x,y);
+}
+
+void MainWindow::changeEvent(QEvent *event) {
+    /// Отлавливаем момент разворачивания окна и заставляем его развернуться на весь экран
+    if (event->type() == QEvent::WindowStateChange) {
+        auto* stateChangeEvent = dynamic_cast<QWindowStateChangeEvent*>(event);
+        if (stateChangeEvent->oldState() == Qt::WindowMinimized) {
+            this->setWindowState(Qt::WindowFullScreen);
+        }
+    }
+}
+
+void MainWindow::on_WindowCloseButton_clicked() {
+    this->close();
+}
+
+void MainWindow::on_WindowMinimizeButton_clicked() {
+    this->setWindowState(Qt::WindowMinimized);
+}
+
 void MainWindow::on_MotorsQuantitySpinBox_valueChanged(int value) {
     /// Изменяем высоту таблицы
     ui->MotorsTable->setFixedHeight((value * 26) + ((int)(value * 0.5))); // 26 - высота одной строки
@@ -60,14 +81,12 @@ void MainWindow::on_MotorsQuantitySpinBox_valueChanged(int value) {
     /// Перемещаем нижние линии
     int x = ui->MotorsBottomLeftLine->x();
     int y = ui->MotorsTable->y() + ui->MotorsTable->height();
-    int width = ui->MotorsBottomLeftLine->width();
-    int height = ui->MotorsBottomLeftLine->height();
-    ui->MotorsBottomLeftLine->setGeometry(x,y,width,height);
+    ui->MotorsBottomLeftLine->move(x,y);
     x = ui->MotorsBottomRightLine->x();
-    ui->MotorsBottomRightLine->setGeometry(x,y,width,height);
+    ui->MotorsBottomRightLine->move(x,y);
 
     /// Изменяем высоту боковых линий
-    height = ui->MotorsBottomLeftLine->y() - ui->MotorsTopLeftLine->y();
+    int height = ui->MotorsBottomLeftLine->y() - ui->MotorsTopLeftLine->y();
     ui->MotorsLeftLine->setFixedHeight(height);
     ui->MotorsRightLine->setFixedHeight(height);
 
@@ -82,32 +101,26 @@ void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
     /// Перемещаем таблицу ровно под надпись "Коэффициенты"
     int x = (ui->HandCoefficientsLabel->x() + (ui->HandCoefficientsLabel->width() / 2)) - (ui->HandTable->width() / 2);
     int y = ui->HandTable->y();
-    int width = ui->HandTable->width();
-    int height = ui->HandTable->height();
-    ui->HandTable->setGeometry(x,y,width,height);
+    ui->HandTable->move(x,y);
 
     /// Перемещаем боковые линии
     x = ui->HandTable->x() - 20;
     y = ui->HandLeftLine->y();
-    width = ui->HandLeftLine->width();
-    height = ui->HandLeftLine->height();
-    ui->HandLeftLine->setGeometry(x,y,width,height);
+    ui->HandLeftLine->move(x,y);
     x = ui->HandTable->x() + ui->HandTable->width();
-    ui->HandRightLine->setGeometry(x,y,width,height);
+    ui->HandRightLine->move(x,y);
 
     /// Перемещаем верхние и нижние линии
     x = ui->HandLeftLine->x() + 9;
     y = ui->HandTopLeftLine->y();
-    width = ui->HandTopLeftLine->width();
-    height = ui->HandTopLeftLine->height();
-    ui->HandTopLeftLine->setGeometry(x,y,width,height);
+    ui->HandTopLeftLine->move(x,y);
     y = ui->HandBottomLeftLine->y();
-    ui->HandBottomLeftLine->setGeometry(x,y,width,height);
+    ui->HandBottomLeftLine->move(x,y);
     x = ui->HandRightLine->x() - 9;
     y = ui->HandTopRightLine->y();
-    ui->HandTopRightLine->setGeometry(x,y,width,height);
+    ui->HandTopRightLine->move(x,y);
     y = ui->HandBottomRightLine->y();
-    ui->HandBottomRightLine->setGeometry(x,y,width,height);
+    ui->HandBottomRightLine->move(x,y);
 
     /// Устанавливаем число столбцов таблицы
     ui->HandTable->setColumnCount(value);
