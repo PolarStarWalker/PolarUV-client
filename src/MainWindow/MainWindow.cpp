@@ -37,12 +37,12 @@ void MainWindow::on_VideoStreamButton_clicked() {
 
 void MainWindow::on_CommandsProtocolButton_clicked() {
     if (!_dataProtocol->IsOnline())
-        _dataProtocol->StartAsync(SERVER_IP, PORT);
+        _dataProtocol->StartAsync(ui->IPEdit->text(), PORT);
     else
         _dataProtocol->Stop();
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event) {
+void MainWindow::paintEvent(QPaintEvent *event) {
     /// Изменяем размеры TabWidget
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
 
@@ -50,10 +50,47 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
     ui->WindowCloseButton->move(ui->MainWidget->width() - ui->WindowCloseButton->width(),0);
     ui->WindowMinimizeButton->move(ui->WindowCloseButton->x() - ui->WindowMinimizeButton->width(),0);
 
-    /// Перемещаем виджет настроек
-    int x = ((ui->MainWidget->width() - ui->SettingsWidget->width()) / 2);
-    int y = ((ui->MainWidget->height() - ui->SettingsWidget->height()) / 2);
-    ui->SettingsWidget->move(x,y);
+    /// Перемещаем надпись "Статус подключения"
+    int offset = 140; // Расстояние от правого края окна до надписи
+    ui->StatusLabel->move(ui->MainWidget->width() - ui->StatusLabel->width() - offset,0);
+
+    /// Рисуем кружок статуса
+    offset = 10; // Расстояние от надписи до центра окружности
+    QPainter painter(this);
+    QPoint point(ui->StatusLabel->x() + ui->StatusLabel->width() + offset,13);
+    painter.setPen(Qt::NoPen); // Не рисовать границы
+    painter.setBrush(QBrush("#ff0000"));
+    painter.drawEllipse(point,7,7);
+
+    /// Перемещаем виджет настроек робота
+    offset = 30; // Расстояние между виджетами по горизонтали
+    int x = (ui->tab_3->width() - (ui->RobotSettingsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
+    int y = (ui->tab_3->height() - ui->RobotSettingsWidget->height()) / 2;
+    ui->RobotSettingsWidget->move(x,y);
+
+    /// Перемещаем виджет настроек клиента
+    x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() + offset;
+    ui->ClientSettingsWidget->move(x,y);
+
+    /// Перемещаем заголовок виджета настроек робота
+    x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width()/2 - ui->RobotSettingsLabel->width()/2;
+    y = ui->RobotSettingsWidget->y() - ui->RobotSettingsLabel->height()/2;
+    ui->RobotSettingsLabel->move(x,y);
+
+    /// Перемещаем заголовок виджета настроек клиента
+    x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width()/2 - ui->ClientSettingsLabel->width()/2;
+    y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height()/2;
+    ui->ClientSettingsLabel->move(x,y);
+
+    /// Перемещаем рамку заголовка виджета настроек робота
+    ui->RobotSettingsLabelFrame->setGeometry(ui->RobotSettingsLabel->geometry());
+
+    /// Перемещаем рамку заголовка виджета настроек клиента
+    ui->ClientSettingsLabelFrame->setGeometry(ui->ClientSettingsLabel->geometry());
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event) {
+
 }
 
 void MainWindow::changeEvent(QEvent *event) {

@@ -8,6 +8,7 @@
 
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QPainter>
 #include <QWindowStateChangeEvent>
 #include <QThread>
 
@@ -31,8 +32,10 @@ public:
     ~MainWindow() override;
 
 protected:
-    void resizeEvent(QResizeEvent *event); // Вызывается при изменении размеров окна
-    void changeEvent(QEvent *event); // Вызывается при любом изменении свойств окна
+    /// События
+    void paintEvent(QPaintEvent *event) override; // Вызывается на этапе рисования окна
+    void resizeEvent(QResizeEvent *event) override; // Вызывается при изменении размеров окна
+    void changeEvent(QEvent *event) override; // Вызывается при любом изменении свойств окна
 
 private slots:
     /// Функциональные кнопки
