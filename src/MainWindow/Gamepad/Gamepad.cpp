@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Gamepad.hpp"
 
+using namespace Control;
+
 Gamepad::Gamepad(size_t id) {
     this->_id = id;
 }
@@ -12,11 +14,11 @@ CommandsStruct *Gamepad::GetCommandsStruct() const {
     XInputGetState(this->_id, &state);
 
     commands->VectorArray[Fx] = GasFunction(((double) state.Gamepad.sThumbRY) / MAGIC_NUMBER_ONE);
-    commands->VectorArray[Fy] = GasFunction(((double) state.Gamepad.sThumbLX) / MAGIC_NUMBER_ONE);
+    commands->VectorArray[Fy] = GasFunction((-(double) state.Gamepad.sThumbLX) / MAGIC_NUMBER_ONE);
     commands->VectorArray[Fz] = GasFunction(((double) state.Gamepad.sThumbLY) / MAGIC_NUMBER_ONE);
     commands->VectorArray[Mx] = GasFunction(((double) state.Gamepad.bLeftTrigger) / MAGIC_NUMBER_TWO);
     commands->VectorArray[My] = GasFunction(((double) state.Gamepad.bRightTrigger) / MAGIC_NUMBER_TWO);
-    commands->VectorArray[Mz] = GasFunction(((double) state.Gamepad.sThumbRX) / MAGIC_NUMBER_ONE);
+    commands->VectorArray[Mz] = GasFunction((-(double) state.Gamepad.sThumbRX) / MAGIC_NUMBER_ONE);
 
     if (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT)
         commands->TheHand[0] = -1;
@@ -61,7 +63,7 @@ std::ostream &Gamepad::Print(IDataStream::Stream &stream) const {
     return operator<<(std::ostream(nullptr), *((CommandsStruct *) stream.Data.get()));
 }
 
-std::list<int> Gamepad::GetGamepadsIds() {
+std::list<int> GetGamepadsIds() {
     std::list<int> ids;
     XINPUT_STATE state{};
     for (int i = 0; i < XUSER_MAX_COUNT; i++) {

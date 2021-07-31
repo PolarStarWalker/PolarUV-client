@@ -34,7 +34,6 @@ public:
 protected:
     /// События
     void paintEvent(QPaintEvent *event) override; // Вызывается на этапе рисования окна
-    void resizeEvent(QResizeEvent *event) override; // Вызывается при изменении размеров окна
     void changeEvent(QEvent *event) override; // Вызывается при любом изменении свойств окна
 
 private slots:
@@ -56,7 +55,6 @@ private:
 
     VideoProcessing _stream;
     DataProtocol *_gamepadDataProtocol;
-
 };
 #endif
 

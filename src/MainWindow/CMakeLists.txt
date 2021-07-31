@@ -6,7 +6,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-add_library(MainWindow MainWindow.cpp MainWindow.hpp)
+add_library(MainWindow MainWindow.cpp MainWindow.hpp IState.hpp)
 target_link_libraries(MainWindow ${REQUIRED_LIBS_QUALIFIED})
 
 add_subdirectory(DataProtocol)
