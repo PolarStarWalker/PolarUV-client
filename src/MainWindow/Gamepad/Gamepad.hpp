@@ -4,6 +4,7 @@
 #include <memory>
 #include <cstring>
 #include <cmath>
+#include <list>
 
 #include <xinput.h>
 #include <minwindef.h>
@@ -25,7 +26,7 @@ public:
 
     void SetVibration(uint16_t left, uint16_t right) const;
 
-
+    static std::list<int> GetGamepadsIds();
 
 private:
     size_t _id;

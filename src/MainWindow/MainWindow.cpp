@@ -21,12 +21,12 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
-    /// Перемещаем виджет настроек
+/*    /// Перемещаем виджет настроек
     int x = ((ui->centralwidget->width() - ui->SettingsWidget->width()) / 2) - 13;
     int y = ((ui->centralwidget->height() - ui->SettingsWidget->height()) / 2) - 29;
     int width = ui->SettingsWidget->width();
     int height = ui->SettingsWidget->height();
-    ui->SettingsWidget->setGeometry(x, y, width, height);
+    ui->SettingsWidget->setGeometry(x, y, width, height);*/
 
     /// Место для перемещения еще чего-нибудь
 }
@@ -92,10 +92,6 @@ void MainWindow::paintEvent(QPaintEvent *event) {
 
     /// Перемещаем рамку заголовка виджета настроек клиента
     ui->ClientSettingsLabelFrame->setGeometry(ui->ClientSettingsLabel->geometry());
-}
-
-void MainWindow::resizeEvent(QResizeEvent *event) {
-
 }
 
 void MainWindow::changeEvent(QEvent *event) {

@@ -92,6 +92,8 @@ extern SettingsStruct SettingsStructData;
 constexpr size_t SettingsStructLen = sizeof(SettingsStructData);
 
 
-std::ostream &operator<<(std::ostream &s, const CommandsStruct &c);
+std::ostream &operator<<(std::ostream &s, const CommandsStruct &commandsStruct);
+std::ostream& operator << (std::ostream &s, const MotorsStruct &motorsStruct);
+std::ostream& operator << (std::ostream &ostream, const SettingsStruct &settingsStruct);
 
 #endif

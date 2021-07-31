@@ -9,7 +9,6 @@ CommandsStruct *Gamepad::GetCommandsStruct() const {
     CommandsStruct *commands = new CommandsStruct{};
 
     XINPUT_STATE state{};
-    std::memset(&state, 0, sizeof(state));
     XInputGetState(this->_id, &state);
 
     commands->VectorArray[Fx] = GasFunction(((double) state.Gamepad.sThumbRY) / MAGIC_NUMBER_ONE);
@@ -59,5 +58,17 @@ IDataStream::Stream Gamepad::GetStream() const {
 }
 
 std::ostream &Gamepad::Print(IDataStream::Stream &stream) const {
-    return operator<<(std::ostream(nullptr ), *((CommandsStruct *) stream.Data.get()));
+    return operator<<(std::ostream(nullptr), *((CommandsStruct *) stream.Data.get()));
+}
+
+std::list<int> Gamepad::GetGamepadsIds() {
+    std::list<int> ids;
+    XINPUT_STATE state{};
+    for (int i = 0; i < XUSER_MAX_COUNT; i++) {
+        DWORD gamepadState = XInputGetState(i, &state);
+        if(gamepadState == ERROR_SUCCESS)
+            ids.push_back(i);
+
+    }
+    return ids;
 }
