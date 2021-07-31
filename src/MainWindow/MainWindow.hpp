@@ -15,6 +15,12 @@
 #include "./DataProtocol/DataProtocol.hpp"
 #include "./VideoProcessing/VideoProcessing.hpp"
 #include "../DataStruct.hpp"
+#include "Gamepad/Gamepad.hpp"
+
+#define SERVER_IP "169.254.154.5" \
+// 192.168.1.50 - motov.s
+// 169.254.154.5 - shushkov.d
+#define PORT 1999
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -32,21 +38,15 @@ public:
     ~MainWindow() override;
 
 protected:
-    /// События
     void paintEvent(QPaintEvent *event) override; // Вызывается на этапе рисования окна
-    void changeEvent(QEvent *event) override; // Вызывается при любом изменении свойств окна
 
 private slots:
-    /// Функциональные кнопки
     void on_CommandsProtocolButton_clicked();
     void on_GamepadButton_clicked();
     void on_VideoStreamButton_clicked();
 
-    /// Интерфейсные кнопки
-    void on_WindowCloseButton_clicked();
-    void on_WindowMinimizeButton_clicked();
+    void on_FullScreenButton_clicked();
 
-    /// Интерфейсные функции
     void on_MotorsQuantitySpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);
 
@@ -55,6 +55,7 @@ private:
 
     VideoProcessing _stream;
     DataProtocol *_gamepadDataProtocol;
+    Control::Gamepad *_gamepad;
 };
 #endif
 

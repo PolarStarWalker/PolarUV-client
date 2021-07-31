@@ -5,8 +5,8 @@
 class IState : QObject{
     Q_OBJECT
 
-public signals:
-    virtual bool SetState() = 0;
+/*public signals:
+    virtual bool SetState() = 0;*/
 };
 
 

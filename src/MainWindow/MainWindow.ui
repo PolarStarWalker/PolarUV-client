@@ -1811,7 +1811,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>192.168.1.50</string>
+         <string>169.254.154.5</string>
         </property>
         <property name="frame">
          <bool>true</bool>

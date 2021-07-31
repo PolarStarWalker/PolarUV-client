@@ -1,20 +1,14 @@
 #include "MainWindow.hpp"
 #include "./ui_mainwindow.h"
-#include "Gamepad/Gamepad.hpp"
-
-#define SERVER_IP "192.168.1.50" \
-// 192.168.1.50 - motov.s
-// 169.254.154.5 - shushkov.d
-#define PORT 1999
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent)
-        , ui(new Ui::MainWindow)
-{
+        : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
+    this->_gamepad = new Control::Gamepad(0);
+
     //Создание DataProtocol для Gamepad
-    this->_gamepadDataProtocol = new DataProtocol(new Gamepad(0));
+    this->_gamepadDataProtocol = new DataProtocol(this->_gamepad);
 }
 
 MainWindow::~MainWindow() {
@@ -33,7 +27,7 @@ void MainWindow::on_VideoStreamButton_clicked() {
 
 void MainWindow::on_CommandsProtocolButton_clicked() {
     if (!_gamepadDataProtocol->IsOnline())
-        _gamepadDataProtocol->StartAsync(SERVER_IP, PORT);
+        _gamepadDataProtocol->StartAsync(ui->IPEdit->text(), PORT);
     else
         _gamepadDataProtocol->Stop();
 }
@@ -42,41 +36,40 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     /// Изменяем размеры TabWidget
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
 
-    /// Перемещаем кнопки закрытия и сворачивания программы
-    ui->WindowCloseButton->move(ui->MainWidget->width() - ui->WindowCloseButton->width(),0);
-    ui->WindowMinimizeButton->move(ui->WindowCloseButton->x() - ui->WindowMinimizeButton->width(),0);
+    /// Перемещаем кнопку "Полный экран"
+    ui->FullScreenButton->move(ui->MainWidget->width() - ui->FullScreenButton->width(),0);
 
     /// Перемещаем надпись "Статус подключения"
-    int offset = 140; // Расстояние от правого края окна до надписи
-    ui->StatusLabel->move(ui->MainWidget->width() - ui->StatusLabel->width() - offset,0);
+    int offset = 190; // Расстояние от правого края окна до надписи
+    ui->StatusLabel->move(ui->MainWidget->width() - ui->StatusLabel->width() - offset, 0);
 
     /// Рисуем кружок статуса
     offset = 10; // Расстояние от надписи до центра окружности
     QPainter painter(this);
-    QPoint point(ui->StatusLabel->x() + ui->StatusLabel->width() + offset,13);
+    QPoint point(ui->StatusLabel->x() + ui->StatusLabel->width() + offset, 13);
     painter.setPen(Qt::NoPen); // Не рисовать границы
     painter.setBrush(QBrush("#ff0000"));
-    painter.drawEllipse(point,7,7);
+    painter.drawEllipse(point, 7, 7);
 
     /// Перемещаем виджет настроек робота
     offset = 30; // Расстояние между виджетами по горизонтали
     int x = (ui->tab_3->width() - (ui->RobotSettingsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
     int y = (ui->tab_3->height() - ui->RobotSettingsWidget->height()) / 2;
-    ui->RobotSettingsWidget->move(x,y);
+    ui->RobotSettingsWidget->move(x, y);
 
     /// Перемещаем виджет настроек клиента
     x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() + offset;
-    ui->ClientSettingsWidget->move(x,y);
+    ui->ClientSettingsWidget->move(x, y);
 
     /// Перемещаем заголовок виджета настроек робота
-    x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width()/2 - ui->RobotSettingsLabel->width()/2;
-    y = ui->RobotSettingsWidget->y() - ui->RobotSettingsLabel->height()/2;
-    ui->RobotSettingsLabel->move(x,y);
+    x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() / 2 - ui->RobotSettingsLabel->width() / 2;
+    y = ui->RobotSettingsWidget->y() - ui->RobotSettingsLabel->height() / 2;
+    ui->RobotSettingsLabel->move(x, y);
 
     /// Перемещаем заголовок виджета настроек клиента
-    x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width()/2 - ui->ClientSettingsLabel->width()/2;
-    y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height()/2;
-    ui->ClientSettingsLabel->move(x,y);
+    x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width() / 2 - ui->ClientSettingsLabel->width() / 2;
+    y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
+    ui->ClientSettingsLabel->move(x, y);
 
     /// Перемещаем рамку заголовка виджета настроек робота
     ui->RobotSettingsLabelFrame->setGeometry(ui->RobotSettingsLabel->geometry());
@@ -85,22 +78,13 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     ui->ClientSettingsLabelFrame->setGeometry(ui->ClientSettingsLabel->geometry());
 }
 
-void MainWindow::changeEvent(QEvent *event) {
-    /// Отлавливаем момент разворачивания окна и заставляем его развернуться на весь экран
-    if (event->type() == QEvent::WindowStateChange) {
-        auto* stateChangeEvent = dynamic_cast<QWindowStateChangeEvent*>(event);
-        if (stateChangeEvent->oldState() == Qt::WindowMinimized) {
-            this->setWindowState(Qt::WindowFullScreen);
-        }
+void MainWindow::on_FullScreenButton_clicked() {
+    if (this->windowState() == Qt::WindowFullScreen) {
+        this->setWindowState(Qt::WindowNoState);
     }
-}
-
-void MainWindow::on_WindowCloseButton_clicked() {
-    this->close();
-}
-
-void MainWindow::on_WindowMinimizeButton_clicked() {
-    this->setWindowState(Qt::WindowMinimized);
+    else {
+        this->setWindowState(Qt::WindowFullScreen);
+    }
 }
 
 void MainWindow::on_MotorsQuantitySpinBox_valueChanged(int value) {
@@ -110,9 +94,9 @@ void MainWindow::on_MotorsQuantitySpinBox_valueChanged(int value) {
     /// Перемещаем нижние линии
     int x = ui->MotorsBottomLeftLine->x();
     int y = ui->MotorsTable->y() + ui->MotorsTable->height();
-    ui->MotorsBottomLeftLine->move(x,y);
+    ui->MotorsBottomLeftLine->move(x, y);
     x = ui->MotorsBottomRightLine->x();
-    ui->MotorsBottomRightLine->move(x,y);
+    ui->MotorsBottomRightLine->move(x, y);
 
     /// Изменяем высоту боковых линий
     int height = ui->MotorsBottomLeftLine->y() - ui->MotorsTopLeftLine->y();
@@ -130,26 +114,26 @@ void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
     /// Перемещаем таблицу ровно под надпись "Коэффициенты"
     int x = (ui->HandCoefficientsLabel->x() + (ui->HandCoefficientsLabel->width() / 2)) - (ui->HandTable->width() / 2);
     int y = ui->HandTable->y();
-    ui->HandTable->move(x,y);
+    ui->HandTable->move(x, y);
 
     /// Перемещаем боковые линии
     x = ui->HandTable->x() - 20;
     y = ui->HandLeftLine->y();
-    ui->HandLeftLine->move(x,y);
+    ui->HandLeftLine->move(x, y);
     x = ui->HandTable->x() + ui->HandTable->width();
-    ui->HandRightLine->move(x,y);
+    ui->HandRightLine->move(x, y);
 
     /// Перемещаем верхние и нижние линии
     x = ui->HandLeftLine->x() + 9;
     y = ui->HandTopLeftLine->y();
-    ui->HandTopLeftLine->move(x,y);
+    ui->HandTopLeftLine->move(x, y);
     y = ui->HandBottomLeftLine->y();
-    ui->HandBottomLeftLine->move(x,y);
+    ui->HandBottomLeftLine->move(x, y);
     x = ui->HandRightLine->x() - 9;
     y = ui->HandTopRightLine->y();
-    ui->HandTopRightLine->move(x,y);
+    ui->HandTopRightLine->move(x, y);
     y = ui->HandBottomRightLine->y();
-    ui->HandBottomRightLine->move(x,y);
+    ui->HandBottomRightLine->move(x, y);
 
     /// Устанавливаем число столбцов таблицы
     ui->HandTable->setColumnCount(value);
