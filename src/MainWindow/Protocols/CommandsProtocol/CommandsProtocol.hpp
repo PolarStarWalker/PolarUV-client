@@ -1,14 +1,14 @@
-#ifndef CLIENT_DATAPROTOCOL_HPP
-#define CLIENT_DATAPROTOCOL_HPP
+#ifndef CLIENT_COMMANDSPROTOCOL_HPP
+#define CLIENT_COMMANDSPROTOCOL_HPP
 
-#include <mutex>
+#include <shared_mutex>
 #include <thread>
 #include <chrono>
 
-#include "IDataStream.hpp"
-#include "Socket.hpp"
+#include "../Socket/Socket.hpp"
+#include "../../Gamepad/Gamepad.hpp"
 
-class DataProtocol : public QObject {
+class CommandsProtocol {
     enum ErrorType : uint8_t {
         Ok = 0,
         CantConnectToServer = 1,
@@ -16,8 +16,8 @@ class DataProtocol : public QObject {
     };
 
 public:
-    DataProtocol(IDataStream *_dataStream);
-    ~DataProtocol();
+    explicit CommandsProtocol(size_t gamepadId);
+    ~CommandsProtocol();
 
     bool IsOnline() const;
     bool GetError() const;
@@ -30,13 +30,13 @@ private:
     Socket _socket;
 
     /// mutable нужен для того чтобы менять поля в const функциях
-    mutable std::mutex _statusStatusMutex;
-    mutable std::mutex _errorStatusMutex;
-    mutable std::mutex _threadStatusMutex;
+    mutable std::shared_mutex _statusStatusMutex;
+    mutable std::shared_mutex _errorStatusMutex;
+    mutable std::shared_mutex _threadStatusMutex;
 
     std::thread _transferThread;
 
-    IDataStream* _dataStream;
+    Control::Gamepad _gamepad;
 
     bool _isOnline;
     bool _isThreadActive{};
@@ -50,7 +50,7 @@ private:
         this->_statusStatusMutex.unlock();
     }
 
-    inline void SetErrorStatus(DataProtocol::ErrorType errorType) {
+    inline void SetErrorStatus(CommandsProtocol::ErrorType errorType) {
         this->_errorStatusMutex.lock();
         this->_errorStatus = errorType;
         this->_errorStatusMutex.unlock();

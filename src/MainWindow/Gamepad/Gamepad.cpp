@@ -3,22 +3,50 @@
 
 using namespace Control;
 
-Gamepad::Gamepad(size_t id) {
-    this->_id = id;
+inline float GasFunction(double X) {
+    if (X > 0) {
+        return 0.278112 * X + 0.06916 * X * X + 0.648397 * X * X * X;
+    } else {
+        return 0.278112 * X - 0.06916 * X * X + 0.648397 * X * X * X;
+    }
 }
 
-CommandsStruct *Gamepad::GetCommandsStruct() const {
-    CommandsStruct *commands = new CommandsStruct{};
+std::list<int> GetGamepadsIds() {
+    std::list<int> ids;
+    XINPUT_STATE state{};
+    for (int i = 0; i < XUSER_MAX_COUNT; i++) {
+        DWORD gamepadState = XInputGetState(i, &state);
+        if (gamepadState == ERROR_SUCCESS)
+            ids.push_back(i);
+
+    }
+    return ids;
+}
+
+
+Gamepad::Gamepad(size_t id) {
+    this->_id = id;
+    std::memset(&this->buttonsStates, 0, sizeof(this->buttonsStates));
+}
+
+std::shared_ptr<CommandsStruct> Gamepad::GetCommandsStruct() const {
+    std::shared_ptr<CommandsStruct> commands(new CommandsStruct{});
 
     XINPUT_STATE state{};
     XInputGetState(this->_id, &state);
 
     commands->VectorArray[Fx] = GasFunction(((double) state.Gamepad.sThumbRY) / MAGIC_NUMBER_ONE);
-    commands->VectorArray[Fy] = GasFunction((-(double) state.Gamepad.sThumbLX) / MAGIC_NUMBER_ONE);
+    commands->VectorArray[Fy] = GasFunction(-((double) state.Gamepad.sThumbLX) / MAGIC_NUMBER_ONE);
     commands->VectorArray[Fz] = GasFunction(((double) state.Gamepad.sThumbLY) / MAGIC_NUMBER_ONE);
-    commands->VectorArray[Mx] = GasFunction(((double) state.Gamepad.bLeftTrigger) / MAGIC_NUMBER_TWO);
-    commands->VectorArray[My] = GasFunction(((double) state.Gamepad.bRightTrigger) / MAGIC_NUMBER_TWO);
-    commands->VectorArray[Mz] = GasFunction((-(double) state.Gamepad.sThumbRX) / MAGIC_NUMBER_ONE);
+    commands->VectorArray[Mx] =
+            GasFunction(((GetAxisDirection(state.Gamepad.wButtons, LeftShoulder)) *
+            ((double) state.Gamepad.bLeftTrigger) /MAGIC_NUMBER_TWO));
+
+    commands->VectorArray[My] =
+            GasFunction(( (GetAxisDirection(state.Gamepad.wButtons, RightShoulder)) *
+            ((double) state.Gamepad.bRightTrigger) / MAGIC_NUMBER_TWO));
+
+    commands->VectorArray[Mz] = GasFunction(-((double) state.Gamepad.sThumbRX) / MAGIC_NUMBER_ONE);
 
     if (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT)
         commands->TheHand[0] = -1;
@@ -52,25 +80,10 @@ void Gamepad::SetVibration(uint16_t left, uint16_t right) const {
     XInputSetState(this->_id, &vibration);
 }
 
-IDataStream::Stream Gamepad::GetStream() const {
-    IDataStream::Stream stream;
-    stream.Data = std::shared_ptr<void>(this->GetCommandsStruct());
-    stream.Size = CommandsStructLen;
-    return stream;
+void Gamepad::UpdateGamepadId(size_t id) {
+
+
 }
 
-std::ostream &Gamepad::Print(IDataStream::Stream &stream) const {
-    return operator<<(std::ostream(nullptr), *((CommandsStruct *) stream.Data.get()));
-}
 
-std::list<int> GetGamepadsIds() {
-    std::list<int> ids;
-    XINPUT_STATE state{};
-    for (int i = 0; i < XUSER_MAX_COUNT; i++) {
-        DWORD gamepadState = XInputGetState(i, &state);
-        if(gamepadState == ERROR_SUCCESS)
-            ids.push_back(i);
 
-    }
-    return ids;
-}

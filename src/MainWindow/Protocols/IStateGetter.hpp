@@ -1,0 +1,5 @@
+#ifndef CLIENT_ISTATEGETTER_HPP
+
+#define CLIENT_ISTATEGETTER_HPP
+
+#endif

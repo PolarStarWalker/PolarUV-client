@@ -2,13 +2,13 @@
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow) {
+        : QMainWindow(parent)
+        , ui(new Ui::MainWindow)
+{
     ui->setupUi(this);
 
-    this->_gamepad = new Control::Gamepad(0);
-
-    //Создание DataProtocol для Gamepad
-    this->_gamepadDataProtocol = new DataProtocol(this->_gamepad);
+    //Создание CommandsProtocol для Gamepad
+    this->_gamepadDataProtocol = new CommandsProtocol(0);
 }
 
 MainWindow::~MainWindow() {
@@ -21,7 +21,7 @@ void MainWindow::on_GamepadButton_clicked() {
 }
 
 void MainWindow::on_VideoStreamButton_clicked() {
-    this->_stream.Start(pipeline);
+    this->_video.Start(pipeline);
 
 }
 

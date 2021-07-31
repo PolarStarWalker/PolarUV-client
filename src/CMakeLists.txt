@@ -33,7 +33,6 @@ if (WIN32)
     endforeach (QT_LIB)
 endif ()
 
-
 add_subdirectory(MainWindow)
 
 target_link_libraries(Client MainWindow)

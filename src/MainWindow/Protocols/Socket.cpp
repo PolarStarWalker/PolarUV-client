@@ -1,4 +1,4 @@
-#include "Socket.hpp"
+#include "Socket/Socket.hpp"
 
 bool Socket::ConnectToServer(const QString &address, uint16_t port) {
     ///lock_guard в конструкторе захватывает мьютекс и лочит его, в деструктуре разлочивает

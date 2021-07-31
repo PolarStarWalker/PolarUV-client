@@ -6,14 +6,12 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-add_library(MainWindow MainWindow.cpp MainWindow.hpp IState.hpp)
+add_library(MainWindow MainWindow.cpp MainWindow.hpp)
 target_link_libraries(MainWindow ${REQUIRED_LIBS_QUALIFIED})
 
-add_subdirectory(DataProtocol)
+add_subdirectory(Protocols)
 add_subdirectory(Gamepad)
-add_subdirectory(VideoProcessing)
 
-target_link_libraries(MainWindow DataProtocol)
+target_link_libraries(MainWindow Protocols)
 target_link_libraries(MainWindow Gamepad)
-target_link_libraries(MainWindow VideoProcessing)
 

@@ -5,12 +5,12 @@
 #include <cstring>
 #include <cmath>
 #include <list>
+#include <shared_mutex>
 
 #include <xinput.h>
 #include <minwindef.h>
 #include <windows.h>
 
-#include "../DataProtocol/IDataStream.hpp"
 #include "../../DataStruct.hpp"
 
 #define MAGIC_NUMBER_ONE 0x7FFF
@@ -19,7 +19,6 @@
 namespace Control {
 
     namespace {
-
         enum ButtonMask : DWORD {
             DPadUp = XINPUT_GAMEPAD_DPAD_UP,
             DPadDown = XINPUT_GAMEPAD_DPAD_DOWN,
@@ -44,8 +43,8 @@ namespace Control {
                 return this->state & mask;
             }
 
-            inline void ChangeButtonState(ButtonMask mask){
-                this->state = (this->state & ~mask) | ( ~(this->state & mask));
+            inline void ChangeButtonState(ButtonMask mask) {
+                this->state = (this->state & ~mask) | (~(this->state & mask));
             }
 
             DWORD state;
@@ -120,7 +119,7 @@ namespace Control {
             }
 
             inline void ChangeDPadRightState() {
-                ChangeButtonState( DPadRight);
+                ChangeButtonState(DPadRight);
             }
 
             inline void ChangeTriangleState() {
@@ -163,37 +162,28 @@ namespace Control {
                 ChangeButtonState(RightShoulder);
             }
         };
+
+        inline int16_t GetAxisDirection(DWORD buttons, ButtonMask mask) {
+            return buttons & mask ? -1 : 1;
+        }
     }
 
-    std::list<int> GetGamepadsIds();
-
-    class Gamepad final : public IDataStream {
+    class Gamepad {
     public:
         explicit Gamepad(size_t id);
 
-        [[nodiscard]] Stream GetStream() const final;
-
-        std::ostream &Print(IDataStream::Stream &) const final;
-
+        std::shared_ptr<CommandsStruct> GetCommandsStruct() const;
         void SetVibration(uint16_t left, uint16_t right) const;
 
+        void UpdateGamepadId(size_t id);
 
     private:
         size_t _id;
-        ButtonsStates buttonsStates;
 
-
-        [[nodiscard]] CommandsStruct *GetCommandsStruct() const;
-
-        static inline float GasFunction(double X) {
-            if (X > 0) {
-                return 0.278112 * X + 0.06916 * X * X + 0.648397 * X * X * X;
-            } else {
-                return 0.278112 * X - 0.06916 * X * X + 0.648397 * X * X * X;
-            }
-        }
-
+        mutable ButtonsStates buttonsStates{};
     };
+
+    std::list<int> GetGamepadsIds();
 }
 
 

@@ -12,10 +12,8 @@
 #include <QWindowStateChangeEvent>
 #include <QThread>
 
-#include "./DataProtocol/DataProtocol.hpp"
-#include "./VideoProcessing/VideoProcessing.hpp"
-#include "../DataStruct.hpp"
-#include "Gamepad/Gamepad.hpp"
+#include "./Protocols/Protocols.hpp"
+#include "./Gamepad/Gamepad.hpp"
 
 #define SERVER_IP "169.254.154.5" \
 // 192.168.1.50 - motov.s
@@ -53,8 +51,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    VideoProcessing _stream;
-    DataProtocol *_gamepadDataProtocol;
+    VideoProtocol _video;
+    CommandsProtocol *_gamepadDataProtocol;
     Control::Gamepad *_gamepad;
 };
 #endif

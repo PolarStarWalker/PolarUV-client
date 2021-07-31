@@ -3,17 +3,17 @@
 //
 
 #include <iostream>
-#include "VideoProcessing.hpp"
+#include "VideoProtocol/VideoProtocol.hpp"
 
-VideoProcessing::VideoProcessing() {
+VideoProtocol::VideoProtocol() {
     this->_isOnline = false;
 }
 
-VideoProcessing::~VideoProcessing() {
+VideoProtocol::~VideoProtocol() {
     this->_videoStream.release();
 }
 
-void VideoProcessing::Start(const std::string& pipeline) {
+void VideoProtocol::Start(const std::string& pipeline) {
 
     cv::namedWindow("Main", cv::WINDOW_NORMAL);
 

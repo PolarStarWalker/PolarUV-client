@@ -1,15 +1,15 @@
-#ifndef CLIENT_VIDEOPROCESSING_HPP
-#define CLIENT_VIDEOPROCESSING_HPP
+#ifndef CLIENT_VIDEOPROTOCOL_HPP
+#define CLIENT_VIDEOPROTOCOL_HPP
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/videoio/videoio.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
 
-class VideoProcessing {
+class VideoProtocol {
 public:
-    VideoProcessing();
-    ~VideoProcessing();
+    VideoProtocol();
+    ~VideoProtocol();
 
     void Start(const std::string& pipeline);
 
