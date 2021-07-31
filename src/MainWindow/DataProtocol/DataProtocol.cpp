@@ -45,13 +45,11 @@ void DataProtocol::Start(const QString &address, uint16_t port) {
     ///Не удивляйся, это типа while, но со счётчиком
     for (size_t i = 0; _socket.IsOnline(); i++) {
 
-        ///ToDo: реализовать тут протокол
-
         auto stream = this->_dataStream->GetStream();
 
         this->_dataStream->Print(stream);
 
-        QByteArray commandsStruct((char*) stream.Data.get(), stream.Size);
+        QByteArray commandsStruct((char *) stream.Data.get(), stream.Size);
 
         _socket.SendCommand(commandsStruct);
 

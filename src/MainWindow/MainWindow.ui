@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>800</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>800</width>
-    <height>600</height>
+    <width>1280</width>
+    <height>720</height>
    </size>
   </property>
   <property name="palette">
@@ -496,8 +496,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1000</width>
-      <height>800</height>
+      <width>1280</width>
+      <height>720</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -747,7 +747,10 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
+    </property>
+    <property name="elideMode">
+     <enum>Qt::ElideNone</enum>
     </property>
     <widget class="QWidget" name="tab_1">
      <property name="enabled">
@@ -892,8 +895,8 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>40</y>
+        <x>65</x>
+        <y>70</y>
         <width>721</width>
         <height>551</height>
        </rect>
@@ -921,7 +924,7 @@
        <property name="geometry">
         <rect>
          <x>429</x>
-         <y>70</y>
+         <y>75</y>
          <width>161</width>
          <height>41</height>
         </rect>
@@ -961,7 +964,7 @@
        <property name="geometry">
         <rect>
          <x>429</x>
-         <y>30</y>
+         <y>35</y>
          <width>241</width>
          <height>31</height>
         </rect>
@@ -1120,7 +1123,7 @@
        <property name="geometry">
         <rect>
          <x>21</x>
-         <y>150</y>
+         <y>155</y>
          <width>241</width>
          <height>41</height>
         </rect>
@@ -1141,7 +1144,7 @@
        <property name="geometry">
         <rect>
          <x>21</x>
-         <y>110</y>
+         <y>115</y>
          <width>241</width>
          <height>41</height>
         </rect>
@@ -1222,7 +1225,7 @@
        <property name="geometry">
         <rect>
          <x>21</x>
-         <y>70</y>
+         <y>75</y>
          <width>171</width>
          <height>41</height>
         </rect>
@@ -1243,7 +1246,7 @@
        <property name="geometry">
         <rect>
          <x>21</x>
-         <y>30</y>
+         <y>35</y>
          <width>361</width>
          <height>31</height>
         </rect>
@@ -1329,7 +1332,7 @@
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>75</y>
+         <y>80</y>
          <width>120</width>
          <height>30</height>
         </rect>
@@ -1348,7 +1351,7 @@
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>155</y>
+         <y>160</y>
          <width>120</width>
          <height>30</height>
         </rect>
@@ -1563,7 +1566,7 @@
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>115</y>
+         <y>120</y>
          <width>120</width>
          <height>30</height>
         </rect>
@@ -1710,8 +1713,8 @@
      <widget class="QLabel" name="RobotSettingsLabel">
       <property name="geometry">
        <rect>
-        <x>710</x>
-        <y>16</y>
+        <x>325</x>
+        <y>46</y>
         <width>230</width>
         <height>50</height>
        </rect>
@@ -1734,8 +1737,8 @@
      <widget class="QFrame" name="RobotSettingsLabelFrame">
       <property name="geometry">
        <rect>
-        <x>710</x>
-        <y>16</y>
+        <x>325</x>
+        <y>46</y>
         <width>230</width>
         <height>50</height>
        </rect>
@@ -1756,8 +1759,8 @@
      <widget class="QWidget" name="ClientSettingsWidget" native="true">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>40</y>
+        <x>815</x>
+        <y>70</y>
         <width>400</width>
         <height>550</height>
        </rect>
@@ -1814,7 +1817,7 @@
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QSlider" name="GamepadSlider">
+       <widget class="QComboBox" name="GamepadComboBox">
         <property name="geometry">
          <rect>
           <x>220</x>
@@ -1822,18 +1825,6 @@
           <width>150</width>
           <height>30</height>
          </rect>
-        </property>
-        <property name="maximum">
-         <number>4</number>
-        </property>
-        <property name="pageStep">
-         <number>1</number>
-        </property>
-        <property name="sliderPosition">
-         <number>1</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
         </property>
        </widget>
       </widget>
@@ -1855,7 +1846,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Геймпад</string>
+        <string>ID геймпада</string>
        </property>
       </widget>
       <zorder>ClientSettingsWidgetFrame</zorder>
@@ -1865,8 +1856,8 @@
      <widget class="QFrame" name="ClientSettingsLabelFrame">
       <property name="geometry">
        <rect>
-        <x>105</x>
-        <y>20</y>
+        <x>890</x>
+        <y>50</y>
         <width>240</width>
         <height>50</height>
        </rect>
@@ -1887,8 +1878,8 @@
      <widget class="QLabel" name="ClientSettingsLabel">
       <property name="geometry">
        <rect>
-        <x>105</x>
-        <y>20</y>
+        <x>890</x>
+        <y>50</y>
         <width>240</width>
         <height>50</height>
        </rect>
@@ -1915,53 +1906,1531 @@
      <zorder>ClientSettingsLabelFrame</zorder>
      <zorder>ClientSettingsLabel</zorder>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="WindowCloseButton">
-    <property name="geometry">
-     <rect>
-      <x>960</x>
-      <y>0</y>
-      <width>40</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>X</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="WindowMinimizeButton">
-    <property name="geometry">
-     <rect>
-      <x>920</x>
-      <y>0</y>
-      <width>40</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>–</string>
-    </property>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Геймпад</string>
+     </attribute>
+     <widget class="QLabel" name="KeyAssignmentsLabel">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>50</y>
+        <width>240</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Назначение кнопок</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QFrame" name="KeyAssignmentsLabelFrame">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>50</y>
+        <width>240</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+     </widget>
+     <widget class="QWidget" name="KeyAssignmentsWidget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>70</y>
+        <width>915</width>
+        <height>540</height>
+       </rect>
+      </property>
+      <widget class="QFrame" name="ClientSettingsWidgetFrame_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>915</width>
+         <height>540</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="Label_21">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>480</y>
+          <width>141</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Влево/вправо</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_22">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>405</y>
+          <width>371</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Стрелки</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_23">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>440</y>
+          <width>141</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Вверх/вниз</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_28">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>200</y>
+          <width>141</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Вверх/вниз</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_27">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>165</y>
+          <width>371</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Перемещение левого стика</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_16">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>360</y>
+          <width>141</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Влево/вправо</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_17">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>285</y>
+          <width>371</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Перемещение правого стика</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_18">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>320</y>
+          <width>141</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Вверх/вниз</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_26">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>240</y>
+          <width>141</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Влево/вправо</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_36">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>80</y>
+          <width>141</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Левый</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_34">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>45</y>
+          <width>371</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Курки/бамперы</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_35">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>120</y>
+          <width>141</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Правый</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_39">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>85</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>4</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="Label_37">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>45</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Инверсия</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>85</y>
+          <width>20</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>125</y>
+          <width>20</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_3">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>245</y>
+          <width>20</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_4">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>205</y>
+          <width>20</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_5">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>365</y>
+          <width>20</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_6">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>485</y>
+          <width>20</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_7">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>325</y>
+          <width>20</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_8">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>445</y>
+          <width>20</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_38">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>120</y>
+          <width>121</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Крест</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_44">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>85</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="Label_39">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>45</y>
+          <width>361</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Фигуры</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_40">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>80</y>
+          <width>121</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Треугольник</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_41">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>160</y>
+          <width>121</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Квадрат</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_42">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>200</y>
+          <width>121</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Круг</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_52">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>360</y>
+          <width>121</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Правый</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_53">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>440</y>
+          <width>121</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Старт</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_54">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>480</y>
+          <width>121</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Назад</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_55">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>285</y>
+          <width>361</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Нажатие на стики</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_56">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>320</y>
+          <width>121</width>
+          <height>40</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Левый</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Label_57">
+        <property name="geometry">
+         <rect>
+          <x>530</x>
+          <y>405</y>
+          <width>361</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Меню</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_42">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>125</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>5</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_53">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>205</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>3</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_54">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>245</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_55">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>325</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_56">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>365</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>6</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_57">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>445</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>7</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_58">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>485</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>8</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_59">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>125</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_46">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>165</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_45">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>205</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_60">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>365</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_52">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>325</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_61">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>485</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="GamepadComboBox_62">
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>445</y>
+          <width>231</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </widget>
+     </widget>
+     <zorder>KeyAssignmentsWidget</zorder>
+     <zorder>KeyAssignmentsLabelFrame</zorder>
+     <zorder>KeyAssignmentsLabel</zorder>
+    </widget>
    </widget>
    <widget class="QLabel" name="StatusLabel">
     <property name="geometry">
      <rect>
-      <x>690</x>
+      <x>930</x>
       <y>0</y>
       <width>170</width>
       <height>26</height>
@@ -1977,6 +3446,30 @@
     </property>
     <property name="text">
      <string>Статус подключения</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="FullScreenButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1150</x>
+      <y>0</y>
+      <width>130</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Полный экран</string>
     </property>
    </widget>
   </widget>

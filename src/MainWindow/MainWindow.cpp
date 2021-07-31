@@ -8,7 +8,9 @@
 #define PORT 1999
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), ui(new Ui::MainWindow) {
+        : QMainWindow(parent)
+        , ui(new Ui::MainWindow)
+{
     ui->setupUi(this);
 
     //Создание DataProtocol для Gamepad
@@ -18,17 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() {
     delete ui;
     delete this->_gamepadDataProtocol;
-}
-
-void MainWindow::resizeEvent(QResizeEvent *event) {
-/*    /// Перемещаем виджет настроек
-    int x = ((ui->centralwidget->width() - ui->SettingsWidget->width()) / 2) - 13;
-    int y = ((ui->centralwidget->height() - ui->SettingsWidget->height()) / 2) - 29;
-    int width = ui->SettingsWidget->width();
-    int height = ui->SettingsWidget->height();
-    ui->SettingsWidget->setGeometry(x, y, width, height);*/
-
-    /// Место для перемещения еще чего-нибудь
 }
 
 void MainWindow::on_GamepadButton_clicked() {

@@ -56,7 +56,7 @@ private:
 
     VideoProcessing _stream;
     DataProtocol *_gamepadDataProtocol;
-    QThread *_dataProtocolThread;
+
 };
 #endif
 
