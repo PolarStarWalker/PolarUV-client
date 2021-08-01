@@ -179,8 +179,8 @@ namespace Control {
 
     private:
         size_t _id;
-
-        mutable ButtonsStates buttonsStates{};
+        mutable ButtonsStates _buttonsStates{};
+        mutable std::shared_mutex _idMutex;
     };
 
     std::list<int> GetGamepadsIds();

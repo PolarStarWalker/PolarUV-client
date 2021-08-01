@@ -5,6 +5,8 @@
 #include <thread>
 #include <chrono>
 
+#include "synchapi.h"
+
 #include "../Socket/Socket.hpp"
 #include "../../Gamepad/Gamepad.hpp"
 

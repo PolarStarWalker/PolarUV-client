@@ -16,17 +16,29 @@ CommandsProtocol::~CommandsProtocol() {
 }
 
 bool CommandsProtocol::IsOnline() const {
-    std::shared_lock<std::shared_mutex> guard(this->_statusStatusMutex);
-    return this->_isOnline;
+
+    this->_statusStatusMutex.lock_shared();
+    bool isOnline = this->_isOnline;
+    this->_statusStatusMutex.unlock_shared();
+
+    return isOnline;
 }
 
 bool CommandsProtocol::GetError() const {
-    std::shared_lock<std::shared_mutex> guard(this->_errorStatusMutex);
-    return this->_errorStatus;
+
+    this->_errorStatusMutex.lock_shared();
+    bool errorStatus = this->_errorStatus;
+    this->_errorStatusMutex.unlock_shared();
+
+    return errorStatus;
 }
 
 bool CommandsProtocol::IsThreadActive() const {
-    std::shared_lock<std::shared_mutex> threadStatusGuard(this->_threadStatusMutex);
+
+    this->_threadStatusMutex.lock_shared();
+    bool isThreadActive = this->_isThreadActive;
+    this->_threadStatusMutex.unlock_shared();
+
     return this->_isThreadActive;
 }
 
@@ -50,8 +62,13 @@ void CommandsProtocol::Start(const QString &address, uint16_t port) {
         QByteArray commandsStruct((char *) commands.get(), CommandsStructLen);
         _socket.SendCommand(commandsStruct);
 
-        size_t deltaTime = std::chrono::duration<double, std::micro>(currentTime - timer.now()).count();
-        std::this_thread::sleep_for(std::chrono::microseconds(2000 - deltaTime));
+        ///ToDo: найти способ получше держать период 2мс
+        while (std::chrono::duration<double, std::micro>(timer.now() - currentTime).count() < 2000) {}
+
+        //std::this_thread::sleep_for(std::chrono::microseconds(2000 - (size_t) deltaTime));
+
+        std::cout << i << ' ' <<std::chrono::duration<double, std::micro>(timer.now() - currentTime).count()<<std::endl;
+
     }
 
     this->SetThreadStatus(false);
