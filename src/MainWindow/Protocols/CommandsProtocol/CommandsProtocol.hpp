@@ -41,7 +41,7 @@ private:
     Control::Gamepad _gamepad;
 
     bool _isOnline;
-    bool _isThreadActive{};
+    bool _isThreadActive;
     ErrorType _errorStatus;
 
     void Start(const QString &address, uint16_t port);

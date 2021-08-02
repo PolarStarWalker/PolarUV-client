@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->_widgetsPlaced = false;
 
     //Создание CommandsProtocol для Gamepad
-    this->_gamepadDataProtocol = new CommandsProtocol(0);
+    this->_commandsProtocol = new CommandsProtocol(0);
 
     //Запуск таймера отрисовки окна
     this->startTimer(1000/60,Qt::PreciseTimer);
@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow() {
     delete ui;
-    delete this->_gamepadDataProtocol;
+    delete this->_commandsProtocol;
 }
 
 void MainWindow::on_GamepadButton_clicked() {
@@ -31,10 +31,10 @@ void MainWindow::on_VideoStreamButton_clicked() {
 }
 
 void MainWindow::on_CommandsProtocolButton_clicked() {
-    if (!_gamepadDataProtocol->IsOnline())
-        _gamepadDataProtocol->StartAsync(ui->IPEdit->text(), PORT);
+    if (!_commandsProtocol->IsOnline())
+        _commandsProtocol->StartAsync(ui->IPEdit->text(), PORT);
     else
-        _gamepadDataProtocol->Stop();
+        _commandsProtocol->Stop();
 }
 
 void MainWindow::placeWidgets() {
@@ -88,7 +88,7 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QPoint point(ui->StatusLabel->x() + ui->StatusLabel->width() + offset, 13);
     painter.setPen(Qt::NoPen); // Не рисовать границы
-    if (this->_gamepadDataProtocol->IsOnline())
+    if (this->_commandsProtocol->IsOnline())
         painter.setBrush(QBrush("#008000")); // Зеленый
     else
         painter.setBrush(QBrush("#ff0000")); // Красный

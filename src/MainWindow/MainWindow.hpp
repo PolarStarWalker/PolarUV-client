@@ -58,7 +58,7 @@ private:
     bool _widgetsPlaced;
 
     VideoProtocol _video;
-    CommandsProtocol *_gamepadDataProtocol;
+    CommandsProtocol *_commandsProtocol;
     Control::Gamepad *_gamepad;
 };
 #endif

@@ -71,6 +71,7 @@ void CommandsProtocol::Start(const QString &address, uint16_t port) {
 
     }
 
+    this->SetOnlineStatus(false);
     this->SetThreadStatus(false);
 }
 
