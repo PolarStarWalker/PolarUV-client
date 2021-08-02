@@ -1,5 +1,4 @@
-#include "CommandsProtocol/CommandsProtocol.hpp"
-#include "../../DataStruct.hpp"
+#include "./CommandsProtocol/CommandsProtocol.hpp"
 
 #include <iostream>
 
@@ -15,15 +14,6 @@ CommandsProtocol::~CommandsProtocol() {
         std::this_thread::sleep_for(std::chrono::microseconds(1));
 }
 
-bool CommandsProtocol::IsOnline() const {
-
-    this->_statusStatusMutex.lock_shared();
-    bool isOnline = this->_isOnline;
-    this->_statusStatusMutex.unlock_shared();
-
-    return isOnline;
-}
-
 bool CommandsProtocol::GetError() const {
 
     this->_errorStatusMutex.lock_shared();
@@ -31,15 +21,6 @@ bool CommandsProtocol::GetError() const {
     this->_errorStatusMutex.unlock_shared();
 
     return errorStatus;
-}
-
-bool CommandsProtocol::IsThreadActive() const {
-
-    this->_threadStatusMutex.lock_shared();
-    bool isThreadActive = this->_isThreadActive;
-    this->_threadStatusMutex.unlock_shared();
-
-    return this->_isThreadActive;
 }
 
 void CommandsProtocol::Start(const QString &address, uint16_t port) {

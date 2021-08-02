@@ -11,7 +11,9 @@ target_link_libraries(MainWindow ${REQUIRED_LIBS_QUALIFIED})
 
 add_subdirectory(Protocols)
 add_subdirectory(Gamepad)
+add_subdirectory(DataStructs)
 
 target_link_libraries(MainWindow Protocols)
 target_link_libraries(MainWindow Gamepad)
+target_link_libraries(MainWindow DataStructs)
 
