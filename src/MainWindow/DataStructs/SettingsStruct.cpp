@@ -25,3 +25,35 @@ std::ostream &operator<<(std::ostream &ostream, const SettingsStruct &settingStr
 
     return ostream;
 }
+
+void SettingsStruct::SetMoveCoefficientArray(const std::vector<double> &copyMoveArray) {
+    delete MoveCoefficientArray;
+
+    this->ThrustersNumber = copyMoveArray.size() / 6;
+    this->MoveCoefficientArray = new double[copyMoveArray.size()];
+
+    for (size_t i = 0; i < this->ThrustersNumber; i++) {
+        for (size_t j = 0; j < 6; j++) {
+            this->MoveCoefficientArray[i * 6 + j] = copyMoveArray[i * 6 + j];
+        }
+    };
+}
+
+void SettingsStruct::SetHandCoefficientArray(const std::vector<double> &copyHandArray) {
+    delete HandCoefficientArray;
+
+    this->HandFreedom = copyHandArray.size();
+    this->HandCoefficientArray = new double[this->HandFreedom];
+    for (size_t i = 0; i < this->HandFreedom; i++) {
+        this->HandCoefficientArray[i] = copyHandArray[i];
+    }
+}
+
+SettingsStruct::SettingsStruct() {
+    this->HandFreedom = -1;
+    this->HandCoefficientArray = nullptr;
+    this->ThrustersNumber = -1;
+    this->MoveCoefficientArray = nullptr;
+    this->MaxMotorSpeed = -1;
+    this->MotorsProtocol = -1;
+}
