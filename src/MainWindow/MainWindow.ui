@@ -747,7 +747,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
@@ -1671,7 +1671,7 @@
         <enum>QFrame::Panel</enum>
        </property>
        <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+        <enum>QFrame::Plain</enum>
        </property>
        <property name="lineWidth">
         <number>1</number>
@@ -1727,33 +1727,17 @@
         <bold>true</bold>
        </font>
       </property>
-      <property name="text">
-       <string>Настройки ТНПА</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QFrame" name="RobotSettingsLabelFrame">
-      <property name="geometry">
-       <rect>
-        <x>325</x>
-        <y>46</y>
-        <width>230</width>
-        <height>50</height>
-       </rect>
-      </property>
       <property name="autoFillBackground">
        <bool>true</bool>
       </property>
       <property name="frameShape">
        <enum>QFrame::Panel</enum>
       </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+      <property name="text">
+       <string>Настройки ТНПА</string>
       </property>
-      <property name="lineWidth">
-       <number>1</number>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QWidget" name="ClientSettingsWidget" native="true">
@@ -1799,7 +1783,7 @@
         <enum>QFrame::Panel</enum>
        </property>
        <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+        <enum>QFrame::Plain</enum>
        </property>
        <widget class="QLineEdit" name="IPEdit">
         <property name="geometry">
@@ -1853,33 +1837,11 @@
       <zorder>MotorsQuantityLabel_4</zorder>
       <zorder>MotorsQuantityLabel_5</zorder>
      </widget>
-     <widget class="QFrame" name="ClientSettingsLabelFrame">
-      <property name="geometry">
-       <rect>
-        <x>890</x>
-        <y>50</y>
-        <width>240</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-     </widget>
      <widget class="QLabel" name="ClientSettingsLabel">
       <property name="geometry">
        <rect>
         <x>890</x>
-        <y>50</y>
+        <y>45</y>
         <width>240</width>
         <height>50</height>
        </rect>
@@ -1892,6 +1854,12 @@
         <bold>true</bold>
        </font>
       </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
       <property name="text">
        <string>Настройки клиента</string>
       </property>
@@ -1899,12 +1867,6 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <zorder>RobotSettingsWidget</zorder>
-     <zorder>RobotSettingsLabelFrame</zorder>
-     <zorder>RobotSettingsLabel</zorder>
-     <zorder>ClientSettingsWidget</zorder>
-     <zorder>ClientSettingsLabelFrame</zorder>
-     <zorder>ClientSettingsLabel</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -1914,7 +1876,7 @@
       <property name="geometry">
        <rect>
         <x>370</x>
-        <y>50</y>
+        <y>45</y>
         <width>240</width>
         <height>50</height>
        </rect>
@@ -1927,33 +1889,17 @@
         <bold>true</bold>
        </font>
       </property>
-      <property name="text">
-       <string>Назначение кнопок</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QFrame" name="KeyAssignmentsLabelFrame">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>50</y>
-        <width>240</width>
-        <height>50</height>
-       </rect>
-      </property>
       <property name="autoFillBackground">
        <bool>true</bool>
       </property>
       <property name="frameShape">
        <enum>QFrame::Panel</enum>
       </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+      <property name="text">
+       <string>Назначение кнопок</string>
       </property>
-      <property name="lineWidth">
-       <number>1</number>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
      <widget class="QWidget" name="KeyAssignmentsWidget" native="true">
@@ -1978,7 +1924,7 @@
         <enum>QFrame::Panel</enum>
        </property>
        <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
+        <enum>QFrame::Plain</enum>
        </property>
        <widget class="QLabel" name="Label_21">
         <property name="geometry">
@@ -3423,7 +3369,6 @@
       </widget>
      </widget>
      <zorder>KeyAssignmentsWidget</zorder>
-     <zorder>KeyAssignmentsLabelFrame</zorder>
      <zorder>KeyAssignmentsLabel</zorder>
     </widget>
    </widget>

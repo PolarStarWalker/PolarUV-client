@@ -7,8 +7,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->_widgetsPlaced = false;
+
     //Создание CommandsProtocol для Gamepad
     this->_gamepadDataProtocol = new CommandsProtocol(0);
+
+    //Запуск таймера отрисовки окна
+    this->startTimer(1000/60,Qt::PreciseTimer);
 }
 
 MainWindow::~MainWindow() {
@@ -32,7 +37,7 @@ void MainWindow::on_CommandsProtocolButton_clicked() {
         _gamepadDataProtocol->Stop();
 }
 
-void MainWindow::paintEvent(QPaintEvent *event) {
+void MainWindow::placeWidgets() {
     /// Изменяем размеры TabWidget
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
 
@@ -42,14 +47,6 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     /// Перемещаем надпись "Статус подключения"
     int offset = 190; // Расстояние от правого края окна до надписи
     ui->StatusLabel->move(ui->MainWidget->width() - ui->StatusLabel->width() - offset, 0);
-
-    /// Рисуем кружок статуса
-    offset = 10; // Расстояние от надписи до центра окружности
-    QPainter painter(this);
-    QPoint point(ui->StatusLabel->x() + ui->StatusLabel->width() + offset, 13);
-    painter.setPen(Qt::NoPen); // Не рисовать границы
-    painter.setBrush(QBrush("#ff0000"));
-    painter.drawEllipse(point, 7, 7);
 
     /// Перемещаем виджет настроек робота
     offset = 30; // Расстояние между виджетами по горизонтали
@@ -61,6 +58,11 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() + offset;
     ui->ClientSettingsWidget->move(x, y);
 
+    /// Перемещаем виджет назначения кнопок
+    x = (ui->tab_4->width() - ui->KeyAssignmentsWidget->width()) / 2;
+    y = (ui->tab_4->height() - ui->KeyAssignmentsWidget->height()) / 2;
+    ui->KeyAssignmentsWidget->move(x, y);
+
     /// Перемещаем заголовок виджета настроек робота
     x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() / 2 - ui->RobotSettingsLabel->width() / 2;
     y = ui->RobotSettingsWidget->y() - ui->RobotSettingsLabel->height() / 2;
@@ -71,11 +73,34 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
     ui->ClientSettingsLabel->move(x, y);
 
-    /// Перемещаем рамку заголовка виджета настроек робота
-    ui->RobotSettingsLabelFrame->setGeometry(ui->RobotSettingsLabel->geometry());
+    /// Перемещаем заголовок виджета назначения кнопок
+    x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() / 2 - ui->KeyAssignmentsLabel->width() / 2;
+    y = ui->KeyAssignmentsWidget->y() - ui->KeyAssignmentsLabel->height() / 2;
+    ui->KeyAssignmentsLabel->move(x, y);
+}
 
-    /// Перемещаем рамку заголовка виджета настроек клиента
-    ui->ClientSettingsLabelFrame->setGeometry(ui->ClientSettingsLabel->geometry());
+void MainWindow::paintEvent(QPaintEvent *event) {
+    /// Если это первая отрисовка с момента запуска программы, то размещаем виджеты
+    if (!this->_widgetsPlaced) this->placeWidgets();
+
+    /// Рисуем кружок статуса
+    int offset = 10; // Расстояние от надписи до центра окружности
+    QPainter painter(this);
+    QPoint point(ui->StatusLabel->x() + ui->StatusLabel->width() + offset, 13);
+    painter.setPen(Qt::NoPen); // Не рисовать границы
+    if (this->_gamepadDataProtocol->IsOnline())
+        painter.setBrush(QBrush("#008000")); // Зеленый
+    else
+        painter.setBrush(QBrush("#ff0000")); // Красный
+    painter.drawEllipse(point, 7, 7);
+}
+
+void MainWindow::timerEvent(QTimerEvent *event) {
+    this->repaint();
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event) {
+    this->placeWidgets();
 }
 
 void MainWindow::on_FullScreenButton_clicked() {

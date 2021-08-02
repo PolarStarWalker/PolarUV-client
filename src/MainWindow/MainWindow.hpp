@@ -15,7 +15,7 @@
 #include "./Protocols/Protocols.hpp"
 #include "./Gamepad/Gamepad.hpp"
 
-#define SERVER_IP "169.254.154.5" \
+#define SERVER_IP "169.254.154.5"
 // 192.168.1.50 - motov.s
 // 169.254.154.5 - shushkov.d
 #define PORT 1999
@@ -36,7 +36,11 @@ public:
     ~MainWindow() override;
 
 protected:
-    void paintEvent(QPaintEvent *event) override; // Вызывается на этапе рисования окна
+    void paintEvent(QPaintEvent *event) override;
+    void timerEvent(QTimerEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
+
+    void placeWidgets();
 
 private slots:
     void on_CommandsProtocolButton_clicked();
@@ -50,6 +54,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    bool _widgetsPlaced;
 
     VideoProtocol _video;
     CommandsProtocol *_gamepadDataProtocol;
