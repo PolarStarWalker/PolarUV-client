@@ -6,10 +6,12 @@
 
 ///ToDo: переделать в класс с функциями для изменения массива, а то вот так динамическая память может утечь
 /// А ещё move semantics
+class SettingsProtocol;
 
 class SettingsStruct {
 public:
     SettingsStruct();
+    ~SettingsStruct();
 
     void SetMoveCoefficientArray(const std::vector<double> &copyMoveArray);
     void SetHandCoefficientArray(const std::vector<double> &copyHandArray);
@@ -25,6 +27,7 @@ public:
     int8_t MotorsProtocol = -1;
 
     friend std::ostream &operator<<(std::ostream &ostream, const SettingsStruct &settingStruct);
+    friend SettingsProtocol;
 };
 
 extern SettingsStruct SettingsStructData;

@@ -1,22 +1,24 @@
 #ifndef CLIENT_BASEPROTOCOL_HPP
 #define CLIENT_BASEPROTOCOL_HPP
+
 #include <shared_mutex>
 #include <thread>
 #include <chrono>
 
-
-class BaseProtocol{
+class BaseProtocol {
 public:
 
+    enum ErrorType : uint8_t {
+        Ok = 0,
+        CantConnectToServer = 1,
+        ConnectionLost = 2,
+    };
+
     bool IsOnline() const;
+
     bool IsThreadActive() const;
 
-
-
 protected:
-
-
-    /// mutable нужен для того чтобы менять поля в const функциях
     mutable std::shared_mutex _statusStatusMutex;
     mutable std::shared_mutex _threadStatusMutex;
 
@@ -31,7 +33,6 @@ protected:
         this->_statusStatusMutex.unlock();
     }
 
-
     inline void SetThreadStatus(bool status) {
         this->_threadStatusMutex.lock();
         this->_isThreadActive = status;
@@ -39,5 +40,4 @@ protected:
     }
 };
 
-
-#endif //CLIENT_BASEPROTOCOL_HPP
+#endif

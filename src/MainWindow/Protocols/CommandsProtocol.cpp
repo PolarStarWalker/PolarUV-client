@@ -28,7 +28,7 @@ void CommandsProtocol::Start(const QString &address, uint16_t port) {
     bool isConnected = this->_socket.ConnectToServer(address, port);
 
     if (!isConnected) {
-        this->SetErrorStatus(CommandsProtocol::ErrorType::CantConnectToServer);
+        this->SetErrorStatus(BaseProtocol::ErrorType::CantConnectToServer);
         return;
     }
 

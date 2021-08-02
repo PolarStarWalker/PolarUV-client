@@ -1,8 +1,6 @@
 #ifndef CLIENT_COMMANDSPROTOCOL_HPP
 #define CLIENT_COMMANDSPROTOCOL_HPP
 
-
-
 #include "synchapi.h"
 
 #include "../Socket/Socket.hpp"
@@ -10,11 +8,7 @@
 #include "../../Gamepad/Gamepad.hpp"
 
 class CommandsProtocol : public BaseProtocol{
-    enum ErrorType : uint8_t {
-        Ok = 0,
-        CantConnectToServer = 1,
-        ConnectionLost = 2,
-    };
+
 
 public:
     explicit CommandsProtocol(size_t gamepadId);
@@ -36,7 +30,7 @@ private:
 
     void Start(const QString &address, uint16_t port);
 
-    inline void SetErrorStatus(CommandsProtocol::ErrorType errorType) {
+    inline void SetErrorStatus(BaseProtocol::ErrorType errorType) {
         this->_errorStatusMutex.lock();
         this->_errorStatus = errorType;
         this->_errorStatusMutex.unlock();

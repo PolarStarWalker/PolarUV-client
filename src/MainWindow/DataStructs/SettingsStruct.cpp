@@ -1,29 +1,17 @@
 #include "./SettingStruct/SettingsStruct.hpp"
 
-std::ostream &operator<<(std::ostream &ostream, const SettingsStruct &settingStruct) {
+SettingsStruct::SettingsStruct() {
+    this->HandFreedom = -1;
+    this->HandCoefficientArray = nullptr;
+    this->ThrustersNumber = -1;
+    this->MoveCoefficientArray = nullptr;
+    this->MaxMotorSpeed = -1;
+    this->MotorsProtocol = -1;
+}
 
-    ostream << "ThrusterNumber: " << settingStruct.ThrustersNumber << std::endl;
-
-    ostream << "MoveCoefficientMatrix:" << std::endl;
-    for (size_t i = 0; i < settingStruct.ThrustersNumber; i++) {
-        ostream << "[ ";
-        for (size_t j = 0; j < 5; j++) {
-            ostream << settingStruct.MoveCoefficientArray[6 * i + j] << ", ";
-        }
-        ostream << settingStruct.MoveCoefficientArray[6 * i + 6] << "]" << std::endl;
-    }
-
-    ostream << "HandFreedom: " << (ssize_t) settingStruct.HandFreedom << std::endl;
-    ostream << "HandCoefficientArray: [";
-    for (size_t i = 0; i < settingStruct.HandFreedom - 1; i++) {
-        ostream << settingStruct.HandCoefficientArray[i] << ", ";
-    }
-    ostream << settingStruct.HandCoefficientArray[settingStruct.HandFreedom - 1] << ", ]" << std::endl;
-
-    std::cout << "MotorProtocol: " << (long) settingStruct.MotorsProtocol << std::endl;
-    std::cout << "MaxMotorSpeed: " << settingStruct.MaxMotorSpeed << std::endl;
-
-    return ostream;
+SettingsStruct::~SettingsStruct() {
+    delete[] this->MoveCoefficientArray;
+    delete[] this->HandCoefficientArray;
 }
 
 void SettingsStruct::SetMoveCoefficientArray(const std::vector<double> &copyMoveArray) {
@@ -49,11 +37,28 @@ void SettingsStruct::SetHandCoefficientArray(const std::vector<double> &copyHand
     }
 }
 
-SettingsStruct::SettingsStruct() {
-    this->HandFreedom = -1;
-    this->HandCoefficientArray = nullptr;
-    this->ThrustersNumber = -1;
-    this->MoveCoefficientArray = nullptr;
-    this->MaxMotorSpeed = -1;
-    this->MotorsProtocol = -1;
+std::ostream &operator<<(std::ostream &ostream, const SettingsStruct &settingStruct) {
+
+    ostream << "ThrusterNumber: " << settingStruct.ThrustersNumber << std::endl;
+
+    ostream << "MoveCoefficientMatrix:" << std::endl;
+    for (size_t i = 0; i < settingStruct.ThrustersNumber; i++) {
+        ostream << "[ ";
+        for (size_t j = 0; j < 5; j++) {
+            ostream << settingStruct.MoveCoefficientArray[6 * i + j] << ", ";
+        }
+        ostream << settingStruct.MoveCoefficientArray[6 * i + 6] << "]" << std::endl;
+    }
+
+    ostream << "HandFreedom: " << (ssize_t) settingStruct.HandFreedom << std::endl;
+    ostream << "HandCoefficientArray: [";
+    for (size_t i = 0; i < settingStruct.HandFreedom - 1; i++) {
+        ostream << settingStruct.HandCoefficientArray[i] << ", ";
+    }
+    ostream << settingStruct.HandCoefficientArray[settingStruct.HandFreedom - 1] << ", ]" << std::endl;
+
+    std::cout << "MotorProtocol: " << (long) settingStruct.MotorsProtocol << std::endl;
+    std::cout << "MaxMotorSpeed: " << settingStruct.MaxMotorSpeed << std::endl;
+
+    return ostream;
 }
