@@ -18,7 +18,9 @@
 #define SERVER_IP "169.254.154.5"
 // 192.168.1.50 - motov.s
 // 169.254.154.5 - shushkov.d
-#define PORT 1999
+#define COMMANDS_PORT 1999
+#define SETTINGS_PORT 2020
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -61,6 +63,7 @@ private:
 
     VideoProtocol _video;
     CommandsProtocol *_commandsProtocol;
+    SettingsProtocol *_settingsProtocol;
     Control::Gamepad *_gamepad;
 };
 #endif

@@ -10,6 +10,8 @@
 class SettingsProtocol : protected BaseProtocol{
 
 public:
+    void SendAsync(const QString &address, uint16_t port, SettingsStruct &&settingsStruct);
+
 
 private:
     Socket _socket;
@@ -19,7 +21,6 @@ private:
     ErrorType _errorStatus;
 
     void Send(const QString &address, uint16_t port, SettingsStruct &&settingsStruct);
-    void Send(const QString &address, uint16_t port, SettingsStruct &settingsStruct);
 
     inline void SetErrorStatus(BaseProtocol::ErrorType errorType) {
         this->_errorStatusMutex.lock();

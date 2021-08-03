@@ -11,10 +11,13 @@ class SettingsProtocol;
 class SettingsStruct {
 public:
     SettingsStruct();
+    SettingsStruct(SettingsStruct &&settingsStruct);
+    SettingsStruct(const SettingsStruct &settingsStruct);
     ~SettingsStruct();
 
     void SetMoveCoefficientArray(const std::vector<double> &copyMoveArray);
     void SetHandCoefficientArray(const std::vector<double> &copyHandArray);
+
 private:
     double* MoveCoefficientArray = nullptr;
     double* HandCoefficientArray = nullptr;

@@ -2,6 +2,7 @@
 
 void SettingsProtocol::Send(const QString &address, uint16_t port, SettingsStruct &&settingsStruct) {
     uint32_t position = 0;
+
     position += sizeof(settingsStruct.ThrustersNumber);
     position += settingsStruct.ThrustersNumber * 6 * sizeof(double);
     position += sizeof(settingsStruct.HandFreedom);
@@ -36,4 +37,12 @@ void SettingsProtocol::Send(const QString &address, uint16_t port, SettingsStruc
     position += sizeof(settingsStruct.MotorsProtocol);
 
     std::cout << position << std::endl;
+}
+
+void SettingsProtocol::SendAsync(const QString &address, uint16_t port, SettingsStruct &&settingsStruct) {
+    if (!this->IsThreadActive()) {
+        this->_transferThread = std::thread(&SettingsProtocol::Send, this, address, port, std::move(settingsStruct));
+        this->_transferThread.detach();
+    }
+
 }

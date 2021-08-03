@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     //Создание CommandsProtocol для Gamepad
     this->_commandsProtocol = new CommandsProtocol(0);
 
+    this->_settingsProtocol = new SettingsProtocol();
+
     //Запуск таймера отрисовки окна
     this->startTimer(1000/60,Qt::PreciseTimer);
 }
@@ -32,7 +34,7 @@ void MainWindow::on_VideoStreamButton_clicked() {
 
 void MainWindow::on_CommandsProtocolButton_clicked() {
     if (!_commandsProtocol->IsOnline())
-        _commandsProtocol->StartAsync(ui->IPEdit->text(), PORT);
+        _commandsProtocol->StartAsync(ui->IPEdit->text(), COMMANDS_PORT);
     else
         _commandsProtocol->Stop();
 }
@@ -71,10 +73,13 @@ void  MainWindow::on_SendSettingsButton_clicked() {
         case 3: settingsStruct.MotorsProtocol = DShotMode::DShot1200; break;
     }
 
+
+
     //Временный вывод настроек в консоль
     std::cout << settingsStruct;
 
     /// ToDo: отправка настроек роботу
+    this->_settingsProtocol->SendAsync(ui->IPEdit->text(), SETTINGS_PORT, std::move(settingsStruct));
 
     QMessageBox::information(this,"Сообщение","Настройки успешно отправлены");
 }
