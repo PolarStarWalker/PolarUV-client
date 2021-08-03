@@ -37,6 +37,48 @@ void MainWindow::on_CommandsProtocolButton_clicked() {
         _commandsProtocol->Stop();
 }
 
+void  MainWindow::on_ReceiveSettingsButton_clicked() {
+
+}
+
+void  MainWindow::on_SendSettingsButton_clicked() {
+    SettingsStruct settingsStruct;
+
+    /// Считываем коэффициенты двигателей
+    std::vector<double> motorsVector(ui->MotorsTable->rowCount() * 6);
+    for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
+        for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
+            motorsVector[i * 6 + j] = ui->MotorsTable->item(i,j)->text().toDouble();
+        }
+    }
+    settingsStruct.SetMoveCoefficientArray(motorsVector);
+
+    /// Считываем коэффициенты манипулятора
+    std::vector<double> handVector(ui->HandTable->columnCount());
+    for (int j = 0; j < ui->HandTable->columnCount(); j++) {
+        handVector[j] = ui->MotorsTable->item(0,j)->text().toDouble();
+    }
+    settingsStruct.SetHandCoefficientArray(handVector);
+
+    /// Считываем максимальную скорость двигателей
+    settingsStruct.MaxMotorSpeed = ui->MaxSpeedEdit->text().toInt();
+
+    /// Считываем протокол двигателей
+    switch (ui->MotorsProtocolComboBox->currentIndex()) {
+        case 0: settingsStruct.MotorsProtocol = DShotMode::DShot150; break;
+        case 1: settingsStruct.MotorsProtocol = DShotMode::DShot300; break;
+        case 2: settingsStruct.MotorsProtocol = DShotMode::DShot600; break;
+        case 3: settingsStruct.MotorsProtocol = DShotMode::DShot1200; break;
+    }
+
+    //Временный вывод настроек в консоль
+    std::cout << settingsStruct;
+
+    /// ToDo: отправка настроек роботу
+
+    QMessageBox::information(this,"Сообщение","Настройки успешно отправлены");
+}
+
 void MainWindow::placeWidgets() {
     /// Изменяем размеры TabWidget
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
@@ -130,6 +172,15 @@ void MainWindow::on_MotorsQuantitySpinBox_valueChanged(int value) {
 
     /// Устанавливаем число строк таблицы
     ui->MotorsTable->setRowCount(value);
+
+    /// Заполняем пустые ячейки нулями
+    for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
+        for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
+            if (ui->MotorsTable->item(i,j) == nullptr) {
+                ui->MotorsTable->setItem(i,j,new QTableWidgetItem("0"));
+            }
+        }
+    }
 }
 
 void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
@@ -162,4 +213,11 @@ void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
 
     /// Устанавливаем число столбцов таблицы
     ui->HandTable->setColumnCount(value);
+
+    /// Заполняем пустые ячейки нулями
+    for (int j = 0; j < ui->HandTable->columnCount(); j++) {
+        if (ui->HandTable->item(0,j) == nullptr) {
+            ui->HandTable->setItem(0,j,new QTableWidgetItem("0"));
+        }
+    }
 }

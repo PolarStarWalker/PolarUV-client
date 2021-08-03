@@ -4,7 +4,7 @@
 #include <cstring>
 
 #include "../BaseProtocol/BaseProtocol.hpp"
-#include "../DataStructs/SettingStruct/SettingsStruct.hpp"
+#include "../../DataStructs/SettingStruct/SettingsStruct.hpp"
 #include "../Socket/Socket.hpp"
 
 class SettingsProtocol : protected BaseProtocol{

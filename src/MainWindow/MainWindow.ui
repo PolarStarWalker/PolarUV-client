@@ -1110,12 +1110,12 @@
        <column/>
        <item row="0" column="0">
         <property name="text">
-         <string/>
+         <string>0</string>
         </property>
        </item>
        <item row="0" column="1">
         <property name="text">
-         <string/>
+         <string>0</string>
         </property>
        </item>
       </widget>
@@ -1476,32 +1476,252 @@
        <column/>
        <item row="0" column="0">
         <property name="text">
-         <string/>
+         <string>0</string>
         </property>
        </item>
        <item row="0" column="1">
         <property name="text">
-         <string/>
+         <string>0</string>
         </property>
        </item>
        <item row="0" column="2">
         <property name="text">
-         <string/>
+         <string>0</string>
         </property>
        </item>
        <item row="0" column="3">
         <property name="text">
-         <string/>
+         <string>0</string>
+        </property>
+       </item>
+       <item row="0" column="4">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="0" column="5">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="1" column="0">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="1" column="1">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="1" column="2">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="1" column="3">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="1" column="4">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="1" column="5">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="2" column="0">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="2" column="1">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="2" column="2">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="2" column="3">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="2" column="4">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="2" column="5">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="3" column="0">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="3" column="1">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="3" column="2">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="3" column="3">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="3" column="4">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="3" column="5">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="4" column="0">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="4" column="1">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="4" column="2">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="4" column="3">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="4" column="4">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="4" column="5">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="5" column="0">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="5" column="1">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="5" column="2">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="5" column="3">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="5" column="4">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="5" column="5">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="6" column="0">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="6" column="1">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="6" column="2">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="6" column="3">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="6" column="4">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="6" column="5">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="7" column="0">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="7" column="1">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="7" column="2">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="7" column="3">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="7" column="4">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="7" column="5">
+        <property name="text">
+         <string>0</string>
         </property>
        </item>
       </widget>
       <widget class="QPushButton" name="SendSettingsButton">
        <property name="geometry">
         <rect>
-         <x>429</x>
-         <y>411</y>
+         <x>425</x>
+         <y>385</y>
          <width>250</width>
-         <height>60</height>
+         <height>50</height>
         </rect>
        </property>
        <property name="font">
@@ -1519,10 +1739,10 @@
       <widget class="QPushButton" name="ReceiveSettingsButton">
        <property name="geometry">
         <rect>
-         <x>429</x>
-         <y>341</y>
+         <x>425</x>
+         <y>330</y>
          <width>250</width>
-         <height>60</height>
+         <height>50</height>
         </rect>
        </property>
        <property name="font">
@@ -1665,7 +1885,7 @@
         </rect>
        </property>
        <property name="autoFillBackground">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="frameShape">
         <enum>QFrame::Panel</enum>
@@ -1678,6 +1898,27 @@
        </property>
        <property name="midLineWidth">
         <number>0</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="SaveSettingsButton">
+       <property name="geometry">
+        <rect>
+         <x>425</x>
+         <y>440</y>
+         <width>250</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Сохранить настройки</string>
        </property>
       </widget>
       <zorder>RobotSettingsWidgetFrame</zorder>
@@ -1709,6 +1950,7 @@
       <zorder>HandBottomLeftLine</zorder>
       <zorder>HandTopLeftLine</zorder>
       <zorder>HandLeftLine</zorder>
+      <zorder>SaveSettingsButton</zorder>
      </widget>
      <widget class="QLabel" name="RobotSettingsLabel">
       <property name="geometry">
@@ -1779,6 +2021,9 @@
          <height>550</height>
         </rect>
        </property>
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
        <property name="frameShape">
         <enum>QFrame::Panel</enum>
        </property>
@@ -1788,9 +2033,9 @@
        <widget class="QLineEdit" name="IPEdit">
         <property name="geometry">
          <rect>
-          <x>220</x>
+          <x>210</x>
           <y>75</y>
-          <width>150</width>
+          <width>170</width>
           <height>30</height>
          </rect>
         </property>
@@ -1804,11 +2049,49 @@
        <widget class="QComboBox" name="GamepadComboBox">
         <property name="geometry">
          <rect>
-          <x>220</x>
+          <x>210</x>
           <y>115</y>
-          <width>150</width>
+          <width>71</width>
           <height>30</height>
          </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="RefreshGamepadsButton">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>115</y>
+          <width>90</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <stylestrategy>PreferDefault</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Обновить</string>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
         </property>
        </widget>
       </widget>
@@ -1919,6 +2202,9 @@
          <width>915</width>
          <height>540</height>
         </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>true</bool>
        </property>
        <property name="frameShape">
         <enum>QFrame::Panel</enum>

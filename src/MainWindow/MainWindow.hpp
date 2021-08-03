@@ -46,6 +46,8 @@ private slots:
     void on_CommandsProtocolButton_clicked();
     void on_GamepadButton_clicked();
     void on_VideoStreamButton_clicked();
+    void on_ReceiveSettingsButton_clicked();
+    void on_SendSettingsButton_clicked();
 
     void on_FullScreenButton_clicked();
 
