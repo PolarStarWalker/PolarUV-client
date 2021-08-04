@@ -8,15 +8,17 @@
 /// А ещё move semantics
 class SettingsProtocol;
 
-class SettingsStruct {
+class RobotSettingsStruct {
 public:
-    SettingsStruct();
-    SettingsStruct(SettingsStruct &&settingsStruct);
-    SettingsStruct(const SettingsStruct &settingsStruct);
-    ~SettingsStruct();
+    RobotSettingsStruct();
+    RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct);
+    RobotSettingsStruct(const RobotSettingsStruct &robotSettingsStruct);
+    ~RobotSettingsStruct();
 
     void SetMoveCoefficientArray(const std::vector<double> &copyMoveArray);
     void SetHandCoefficientArray(const std::vector<double> &copyHandArray);
+    std::vector<double> GetMoveCoefficientVector();
+    std::vector<double> GetHandCoefficientVector();
 
 private:
     double* MoveCoefficientArray = nullptr;
@@ -29,14 +31,14 @@ private:
 public:
     int8_t MotorsProtocol = -1;
 
-    friend std::ostream &operator<<(std::ostream &ostream, const SettingsStruct &settingStruct);
+    friend std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &settingStruct);
     friend SettingsProtocol;
 };
 
-extern SettingsStruct SettingsStructData;
-constexpr size_t SettingsStructLen = sizeof(SettingsStructData);
+extern RobotSettingsStruct RobotSettingsStructData;
+constexpr size_t RobotSettingsStructLen = sizeof(RobotSettingsStructData);
 
-std::ostream &operator<<(std::ostream &ostream, const SettingsStruct &settingStruct);
+std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robotSettingsStruct);
 
 
 #endif

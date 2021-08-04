@@ -53,7 +53,7 @@ private slots:
 
     void on_FullScreenButton_clicked();
 
-    void on_MotorsQuantitySpinBox_valueChanged(int value);
+    void on_MotorsNumberSpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);
 
 private:

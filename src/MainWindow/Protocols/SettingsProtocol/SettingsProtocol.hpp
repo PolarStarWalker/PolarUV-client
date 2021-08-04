@@ -4,13 +4,13 @@
 #include <cstring>
 
 #include "../BaseProtocol/BaseProtocol.hpp"
-#include "../../DataStructs/SettingStruct/SettingsStruct.hpp"
+#include "../../DataStructs/RobotSettingsStruct/RobotSettingsStruct.hpp"
 #include "../Socket/Socket.hpp"
 
 class SettingsProtocol : protected BaseProtocol{
 
 public:
-    void SendAsync(const QString &address, uint16_t port, SettingsStruct &&settingsStruct);
+    void SendAsync(const QString &address, uint16_t port, RobotSettingsStruct &&robotSettingsStruct);
 
 
 private:
@@ -20,7 +20,7 @@ private:
 
     ErrorType _errorStatus;
 
-    void Send(const QString &address, uint16_t port, SettingsStruct &&settingsStruct);
+    void Send(const QString &address, uint16_t port, RobotSettingsStruct &&robotSettingsStruct);
 
     inline void SetErrorStatus(BaseProtocol::ErrorType errorType) {
         this->_errorStatusMutex.lock();

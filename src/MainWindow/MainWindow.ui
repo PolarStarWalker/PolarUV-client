@@ -1221,7 +1221,7 @@
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QLabel" name="MotorsQuantityLabel">
+      <widget class="QLabel" name="MotorsNumberLabel">
        <property name="geometry">
         <rect>
          <x>21</x>
@@ -1328,7 +1328,7 @@
         <enum>Qt::Horizontal</enum>
        </property>
       </widget>
-      <widget class="QSpinBox" name="MotorsQuantitySpinBox">
+      <widget class="QSpinBox" name="MotorsNumberSpinBox">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -1719,7 +1719,7 @@
        <property name="geometry">
         <rect>
          <x>425</x>
-         <y>385</y>
+         <y>405</y>
          <width>250</width>
          <height>50</height>
         </rect>
@@ -1740,7 +1740,7 @@
        <property name="geometry">
         <rect>
          <x>425</x>
-         <y>330</y>
+         <y>350</y>
          <width>250</width>
          <height>50</height>
         </rect>
@@ -1900,27 +1900,6 @@
         <number>0</number>
        </property>
       </widget>
-      <widget class="QPushButton" name="SaveSettingsButton">
-       <property name="geometry">
-        <rect>
-         <x>425</x>
-         <y>440</y>
-         <width>250</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Сохранить настройки</string>
-       </property>
-      </widget>
       <zorder>RobotSettingsWidgetFrame</zorder>
       <zorder>HandTopRightLine</zorder>
       <zorder>HandFreedomLabel</zorder>
@@ -1934,12 +1913,12 @@
       <zorder>MotorsRightLine</zorder>
       <zorder>MotorsTopLeftLine</zorder>
       <zorder>MotorsTopRightLine</zorder>
-      <zorder>MotorsQuantityLabel</zorder>
+      <zorder>MotorsNumberLabel</zorder>
       <zorder>MotorsLabel</zorder>
       <zorder>MotorsCoefficientsLabel</zorder>
       <zorder>MotorsLeftLine</zorder>
       <zorder>MotorsBottomRightLine</zorder>
-      <zorder>MotorsQuantitySpinBox</zorder>
+      <zorder>MotorsNumberSpinBox</zorder>
       <zorder>MaxSpeedEdit</zorder>
       <zorder>MotorsBottomLeftLine</zorder>
       <zorder>MotorsTable</zorder>
@@ -1950,7 +1929,6 @@
       <zorder>HandBottomLeftLine</zorder>
       <zorder>HandTopLeftLine</zorder>
       <zorder>HandLeftLine</zorder>
-      <zorder>SaveSettingsButton</zorder>
      </widget>
      <widget class="QLabel" name="RobotSettingsLabel">
       <property name="geometry">

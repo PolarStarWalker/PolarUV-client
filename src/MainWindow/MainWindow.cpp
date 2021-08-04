@@ -2,9 +2,7 @@
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent)
-        , ui(new Ui::MainWindow)
-{
+        : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
     this->_widgetsPlaced = false;
@@ -15,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->_settingsProtocol = new SettingsProtocol();
 
     //Запуск таймера отрисовки окна
-    this->startTimer(1000/60,Qt::PreciseTimer);
+    this->startTimer(1000 / 60, Qt::PreciseTimer);
 }
 
 MainWindow::~MainWindow() {
@@ -39,49 +37,110 @@ void MainWindow::on_CommandsProtocolButton_clicked() {
         _commandsProtocol->Stop();
 }
 
-void  MainWindow::on_ReceiveSettingsButton_clicked() {
+void MainWindow::on_ReceiveSettingsButton_clicked() {
+    /// Временные "входные" данные
+    /// ToDo: заменить на прием структуры по протоколу
+    std::vector<double> motorsVector = {1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1};
+    std::vector<double> handVector = {1, 2, 3, 4, 5};
+    int32_t maxMotorSpeed = 3000;
+    int8_t motorsProtocol = 4;
+    RobotSettingsStruct robotSettingsStruct;
+    robotSettingsStruct.SetMoveCoefficientArray(motorsVector);
+    robotSettingsStruct.SetHandCoefficientArray(handVector);
+    robotSettingsStruct.MaxMotorSpeed = maxMotorSpeed;
+    robotSettingsStruct.MotorsProtocol = motorsProtocol;
 
+    /// Выводим количество двигателей
+    std::vector<double> moveCoefficientVector = robotSettingsStruct.GetMoveCoefficientVector();
+    int motorsNumber = (int) (moveCoefficientVector.size() / 6);
+    ui->MotorsNumberSpinBox->setValue(motorsNumber);
+
+    /// Выводим коэффициенты двигателей
+    for (int i = 0; i < motorsNumber; i++) {
+        for (int j = 0; j < 6; j++) {
+            QString itemText = QString::number(moveCoefficientVector[i * 6 + j]);
+            ui->MotorsTable->setItem(i, j, new QTableWidgetItem(itemText));
+        }
+    }
+
+    /// Выводим число степеней свободы манипулятора
+    std::vector<double> handCoefficientVector = robotSettingsStruct.GetHandCoefficientVector();
+    int handFreedom = (int) (handCoefficientVector.size());
+    ui->HandFreedomSpinBox->setValue(handFreedom);
+
+    /// Выводим коэффициенты манипулятора
+    for (int j = 0; j < handFreedom; j++) {
+        QString itemText = QString::number(handCoefficientVector[j]);
+        ui->HandTable->setItem(0, j, new QTableWidgetItem(itemText));
+    }
+
+    /// Выводим максимальную скорость двигателей
+    ui->MaxSpeedEdit->setText(QString::number(robotSettingsStruct.MaxMotorSpeed));
+
+    /// Выводим протокол двигателей
+    switch (robotSettingsStruct.MotorsProtocol) {
+        case 1:
+            ui->MotorsProtocolComboBox->setCurrentIndex(0);
+            break;
+        case 2:
+            ui->MotorsProtocolComboBox->setCurrentIndex(1);
+            break;
+        case 4:
+            ui->MotorsProtocolComboBox->setCurrentIndex(2);
+            break;
+        case 8:
+            ui->MotorsProtocolComboBox->setCurrentIndex(3);
+            break;
+    }
+
+    QMessageBox::information(this, "Сообщение", "Настройки успешно получены");
 }
 
-void  MainWindow::on_SendSettingsButton_clicked() {
-    SettingsStruct settingsStruct;
+void MainWindow::on_SendSettingsButton_clicked() {
+    RobotSettingsStruct robotSettingsStruct;
 
     /// Считываем коэффициенты двигателей
     std::vector<double> motorsVector(ui->MotorsTable->rowCount() * 6);
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
-            motorsVector[i * 6 + j] = ui->MotorsTable->item(i,j)->text().toDouble();
+            motorsVector[i * 6 + j] = ui->MotorsTable->item(i, j)->text().toDouble();
         }
     }
-    settingsStruct.SetMoveCoefficientArray(motorsVector);
+    robotSettingsStruct.SetMoveCoefficientArray(motorsVector);
 
     /// Считываем коэффициенты манипулятора
     std::vector<double> handVector(ui->HandTable->columnCount());
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
-        handVector[j] = ui->MotorsTable->item(0,j)->text().toDouble();
+        handVector[j] = ui->MotorsTable->item(0, j)->text().toDouble();
     }
-    settingsStruct.SetHandCoefficientArray(handVector);
+    robotSettingsStruct.SetHandCoefficientArray(handVector);
 
     /// Считываем максимальную скорость двигателей
-    settingsStruct.MaxMotorSpeed = ui->MaxSpeedEdit->text().toInt();
+    robotSettingsStruct.MaxMotorSpeed = ui->MaxSpeedEdit->text().toInt();
 
     /// Считываем протокол двигателей
     switch (ui->MotorsProtocolComboBox->currentIndex()) {
-        case 0: settingsStruct.MotorsProtocol = DShotMode::DShot150; break;
-        case 1: settingsStruct.MotorsProtocol = DShotMode::DShot300; break;
-        case 2: settingsStruct.MotorsProtocol = DShotMode::DShot600; break;
-        case 3: settingsStruct.MotorsProtocol = DShotMode::DShot1200; break;
+        case 0:
+            robotSettingsStruct.MotorsProtocol = DShotMode::DShot150;
+            break;
+        case 1:
+            robotSettingsStruct.MotorsProtocol = DShotMode::DShot300;
+            break;
+        case 2:
+            robotSettingsStruct.MotorsProtocol = DShotMode::DShot600;
+            break;
+        case 3:
+            robotSettingsStruct.MotorsProtocol = DShotMode::DShot1200;
+            break;
     }
 
-
-
     //Временный вывод настроек в консоль
-    std::cout << settingsStruct;
+    std::cout << robotSettingsStruct;
 
-    /// ToDo: отправка настроек роботу
-    this->_settingsProtocol->SendAsync(ui->IPEdit->text(), SETTINGS_PORT, std::move(settingsStruct));
+    /// Отправка настроек роботу
+    this->_settingsProtocol->SendAsync(ui->IPEdit->text(), SETTINGS_PORT, std::move(robotSettingsStruct));
 
-    QMessageBox::information(this,"Сообщение","Настройки успешно отправлены");
+    QMessageBox::information(this, "Сообщение", "Настройки успешно отправлены");
 }
 
 void MainWindow::placeWidgets() {
@@ -89,7 +148,7 @@ void MainWindow::placeWidgets() {
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
 
     /// Перемещаем кнопку "Полный экран"
-    ui->FullScreenButton->move(ui->MainWidget->width() - ui->FullScreenButton->width(),0);
+    ui->FullScreenButton->move(ui->MainWidget->width() - ui->FullScreenButton->width(), 0);
 
     /// Перемещаем надпись "Статус подключения"
     int offset = 190; // Расстояние от правого края окна до надписи
@@ -153,13 +212,12 @@ void MainWindow::resizeEvent(QResizeEvent *event) {
 void MainWindow::on_FullScreenButton_clicked() {
     if (this->windowState() == Qt::WindowFullScreen) {
         this->setWindowState(Qt::WindowNoState);
-    }
-    else {
+    } else {
         this->setWindowState(Qt::WindowFullScreen);
     }
 }
 
-void MainWindow::on_MotorsQuantitySpinBox_valueChanged(int value) {
+void MainWindow::on_MotorsNumberSpinBox_valueChanged(int value) {
     /// Изменяем высоту таблицы
     ui->MotorsTable->setFixedHeight((value * 26) + ((int) (value * 0.5))); // 26 - высота одной строки
 
@@ -181,8 +239,8 @@ void MainWindow::on_MotorsQuantitySpinBox_valueChanged(int value) {
     /// Заполняем пустые ячейки нулями
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
-            if (ui->MotorsTable->item(i,j) == nullptr) {
-                ui->MotorsTable->setItem(i,j,new QTableWidgetItem("0"));
+            if (ui->MotorsTable->item(i, j) == nullptr) {
+                ui->MotorsTable->setItem(i, j, new QTableWidgetItem("0"));
             }
         }
     }
@@ -221,8 +279,8 @@ void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
 
     /// Заполняем пустые ячейки нулями
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
-        if (ui->HandTable->item(0,j) == nullptr) {
-            ui->HandTable->setItem(0,j,new QTableWidgetItem("0"));
+        if (ui->HandTable->item(0, j) == nullptr) {
+            ui->HandTable->setItem(0, j, new QTableWidgetItem("0"));
         }
     }
 }
