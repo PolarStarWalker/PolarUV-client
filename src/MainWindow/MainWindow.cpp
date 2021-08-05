@@ -149,6 +149,8 @@ void MainWindow::on_SendSettingsButton_clicked() {
 void MainWindow::on_SaveClientSettingsButton_clicked() {
     ClientSettingsStruct settings;
 
+    std::memcpy(settings.serverIP, ui->IPEdit->text().begin(), sizeof(settings.serverIP));
+
     settings.leftShoulderActionID = ui->LeftShoulderComboBox->currentIndex();
     settings.rightShoulderActionID = ui->RightShoulderComboBox->currentIndex();
     settings.leftStickXActionID = ui->LeftStickXComboBox->currentIndex();
@@ -168,13 +170,14 @@ void MainWindow::on_SaveClientSettingsButton_clicked() {
 
     settings.Save();
 
-    QMessageBox::information(this,"Сообщение","Настройки успешно сохранены");
+    QMessageBox::information(this, "Сообщение", "Настройки успешно сохранены");
 }
 
 void MainWindow::loadClientSettings() {
     ClientSettingsStruct settings;
-
     settings.Load();
+
+    ui->IPEdit->setText(QString(settings.serverIP));
 
     ui->LeftShoulderComboBox->setCurrentIndex(settings.leftShoulderActionID);
     ui->RightShoulderComboBox->setCurrentIndex(settings.rightShoulderActionID);
@@ -196,7 +199,7 @@ void MainWindow::loadClientSettings() {
 
 void MainWindow::on_LoadClientSettingsButton_clicked() {
     loadClientSettings();
-    QMessageBox::information(this,"Сообщение","Настройки успешно восстановлены");
+    QMessageBox::information(this, "Сообщение", "Настройки успешно восстановлены");
 }
 
 void MainWindow::placeWidgets() {

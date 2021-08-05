@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <cstring>
+#include <QString>
 
 enum RobotAnalogActions : int8_t {
     NoAnalogAction = 0,
@@ -31,7 +32,7 @@ public:
     void Load();
 
     int32_t gamepadID;
-    char serverIP[16];
+    QChar serverIP[16];
 
     int8_t dPadXActionID;
     int8_t dPadYActionID;
