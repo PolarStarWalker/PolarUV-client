@@ -2,6 +2,7 @@
 #define CLIENT_SETTINGSSTRUCT_HPP
 
 #include <fstream>
+#include <cstring>
 
 enum RobotAnalogActions : int8_t {
     NoAnalogAction = 0,
@@ -29,23 +30,26 @@ public:
     void Save();
     void Load();
 
-    int32_t dPadXActionID;
-    int32_t dPadYActionID;
-    int32_t leftStickXActionID;
-    int32_t leftStickYActionID;
-    int32_t rightStickXActionID;
-    int32_t rightStickYActionID;
-    int32_t leftShoulderActionID;
-    int32_t rightShoulderActionID;
+    int32_t gamepadID;
+    char serverIP[16];
 
-    int32_t leftStickPressActionID;
-    int32_t rightStickPressActionID;
-    int32_t triangleActionID;
-    int32_t crossActionID;
-    int32_t rectangleActionID;
-    int32_t circleActionID;
-    int32_t startActionID;
-    int32_t backActionID;
+    int8_t dPadXActionID;
+    int8_t dPadYActionID;
+    int8_t leftStickXActionID;
+    int8_t leftStickYActionID;
+    int8_t rightStickXActionID;
+    int8_t rightStickYActionID;
+    int8_t leftShoulderActionID;
+    int8_t rightShoulderActionID;
+    int8_t leftStickPressActionID;
+    int8_t rightStickPressActionID;
+
+    int8_t rectangleActionID;
+    int8_t triangleActionID;
+    int8_t circleActionID;
+    int8_t crossActionID;
+    int8_t startActionID;
+    int8_t backActionID;
 
     bool dPadXInverted;
     bool dPadYInverted;
@@ -56,11 +60,10 @@ public:
     bool leftShoulderInverted;
     bool rightShoulderInverted;
 
-    std::string serverIP;
-    int32_t gamepadID;
+
 };
 
 extern ClientSettingsStruct ClientSettingsStructData;
 constexpr size_t ClientSettingsStructLen = sizeof(ClientSettingsStructData);
 
-#endif //CLIENT_SETTINGSSTRUCT_HPP
+#endif
