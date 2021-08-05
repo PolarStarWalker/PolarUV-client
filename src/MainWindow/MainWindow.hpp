@@ -12,6 +12,7 @@
 #include <QWindowStateChangeEvent>
 #include <QThread>
 
+#include "./DataStructs/ClientSettingsStruct/ClientSettingsStruct.hpp"
 #include "./Protocols/Protocols.hpp"
 #include "./Gamepad/Gamepad.hpp"
 
@@ -43,6 +44,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
     void placeWidgets();
+    void loadClientSettings();
 
 private slots:
     void on_CommandsProtocolButton_clicked();
@@ -50,6 +52,8 @@ private slots:
     void on_VideoStreamButton_clicked();
     void on_ReceiveSettingsButton_clicked();
     void on_SendSettingsButton_clicked();
+    void on_LoadClientSettingsButton_clicked();
+    void on_SaveClientSettingsButton_clicked();
 
     void on_FullScreenButton_clicked();
 
@@ -64,7 +68,6 @@ private:
     VideoProtocol _video;
     CommandsProtocol *_commandsProtocol;
     SettingsProtocol *_settingsProtocol;
-    Control::Gamepad *_gamepad;
 };
 #endif
 

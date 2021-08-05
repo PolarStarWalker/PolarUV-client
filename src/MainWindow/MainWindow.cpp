@@ -14,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Запуск таймера отрисовки окна
     this->startTimer(1000 / 60, Qt::PreciseTimer);
+
+    //Загрузка настроек клиента из файла
+    loadClientSettings();
 }
 
 MainWindow::~MainWindow() {
@@ -143,6 +146,59 @@ void MainWindow::on_SendSettingsButton_clicked() {
     QMessageBox::information(this, "Сообщение", "Настройки успешно отправлены");
 }
 
+void MainWindow::on_SaveClientSettingsButton_clicked() {
+    ClientSettingsStruct settings;
+
+    settings.leftShoulderActionID = ui->LeftShoulderComboBox->currentIndex();
+    settings.rightShoulderActionID = ui->RightShoulderComboBox->currentIndex();
+    settings.leftStickXActionID = ui->LeftStickXComboBox->currentIndex();
+    settings.leftStickYActionID = ui->LeftStickYComboBox->currentIndex();
+    settings.leftStickPressActionID = ui->LeftStickPressComboBox->currentIndex();
+    settings.rightStickXActionID = ui->RightStickXComboBox->currentIndex();
+    settings.rightStickYActionID = ui->RightStickYComboBox->currentIndex();
+    settings.rightStickPressActionID = ui->RightStickPressComboBox->currentIndex();
+    settings.dPadXActionID = ui->DPadXComboBox->currentIndex();
+    settings.dPadYActionID = ui->DPadYComboBox->currentIndex();
+    settings.triangleActionID = ui->TriangleComboBox->currentIndex();
+    settings.crossActionID = ui->CrossComboBox->currentIndex();
+    settings.rectangleActionID = ui->RectangleComboBox->currentIndex();
+    settings.circleActionID = ui->CircleComboBox->currentIndex();
+    settings.startActionID = ui->StartComboBox->currentIndex();
+    settings.backActionID = ui->BackComboBox->currentIndex();
+
+    settings.Save();
+
+    QMessageBox::information(this,"Сообщение","Настройки успешно сохранены");
+}
+
+void MainWindow::loadClientSettings() {
+    ClientSettingsStruct settings;
+
+    settings.Load();
+
+    ui->LeftShoulderComboBox->setCurrentIndex(settings.leftShoulderActionID);
+    ui->RightShoulderComboBox->setCurrentIndex(settings.rightShoulderActionID);
+    ui->LeftStickXComboBox->setCurrentIndex(settings.leftStickXActionID);
+    ui->LeftStickYComboBox->setCurrentIndex(settings.leftStickYActionID);
+    ui->LeftStickPressComboBox->setCurrentIndex(settings.leftStickPressActionID);
+    ui->RightStickXComboBox->setCurrentIndex(settings.rightStickXActionID);
+    ui->RightStickYComboBox->setCurrentIndex(settings.rightStickYActionID);
+    ui->RightStickPressComboBox->setCurrentIndex(settings.rightStickPressActionID);
+    ui->DPadXComboBox->setCurrentIndex(settings.dPadXActionID);
+    ui->DPadYComboBox->setCurrentIndex(settings.dPadYActionID);
+    ui->TriangleComboBox->setCurrentIndex(settings.triangleActionID);
+    ui->CrossComboBox->setCurrentIndex(settings.crossActionID);
+    ui->RectangleComboBox->setCurrentIndex(settings.rectangleActionID);
+    ui->CircleComboBox->setCurrentIndex(settings.circleActionID);
+    ui->StartComboBox->setCurrentIndex(settings.startActionID);
+    ui->BackComboBox->setCurrentIndex(settings.backActionID);
+}
+
+void MainWindow::on_LoadClientSettingsButton_clicked() {
+    loadClientSettings();
+    QMessageBox::information(this,"Сообщение","Настройки успешно восстановлены");
+}
+
 void MainWindow::placeWidgets() {
     /// Изменяем размеры TabWidget
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
@@ -156,33 +212,43 @@ void MainWindow::placeWidgets() {
 
     /// Перемещаем виджет настроек робота
     offset = 30; // Расстояние между виджетами по горизонтали
-    int x = (ui->tab_3->width() - (ui->RobotSettingsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
-    int y = (ui->tab_3->height() - ui->RobotSettingsWidget->height()) / 2;
+    int x = (ui->tab_2->width() - (ui->RobotSettingsWidget->width() + ui->RobotCommandsWidget->width() + offset)) / 2;
+    int y = (ui->tab_2->height() - ui->RobotSettingsWidget->height()) / 2;
     ui->RobotSettingsWidget->move(x, y);
 
-    /// Перемещаем виджет настроек клиента
+    /// Перемещаем виджет команд робота
     x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() + offset;
-    ui->ClientSettingsWidget->move(x, y);
+    ui->RobotCommandsWidget->move(x, y);
 
     /// Перемещаем виджет назначения кнопок
-    x = (ui->tab_4->width() - ui->KeyAssignmentsWidget->width()) / 2;
-    y = (ui->tab_4->height() - ui->KeyAssignmentsWidget->height()) / 2;
+    offset = 30; // Расстояние между виджетами по горизонтали
+    x = (ui->tab_3->width() - (ui->KeyAssignmentsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
+    y = (ui->tab_3->height() - ui->KeyAssignmentsWidget->height()) / 2;
     ui->KeyAssignmentsWidget->move(x, y);
+
+    /// Перемещаем виджет настроек клиента
+    x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() + offset;
+    ui->ClientSettingsWidget->move(x, y);
 
     /// Перемещаем заголовок виджета настроек робота
     x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() / 2 - ui->RobotSettingsLabel->width() / 2;
     y = ui->RobotSettingsWidget->y() - ui->RobotSettingsLabel->height() / 2;
     ui->RobotSettingsLabel->move(x, y);
 
-    /// Перемещаем заголовок виджета настроек клиента
-    x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width() / 2 - ui->ClientSettingsLabel->width() / 2;
-    y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
-    ui->ClientSettingsLabel->move(x, y);
+    /// Перемещаем заголовок виджета команд робота
+    x = ui->RobotCommandsWidget->x() + ui->RobotCommandsWidget->width() / 2 - ui->RobotCommandsLabel->width() / 2;
+    y = ui->RobotCommandsWidget->y() - ui->ClientSettingsLabel->height() / 2;
+    ui->RobotCommandsLabel->move(x, y);
 
     /// Перемещаем заголовок виджета назначения кнопок
     x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() / 2 - ui->KeyAssignmentsLabel->width() / 2;
     y = ui->KeyAssignmentsWidget->y() - ui->KeyAssignmentsLabel->height() / 2;
     ui->KeyAssignmentsLabel->move(x, y);
+
+    /// Перемещаем заголовок виджета настроек клиента
+    x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width() / 2 - ui->ClientSettingsLabel->width() / 2;
+    y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
+    ui->ClientSettingsLabel->move(x, y);
 }
 
 void MainWindow::paintEvent(QPaintEvent *event) {
