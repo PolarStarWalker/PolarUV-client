@@ -1,5 +1,5 @@
-#ifndef ROBOT_SETTINGSSTRUCT_HPP
-#define ROBOT_SETTINGSSTRUCT_HPP
+#ifndef ROBOT_ROBOTSETTINGSSTRUCT_HPP
+#define ROBOT_ROBOTSETTINGSSTRUCT_HPP
 
 #include <iostream>
 #include <vector>

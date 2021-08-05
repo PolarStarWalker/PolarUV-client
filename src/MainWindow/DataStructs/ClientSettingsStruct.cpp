@@ -37,20 +37,17 @@ ClientSettingsStruct::~ClientSettingsStruct() {
 }
 
 void ClientSettingsStruct::Save() {
-    std::ofstream file("../settings", std::ios_base::out | std::ios_base::binary);
+    std::ofstream file("../settings", std::ios_base::out | std::ios_base::binary | std::ios_base::trunc);
     file.write((char *) this, ClientSettingsStructLen);
     file.close();
 }
 
 void ClientSettingsStruct::Load() {
-    char buf[ClientSettingsStructLen];
-
-    std::ifstream file("../settings", std::ios_base::in | std::ios_base::binary);
-    file.read(buf, ClientSettingsStructLen);
+       std::ifstream file("../settings", std::ios_base::in | std::ios_base::binary);
+    file.read((char*) this, ClientSettingsStructLen);
     file.close();
 
-    auto *settings = (ClientSettingsStruct *) buf;
-
+/*
     this->leftShoulderActionID = settings->leftShoulderActionID;
     this->rightShoulderActionID = settings->rightShoulderActionID;
     this->leftStickXActionID = settings->leftStickXActionID;
@@ -66,7 +63,7 @@ void ClientSettingsStruct::Load() {
     this->rectangleActionID = settings->rectangleActionID;
     this->circleActionID = settings->circleActionID;
     this->startActionID = settings->startActionID;
-    this->backActionID = settings->backActionID;
+    this->backActionID = settings->backActionID;*/
 }
 
 
