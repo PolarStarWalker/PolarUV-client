@@ -56,26 +56,26 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
     robotSettingsStruct.MotorsProtocol = motorsProtocol;
 
     /// Выводим количество двигателей
-    std::vector<double> moveCoefficientVector = robotSettingsStruct.GetMoveCoefficientVector();
-    int motorsNumber = (int) (moveCoefficientVector.size() / 6);
+    const double* moveCoefficientArray = robotSettingsStruct.GetMoveCoefficientArray();
+    int motorsNumber = robotSettingsStruct.GetThrusterNumber();
     ui->MotorsNumberSpinBox->setValue(motorsNumber);
 
     /// Выводим коэффициенты двигателей
     for (int i = 0; i < motorsNumber; i++) {
         for (int j = 0; j < 6; j++) {
-            QString itemText = QString::number(moveCoefficientVector[i * 6 + j]);
+            QString itemText = QString::number(moveCoefficientArray[i * 6 + j]);
             ui->MotorsTable->setItem(i, j, new QTableWidgetItem(itemText));
         }
     }
 
     /// Выводим число степеней свободы манипулятора
-    std::vector<double> handCoefficientVector = robotSettingsStruct.GetHandCoefficientVector();
-    int handFreedom = (int) (handCoefficientVector.size());
+    const double* handCoefficientArray = robotSettingsStruct.GetHandCoefficientArray();
+    int handFreedom = robotSettingsStruct.GetHandFreedom();;
     ui->HandFreedomSpinBox->setValue(handFreedom);
 
     /// Выводим коэффициенты манипулятора
     for (int j = 0; j < handFreedom; j++) {
-        QString itemText = QString::number(handCoefficientVector[j]);
+        QString itemText = QString::number(handCoefficientArray[j]);
         ui->HandTable->setItem(0, j, new QTableWidgetItem(itemText));
     }
 

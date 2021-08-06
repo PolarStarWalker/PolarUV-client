@@ -127,4 +127,20 @@ std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robot
     return ostream;
 }
 
+const double *RobotSettingsStruct::GetMoveCoefficientArray() {
+    return this->MoveCoefficientArray;
+}
+
+int8_t RobotSettingsStruct::GetThrusterNumber() {
+    return this->ThrustersNumber;
+}
+
+const double *RobotSettingsStruct::GetHandCoefficientArray() {
+    return this->HandCoefficientArray;
+}
+
+int8_t RobotSettingsStruct::GetHandFreedom() {
+    return this->HandFreedom;
+}
+
 

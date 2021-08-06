@@ -17,8 +17,12 @@ public:
 
     void SetMoveCoefficientArray(const std::vector<double> &copyMoveArray);
     void SetHandCoefficientArray(const std::vector<double> &copyHandArray);
-    std::vector<double> GetMoveCoefficientVector();
-    std::vector<double> GetHandCoefficientVector();
+
+    const double * GetMoveCoefficientArray();
+    int8_t GetThrusterNumber();
+
+    const double * GetHandCoefficientArray();
+    int8_t GetHandFreedom();
 
 private:
     double* MoveCoefficientArray = nullptr;
