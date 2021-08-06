@@ -3585,8 +3585,11 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="inputMask">
+         <string>000.000.000.000</string>
+        </property>
         <property name="text">
-         <string>169.254.154.5</string>
+         <string>...</string>
         </property>
         <property name="frame">
          <bool>true</bool>

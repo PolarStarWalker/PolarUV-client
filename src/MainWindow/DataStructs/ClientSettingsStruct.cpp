@@ -46,8 +46,8 @@ void ClientSettingsStruct::Save() {
 }
 
 void ClientSettingsStruct::Load() {
-       std::ifstream file("settings", std::ios_base::in | std::ios_base::binary);
-    file.read((char*) this, ClientSettingsStructLen);
+    std::ifstream file("settings", std::ios_base::in | std::ios_base::binary);
+    file.read((char *) this, ClientSettingsStructLen);
     file.close();
 }
 

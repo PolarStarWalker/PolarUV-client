@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Загрузка настроек клиента из файла
     loadClientSettings();
+
+    std::cout << ui->IPEdit->text().toUtf8().constData() << std::endl;
 }
 
 MainWindow::~MainWindow() {
@@ -168,6 +170,15 @@ void MainWindow::on_SaveClientSettingsButton_clicked() {
     settings.startActionID = ui->StartComboBox->currentIndex();
     settings.backActionID = ui->BackComboBox->currentIndex();
 
+    settings.leftShoulderInverted = ui->LeftShoulderCheckBox->isChecked();
+    settings.rightShoulderInverted = ui->RightShoulderCheckBox->isChecked();
+    settings.leftStickXInverted = ui->LeftStickXCheckBox->isChecked();
+    settings.leftStickYInverted = ui->LeftStickYCheckBox->isChecked();
+    settings.rightStickXInverted = ui->RightStickXCheckBox->isChecked();
+    settings.rightStickYInverted = ui->RightStickYCheckBox->isChecked();
+    settings.dPadXInverted = ui->DPadXCheckBox->isChecked();
+    settings.dPadYInverted = ui->DPadYCheckBox->isChecked();
+
     settings.Save();
 
     QMessageBox::information(this, "Сообщение", "Настройки успешно сохранены");
@@ -195,6 +206,15 @@ void MainWindow::loadClientSettings() {
     ui->CircleComboBox->setCurrentIndex(settings.circleActionID);
     ui->StartComboBox->setCurrentIndex(settings.startActionID);
     ui->BackComboBox->setCurrentIndex(settings.backActionID);
+
+    ui->LeftShoulderCheckBox->setChecked(settings.leftShoulderInverted);
+    ui->RightShoulderCheckBox->setChecked(settings.rightShoulderInverted);
+    ui->LeftStickXCheckBox->setChecked(settings.leftStickXInverted);
+    ui->LeftStickYCheckBox->setChecked(settings.leftStickYInverted);
+    ui->RightStickXCheckBox->setChecked(settings.rightStickXInverted);
+    ui->RightStickYCheckBox->setChecked(settings.rightStickYInverted);
+    ui->DPadXCheckBox->setChecked(settings.dPadXInverted);
+    ui->DPadYCheckBox->setChecked(settings.dPadYInverted);
 }
 
 void MainWindow::on_LoadClientSettingsButton_clicked() {
