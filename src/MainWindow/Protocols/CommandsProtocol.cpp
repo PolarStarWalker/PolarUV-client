@@ -9,6 +9,8 @@ CommandsProtocol::CommandsProtocol(size_t gamepadId)
 }
 
 CommandsProtocol::~CommandsProtocol() {
+    this->_socket.Disconnect();
+    this->SetOnlineStatus(false);
     ///ToDo: motov.s - когда-нибудь придумай что-нибудь получше этого безобразия
     while (this->IsThreadActive())
         std::this_thread::sleep_for(std::chrono::microseconds(1));

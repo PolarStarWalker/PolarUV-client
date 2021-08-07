@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[]) {
 
-    std::cout << SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS) << std::endl;
+    SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
 
     QApplication a(argc, argv);
 

@@ -18,12 +18,15 @@ MainWindow::MainWindow(QWidget *parent)
     //Загрузка настроек клиента из файла
     loadClientSettings();
 
-    std::cout << ui->IPEdit->text().toUtf8().constData() << std::endl;
+    cv::Mat mat = cv::imread("C:\\CameraImage.png", 1);
+
+    ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
 }
 
 MainWindow::~MainWindow() {
     delete ui;
     delete this->_commandsProtocol;
+    delete this->_settingsProtocol;
 }
 
 void MainWindow::on_GamepadButton_clicked() {
@@ -56,7 +59,7 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
     robotSettingsStruct.MotorsProtocol = motorsProtocol;
 
     /// Выводим количество двигателей
-    const double* moveCoefficientArray = robotSettingsStruct.GetMoveCoefficientArray();
+    const double *moveCoefficientArray = robotSettingsStruct.GetMoveCoefficientArray();
     int motorsNumber = robotSettingsStruct.GetThrusterNumber();
     ui->MotorsNumberSpinBox->setValue(motorsNumber);
 
@@ -69,7 +72,7 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
     }
 
     /// Выводим число степеней свободы манипулятора
-    const double* handCoefficientArray = robotSettingsStruct.GetHandCoefficientArray();
+    const double *handCoefficientArray = robotSettingsStruct.GetHandCoefficientArray();
     int handFreedom = robotSettingsStruct.GetHandFreedom();;
     ui->HandFreedomSpinBox->setValue(handFreedom);
 
@@ -226,6 +229,9 @@ void MainWindow::placeWidgets() {
     /// Изменяем размеры TabWidget
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
 
+    /// Изменяем размеры окна камеры
+    ui->CameraLabel->setGeometry(ui->tab_1->geometry());
+
     /// Перемещаем кнопку "Полный экран"
     ui->FullScreenButton->move(ui->MainWidget->width() - ui->FullScreenButton->width(), 0);
 
@@ -272,6 +278,18 @@ void MainWindow::placeWidgets() {
     x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width() / 2 - ui->ClientSettingsLabel->width() / 2;
     y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
     ui->ClientSettingsLabel->move(x, y);
+}
+
+QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
+    if (mat.type() != CV_8UC3) {
+        std::cout << "Mat image type is not CV_8UC3:" << mat.type() << std::endl;
+        throw std::exception();
+    }
+
+    QImage image(mat.data, mat.cols, mat.rows, static_cast<int>(mat.step), QImage::Format_RGB888);
+    image.rgbSwapped();
+    return QPixmap::fromImage(image);
+
 }
 
 void MainWindow::paintEvent(QPaintEvent *event) {

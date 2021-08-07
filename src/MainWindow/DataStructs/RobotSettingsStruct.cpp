@@ -67,24 +67,6 @@ void RobotSettingsStruct::SetHandCoefficientArray(const std::vector<double> &cop
     }
 }
 
-std::vector<double> RobotSettingsStruct::GetMoveCoefficientVector() {
-    std::vector<double> vector(this->ThrustersNumber * 6);
-    for (int i = 0; i < this->ThrustersNumber; i++) {
-        for (int j = 0; j < 6; j++) {
-            vector[i * 6 + j] = this->MoveCoefficientArray[i * 6 + j];
-        }
-    }
-    return vector;
-}
-
-std::vector<double> RobotSettingsStruct::GetHandCoefficientVector() {
-    std::vector<double> vector(this->HandFreedom);
-    for (int i = 0; i < this->HandFreedom; i++) {
-        vector[i] = this->MoveCoefficientArray[i];
-    }
-    return vector;
-}
-
 std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robotSettingStruct) {
 
     ostream << "ThrustersNumber: " << (int32_t) robotSettingStruct.ThrustersNumber << std::endl;

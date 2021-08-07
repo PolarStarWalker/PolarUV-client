@@ -45,6 +45,7 @@ protected:
 
     void placeWidgets();
     void loadClientSettings();
+    static QPixmap cvMatToPixmap(const cv::Mat& mat);
 
 private slots:
     void on_CommandsProtocolButton_clicked();
