@@ -12,21 +12,20 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->_settingsProtocol = new SettingsProtocol();
 
+    this->_videoStream = new VideoProtocol();
+
     //Запуск таймера отрисовки окна
     this->startTimer(1000 / 60, Qt::PreciseTimer);
 
     //Загрузка настроек клиента из файла
     loadClientSettings();
-
-    cv::Mat mat = cv::imread("C:\\CameraImage.png", 1);
-
-    ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
 }
 
 MainWindow::~MainWindow() {
     delete ui;
     delete this->_commandsProtocol;
     delete this->_settingsProtocol;
+    delete this->_videoStream;
 }
 
 void MainWindow::on_GamepadButton_clicked() {
@@ -34,8 +33,10 @@ void MainWindow::on_GamepadButton_clicked() {
 }
 
 void MainWindow::on_VideoStreamButton_clicked() {
-    this->_video.Start(pipeline);
-
+    if (!_videoStream->IsOnline())
+        _videoStream->StartAsync(pipeline);
+    else
+        _videoStream->Stop();
 }
 
 void MainWindow::on_CommandsProtocolButton_clicked() {
@@ -289,7 +290,6 @@ QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
     QImage image(mat.data, mat.cols, mat.rows, static_cast<int>(mat.step), QImage::Format_RGB888);
     image.rgbSwapped();
     return QPixmap::fromImage(image);
-
 }
 
 void MainWindow::paintEvent(QPaintEvent *event) {
@@ -306,6 +306,12 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     else
         painter.setBrush(QBrush("#ff0000")); // Красный
     painter.drawEllipse(point, 7, 7);
+
+    if (this->_videoStream->IsOnline()) {
+        cv::Mat mat = this->_videoStream->GetMatrix();
+        ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
+    }
+
 }
 
 void MainWindow::timerEvent(QTimerEvent *event) {

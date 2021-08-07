@@ -5,17 +5,36 @@
 #include <opencv2/videoio/videoio.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include <shared_mutex>
+#include <thread>
 
-class VideoProtocol {
+#include "../BaseProtocol/BaseProtocol.hpp"
+
+class VideoProtocol : public BaseProtocol{
 public:
     VideoProtocol();
     ~VideoProtocol();
 
     void Start(const std::string& pipeline);
+    void Stop();
+
+    cv::Mat GetMatrix();
+
+    void StartAsync(const std::string& pipeline);
 
 private:
+
+    std::shared_mutex _frameMutex;
+
     cv::VideoCapture _videoStream;
-    bool _isOnline;
+    cv::Mat _currentFrame;
+
+    inline void SetMatrix(cv::Mat &&newFrame){
+        this->_frameMutex.lock();
+        this->_currentFrame = std::move(newFrame);
+        this->_frameMutex.unlock();
+    }
+
 };
 
 

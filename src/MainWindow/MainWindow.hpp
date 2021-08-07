@@ -27,7 +27,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-constexpr char pipeline[] = "tcpclientsrc host=192.168.1.50 port=5000 ! gdpdepay ! rtph264depay ! decodebin ! autovideoconvert  ! appsink sync=false";
+constexpr char pipeline[] = "tcpclientsrc host=169.254.154.5 port=5000 ! gdpdepay ! rtph264depay ! decodebin ! autovideoconvert  ! appsink sync=false";
 
 
 class MainWindow : public QMainWindow
@@ -45,7 +45,7 @@ protected:
 
     void placeWidgets();
     void loadClientSettings();
-    static QPixmap cvMatToPixmap(const cv::Mat& mat);
+    static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
 private slots:
     void on_CommandsProtocolButton_clicked();
@@ -66,7 +66,7 @@ private:
 
     bool _widgetsPlaced;
 
-    VideoProtocol _video;
+    VideoProtocol *_videoStream;
     CommandsProtocol *_commandsProtocol;
     SettingsProtocol *_settingsProtocol;
 };
