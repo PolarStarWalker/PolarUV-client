@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1280</width>
-    <height>720</height>
+    <width>1400</width>
+    <height>750</height>
    </size>
   </property>
   <property name="palette">
@@ -787,6 +787,49 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="VideoStreamButton">
+      <property name="geometry">
+       <rect>
+        <x>1332</x>
+        <y>650</y>
+        <width>64</width>
+        <height>64</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>play-button-arrowhead.png</normaloff>play-button-arrowhead.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -1867,7 +1910,7 @@
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>315</y>
+          <y>270</y>
           <width>270</width>
           <height>50</height>
          </rect>
@@ -1888,7 +1931,7 @@
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>260</y>
+          <y>215</y>
           <width>270</width>
           <height>50</height>
          </rect>
@@ -1906,33 +1949,6 @@
         </property>
         <property name="flat">
          <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="VideoStreamButton">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>130</y>
-          <width>270</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>Запустить видеотрансляцию</string>
         </property>
        </widget>
        <widget class="QPushButton" name="CommandsProtocolButton">
@@ -1966,7 +1982,7 @@
         <property name="geometry">
          <rect>
           <x>40</x>
-          <y>185</y>
+          <y>130</y>
           <width>270</width>
           <height>50</height>
          </rect>
@@ -3751,7 +3767,7 @@
    <widget class="QLabel" name="StatusLabel">
     <property name="geometry">
      <rect>
-      <x>1050</x>
+      <x>1190</x>
       <y>0</y>
       <width>170</width>
       <height>26</height>
@@ -3775,7 +3791,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>1270</x>
+      <x>640</x>
       <y>0</y>
       <width>130</width>
       <height>26</height>

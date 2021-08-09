@@ -45,6 +45,7 @@ protected:
 
     void placeWidgets();
     void loadClientSettings();
+    static QImage cvMatToQImage(const cv::Mat &mat);
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
 private slots:

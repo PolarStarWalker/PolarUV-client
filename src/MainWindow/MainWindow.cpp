@@ -19,6 +19,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Загрузка настроек клиента из файла
     loadClientSettings();
+
+    /// Устанавливаем иконку приложения
+    QIcon windowIcon("Icons/WindowIcon.png");
+    setWindowIcon(windowIcon);
+
+    /// Устанавливаем иконку кнопки запуска трансляции
+    QIcon videoStreamIcon("Icons/PlayIcon.png");
+    ui->VideoStreamButton->setIcon(videoStreamIcon);
 }
 
 MainWindow::~MainWindow() {
@@ -33,17 +41,25 @@ void MainWindow::on_GamepadButton_clicked() {
 }
 
 void MainWindow::on_VideoStreamButton_clicked() {
-    if (!_videoStream->IsOnline())
+    if (!_videoStream->IsOnline()) {
         _videoStream->StartAsync(pipeline);
-    else
+        QIcon videoStreamIcon("Icons/PauseIcon.png");
+        ui->VideoStreamButton->setIcon(videoStreamIcon);
+    }
+    else {
         _videoStream->Stop();
+        QIcon videoStreamIcon("Icons/PlayIcon.png");
+        ui->VideoStreamButton->setIcon(videoStreamIcon);
+    }
 }
 
 void MainWindow::on_CommandsProtocolButton_clicked() {
-    if (!_commandsProtocol->IsOnline())
+    if (!_commandsProtocol->IsOnline()) {
         _commandsProtocol->StartAsync(ui->IPEdit->text(), COMMANDS_PORT);
-    else
+    }
+    else {
         _commandsProtocol->Stop();
+    }
 }
 
 void MainWindow::on_ReceiveSettingsButton_clicked() {
@@ -234,16 +250,21 @@ void MainWindow::placeWidgets() {
     ui->CameraLabel->setGeometry(ui->tab_1->geometry());
 
     /// Перемещаем кнопку "Полный экран"
-    ui->FullScreenButton->move(ui->MainWidget->width() - ui->FullScreenButton->width(), 0);
+    ui->FullScreenButton->move((ui->MainWidget->width() / 2) - (ui->FullScreenButton->width() / 2), 0);
 
     /// Перемещаем надпись "Статус подключения"
-    int offset = 190; // Расстояние от правого края окна до надписи
+    int offset = 25; // Расстояние от правого края окна до надписи
     ui->StatusLabel->move(ui->MainWidget->width() - ui->StatusLabel->width() - offset, 0);
+
+    /// Перемещаем кнопку запуска трансляции
+    int x = ui->tab_1->width() - ui->VideoStreamButton->width();
+    int y = ui->tab_1->height() - ui->VideoStreamButton->height();
+    ui->VideoStreamButton->move(x,y);
 
     /// Перемещаем виджет настроек робота
     offset = 30; // Расстояние между виджетами по горизонтали
-    int x = (ui->tab_2->width() - (ui->RobotSettingsWidget->width() + ui->RobotCommandsWidget->width() + offset)) / 2;
-    int y = (ui->tab_2->height() - ui->RobotSettingsWidget->height()) / 2;
+    x = (ui->tab_2->width() - (ui->RobotSettingsWidget->width() + ui->RobotCommandsWidget->width() + offset)) / 2;
+    y = (ui->tab_2->height() - ui->RobotSettingsWidget->height()) / 2;
     ui->RobotSettingsWidget->move(x, y);
 
     /// Перемещаем виджет команд робота
@@ -281,14 +302,22 @@ void MainWindow::placeWidgets() {
     ui->ClientSettingsLabel->move(x, y);
 }
 
-QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
-    if (mat.type() != CV_8UC3) {
-        std::cout << "Mat image type is not CV_8UC3:" << mat.type() << std::endl;
-        throw std::exception();
+QImage MainWindow::cvMatToQImage(const cv::Mat &mat) {
+    switch (mat.type()) {
+        case CV_8UC3: {
+            QImage image(mat.data, mat.cols, mat.rows, static_cast<int>(mat.step), QImage::Format_RGB888);
+            return image;
+        }
+        case CV_8UC4: {
+            QImage image(mat.data, mat.cols, mat.rows, static_cast<int>(mat.step), QImage::Format_ARGB32);
+            return image;
+        }
     }
+}
 
-    QImage image(mat.data, mat.cols, mat.rows, static_cast<int>(mat.step), QImage::Format_RGB888);
-    image.rgbSwapped();
+QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
+    QImage image = cvMatToQImage(mat);
+    image = std::move(image).rgbSwapped();
     return QPixmap::fromImage(image);
 }
 
@@ -311,7 +340,6 @@ void MainWindow::paintEvent(QPaintEvent *event) {
         cv::Mat mat = this->_videoStream->GetMatrix();
         ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
     }
-
 }
 
 void MainWindow::timerEvent(QTimerEvent *event) {
