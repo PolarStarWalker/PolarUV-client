@@ -21,12 +21,18 @@ MainWindow::MainWindow(QWidget *parent)
     loadClientSettings();
 
     /// Устанавливаем иконку приложения
-    QIcon windowIcon("Icons/WindowIcon.png");
-    setWindowIcon(windowIcon);
+    setWindowIcon(QIcon("Icons/WindowIcon.png"));
+
+    /// Устанавливаем иконки вкладок
+    ui->TabWidget->setTabIcon(0,QIcon("Icons/CameraIcon"));
+    ui->TabWidget->setTabIcon(1,QIcon("Icons/RobotIcon"));
+    ui->TabWidget->setTabIcon(2,QIcon("Icons/ClientIcon"));
+
+    /// Устанавливаем иконку кнопки "Полный экран"
+    ui->FullScreenButton->setIcon(QIcon("Icons/FullScreenIcon.png"));
 
     /// Устанавливаем иконку кнопки запуска трансляции
-    QIcon videoStreamIcon("Icons/PlayIcon.png");
-    ui->VideoStreamButton->setIcon(videoStreamIcon);
+    ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));
 }
 
 MainWindow::~MainWindow() {
@@ -249,16 +255,18 @@ void MainWindow::placeWidgets() {
     /// Изменяем размеры окна камеры
     ui->CameraLabel->setGeometry(ui->tab_1->geometry());
 
+    /// Перемещаем кнопку "Начать работу"
+    int offset = 0; // Расстояние от нижнего края окна
+    ui->CommandsProtocolButton->move(0,ui->MainWidget->height() - ui->CommandsProtocolButton->height() - offset);
+
     /// Перемещаем кнопку "Полный экран"
-    ui->FullScreenButton->move((ui->MainWidget->width() / 2) - (ui->FullScreenButton->width() / 2), 0);
+    offset = 10; // Расстояние от кнопки "Начать работу"
+    ui->FullScreenButton->move(0,ui->CommandsProtocolButton->y() - ui->FullScreenButton->height() - offset);
 
-    /// Перемещаем надпись "Статус подключения"
-    int offset = 25; // Расстояние от правого края окна до надписи
-    ui->StatusLabel->move(ui->MainWidget->width() - ui->StatusLabel->width() - offset, 0);
-
-    /// Перемещаем кнопку запуска трансляции
-    int x = ui->tab_1->width() - ui->VideoStreamButton->width();
-    int y = ui->tab_1->height() - ui->VideoStreamButton->height();
+    /// Перемещаем кнопку управления трансляцией
+    offset = 10; // Расстояние от нижнего края окна до кнопки
+    int x = (ui->tab_1->width() / 2) - (ui->VideoStreamButton->width() / 2);
+    int y = ui->tab_1->height() - ui->VideoStreamButton->height() - offset;
     ui->VideoStreamButton->move(x,y);
 
     /// Перемещаем виджет настроек робота
@@ -325,20 +333,18 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     /// Если это первая отрисовка с момента запуска программы, то размещаем виджеты
     if (!this->_widgetsPlaced) this->placeWidgets();
 
-    /// Рисуем кружок статуса
-    int offset = 10; // Расстояние от надписи до центра окружности
-    QPainter painter(this);
-    QPoint point(ui->StatusLabel->x() + ui->StatusLabel->width() + offset, 13);
-    painter.setPen(Qt::NoPen); // Не рисовать границы
+    /// Выбираем цвет иконки кнопки запуска
     if (this->_commandsProtocol->IsOnline())
-        painter.setBrush(QBrush("#008000")); // Зеленый
+        ui->CommandsProtocolButton->setIcon(QIcon("Icons/GreenStartIcon.png"));
     else
-        painter.setBrush(QBrush("#ff0000")); // Красный
-    painter.drawEllipse(point, 7, 7);
+        ui->CommandsProtocolButton->setIcon(QIcon("Icons/RedStartIcon.png"));
 
     if (this->_videoStream->IsOnline()) {
         cv::Mat mat = this->_videoStream->GetMatrix();
         ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
+    }
+    else {
+        ui->CameraLabel->setPixmap(QPixmap("Icons/CameraPlaceholder.png"));
     }
 }
 
@@ -424,4 +430,8 @@ void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
             ui->HandTable->setItem(0, j, new QTableWidgetItem("0"));
         }
     }
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event) {
+
 }

@@ -9,8 +9,8 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QPainter>
-#include <QWindowStateChangeEvent>
 #include <QThread>
+#include <QMouseEvent>
 
 #include "./DataStructs/ClientSettingsStruct/ClientSettingsStruct.hpp"
 #include "./Protocols/Protocols.hpp"
@@ -42,6 +42,7 @@ protected:
     void paintEvent(QPaintEvent *event) override;
     void timerEvent(QTimerEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
 
     void placeWidgets();
     void loadClientSettings();
