@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     //Создание CommandsProtocol для Gamepad
     this->_commandsProtocol = new CommandsProtocol(0);
 
-    this->_settingsProtocol = new SettingsProtocol();
+    this->_settingsProtocol = new RobotSettingsProtocol();
 
     this->_videoStream = new VideoProtocol();
 
@@ -24,9 +24,9 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowIcon(QIcon("Icons/WindowIcon.png"));
 
     /// Устанавливаем иконки вкладок
-    ui->TabWidget->setTabIcon(0,QIcon("Icons/CameraIcon"));
-    ui->TabWidget->setTabIcon(1,QIcon("Icons/RobotIcon"));
-    ui->TabWidget->setTabIcon(2,QIcon("Icons/ClientIcon"));
+    ui->TabWidget->setTabIcon(0, QIcon("Icons/CameraIcon"));
+    ui->TabWidget->setTabIcon(1, QIcon("Icons/RobotIcon"));
+    ui->TabWidget->setTabIcon(2, QIcon("Icons/ClientIcon"));
 
     /// Устанавливаем иконку кнопки "Полный экран"
     ui->FullScreenButton->setIcon(QIcon("Icons/FullScreenIcon.png"));
@@ -51,8 +51,7 @@ void MainWindow::on_VideoStreamButton_clicked() {
         _videoStream->StartAsync(pipeline);
         QIcon videoStreamIcon("Icons/PauseIcon.png");
         ui->VideoStreamButton->setIcon(videoStreamIcon);
-    }
-    else {
+    } else {
         _videoStream->Stop();
         QIcon videoStreamIcon("Icons/PlayIcon.png");
         ui->VideoStreamButton->setIcon(videoStreamIcon);
@@ -62,8 +61,7 @@ void MainWindow::on_VideoStreamButton_clicked() {
 void MainWindow::on_CommandsProtocolButton_clicked() {
     if (!_commandsProtocol->IsOnline()) {
         _commandsProtocol->StartAsync(ui->IPEdit->text(), COMMANDS_PORT);
-    }
-    else {
+    } else {
         _commandsProtocol->Stop();
     }
 }
@@ -73,17 +71,14 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
     /// ToDo: заменить на прием структуры по протоколу
     std::vector<double> motorsVector = {1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1};
     std::vector<double> handVector = {1, 2, 3, 4, 5};
-    int32_t maxMotorSpeed = 3000;
     int8_t motorsProtocol = 4;
-    RobotSettingsStruct robotSettingsStruct;
-    robotSettingsStruct.SetMoveCoefficientArray(motorsVector);
-    robotSettingsStruct.SetHandCoefficientArray(handVector);
-    robotSettingsStruct.MaxMotorSpeed = maxMotorSpeed;
-    robotSettingsStruct.MotorsProtocol = motorsProtocol;
+    RobotSettingsStruct robotSettingsStruct(motorsVector, handVector);
+    robotSettingsStruct.MotorsProtocol() = 4;
+    robotSettingsStruct.MaxMotorsSpeed() = 3000;
 
     /// Выводим количество двигателей
-    const double *moveCoefficientArray = robotSettingsStruct.GetMoveCoefficientArray();
-    int motorsNumber = robotSettingsStruct.GetThrusterNumber();
+    const double *moveCoefficientArray = robotSettingsStruct.GetThrusterCoefficientArray();
+    int motorsNumber = robotSettingsStruct.ThrusterNumber();
     ui->MotorsNumberSpinBox->setValue(motorsNumber);
 
     /// Выводим коэффициенты двигателей
@@ -96,7 +91,7 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
 
     /// Выводим число степеней свободы манипулятора
     const double *handCoefficientArray = robotSettingsStruct.GetHandCoefficientArray();
-    int handFreedom = robotSettingsStruct.GetHandFreedom();;
+    int handFreedom = robotSettingsStruct.HandFreedom();;
     ui->HandFreedomSpinBox->setValue(handFreedom);
 
     /// Выводим коэффициенты манипулятора
@@ -106,10 +101,10 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
     }
 
     /// Выводим максимальную скорость двигателей
-    ui->MaxSpeedEdit->setText(QString::number(robotSettingsStruct.MaxMotorSpeed));
+    ui->MaxSpeedEdit->setText(QString::number(robotSettingsStruct.MaxMotorsSpeed()));
 
     /// Выводим протокол двигателей
-    switch (robotSettingsStruct.MotorsProtocol) {
+    switch (robotSettingsStruct.MotorsProtocol()) {
         case 1:
             ui->MotorsProtocolComboBox->setCurrentIndex(0);
             break;
@@ -128,7 +123,6 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
 }
 
 void MainWindow::on_SendSettingsButton_clicked() {
-    RobotSettingsStruct robotSettingsStruct;
 
     /// Считываем коэффициенты двигателей
     std::vector<double> motorsVector(ui->MotorsTable->rowCount() * 6);
@@ -137,31 +131,31 @@ void MainWindow::on_SendSettingsButton_clicked() {
             motorsVector[i * 6 + j] = ui->MotorsTable->item(i, j)->text().toDouble();
         }
     }
-    robotSettingsStruct.SetMoveCoefficientArray(motorsVector);
 
     /// Считываем коэффициенты манипулятора
     std::vector<double> handVector(ui->HandTable->columnCount());
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
-        handVector[j] = ui->MotorsTable->item(0, j)->text().toDouble();
+        handVector[j] = ui->HandTable->item(0, j)->text().toDouble();
     }
-    robotSettingsStruct.SetHandCoefficientArray(handVector);
+
+    RobotSettingsStruct robotSettingsStruct(motorsVector, handVector);
 
     /// Считываем максимальную скорость двигателей
-    robotSettingsStruct.MaxMotorSpeed = ui->MaxSpeedEdit->text().toInt();
+    robotSettingsStruct.MaxMotorsSpeed() = ui->MaxSpeedEdit->text().toInt();
 
     /// Считываем протокол двигателей
     switch (ui->MotorsProtocolComboBox->currentIndex()) {
         case 0:
-            robotSettingsStruct.MotorsProtocol = DShotMode::DShot150;
+            robotSettingsStruct.MotorsProtocol() = DShotMode::DShot150;
             break;
         case 1:
-            robotSettingsStruct.MotorsProtocol = DShotMode::DShot300;
+            robotSettingsStruct.MotorsProtocol() = DShotMode::DShot300;
             break;
         case 2:
-            robotSettingsStruct.MotorsProtocol = DShotMode::DShot600;
+            robotSettingsStruct.MotorsProtocol() = DShotMode::DShot600;
             break;
         case 3:
-            robotSettingsStruct.MotorsProtocol = DShotMode::DShot1200;
+            robotSettingsStruct.MotorsProtocol() = DShotMode::DShot1200;
             break;
     }
 
@@ -257,17 +251,17 @@ void MainWindow::placeWidgets() {
 
     /// Перемещаем кнопку "Начать работу"
     int offset = 0; // Расстояние от нижнего края окна
-    ui->CommandsProtocolButton->move(0,ui->MainWidget->height() - ui->CommandsProtocolButton->height() - offset);
+    ui->CommandsProtocolButton->move(0, ui->MainWidget->height() - ui->CommandsProtocolButton->height() - offset);
 
     /// Перемещаем кнопку "Полный экран"
     offset = 10; // Расстояние от кнопки "Начать работу"
-    ui->FullScreenButton->move(0,ui->CommandsProtocolButton->y() - ui->FullScreenButton->height() - offset);
+    ui->FullScreenButton->move(0, ui->CommandsProtocolButton->y() - ui->FullScreenButton->height() - offset);
 
     /// Перемещаем кнопку управления трансляцией
     offset = 10; // Расстояние от нижнего края окна до кнопки
     int x = (ui->tab_1->width() / 2) - (ui->VideoStreamButton->width() / 2);
     int y = ui->tab_1->height() - ui->VideoStreamButton->height() - offset;
-    ui->VideoStreamButton->move(x,y);
+    ui->VideoStreamButton->move(x, y);
 
     /// Перемещаем виджет настроек робота
     offset = 30; // Расстояние между виджетами по горизонтали
@@ -342,8 +336,7 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     if (this->_videoStream->IsOnline()) {
         cv::Mat mat = this->_videoStream->GetMatrix();
         ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
-    }
-    else {
+    } else {
         ui->CameraLabel->setPixmap(QPixmap("Icons/CameraPlaceholder.png"));
     }
 }

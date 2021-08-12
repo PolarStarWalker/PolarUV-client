@@ -70,7 +70,7 @@ private:
 
     VideoProtocol *_videoStream;
     CommandsProtocol *_commandsProtocol;
-    SettingsProtocol *_settingsProtocol;
+    RobotSettingsProtocol *_settingsProtocol;
 };
 #endif
 

@@ -3,46 +3,54 @@
 
 #include <iostream>
 #include <vector>
+#include <cstring>
 
 ///ToDo: переделать в класс с функциями для изменения массива, а то вот так динамическая память может утечь
 /// А ещё move semantics
-class SettingsProtocol;
+
+namespace {
+    enum Offset : size_t{
+        MotorsProtocolOffset = 0,
+        MaxMotorSpeedOffset = 2,
+        ThrusterNumberOffset = 4,
+        HandFreedomOffset = 6,
+        ArraysOffset = 8
+    };
+}
 
 class RobotSettingsStruct {
 public:
-    RobotSettingsStruct();
+    RobotSettingsStruct(const std::vector<double> &copyMoveArray, const std::vector<double> &copyHandArray);
+    explicit RobotSettingsStruct(size_t thrustersNumber, size_t handFreedom);
     RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct);
     RobotSettingsStruct(const RobotSettingsStruct &robotSettingsStruct);
     ~RobotSettingsStruct();
 
-    void SetMoveCoefficientArray(const std::vector<double> &copyMoveArray);
-    void SetHandCoefficientArray(const std::vector<double> &copyHandArray);
+    RobotSettingsStruct& operator=(const RobotSettingsStruct& robotSettingsStruct) noexcept;
+    RobotSettingsStruct& operator=(RobotSettingsStruct&& robotSettingsStruct) noexcept;
 
-    const double * GetMoveCoefficientArray();
-    int8_t GetThrusterNumber();
+    char* Begin();
+    char* End();
 
-    const double * GetHandCoefficientArray();
-    int8_t GetHandFreedom();
+    size_t Size();
 
-private:
-    double* MoveCoefficientArray = nullptr;
-    double* HandCoefficientArray = nullptr;
-public:
-    int32_t MaxMotorSpeed = -1;
-private:
-    int8_t ThrustersNumber = -1;
-    int8_t HandFreedom = -1;
-public:
-    int8_t MotorsProtocol = -1;
+    const double *const GetThrusterCoefficientArray();
+    int16_t ThrusterNumber();
+
+    const double *const GetHandCoefficientArray();
+    int16_t HandFreedom();
+
+    int16_t & MaxMotorsSpeed();
+    int16_t & MotorsProtocol();
 
     friend std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &settingStruct);
-    friend SettingsProtocol;
+
+private:
+    char* _data;
+    size_t _handArrayOffset;
+    size_t _length;
 };
 
-extern RobotSettingsStruct RobotSettingsStructData;
-constexpr size_t RobotSettingsStructLen = sizeof(RobotSettingsStructData);
-
 std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robotSettingsStruct);
-
 
 #endif

@@ -1,94 +1,130 @@
 #include "./RobotSettingsStruct/RobotSettingsStruct.hpp"
 
-RobotSettingsStruct::RobotSettingsStruct() {
-    this->HandFreedom = -1;
-    this->HandCoefficientArray = nullptr;
-    this->ThrustersNumber = -1;
-    this->MoveCoefficientArray = nullptr;
-    this->MaxMotorSpeed = -1;
-    this->MotorsProtocol = -1;
+RobotSettingsStruct::RobotSettingsStruct(const std::vector<double> &copyMoveArray,
+                                         const std::vector<double> &copyHandArray) {
+    this->_length = ArraysOffset + copyMoveArray.size() * sizeof(double) + copyHandArray.size() * sizeof(double);
+    this->_handArrayOffset = ArraysOffset + copyMoveArray.size() * sizeof(double);
+
+    this->_data = new char[this->_length]{};
+
+    std::memcpy(&_data[ArraysOffset], copyMoveArray.data(), copyMoveArray.size() * sizeof(double));
+    std::memcpy(&_data[_handArrayOffset], copyHandArray.data(), copyHandArray.size() * sizeof(double));
+
+    *((int16_t *) (this->_data + HandFreedomOffset)) = copyHandArray.size();
+    *((int16_t *) (this->_data + ThrusterNumberOffset)) = copyMoveArray.size() / 6;
 }
 
-RobotSettingsStruct::RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct) {
-    this->HandFreedom = robotSettingsStruct.HandFreedom;
-    this->ThrustersNumber = robotSettingsStruct.ThrustersNumber;
-    this->MotorsProtocol = robotSettingsStruct.MotorsProtocol;
-    this->MaxMotorSpeed = robotSettingsStruct.MaxMotorSpeed;
-
-    this->MoveCoefficientArray = robotSettingsStruct.MoveCoefficientArray;
-    robotSettingsStruct.MoveCoefficientArray = nullptr;
-
-    this->HandCoefficientArray = robotSettingsStruct.HandCoefficientArray;
-    robotSettingsStruct.HandCoefficientArray = nullptr;
+RobotSettingsStruct::RobotSettingsStruct(size_t thrustersNumber, size_t handFreedom) {
+    this->_data = new char[ArraysOffset + thrustersNumber * 6 * sizeof(double) + handFreedom * sizeof(double)];
+    this->_length = ArraysOffset + thrustersNumber * 6 * sizeof(double) + handFreedom * sizeof(double);
+    this->_handArrayOffset = ArraysOffset + thrustersNumber * 6 * sizeof(double);
 }
 
 RobotSettingsStruct::RobotSettingsStruct(const RobotSettingsStruct &robotSettingsStruct) {
-    this->HandFreedom = robotSettingsStruct.HandFreedom;
-    this->ThrustersNumber = robotSettingsStruct.ThrustersNumber;
-    this->MotorsProtocol = robotSettingsStruct.MotorsProtocol;
-    this->MaxMotorSpeed = robotSettingsStruct.MaxMotorSpeed;
+    this->_handArrayOffset = robotSettingsStruct._handArrayOffset;
+    this->_length = robotSettingsStruct._length;
+    this->_data = new char[this->_length];
+    for (size_t i = 0; i < this->_length / 8; i++)
+        ((uint64_t *) this->_data)[i] = ((uint64_t *) robotSettingsStruct._data)[i];
 
-    this->MoveCoefficientArray = new double[6 * this->ThrustersNumber];
-    for (size_t i = 0; i < 6 * this->ThrustersNumber; i++) {
-        this->MoveCoefficientArray[i] = robotSettingsStruct.MoveCoefficientArray[i];
-    }
+}
 
-    this->HandCoefficientArray = new double[this->HandFreedom];
-    for (size_t i = 0; i < this->HandFreedom; i++) {
-        this->HandCoefficientArray[i] = robotSettingsStruct.HandCoefficientArray[i];
-    }
+RobotSettingsStruct::RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct) {
+    this->_handArrayOffset = robotSettingsStruct._handArrayOffset;
+    this->_length = robotSettingsStruct._length;
+    this->_data = robotSettingsStruct._data;
+    robotSettingsStruct._data = nullptr;
 }
 
 RobotSettingsStruct::~RobotSettingsStruct() {
-    delete[] this->MoveCoefficientArray;
-    delete[] this->HandCoefficientArray;
+    delete[] this->_data;
 }
 
-void RobotSettingsStruct::SetMoveCoefficientArray(const std::vector<double> &copyMoveArray) {
-    delete MoveCoefficientArray;
-
-    this->ThrustersNumber = copyMoveArray.size() / 6;
-    this->MoveCoefficientArray = new double[copyMoveArray.size()];
-
-    for (size_t i = 0; i < this->ThrustersNumber; i++) {
-        for (size_t j = 0; j < 6; j++) {
-            this->MoveCoefficientArray[i * 6 + j] = copyMoveArray[i * 6 + j];
-        }
-    };
+RobotSettingsStruct &RobotSettingsStruct::operator=(const RobotSettingsStruct &robotSettingsStruct) noexcept {
+    this->_length = robotSettingsStruct._length;
+    this->_handArrayOffset = robotSettingsStruct._handArrayOffset;
+    delete[] this->_data;
+    this->_data = new char[this->_length];
+    for (size_t i = 0; i < this->_length / 8; i++)
+        ((uint64_t *) _data)[i] = ((uint64_t * )robotSettingsStruct._data)[i];
+    return *this;
 }
 
-void RobotSettingsStruct::SetHandCoefficientArray(const std::vector<double> &copyHandArray) {
-    delete HandCoefficientArray;
+RobotSettingsStruct &RobotSettingsStruct::operator=(RobotSettingsStruct &&robotSettingsStruct) noexcept {
+    this->_handArrayOffset = robotSettingsStruct._handArrayOffset;
+    this->_length = robotSettingsStruct._length;
+    this->_data = robotSettingsStruct._data;
+    robotSettingsStruct._data = nullptr;
+    return *this;
+}
 
-    this->HandFreedom = copyHandArray.size();
-    this->HandCoefficientArray = new double[this->HandFreedom];
-    for (size_t i = 0; i < this->HandFreedom; i++) {
-        this->HandCoefficientArray[i] = copyHandArray[i];
-    }
+
+char *RobotSettingsStruct::Begin() {
+    return this->_data;
+}
+
+char *RobotSettingsStruct::End() {
+    return this->_data + this->_length;
+}
+
+size_t RobotSettingsStruct::Size() {
+    return this->_length;
+}
+
+const double *const RobotSettingsStruct::GetThrusterCoefficientArray() {
+    return (double *) (_data + ArraysOffset);
+}
+
+int16_t RobotSettingsStruct::ThrusterNumber() {
+    return *((int16_t *) (_data + ThrusterNumberOffset));
+}
+
+const double *const RobotSettingsStruct::GetHandCoefficientArray() {
+    return (double *) (_data + _handArrayOffset);
+}
+
+int16_t RobotSettingsStruct::HandFreedom() {
+    return *((int16_t *) (_data + HandFreedomOffset));
+}
+
+int16_t &RobotSettingsStruct::MaxMotorsSpeed() {
+    return *((int16_t *) (_data + MaxMotorSpeedOffset));
+}
+
+int16_t &RobotSettingsStruct::MotorsProtocol() {
+    return *((int16_t *) (_data + MotorsProtocolOffset));
 }
 
 std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robotSettingStruct) {
 
-    ostream << "ThrustersNumber: " << (int32_t) robotSettingStruct.ThrustersNumber << std::endl;
+    ostream << "[RobotSettingsStruct]" << std::endl;
 
+    int16_t thrusterNumber = *((int16_t *) (robotSettingStruct._data + ThrusterNumberOffset));
+    ostream << "ThrustersNumber: " << thrusterNumber << std::endl;
+
+    double *moveArray = (double *) (robotSettingStruct._data + ArraysOffset);
     ostream << "MoveCoefficientMatrix:" << std::endl;
-    for (size_t i = 0; i < robotSettingStruct.ThrustersNumber; i++) {
+    for (size_t i = 0; i < thrusterNumber; i++) {
         ostream << "[ ";
         for (size_t j = 0; j < 5; j++) {
-            ostream << robotSettingStruct.MoveCoefficientArray[6 * i + j] << ", ";
+            ostream << moveArray[6 * i + j] << ", ";
         }
-        ostream << robotSettingStruct.MoveCoefficientArray[6 * i + 5] << "]" << std::endl;
+        ostream << moveArray[6 * i + 5] << "]" << std::endl;
     }
 
-    ostream << "HandFreedom: " << (ssize_t) robotSettingStruct.HandFreedom << std::endl;
+    int16_t handFreedom = *((int16_t *) (robotSettingStruct._data + HandFreedomOffset));
+    ostream << "HandFreedom: " << handFreedom << std::endl;
+
+    double *handArray = (double *) (robotSettingStruct._data + robotSettingStruct._handArrayOffset);
     ostream << "HandCoefficientArray: [";
-    for (size_t i = 0; i < robotSettingStruct.HandFreedom - 1; i++) {
-        ostream << robotSettingStruct.HandCoefficientArray[i] << ", ";
+    for (size_t i = 0; i < handFreedom - 1; i++) {
+        ostream << handArray[i] << ", ";
     }
-    ostream << robotSettingStruct.HandCoefficientArray[robotSettingStruct.HandFreedom - 1] << "]" << std::endl;
+    ostream << handArray[handFreedom - 1] << "]" << std::endl;
 
+    int16_t motorsProtocol = *((int16_t *) (robotSettingStruct._data + MotorsProtocolOffset));
     ostream << "MotorProtocol: ";
-    switch (robotSettingStruct.MotorsProtocol) {
+    switch (motorsProtocol) {
         case 1:
             std::cout << "DShot150";
             break;
@@ -104,25 +140,8 @@ std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robot
     }
     ostream << std::endl;
 
-    ostream << "MaxMotorSpeed: " << robotSettingStruct.MaxMotorSpeed << std::endl;
+    int16_t maxMotorSpeed = *((int16_t *) (robotSettingStruct._data + MaxMotorSpeedOffset));
+    ostream << "MaxMotorSpeed: " << maxMotorSpeed << std::endl;
 
     return ostream;
 }
-
-const double *RobotSettingsStruct::GetMoveCoefficientArray() {
-    return this->MoveCoefficientArray;
-}
-
-int8_t RobotSettingsStruct::GetThrusterNumber() {
-    return this->ThrustersNumber;
-}
-
-const double *RobotSettingsStruct::GetHandCoefficientArray() {
-    return this->HandCoefficientArray;
-}
-
-int8_t RobotSettingsStruct::GetHandFreedom() {
-    return this->HandFreedom;
-}
-
-

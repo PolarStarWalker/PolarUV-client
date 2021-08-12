@@ -73,3 +73,5 @@ void CommandsProtocol::StartAsync(const QString &address, uint16_t port) {
 
     this->SetThreadStatus(true);
 }
+
+
