@@ -1,5 +1,7 @@
 #include "./RobotSettingsStruct/RobotSettingsStruct.hpp"
 
+using namespace DataStructs;
+
 RobotSettingsStruct::RobotSettingsStruct(const std::vector<double> &copyMoveArray,
                                          const std::vector<double> &copyHandArray) {
     this->_length = ArraysOffset + copyMoveArray.size() * sizeof(double) + copyHandArray.size() * sizeof(double);

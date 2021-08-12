@@ -3,7 +3,7 @@
 
 #include <cstring>
 
-#include "../../../../../robot/src/Robot/DataProtocols/BaseProtocol/BaseProtocol.hpp"
+#include "../BaseProtocol/Base.hpp"
 #include "../../DataStructs/RobotSettingsStruct/RobotSettingsStruct.hpp"
 #include "../Socket/Socket.hpp"
 
