@@ -12,7 +12,7 @@
 #include <QThread>
 #include <QShortcut>
 
-#include "./DataStructs/ClientSettingsStruct/ClientSettingsStruct.hpp"
+#include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"
 #include "./Gamepad/Gamepad.hpp"
 

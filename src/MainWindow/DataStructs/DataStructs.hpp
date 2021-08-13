@@ -2,8 +2,9 @@
 #define ROBOT_DATASTRUCTS_HPP
 
 #include "./CommandsStruct/CommandsStruct.hpp"
-#include "../../../../robot/src/Robot/DataStructs/RobotSettingStruct/RobotSettingsStruct.hpp"
+#include "./RobotSettingsStruct/RobotSettingsStruct.hpp"
 #include "./TelemetryStruct/TelemetryStruct.hpp"
 #include "./MotorsStruct/MotorsStruct.hpp"
+#include "./ClientSettingsStruct/ClientSettingsStruct.hpp"
 
 #endif

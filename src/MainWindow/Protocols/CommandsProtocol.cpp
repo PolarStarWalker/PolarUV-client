@@ -5,6 +5,7 @@
 CommandsProtocol::CommandsProtocol(size_t gamepadId)
         : _gamepad(gamepadId) {
     this->_isOnline = false;
+    this->_isThreadActive = false;
     this->_errorStatus = CommandsProtocol::ErrorType::Ok;
 }
 

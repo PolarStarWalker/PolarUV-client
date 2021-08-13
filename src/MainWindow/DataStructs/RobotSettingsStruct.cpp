@@ -1,7 +1,5 @@
 #include "./RobotSettingsStruct/RobotSettingsStruct.hpp"
 
-using namespace DataStructs;
-
 RobotSettingsStruct::RobotSettingsStruct(const std::vector<double> &copyMoveArray,
                                          const std::vector<double> &copyHandArray) {
     this->_length = ArraysOffset + copyMoveArray.size() * sizeof(double) + copyHandArray.size() * sizeof(double);
@@ -97,7 +95,7 @@ int16_t &RobotSettingsStruct::MotorsProtocol() {
     return *((int16_t *) (_data + MotorsProtocolOffset));
 }
 
-std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robotSettingStruct) {
+std::ostream& operator<<(std::ostream &ostream, const RobotSettingsStruct &robotSettingStruct) {
 
     ostream << "[RobotSettingsStruct]" << std::endl;
 

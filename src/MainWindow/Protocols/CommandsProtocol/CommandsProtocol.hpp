@@ -4,7 +4,7 @@
 #include "synchapi.h"
 
 #include "../Socket/Socket.hpp"
-#include "../../../../../robot/src/Robot/DataProtocols/BaseProtocol/BaseProtocol.hpp"
+#include "../BaseProtocol/BaseProtocol.hpp"
 #include "../../Gamepad/Gamepad.hpp"
 class CommandsProtocol : public BaseProtocol{
 

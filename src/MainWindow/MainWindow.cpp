@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     //Создание CommandsProtocol для Gamepad
     this->_commandsProtocol = new CommandsProtocol(0);
 
-    this->_settingsProtocol = new RobotSettingsProtocol();
-
     this->_videoStream = new VideoProtocol();
 
     //Загрузка настроек клиента из файла
@@ -56,9 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {
-    delete ui;
+    delete this->ui;
     delete this->_commandsProtocol;
-//    delete this->_settingsProtocol;
     delete this->_videoStream;
 }
 
@@ -87,7 +84,6 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
     /// ToDo: заменить на прием структуры по протоколу
     std::vector<double> motorsVector = {1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1};
     std::vector<double> handVector = {1, 2, 3, 4, 5};
-    int8_t motorsProtocol = 4;
     RobotSettingsStruct robotSettingsStruct(motorsVector, handVector);
     robotSettingsStruct.MotorsProtocol() = 4;
     robotSettingsStruct.MaxMotorsSpeed() = 3000;
@@ -179,7 +175,7 @@ void MainWindow::on_SendSettingsButton_clicked() {
     std::cout << robotSettingsStruct;
 
     /// Отправка настроек роботу
-    this->_settingsProtocol->SendAsync(ui->IPEdit->text(), SETTINGS_PORT, std::move(robotSettingsStruct));
+    RobotSettingsProtocol().Send(ui->IPEdit->text(), SETTINGS_PORT, std::move(robotSettingsStruct));
 
     QMessageBox::information(this, "Сообщение", "Настройки успешно отправлены");
 }

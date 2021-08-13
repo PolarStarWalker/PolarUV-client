@@ -5,6 +5,7 @@
 #include <cstring>
 #include <QString>
 
+
 enum RobotAnalogActions : int8_t {
     NoAnalogAction = 0,
     MoveX = 1,
@@ -26,9 +27,11 @@ enum RobotDiscreteActions : int8_t {
 class ClientSettingsStruct {
 public:
     ClientSettingsStruct();
+
     ~ClientSettingsStruct();
 
     void Save();
+
     void Load();
 
     int32_t gamepadID;
@@ -66,5 +69,4 @@ public:
 
 extern ClientSettingsStruct ClientSettingsStructData;
 constexpr size_t ClientSettingsStructLen = sizeof(ClientSettingsStructData);
-
 #endif
