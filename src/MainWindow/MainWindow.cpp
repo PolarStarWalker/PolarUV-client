@@ -5,8 +5,6 @@ MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
 
-    this->_widgetsPlaced = false;
-
     //Создание CommandsProtocol для Gamepad
     this->_commandsProtocol = new CommandsProtocol(0);
 
@@ -14,11 +12,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->_videoStream = new VideoProtocol();
 
-    //Запуск таймера отрисовки окна
-    this->startTimer(1000 / 60, Qt::PreciseTimer);
-
     //Загрузка настроек клиента из файла
     loadClientSettings();
+
+    /// ------------------------------ UI код ------------------------------ ///
+
+    this->_widgetsPlaced = false;
+
+    /// Запуск таймера отрисовки окна
+    this->startTimer(1000 / 60, Qt::PreciseTimer);
 
     /// Устанавливаем иконку приложения
     setWindowIcon(QIcon("Icons/WindowIcon.png"));
@@ -28,22 +30,36 @@ MainWindow::MainWindow(QWidget *parent)
     ui->TabWidget->setTabIcon(1, QIcon("Icons/RobotIcon"));
     ui->TabWidget->setTabIcon(2, QIcon("Icons/ClientIcon"));
 
-    /// Устанавливаем иконку кнопки "Полный экран"
+    /// Устанавливаем иконки кнопок
     ui->FullScreenButton->setIcon(QIcon("Icons/FullScreenIcon.png"));
-
-    /// Устанавливаем иконку кнопки запуска трансляции
+    ui->ShowTabBarButton->setIcon(QIcon("Icons/ShowTabBarIcon.png"));
+    ui->HideTabBarButton->setIcon(QIcon("Icons/HideTabBarIcon.png"));
     ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));
+
+    /// Устанавливаем прозрачный фон для некоторых кнопок
+    ui->ShowTabBarButton->setStyleSheet("background-color: transparent");
+    ui->VideoStreamButton->setStyleSheet("background-color: transparent");
+
+    /// Скрываем кнопку показа вкладок
+    ui->ShowTabBarButton->hide();
+
+    /// ------------------------------ Конец UI кода ------------------------------ ///
+
+    /// ------------------------------ Код хоткеев ------------------------------ ///
+
+    this->_keyEsc = new QShortcut(Qt::Key_Escape,this, SLOT(slotShortcutEsc()));
+    this->_keyTab = new QShortcut(Qt::Key_Tab,this, SLOT(slotShortcutTab()));
+    this->_keyF11 = new QShortcut(Qt::Key_F11,this, SLOT(slotShortcutF11()));
+    this->_keyB = new QShortcut(Qt::Key_B,this, SLOT(slotShortcutB()));
+
+    /// ------------------------------ Конец кода хоткеев ------------------------------ ///
 }
 
 MainWindow::~MainWindow() {
     delete ui;
     delete this->_commandsProtocol;
-    delete this->_settingsProtocol;
+//    delete this->_settingsProtocol;
     delete this->_videoStream;
-}
-
-void MainWindow::on_GamepadButton_clicked() {
-
 }
 
 void MainWindow::on_VideoStreamButton_clicked() {
@@ -242,68 +258,6 @@ void MainWindow::on_LoadClientSettingsButton_clicked() {
     QMessageBox::information(this, "Сообщение", "Настройки успешно восстановлены");
 }
 
-void MainWindow::placeWidgets() {
-    /// Изменяем размеры TabWidget
-    ui->TabWidget->setGeometry(ui->MainWidget->geometry());
-
-    /// Изменяем размеры окна камеры
-    ui->CameraLabel->setGeometry(ui->tab_1->geometry());
-
-    /// Перемещаем кнопку "Начать работу"
-    int offset = 0; // Расстояние от нижнего края окна
-    ui->CommandsProtocolButton->move(0, ui->MainWidget->height() - ui->CommandsProtocolButton->height() - offset);
-
-    /// Перемещаем кнопку "Полный экран"
-    offset = 10; // Расстояние от кнопки "Начать работу"
-    ui->FullScreenButton->move(0, ui->CommandsProtocolButton->y() - ui->FullScreenButton->height() - offset);
-
-    /// Перемещаем кнопку управления трансляцией
-    offset = 10; // Расстояние от нижнего края окна до кнопки
-    int x = (ui->tab_1->width() / 2) - (ui->VideoStreamButton->width() / 2);
-    int y = ui->tab_1->height() - ui->VideoStreamButton->height() - offset;
-    ui->VideoStreamButton->move(x, y);
-
-    /// Перемещаем виджет настроек робота
-    offset = 30; // Расстояние между виджетами по горизонтали
-    x = (ui->tab_2->width() - (ui->RobotSettingsWidget->width() + ui->RobotCommandsWidget->width() + offset)) / 2;
-    y = (ui->tab_2->height() - ui->RobotSettingsWidget->height()) / 2;
-    ui->RobotSettingsWidget->move(x, y);
-
-    /// Перемещаем виджет команд робота
-    x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() + offset;
-    ui->RobotCommandsWidget->move(x, y);
-
-    /// Перемещаем виджет назначения кнопок
-    offset = 30; // Расстояние между виджетами по горизонтали
-    x = (ui->tab_3->width() - (ui->KeyAssignmentsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
-    y = (ui->tab_3->height() - ui->KeyAssignmentsWidget->height()) / 2;
-    ui->KeyAssignmentsWidget->move(x, y);
-
-    /// Перемещаем виджет настроек клиента
-    x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() + offset;
-    ui->ClientSettingsWidget->move(x, y);
-
-    /// Перемещаем заголовок виджета настроек робота
-    x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() / 2 - ui->RobotSettingsLabel->width() / 2;
-    y = ui->RobotSettingsWidget->y() - ui->RobotSettingsLabel->height() / 2;
-    ui->RobotSettingsLabel->move(x, y);
-
-    /// Перемещаем заголовок виджета команд робота
-    x = ui->RobotCommandsWidget->x() + ui->RobotCommandsWidget->width() / 2 - ui->RobotCommandsLabel->width() / 2;
-    y = ui->RobotCommandsWidget->y() - ui->ClientSettingsLabel->height() / 2;
-    ui->RobotCommandsLabel->move(x, y);
-
-    /// Перемещаем заголовок виджета назначения кнопок
-    x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() / 2 - ui->KeyAssignmentsLabel->width() / 2;
-    y = ui->KeyAssignmentsWidget->y() - ui->KeyAssignmentsLabel->height() / 2;
-    ui->KeyAssignmentsLabel->move(x, y);
-
-    /// Перемещаем заголовок виджета настроек клиента
-    x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width() / 2 - ui->ClientSettingsLabel->width() / 2;
-    y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
-    ui->ClientSettingsLabel->move(x, y);
-}
-
 QImage MainWindow::cvMatToQImage(const cv::Mat &mat) {
     switch (mat.type()) {
         case CV_8UC3: {
@@ -321,6 +275,71 @@ QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
     QImage image = cvMatToQImage(mat);
     image = std::move(image).rgbSwapped();
     return QPixmap::fromImage(image);
+}
+
+
+
+/// ------------------------------ UI код ------------------------------ ///
+
+void MainWindow::placeWidgets() {
+    /// Изменяем размеры TabWidget
+    ui->TabWidget->setGeometry(ui->MainWidget->geometry());
+
+    /// Изменяем размеры окна камеры
+    ui->CameraLabel->setGeometry(ui->tab_1->geometry());
+
+    /// Перемещаем кнопку "Начать работу"
+    int offset = 0; // Расстояние от нижнего края окна
+    ui->CommandsProtocolButton->move(0, ui->MainWidget->height() - ui->CommandsProtocolButton->height() - offset);
+
+    /// Перемещаем кнопку "Полный экран"
+    offset = 10; // Расстояние между виджетами по вертикали
+    int x = 0;
+    int y = (ui->MainWidget->height() - (ui->FullScreenButton->height() + ui->HideTabBarButton->height() + offset)) / 2;
+    ui->FullScreenButton->move(x, y);
+
+    /// Перемещаем кнопку скрытия вкладок
+    y = ui->FullScreenButton->y() + ui->HideTabBarButton->height() + offset;
+    ui->HideTabBarButton->move(x, y);
+
+    /// Перемещаем кнопку показа вкладок
+    ui->ShowTabBarButton->move(0, 0);
+
+    /// Перемещаем кнопку управления трансляцией
+    offset = 10; // Расстояние от нижнего края окна до кнопки
+    x = (ui->tab_1->width() / 2) - (ui->VideoStreamButton->width() / 2);
+    y = ui->tab_1->height() - ui->VideoStreamButton->height() - offset;
+    ui->VideoStreamButton->move(x, y);
+
+    /// Перемещаем виджет настроек робота
+    x = (ui->tab_2->width() / 2) - (ui->RobotSettingsWidget->width() / 2);
+    y = (ui->tab_2->height() / 2) - (ui->RobotSettingsWidget->height() / 2);
+    ui->RobotSettingsWidget->move(x, y);
+
+    /// Перемещаем виджет назначения кнопок
+    offset = 30; // Расстояние между виджетами по горизонтали
+    x = (ui->tab_3->width() - (ui->KeyAssignmentsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
+    y = (ui->tab_3->height() - ui->KeyAssignmentsWidget->height()) / 2;
+    ui->KeyAssignmentsWidget->move(x, y);
+
+    /// Перемещаем виджет настроек клиента
+    x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() + offset;
+    ui->ClientSettingsWidget->move(x, y);
+
+    /// Перемещаем заголовок виджета настроек робота
+    x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() / 2 - ui->RobotSettingsLabel->width() / 2;
+    y = ui->RobotSettingsWidget->y() - ui->RobotSettingsLabel->height() / 2;
+    ui->RobotSettingsLabel->move(x, y);
+
+    /// Перемещаем заголовок виджета назначения кнопок
+    x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() / 2 - ui->KeyAssignmentsLabel->width() / 2;
+    y = ui->KeyAssignmentsWidget->y() - ui->KeyAssignmentsLabel->height() / 2;
+    ui->KeyAssignmentsLabel->move(x, y);
+
+    /// Перемещаем заголовок виджета настроек клиента
+    x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width() / 2 - ui->ClientSettingsLabel->width() / 2;
+    y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
+    ui->ClientSettingsLabel->move(x, y);
 }
 
 void MainWindow::paintEvent(QPaintEvent *event) {
@@ -425,6 +444,74 @@ void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
     }
 }
 
-void MainWindow::mouseMoveEvent(QMouseEvent *event) {
+void MainWindow::on_ShowTabBarButton_clicked() {
+    /// Показываем панель
+    ui->TabWidget->tabBar()->show();
 
+    /// Показываем все кнопки на панели
+    ui->FullScreenButton->show();
+    ui->HideTabBarButton->show();
+    ui->CommandsProtocolButton->show();
+
+    /// Скрываем кнопку показа панели
+    ui->ShowTabBarButton->hide();
 }
+
+void MainWindow::on_HideTabBarButton_clicked() {
+    /// Скрываем панель
+    ui->TabWidget->tabBar()->hide();
+
+    /// Скрываем все кнопки на панели
+    ui->FullScreenButton->hide();
+    ui->HideTabBarButton->hide();
+    ui->CommandsProtocolButton->hide();
+
+    /// Показываем кнопку показа панели (Ъеъ)
+    ui->ShowTabBarButton->show();
+}
+
+/// ------------------------------ Конец UI кода ------------------------------ ///
+
+
+
+/// ------------------------------ Код хоткеев ------------------------------ ///
+
+void MainWindow::slotShortcutEsc() {
+    if (this->windowState() == Qt::WindowFullScreen) {
+        this->setWindowState(Qt::WindowNoState);
+    }
+}
+
+void MainWindow::slotShortcutTab() {
+    if (ui->TabWidget->currentIndex() < ui->TabWidget->count() - 1) {
+        ui->TabWidget->setCurrentIndex(ui->TabWidget->currentIndex() + 1);
+    } else {
+        ui->TabWidget->setCurrentIndex(0);
+    }
+}
+
+void MainWindow::slotShortcutF11() {
+    if (this->windowState() == Qt::WindowFullScreen) {
+        this->setWindowState(Qt::WindowNoState);
+    } else {
+        this->setWindowState(Qt::WindowFullScreen);
+    }
+}
+
+void MainWindow::slotShortcutB() {
+    if (ui->HideTabBarButton->isVisible()) {
+        ui->TabWidget->tabBar()->hide();
+        ui->FullScreenButton->hide();
+        ui->HideTabBarButton->hide();
+        ui->CommandsProtocolButton->hide();
+        ui->ShowTabBarButton->show();
+    } else {
+        ui->TabWidget->tabBar()->show();
+        ui->FullScreenButton->show();
+        ui->HideTabBarButton->show();
+        ui->CommandsProtocolButton->show();
+        ui->ShowTabBarButton->hide();
+    }
+}
+
+/// ------------------------------ Конец кода хоткеев ------------------------------ ///

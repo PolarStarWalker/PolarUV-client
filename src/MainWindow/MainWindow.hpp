@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include <QPainter>
 #include <QThread>
-#include <QMouseEvent>
+#include <QShortcut>
 
 #include "./DataStructs/ClientSettingsStruct/ClientSettingsStruct.hpp"
 #include "./Protocols/Protocols.hpp"
@@ -42,7 +42,6 @@ protected:
     void paintEvent(QPaintEvent *event) override;
     void timerEvent(QTimerEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
-    void mouseMoveEvent(QMouseEvent *event) override;
 
     void placeWidgets();
     void loadClientSettings();
@@ -51,7 +50,6 @@ protected:
 
 private slots:
     void on_CommandsProtocolButton_clicked();
-    void on_GamepadButton_clicked();
     void on_VideoStreamButton_clicked();
     void on_ReceiveSettingsButton_clicked();
     void on_SendSettingsButton_clicked();
@@ -59,9 +57,16 @@ private slots:
     void on_SaveClientSettingsButton_clicked();
 
     void on_FullScreenButton_clicked();
+    void on_ShowTabBarButton_clicked();
+    void on_HideTabBarButton_clicked();
 
     void on_MotorsNumberSpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);
+
+    void slotShortcutEsc();
+    void slotShortcutTab();
+    void slotShortcutF11();
+    void slotShortcutB();
 
 private:
     Ui::MainWindow *ui;
@@ -71,6 +76,12 @@ private:
     VideoProtocol *_videoStream;
     CommandsProtocol *_commandsProtocol;
     RobotSettingsProtocol *_settingsProtocol;
+
+    QShortcut *_keyEsc;
+    QShortcut *_keyTab;
+    QShortcut *_keyF11;
+    QShortcut *_keyB;
+
 };
 #endif
 

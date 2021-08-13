@@ -19,7 +19,7 @@
   <property name="minimumSize">
    <size>
     <width>1400</width>
-    <height>750</height>
+    <height>790</height>
    </size>
   </property>
   <property name="palette">
@@ -472,10 +472,10 @@
    </font>
   </property>
   <property name="mouseTracking">
-   <bool>false</bool>
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Полярник 4.452b-mk.II</string>
+   <string>Полярник 3.353b-mk.II</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -492,7 +492,7 @@
   </property>
   <widget class="QWidget" name="MainWidget">
    <property name="mouseTracking">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
@@ -750,6 +750,9 @@
       <kerning>true</kerning>
      </font>
     </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
     <property name="tabPosition">
      <enum>QTabWidget::West</enum>
     </property>
@@ -757,7 +760,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -776,6 +779,9 @@
     </property>
     <widget class="QWidget" name="tab_1">
      <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="mouseTracking">
       <bool>true</bool>
      </property>
      <property name="accessibleName">
@@ -809,6 +815,9 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
       <property name="text">
        <string>Трансляция отключена</string>
       </property>
@@ -826,7 +835,7 @@
       <property name="geometry">
        <rect>
         <x>650</x>
-        <y>700</y>
+        <y>740</y>
         <width>32</width>
         <height>32</height>
        </rect>
@@ -845,6 +854,9 @@
         <bold>false</bold>
         <kerning>true</kerning>
        </font>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
@@ -874,6 +886,9 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
      <property name="layoutDirection">
       <enum>Qt::LeftToRight</enum>
      </property>
@@ -893,11 +908,14 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>115</x>
+        <x>280</x>
         <y>124</y>
         <width>721</width>
         <height>551</height>
        </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
       </property>
       <widget class="Line" name="HandTopRightLine">
        <property name="geometry">
@@ -907,6 +925,9 @@
          <width>21</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -936,6 +957,9 @@
          <kerning>true</kerning>
         </font>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Степени свободы</string>
        </property>
@@ -948,6 +972,9 @@
          <width>60</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="minimum">
         <number>1</number>
@@ -977,6 +1004,9 @@
          <kerning>true</kerning>
         </font>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Манипулятор</string>
        </property>
@@ -1002,6 +1032,9 @@
          <kerning>true</kerning>
         </font>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Коэффициенты</string>
        </property>
@@ -1014,6 +1047,9 @@
          <width>21</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -1039,6 +1075,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -1138,6 +1177,9 @@
          <kerning>true</kerning>
         </font>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Максимальная скорость</string>
        </property>
@@ -1160,6 +1202,9 @@
          <kerning>true</kerning>
         </font>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Протокол</string>
        </property>
@@ -1172,6 +1217,9 @@
          <width>20</width>
          <height>231</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -1195,6 +1243,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
        </property>
@@ -1213,6 +1264,9 @@
          <width>31</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -1242,6 +1296,9 @@
          <kerning>true</kerning>
         </font>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Количество</string>
        </property>
@@ -1263,6 +1320,9 @@
          <bold>false</bold>
          <kerning>true</kerning>
         </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="text">
         <string>Двигатели</string>
@@ -1289,6 +1349,9 @@
          <kerning>true</kerning>
         </font>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>Коэффициенты</string>
        </property>
@@ -1301,6 +1364,9 @@
          <width>20</width>
          <height>231</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -1324,6 +1390,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
        </property>
@@ -1342,6 +1411,9 @@
          <width>120</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="minimum">
         <number>1</number>
@@ -1362,6 +1434,9 @@
          <height>30</height>
         </rect>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>4000</string>
        </property>
@@ -1374,6 +1449,9 @@
          <width>31</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -1399,6 +1477,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -1730,6 +1811,9 @@
          <height>51</height>
         </rect>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
        </property>
@@ -1751,6 +1835,9 @@
          <width>120</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="currentIndex">
         <number>3</number>
@@ -1785,6 +1872,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
        </property>
@@ -1804,6 +1894,9 @@
          <height>20</height>
         </rect>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
        </property>
@@ -1822,6 +1915,9 @@
          <width>20</width>
          <height>51</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -1845,6 +1941,9 @@
          <height>550</height>
         </rect>
        </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
@@ -1859,6 +1958,59 @@
        </property>
        <property name="midLineWidth">
         <number>0</number>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="SendSettingsButton">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>400</y>
+         <width>270</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Отправить настройки</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ReceiveSettingsButton">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>345</y>
+         <width>270</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Получить настройки</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
       <zorder>RobotSettingsWidgetFrame</zorder>
@@ -1888,11 +2040,13 @@
       <zorder>HandBottomLeftLine</zorder>
       <zorder>HandTopLeftLine</zorder>
       <zorder>HandLeftLine</zorder>
+      <zorder>SendSettingsButton</zorder>
+      <zorder>ReceiveSettingsButton</zorder>
      </widget>
      <widget class="QLabel" name="RobotSettingsLabel">
       <property name="geometry">
        <rect>
-        <x>375</x>
+        <x>540</x>
         <y>100</y>
         <width>230</width>
         <height>50</height>
@@ -1906,6 +2060,9 @@
         <bold>true</bold>
         <kerning>true</kerning>
        </font>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
       </property>
       <property name="autoFillBackground">
        <bool>true</bool>
@@ -1920,152 +2077,11 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QWidget" name="RobotCommandsWidget" native="true">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>860</x>
-        <y>124</y>
-        <width>350</width>
-        <height>551</height>
-       </rect>
-      </property>
-      <widget class="QFrame" name="RobotCommandsWidgetFrame">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>350</width>
-         <height>550</height>
-        </rect>
-       </property>
-       <property name="autoFillBackground">
-        <bool>true</bool>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>1</number>
-       </property>
-       <property name="midLineWidth">
-        <number>0</number>
-       </property>
-       <widget class="QPushButton" name="SendSettingsButton">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>200</y>
-          <width>270</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Отправить настройки</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="ReceiveSettingsButton">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>145</y>
-          <width>270</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Получить настройки</string>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="GamepadButton">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>60</y>
-          <width>270</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Подключить геймпад</string>
-        </property>
-       </widget>
-      </widget>
-     </widget>
-     <widget class="QLabel" name="RobotCommandsLabel">
-      <property name="geometry">
-       <rect>
-        <x>920</x>
-        <y>100</y>
-        <width>230</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>14</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="text">
-       <string>Команды</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
      <attribute name="icon">
       <iconset>
        <normaloff>../../../../../../Icon.png</normaloff>../../../../../../Icon.png</iconset>
@@ -2094,6 +2110,9 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
       <property name="autoFillBackground">
        <bool>true</bool>
       </property>
@@ -2116,6 +2135,9 @@
         <height>540</height>
        </rect>
       </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
       <widget class="QFrame" name="ClientSettingsWidgetFrame_3">
        <property name="geometry">
         <rect>
@@ -2124,6 +2146,9 @@
          <width>865</width>
          <height>540</height>
         </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
        </property>
        <property name="autoFillBackground">
         <bool>true</bool>
@@ -2152,6 +2177,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Влево/вправо</string>
         </property>
@@ -2173,6 +2201,9 @@
           <bold>false</bold>
           <kerning>true</kerning>
          </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Стрелки</string>
@@ -2199,6 +2230,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Вверх/вниз</string>
         </property>
@@ -2221,6 +2255,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Вверх/вниз</string>
         </property>
@@ -2242,6 +2279,9 @@
           <bold>false</bold>
           <kerning>true</kerning>
          </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Перемещение левого стика</string>
@@ -2268,6 +2308,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Влево/вправо</string>
         </property>
@@ -2289,6 +2332,9 @@
           <bold>false</bold>
           <kerning>true</kerning>
          </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Перемещение правого стика</string>
@@ -2315,6 +2361,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Вверх/вниз</string>
         </property>
@@ -2336,6 +2385,9 @@
           <bold>false</bold>
           <kerning>true</kerning>
          </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Влево/вправо</string>
@@ -2359,6 +2411,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Левый</string>
         </property>
@@ -2380,6 +2435,9 @@
           <bold>false</bold>
           <kerning>true</kerning>
          </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Курки/бамперы</string>
@@ -2406,6 +2464,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Правый</string>
         </property>
@@ -2418,6 +2479,9 @@
           <width>231</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>4</number>
@@ -2489,6 +2553,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Инверсия</string>
         </property>
@@ -2504,6 +2571,9 @@
           <width>20</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string/>
@@ -2527,6 +2597,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -2548,6 +2621,9 @@
           <width>20</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string/>
@@ -2571,6 +2647,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -2592,6 +2671,9 @@
           <width>20</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string/>
@@ -2615,6 +2697,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -2637,6 +2722,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -2658,6 +2746,9 @@
           <width>20</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string/>
@@ -2690,6 +2781,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Крест</string>
         </property>
@@ -2702,6 +2796,9 @@
           <width>180</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>0</number>
@@ -2743,6 +2840,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Фигуры</string>
         </property>
@@ -2768,6 +2868,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Треугольник</string>
         </property>
@@ -2789,6 +2892,9 @@
           <bold>false</bold>
           <kerning>true</kerning>
          </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Квадрат</string>
@@ -2812,6 +2918,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Круг</string>
         </property>
@@ -2833,6 +2942,9 @@
           <bold>false</bold>
           <kerning>true</kerning>
          </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Правый</string>
@@ -2856,6 +2968,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Старт</string>
         </property>
@@ -2878,6 +2993,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Назад</string>
         </property>
@@ -2899,6 +3017,9 @@
           <bold>false</bold>
           <kerning>true</kerning>
          </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="text">
          <string>Нажатие на стики</string>
@@ -2925,6 +3046,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Левый</string>
         </property>
@@ -2947,6 +3071,9 @@
           <kerning>true</kerning>
          </font>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Меню</string>
         </property>
@@ -2962,6 +3089,9 @@
           <width>231</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>5</number>
@@ -3024,6 +3154,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="currentIndex">
          <number>3</number>
         </property>
@@ -3084,6 +3217,9 @@
           <width>231</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>2</number>
@@ -3146,6 +3282,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="currentIndex">
          <number>1</number>
         </property>
@@ -3206,6 +3345,9 @@
           <width>231</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>6</number>
@@ -3268,6 +3410,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="currentIndex">
          <number>7</number>
         </property>
@@ -3328,6 +3473,9 @@
           <width>231</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>8</number>
@@ -3390,6 +3538,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -3420,6 +3571,9 @@
           <width>180</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>0</number>
@@ -3452,6 +3606,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -3482,6 +3639,9 @@
           <width>180</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>0</number>
@@ -3514,6 +3674,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -3545,6 +3708,9 @@
           <height>30</height>
          </rect>
         </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
         <property name="currentIndex">
          <number>2</number>
         </property>
@@ -3575,6 +3741,9 @@
           <width>180</width>
           <height>30</height>
          </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
         </property>
         <property name="currentIndex">
          <number>1</number>
@@ -3618,6 +3787,9 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
       <property name="autoFillBackground">
        <bool>true</bool>
       </property>
@@ -3639,6 +3811,9 @@
         <width>370</width>
         <height>540</height>
        </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
       </property>
       <widget class="QLabel" name="MotorsQuantityLabel_6">
        <property name="geometry">
@@ -3833,7 +4008,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>660</y>
+      <y>360</y>
       <width>71</width>
       <height>65</height>
      </rect>
@@ -3845,6 +4020,9 @@
       <weight>50</weight>
       <bold>false</bold>
      </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
     </property>
     <property name="toolTip">
      <string>Полный экран</string>
@@ -3883,6 +4061,9 @@
       <kerning>true</kerning>
      </font>
     </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
     <property name="toolTip">
      <string>Начать работу</string>
     </property>
@@ -3894,6 +4075,85 @@
       <width>32</width>
       <height>32</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="HideTabBarButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>430</y>
+      <width>71</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="toolTip">
+     <string>Скрыть панель</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ShowTabBarButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>0</y>
+      <width>71</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>
