@@ -62,12 +62,8 @@ MainWindow::~MainWindow() {
 void MainWindow::on_VideoStreamButton_clicked() {
     if (!_videoStream->IsOnline()) {
         _videoStream->StartAsync(pipeline);
-        QIcon videoStreamIcon("Icons/PauseIcon.png");
-        ui->VideoStreamButton->setIcon(videoStreamIcon);
     } else {
         _videoStream->Stop();
-        QIcon videoStreamIcon("Icons/PlayIcon.png");
-        ui->VideoStreamButton->setIcon(videoStreamIcon);
     }
 }
 
@@ -342,17 +338,27 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     /// Если это первая отрисовка с момента запуска программы, то размещаем виджеты
     if (!this->_widgetsPlaced) this->placeWidgets();
 
-    /// Выбираем цвет иконки кнопки запуска
-    if (this->_commandsProtocol->IsOnline())
-        ui->CommandsProtocolButton->setIcon(QIcon("Icons/GreenStartIcon.png"));
-    else
-        ui->CommandsProtocolButton->setIcon(QIcon("Icons/RedStartIcon.png"));
-
+    /// Рисуем кадр с трансляции или картинку-заглушку
     if (this->_videoStream->IsOnline()) {
         cv::Mat mat = this->_videoStream->GetMatrix();
         ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
     } else {
         ui->CameraLabel->setPixmap(QPixmap("Icons/CameraPlaceholder.png"));
+    }
+
+    /// Выбираем цвет иконки кнопки запуска
+    if (this->_commandsProtocol->IsOnline()) {
+        ui->CommandsProtocolButton->setIcon(QIcon("Icons/GreenStartIcon.png"));
+    }
+    else {
+        ui->CommandsProtocolButton->setIcon(QIcon("Icons/RedStartIcon.png"));
+    }
+
+    /// Выбираем иконку кнопки трансляции
+    if (_videoStream->IsOnline()) {
+        ui->VideoStreamButton->setIcon(QIcon("Icons/PauseIcon.png"));
+    } else {
+        ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));
     }
 }
 

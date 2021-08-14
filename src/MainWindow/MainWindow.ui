@@ -760,7 +760,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -802,8 +802,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1396</width>
-        <height>714</height>
+        <width>1319</width>
+        <height>786</height>
        </rect>
       </property>
       <property name="font">
@@ -819,7 +819,7 @@
        <bool>false</bool>
       </property>
       <property name="text">
-       <string>Трансляция отключена</string>
+       <string>Нет изображения. Проверьте папку с иконками</string>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
