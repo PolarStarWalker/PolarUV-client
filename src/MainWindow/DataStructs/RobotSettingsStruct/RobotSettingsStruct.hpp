@@ -38,16 +38,13 @@ public:
 
     size_t Size();
 
-    const double *const GetThrusterCoefficientArray();
-
+    double *const ThrusterCoefficientArray();
     int16_t ThrusterNumber();
 
-    const double *const GetHandCoefficientArray();
-
+    double *const HandCoefficientArray();
     int16_t HandFreedom();
 
     int16_t &MaxMotorsSpeed();
-
     int16_t &MotorsProtocol();
 
 private:

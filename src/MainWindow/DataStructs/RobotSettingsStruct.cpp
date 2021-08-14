@@ -18,6 +18,8 @@ RobotSettingsStruct::RobotSettingsStruct(size_t thrustersNumber, size_t handFree
     this->_data = new char[ArraysOffset + thrustersNumber * 6 * sizeof(double) + handFreedom * sizeof(double)];
     this->_length = ArraysOffset + thrustersNumber * 6 * sizeof(double) + handFreedom * sizeof(double);
     this->_handArrayOffset = ArraysOffset + thrustersNumber * 6 * sizeof(double);
+    *((int16_t*)(this->_data + ThrusterNumberOffset)) = thrustersNumber;
+    *((int16_t*)(this->_data + HandFreedomOffset)) = handFreedom;
 }
 
 RobotSettingsStruct::RobotSettingsStruct(const RobotSettingsStruct &robotSettingsStruct) {
@@ -26,7 +28,6 @@ RobotSettingsStruct::RobotSettingsStruct(const RobotSettingsStruct &robotSetting
     this->_data = new char[this->_length];
     for (size_t i = 0; i < this->_length / 8; i++)
         ((uint64_t *) this->_data)[i] = ((uint64_t *) robotSettingsStruct._data)[i];
-
 }
 
 RobotSettingsStruct::RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct) {
@@ -71,7 +72,7 @@ size_t RobotSettingsStruct::Size() {
     return this->_length;
 }
 
-const double *const RobotSettingsStruct::GetThrusterCoefficientArray() {
+double *const RobotSettingsStruct::ThrusterCoefficientArray() {
     return (double *) (_data + ArraysOffset);
 }
 
@@ -79,7 +80,7 @@ int16_t RobotSettingsStruct::ThrusterNumber() {
     return *((int16_t *) (_data + ThrusterNumberOffset));
 }
 
-const double *const RobotSettingsStruct::GetHandCoefficientArray() {
+double *const RobotSettingsStruct::HandCoefficientArray() {
     return (double *) (_data + _handArrayOffset);
 }
 
