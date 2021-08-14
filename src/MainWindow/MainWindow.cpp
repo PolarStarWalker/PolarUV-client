@@ -49,10 +49,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     /// ------------------------------ Код хоткеев ------------------------------ ///
 
-    this->_keyEsc = new QShortcut(Qt::Key_Escape,this, SLOT(slotShortcutEsc()));
-    this->_keyTab = new QShortcut(Qt::Key_Tab,this, SLOT(slotShortcutTab()));
-    this->_keyF11 = new QShortcut(Qt::Key_F11,this, SLOT(slotShortcutF11()));
-    this->_keyB = new QShortcut(Qt::Key_B,this, SLOT(slotShortcutB()));
+    this->_keyEsc = new QShortcut(Qt::Key_Escape, this, SLOT(slotShortcutEsc()));
+    this->_keyTab = new QShortcut(Qt::Key_Tab, this, SLOT(slotShortcutTab()));
+    this->_keyF11 = new QShortcut(Qt::Key_F11, this, SLOT(slotShortcutF11()));
+    this->_keyB = new QShortcut(Qt::Key_B, this, SLOT(slotShortcutB()));
 
     /// ------------------------------ Конец кода хоткеев ------------------------------ ///
 }
@@ -88,13 +88,9 @@ void MainWindow::on_CommandsProtocolButton_clicked() {
 }
 
 void MainWindow::on_ReceiveSettingsButton_clicked() {
-    /// Временные "входные" данные
-    /// ToDo: заменить на прием структуры по протоколу
-    std::vector<double> motorsVector = {1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1};
-    std::vector<double> handVector = {1, 2, 3, 4, 5};
-    RobotSettingsStruct robotSettingsStruct(motorsVector, handVector);
-    robotSettingsStruct.MotorsProtocol() = 4;
-    robotSettingsStruct.MaxMotorsSpeed() = 3000;
+    RobotSettingsStruct robotSettingsStruct;
+    std::cout << ui->IPEdit->text().toStdString() << std::endl;
+    RobotSettingsProtocol().Recv(ui->IPEdit->text(), SETTINGS_PORT, robotSettingsStruct);
 
     /// Выводим количество двигателей
     const double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
@@ -147,7 +143,7 @@ void MainWindow::on_SendSettingsButton_clicked() {
     RobotSettingsStruct robotSettingsStruct(ui->MotorsTable->rowCount(), ui->HandTable->columnCount());
 
     /// Считываем коэффициенты двигателей
-    double* moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
+    double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
     std::vector<double> motorsVector(ui->MotorsTable->rowCount() * 6);
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
@@ -156,7 +152,7 @@ void MainWindow::on_SendSettingsButton_clicked() {
     }
 
     /// Считываем коэффициенты манипулятора
-    double* handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
+    double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
     std::vector<double> handVector(ui->HandTable->columnCount());
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
         handCoefficientArray[j] = ui->HandTable->item(0, j)->text().toDouble();
@@ -385,8 +381,7 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     /// Выбираем цвет иконки кнопки запуска
     if (this->_commandsProtocol->IsOnline()) {
         ui->CommandsProtocolButton->setIcon(QIcon("Icons/GreenStartIcon.png"));
-    }
-    else {
+    } else {
         ui->CommandsProtocolButton->setIcon(QIcon("Icons/RedStartIcon.png"));
     }
 
