@@ -33,10 +33,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->ShowTabBarButton->setIcon(QIcon("Icons/ShowTabBarIcon.png"));
     ui->HideTabBarButton->setIcon(QIcon("Icons/HideTabBarIcon.png"));
     ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));
+    ui->ScreenshotButton->setIcon(QIcon("Icons/ScreenshotIcon.png"));
+    ui->VideoCaptureButton->setIcon(QIcon("Icons/WhiteVideoIcon.png"));
 
     /// Устанавливаем прозрачный фон для некоторых кнопок
     ui->ShowTabBarButton->setStyleSheet("background-color: transparent");
     ui->VideoStreamButton->setStyleSheet("background-color: transparent");
+    ui->ScreenshotButton->setStyleSheet("background-color: transparent");
+    ui->VideoCaptureButton->setStyleSheet("background-color: transparent");
 
     /// Скрываем кнопку показа вкладок
     ui->ShowTabBarButton->hide();
@@ -304,6 +308,18 @@ void MainWindow::placeWidgets() {
     x = (ui->tab_1->width() / 2) - (ui->VideoStreamButton->width() / 2);
     y = ui->tab_1->height() - ui->VideoStreamButton->height() - offset;
     ui->VideoStreamButton->move(x, y);
+
+    /// Перемещаем кнопку записи видео
+    offset = 50; // Расстояние от кнопки управления трансляцией
+    x = ui->VideoStreamButton->x() + ui->VideoStreamButton->width() + offset;
+    y = ui->VideoStreamButton->y();
+    ui->VideoCaptureButton->move(x, y);
+
+    /// Перемещаем кнопку скриншота
+    offset = 50; // Расстояние от кнопки управления трансляцией
+    x = ui->VideoStreamButton->x() - ui->ScreenshotButton->width() - offset;
+    y = ui->VideoStreamButton->y();
+    ui->ScreenshotButton->move(x, y);
 
     /// Перемещаем виджет настроек робота
     x = (ui->tab_2->width() / 2) - (ui->RobotSettingsWidget->width() / 2);
