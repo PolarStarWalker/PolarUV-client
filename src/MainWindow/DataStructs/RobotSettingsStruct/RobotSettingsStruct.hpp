@@ -18,12 +18,10 @@ namespace {
 
 class RobotSettingsStruct {
 public:
+    RobotSettingsStruct();
     RobotSettingsStruct(const std::vector<double> &copyMoveArray, const std::vector<double> &copyHandArray);
-
     explicit RobotSettingsStruct(size_t thrustersNumber, size_t handFreedom);
-
     RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct);
-
     RobotSettingsStruct(const RobotSettingsStruct &robotSettingsStruct);
 
     ~RobotSettingsStruct();

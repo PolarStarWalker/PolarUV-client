@@ -20,7 +20,7 @@
 // 192.168.1.50 - motov.s
 // 169.254.154.5 - shushkov.d
 #define COMMANDS_PORT 1999
-#define SETTINGS_PORT 2020
+#define SETTINGS_PORT 14322
 
 
 QT_BEGIN_NAMESPACE

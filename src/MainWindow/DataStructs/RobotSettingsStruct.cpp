@@ -37,6 +37,15 @@ RobotSettingsStruct::RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStru
     robotSettingsStruct._data = nullptr;
 }
 
+RobotSettingsStruct::RobotSettingsStruct() {
+    this->_data = new char[ArraysOffset + 2 * sizeof(double)];
+    *((int16_t *) (this->_data + ThrusterNumberOffset)) = 0;
+    *((int16_t *) (this->_data + HandFreedomOffset)) = 0;
+    this->_length = ArraysOffset + 2 * sizeof(double);
+    this->_handArrayOffset = ArraysOffset + sizeof(double);
+}
+
+
 RobotSettingsStruct::~RobotSettingsStruct() {
     delete[] this->_data;
 }
@@ -146,3 +155,4 @@ std::ostream& operator<<(std::ostream &ostream, const RobotSettingsStruct &robot
 
     return ostream;
 }
+
