@@ -85,7 +85,7 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
     robotSettingsStruct.MaxMotorsSpeed() = 3000;
 
     /// Выводим количество двигателей
-    const double *moveCoefficientArray = robotSettingsStruct.GetThrusterCoefficientArray();
+    const double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
     int motorsNumber = robotSettingsStruct.ThrusterNumber();
     ui->MotorsNumberSpinBox->setValue(motorsNumber);
 
@@ -98,7 +98,7 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
     }
 
     /// Выводим число степеней свободы манипулятора
-    const double *handCoefficientArray = robotSettingsStruct.GetHandCoefficientArray();
+    const double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
     int handFreedom = robotSettingsStruct.HandFreedom();;
     ui->HandFreedomSpinBox->setValue(handFreedom);
 
@@ -132,21 +132,23 @@ void MainWindow::on_ReceiveSettingsButton_clicked() {
 
 void MainWindow::on_SendSettingsButton_clicked() {
 
+    RobotSettingsStruct robotSettingsStruct(ui->MotorsTable->rowCount(), ui->HandTable->columnCount());
+
     /// Считываем коэффициенты двигателей
+    double* moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
     std::vector<double> motorsVector(ui->MotorsTable->rowCount() * 6);
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
-            motorsVector[i * 6 + j] = ui->MotorsTable->item(i, j)->text().toDouble();
+            moveCoefficientArray[i * 6 + j] = ui->MotorsTable->item(i, j)->text().toDouble();
         }
     }
 
     /// Считываем коэффициенты манипулятора
+    double* handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
     std::vector<double> handVector(ui->HandTable->columnCount());
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
-        handVector[j] = ui->HandTable->item(0, j)->text().toDouble();
+        handCoefficientArray[j] = ui->HandTable->item(0, j)->text().toDouble();
     }
-
-    RobotSettingsStruct robotSettingsStruct(motorsVector, handVector);
 
     /// Считываем максимальную скорость двигателей
     robotSettingsStruct.MaxMotorsSpeed() = ui->MaxSpeedEdit->text().toInt();

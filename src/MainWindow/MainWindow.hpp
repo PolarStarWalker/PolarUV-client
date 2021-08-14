@@ -75,7 +75,6 @@ private:
 
     VideoProtocol *_videoStream;
     CommandsProtocol *_commandsProtocol;
-    RobotSettingsProtocol *_settingsProtocol;
 
     QShortcut *_keyEsc;
     QShortcut *_keyTab;

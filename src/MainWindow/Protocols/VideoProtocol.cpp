@@ -16,9 +16,7 @@ void VideoProtocol::Start(const std::string &pipeline) {
 
     this->_videoStream.open(pipeline, cv::CAP_GSTREAMER);
 
-    if (_videoStream.isOpened()) {
-        SetOnlineStatus(true);
-    }
+    SetOnlineStatus(_videoStream.isOpened());
 
     cv::Mat inFrame;
 
@@ -27,7 +25,7 @@ void VideoProtocol::Start(const std::string &pipeline) {
         this->_videoStream >> inFrame;
 
         if (inFrame.empty())
-            continue;
+            this->SetOnlineStatus(false);
 
         cv::waitKey(1);
 
@@ -35,7 +33,7 @@ void VideoProtocol::Start(const std::string &pipeline) {
     }
 
     this->_videoStream.release();
-    this->SetOnlineStatus(false);
+    this->SetThreadStatus(false);
 }
 
 void VideoProtocol::Stop() {
@@ -51,8 +49,8 @@ cv::Mat VideoProtocol::GetMatrix() {
     return outFrame;
 }
 
-void VideoProtocol::StartAsync(const std::string& pipeline) {
-    if(this->IsOnline())
+void VideoProtocol::StartAsync(const std::string &pipeline) {
+    if (this->IsOnline())
         return;
 
     std::thread thread(&VideoProtocol::Start, this, pipeline);
