@@ -173,6 +173,7 @@ namespace Control {
         explicit Gamepad(size_t id);
 
         std::shared_ptr<CommandsStruct> GetCommandsStruct() const;
+
         void SetVibration(uint16_t left, uint16_t right) const;
 
         void UpdateGamepadId(size_t id);
@@ -183,8 +184,17 @@ namespace Control {
         mutable std::shared_mutex _idMutex;
     };
 
-    std::list<int> GetGamepadsIds();
-}
+    inline std::list<int> GetGamepadsIds() {
+        std::list<int> ids;
+        XINPUT_STATE state{};
+        for (int i = 0; i < XUSER_MAX_COUNT; i++) {
+            DWORD gamepadState = XInputGetState(i, &state);
+            if (gamepadState == ERROR_SUCCESS)
+                ids.push_back(i);
 
+        }
+        return ids;
+    };
+}
 
 #endif

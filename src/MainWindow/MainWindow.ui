@@ -3968,7 +3968,7 @@
          <bool>true</bool>
         </property>
        </widget>
-       <widget class="QComboBox" name="GamepadComboBox_2">
+       <widget class="QComboBox" name="GamepadComboBox">
         <property name="geometry">
          <rect>
           <x>180</x>
@@ -3978,7 +3978,7 @@
          </rect>
         </property>
        </widget>
-       <widget class="QPushButton" name="RefreshGamepadsButton_2">
+       <widget class="QPushButton" name="RefreshGamepadsButton">
         <property name="geometry">
          <rect>
           <x>260</x>

@@ -71,6 +71,14 @@ void MainWindow::on_VideoStreamButton_clicked() {
     }
 }
 
+void MainWindow::on_ScreenshotButton_clicked() {
+
+}
+
+void MainWindow::on_VideoCaptureButton_clicked() {
+
+}
+
 void MainWindow::on_CommandsProtocolButton_clicked() {
     if (!_commandsProtocol->IsOnline()) {
         _commandsProtocol->StartAsync(ui->IPEdit->text(), COMMANDS_PORT);
@@ -216,6 +224,16 @@ void MainWindow::on_SaveClientSettingsButton_clicked() {
     settings.Save();
 
     QMessageBox::information(this, "Сообщение", "Настройки успешно сохранены");
+}
+
+void MainWindow::on_RefreshGamepadsButton_clicked() {
+    std::list<int> gamepads = Control::GetGamepadsIds();
+    ui->GamepadComboBox->clear();
+    for (int id : gamepads) {
+        ui->GamepadComboBox->addItem(QString::number(id));
+    }
+    // Путь для получения выбранного ID:
+    // ui->GamepadComboBox->itemText(ui->GamepadComboBox->currentIndex()).toInt()
 }
 
 void MainWindow::loadClientSettings() {
@@ -519,7 +537,7 @@ void MainWindow::slotShortcutF11() {
 }
 
 void MainWindow::slotShortcutB() {
-    if (ui->HideTabBarButton->isVisible()) {
+    if (ui->TabWidget->tabBar()->isVisible()) {
         ui->TabWidget->tabBar()->hide();
         ui->FullScreenButton->hide();
         ui->HideTabBarButton->hide();

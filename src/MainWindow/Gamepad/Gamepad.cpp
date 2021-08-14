@@ -11,17 +11,6 @@ inline float GasFunction(double X) {
     }
 }
 
-std::list<int> GetGamepadsIds() {
-    std::list<int> ids;
-    XINPUT_STATE state{};
-    for (int i = 0; i < XUSER_MAX_COUNT; i++) {
-        DWORD gamepadState = XInputGetState(i, &state);
-        if (gamepadState == ERROR_SUCCESS)
-            ids.push_back(i);
-
-    }
-    return ids;
-}
 
 
 Gamepad::Gamepad(size_t id) {

@@ -51,10 +51,13 @@ protected:
 private slots:
     void on_CommandsProtocolButton_clicked();
     void on_VideoStreamButton_clicked();
+    void on_ScreenshotButton_clicked();
+    void on_VideoCaptureButton_clicked();
     void on_ReceiveSettingsButton_clicked();
     void on_SendSettingsButton_clicked();
     void on_LoadClientSettingsButton_clicked();
     void on_SaveClientSettingsButton_clicked();
+    void on_RefreshGamepadsButton_clicked();
 
     void on_FullScreenButton_clicked();
     void on_ShowTabBarButton_clicked();
