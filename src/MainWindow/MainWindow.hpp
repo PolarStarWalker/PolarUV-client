@@ -43,46 +43,49 @@ protected:
     void timerEvent(QTimerEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
 
+    void setupRendering();
+    void setupButtons();
+    void setupShortcuts();
+
     void placeWidgets();
-    void loadClientSettings();
+
     static QImage cvMatToQImage(const cv::Mat &mat);
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
 private slots:
-    void on_CommandsProtocolButton_clicked();
-    void on_VideoStreamButton_clicked();
-    void on_ScreenshotButton_clicked();
-    void on_VideoCaptureButton_clicked();
-    void on_ReceiveSettingsButton_clicked();
-    void on_SendSettingsButton_clicked();
-    void on_LoadClientSettingsButton_clicked();
-    void on_SaveClientSettingsButton_clicked();
-    void on_RefreshGamepadsButton_clicked();
-
-    void on_FullScreenButton_clicked();
-    void on_ShowTabBarButton_clicked();
-    void on_HideTabBarButton_clicked();
-
     void on_MotorsNumberSpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);
 
-    void slotShortcutEsc();
-    void slotShortcutTab();
-    void slotShortcutF11();
-    void slotShortcutB();
+    void switchSendingCommands();
+    void switchVideoStream();
+    void takeScreenshot();
+    void switchVideoCapture();
+    void receiveRobotSettings();
+    void sendRobotSettings();
+    void loadClientSettings();
+    void saveClientSettings();
+    void refreshGamepads();
+    void switchFullScreen();
+    void hideTabBar();
+    void showTabBar();
+
+    void shortcutEsc();
+    void shortcutTab();
+    void shortcutF11();
+    void shortcutB();
 
 private:
     Ui::MainWindow *ui;
 
-    bool _widgetsPlaced;
-
     VideoProtocol *_videoStream;
     CommandsProtocol *_commandsProtocol;
 
-    QShortcut *_keyEsc;
-    QShortcut *_keyTab;
-    QShortcut *_keyF11;
-    QShortcut *_keyB;
+    bool _widgetsPlaced = false;
+
+    QShortcut *_keyEsc = nullptr;
+    QShortcut *_keyTab = nullptr;
+    QShortcut *_keyF11 = nullptr;
+    QShortcut *_keyB = nullptr;
 
 };
 #endif

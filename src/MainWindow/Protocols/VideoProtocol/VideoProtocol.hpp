@@ -8,7 +8,7 @@
 #include <shared_mutex>
 #include <thread>
 
-#include "../../../../../robot/src/Robot/DataProtocols/BaseProtocol/BaseProtocol.hpp"
+#include "../BaseProtocol/BaseProtocol.hpp"
 
 class VideoProtocol : public BaseProtocol{
 public:

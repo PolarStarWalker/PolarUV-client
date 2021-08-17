@@ -1,6 +1,5 @@
 #include "./SettingsProtocol/RobotSettingsProtocol.hpp"
 
-
 void RobotSettingsProtocol::Send(const QString &address, uint16_t port, RobotSettingsStruct &&robotSettingsStruct) {
     QTcpSocket _socket;
     _socket.connectToHost(address, port);
