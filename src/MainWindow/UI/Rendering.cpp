@@ -20,6 +20,7 @@ void MainWindow::setupRendering() {
     ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));
     ui->ScreenshotButton->setIcon(QIcon("Icons/ScreenshotIcon.png"));
     ui->VideoCaptureButton->setIcon(QIcon("Icons/WhiteVideoIcon.png"));
+    ui->RefreshGamepadsButton->setIcon(QIcon("Icons/ReloadIcon.png"));
 
     /// Устанавливаем прозрачный фон для некоторых кнопок
     ui->ShowTabBarButton->setStyleSheet("background-color: transparent");

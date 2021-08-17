@@ -34,7 +34,7 @@ void MainWindow::switchVideoCapture() {
 
 void MainWindow::switchSendingCommands() {
     if (!_commandsProtocol->IsOnline()) {
-        _commandsProtocol->StartAsync(ui->IPEdit->text(), COMMANDS_PORT);
+        _commandsProtocol->StartAsync(ui->RobotIPEdit->text(), COMMANDS_PORT);
     } else {
         _commandsProtocol->Stop();
     }
@@ -42,8 +42,8 @@ void MainWindow::switchSendingCommands() {
 
 void MainWindow::receiveRobotSettings() {
     RobotSettingsStruct robotSettingsStruct;
-    std::cout << ui->IPEdit->text().toStdString() << std::endl;
-    RobotSettingsProtocol().Recv(ui->IPEdit->text(), SETTINGS_PORT, robotSettingsStruct);
+    std::cout << ui->RobotIPEdit->text().toStdString() << std::endl;
+    RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT, robotSettingsStruct);
 
     /// Выводим количество двигателей
     const double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
@@ -134,7 +134,7 @@ void MainWindow::sendRobotSettings() {
     std::cout << robotSettingsStruct;
 
     /// Отправка настроек роботу
-    RobotSettingsProtocol().Send(ui->IPEdit->text(), SETTINGS_PORT, std::move(robotSettingsStruct));
+    RobotSettingsProtocol().Send(ui->RobotIPEdit->text(), SETTINGS_PORT, std::move(robotSettingsStruct));
 
     QMessageBox::information(this, "Сообщение", "Настройки успешно отправлены");
 }
@@ -142,7 +142,7 @@ void MainWindow::sendRobotSettings() {
 void MainWindow::saveClientSettings() {
     ClientSettingsStruct settings;
 
-    std::memcpy(settings.serverIP, ui->IPEdit->text().begin(), sizeof(settings.serverIP));
+    std::memcpy(settings.serverIP, ui->RobotIPEdit->text().begin(), sizeof(settings.serverIP));
 
     settings.leftShoulderActionID = (int8_t) ui->LeftShoulderComboBox->currentIndex();
     settings.rightShoulderActionID = (int8_t) ui->RightShoulderComboBox->currentIndex();
@@ -179,7 +179,7 @@ void MainWindow::loadClientSettings() {
     ClientSettingsStruct settings;
     settings.Load();
 
-    ui->IPEdit->setText(QString(settings.serverIP));
+    ui->RobotIPEdit->setText(QString(settings.serverIP));
 
     ui->LeftShoulderComboBox->setCurrentIndex(settings.leftShoulderActionID);
     ui->RightShoulderComboBox->setCurrentIndex(settings.rightShoulderActionID);

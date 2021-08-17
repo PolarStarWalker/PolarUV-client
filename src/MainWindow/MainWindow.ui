@@ -3909,12 +3909,12 @@
       <property name="mouseTracking">
        <bool>false</bool>
       </property>
-      <widget class="QLabel" name="MotorsQuantityLabel_6">
+      <widget class="QLabel" name="RobotIPLabel">
        <property name="geometry">
         <rect>
-         <x>21</x>
-         <y>80</y>
-         <width>151</width>
+         <x>20</x>
+         <y>120</y>
+         <width>171</width>
          <height>41</height>
         </rect>
        </property>
@@ -3949,12 +3949,12 @@
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
        </property>
-       <widget class="QLineEdit" name="IPEdit">
+       <widget class="QLineEdit" name="RobotIPEdit">
         <property name="geometry">
          <rect>
-          <x>180</x>
-          <y>85</y>
-          <width>170</width>
+          <x>200</x>
+          <y>125</y>
+          <width>150</width>
           <height>30</height>
          </rect>
         </property>
@@ -3971,9 +3971,9 @@
        <widget class="QComboBox" name="GamepadComboBox">
         <property name="geometry">
          <rect>
-          <x>180</x>
-          <y>125</y>
-          <width>71</width>
+          <x>200</x>
+          <y>205</y>
+          <width>110</width>
           <height>30</height>
          </rect>
         </property>
@@ -3981,9 +3981,9 @@
        <widget class="QPushButton" name="RefreshGamepadsButton">
         <property name="geometry">
          <rect>
-          <x>260</x>
-          <y>125</y>
-          <width>90</width>
+          <x>320</x>
+          <y>205</y>
+          <width>30</width>
           <height>30</height>
          </rect>
         </property>
@@ -4004,25 +4004,114 @@
          <enum>Qt::RightToLeft</enum>
         </property>
         <property name="text">
-         <string>Обновить</string>
+         <string/>
         </property>
         <property name="iconSize">
          <size>
-          <width>30</width>
-          <height>30</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="autoDefault">
          <bool>false</bool>
         </property>
        </widget>
+       <widget class="QLineEdit" name="ClientIPEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>165</y>
+          <width>150</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="inputMask">
+         <string>000.000.000.000</string>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ClientIPLabel">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>160</y>
+          <width>171</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="text">
+         <string>IP-адрес клиента</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="ProtocolLabel">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>80</y>
+          <width>171</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="text">
+         <string>Протокол</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="ProtocolComboBox">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>85</y>
+          <width>150</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>TCP</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>UDP</string>
+         </property>
+        </item>
+       </widget>
       </widget>
-      <widget class="QLabel" name="MotorsQuantityLabel_7">
+      <widget class="QLabel" name="GamepadLabel">
        <property name="geometry">
         <rect>
-         <x>21</x>
-         <y>120</y>
-         <width>151</width>
+         <x>20</x>
+         <y>200</y>
+         <width>171</width>
          <height>41</height>
         </rect>
        </property>
@@ -4085,8 +4174,8 @@
        </widget>
       </widget>
       <zorder>ClientSettingsWidgetFrame_2</zorder>
-      <zorder>MotorsQuantityLabel_7</zorder>
-      <zorder>MotorsQuantityLabel_6</zorder>
+      <zorder>GamepadLabel</zorder>
+      <zorder>RobotIPLabel</zorder>
       <zorder>ClientSettingsWidgetFrame_4</zorder>
      </widget>
      <zorder>KeyAssignmentsWidget</zorder>
