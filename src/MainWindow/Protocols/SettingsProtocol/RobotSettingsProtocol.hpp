@@ -13,7 +13,8 @@ public:
 
     void Send(const QString &address, uint16_t port, RobotSettingsStruct &&robotSettingsStruct);
 
-    void Recv(const QString &address, uint16_t port, RobotSettingsStruct &robotSettingsStruct);
+    ///NRVO, i choose you
+    RobotSettingsStruct Recv(const QString &address, uint16_t port);
 
 private:
     mutable std::shared_mutex _errorStatusMutex;

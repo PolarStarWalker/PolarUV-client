@@ -2,27 +2,32 @@
 #define ROBOT_ROBOTSETTINGSSTRUCT_HPP
 
 #include <iostream>
-#include <vector>
 #include <cstring>
+#include <cmath>
+#include "../MotorsStruct/MotorsStruct.hpp"
 
-
-namespace {
-    enum Offset : size_t {
-        MotorsProtocolOffset = 0,
-        MaxMotorSpeedOffset = 2,
-        ThrusterNumberOffset = 4,
-        HandFreedomOffset = 6,
-        ArraysOffset = 8
-    };
-}
+struct BaseRobotSettingsStruct {
+    DShotMode MotorsProtocol;
+    uint16_t MaxMotorSpeed;
+    uint16_t ThrusterNumber;
+    uint16_t HandFreedom;
+};
+///Find real size of BaseRobotSettingsStruct
+constexpr size_t BaseRobotSettingsStructActualSize = sizeof(BaseRobotSettingsStruct);
+///Find how many bytes to allocate given eight byte alignment
+const size_t BaseRobotSettingsStructAllocatedSize =
+        (std::ceil(((double) sizeof(BaseRobotSettingsStruct)) / sizeof(double))) * sizeof(double);
 
 class RobotSettingsStruct {
 public:
+
     RobotSettingsStruct();
-    RobotSettingsStruct(const std::vector<double> &copyMoveArray, const std::vector<double> &copyHandArray);
-    explicit RobotSettingsStruct(size_t thrustersNumber, size_t handFreedom);
-    RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct);
+
+    explicit RobotSettingsStruct(const BaseRobotSettingsStruct &robotStatic);
+
     RobotSettingsStruct(const RobotSettingsStruct &robotSettingsStruct);
+
+    RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct) noexcept;
 
     ~RobotSettingsStruct();
 
@@ -36,19 +41,24 @@ public:
 
     size_t Size();
 
-    double *const ThrusterCoefficientArray();
-    int16_t ThrusterNumber();
+    double *ThrusterCoefficientArray();
 
-    double *const HandCoefficientArray();
-    int16_t HandFreedom();
+    uint16_t ThrusterNumber();
 
-    int16_t &MaxMotorsSpeed();
-    int16_t &MotorsProtocol();
+    double *HandCoefficientArray();
+
+    uint16_t HandFreedom();
+
+    uint16_t &MaxMotorsSpeed();
+
+    DShotMode &MotorsProtocol();
 
 private:
     char *_data;
-    size_t _handArrayOffset;
-    size_t _length;
+    size_t _size;
+
+    double *_handCoefficientArrayPtr;
+    double *_thrusterCoefficientArrayPtr;
 
     friend std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robotSettingsStruct);
 };

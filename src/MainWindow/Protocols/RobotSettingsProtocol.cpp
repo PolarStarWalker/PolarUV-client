@@ -23,7 +23,7 @@ void RobotSettingsProtocol::SendAsync(const QString &address, uint16_t port, Rob
     }
 }
 
-void RobotSettingsProtocol::Recv(const QString &address, uint16_t port, RobotSettingsStruct &robotSettingsStruct) {
+RobotSettingsStruct RobotSettingsProtocol::Recv(const QString &address, uint16_t port) {
     QTcpSocket _socket;
     _socket.connectToHost(address, port);
     bool connectionFlag = _socket.waitForConnected(1000);
@@ -31,21 +31,28 @@ void RobotSettingsProtocol::Recv(const QString &address, uint16_t port, RobotSet
     char direction = 'r';
     _socket.write(&direction, 1);
     _socket.waitForBytesWritten(1000);
+    ///ToDo: ConnectionException
 
-    int16_t robotStatic[ArraysOffset / 2]{};
-    _socket.waitForReadyRead(1000);
-    _socket.read((char *) robotStatic, 8);
+    BaseRobotSettingsStruct baseRobotSettings{};
 
+    if (_socket.bytesAvailable() < BaseRobotSettingsStructActualSize) {
+        _socket.waitForReadyRead(500);
+        ///ToDo: TimeOutException
+    }
 
-    RobotSettingsStruct tmpRobotSettings(robotStatic[2], robotStatic[3]);
-    *((int64_t *) (tmpRobotSettings.Begin())) = *((int64_t *) robotStatic);
+    _socket.read((char *) &baseRobotSettings, BaseRobotSettingsStructActualSize);
 
-    _socket.waitForReadyRead(1000);
-    _socket.read(tmpRobotSettings.Begin() + ArraysOffset, tmpRobotSettings.Size() - ArraysOffset);
+    RobotSettingsStruct tmpRobotSettings(baseRobotSettings);
+
+    if (_socket.bytesAvailable() < tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize) {
+        _socket.waitForReadyRead(500);
+        ///ToDo: TimeOutException
+    }
+
+    _socket.read(tmpRobotSettings.Begin() + BaseRobotSettingsStructActualSize,
+                 tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize);
 
     _socket.disconnectFromHost();
-    std::cout << tmpRobotSettings;
 
-    robotSettingsStruct = std::move(tmpRobotSettings);
-
+    return tmpRobotSettings;
 }

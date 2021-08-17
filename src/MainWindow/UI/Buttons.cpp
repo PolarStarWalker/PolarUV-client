@@ -41,9 +41,8 @@ void MainWindow::switchSendingCommands() {
 }
 
 void MainWindow::receiveRobotSettings() {
-    RobotSettingsStruct robotSettingsStruct;
-    std::cout << ui->RobotIPEdit->text().toStdString() << std::endl;
-    RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT, robotSettingsStruct);
+
+    RobotSettingsStruct robotSettingsStruct = RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT);
 
     /// Выводим количество двигателей
     const double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
@@ -93,11 +92,14 @@ void MainWindow::receiveRobotSettings() {
 
 void MainWindow::sendRobotSettings() {
 
-    RobotSettingsStruct robotSettingsStruct(ui->MotorsTable->rowCount(), ui->HandTable->columnCount());
+    BaseRobotSettingsStruct baseRobotSettingsStruct{};
+    baseRobotSettingsStruct.ThrusterNumber = ui->MotorsTable->rowCount();
+    baseRobotSettingsStruct.HandFreedom = ui->HandTable->columnCount();
+
+    RobotSettingsStruct robotSettingsStruct(baseRobotSettingsStruct);
 
     /// Считываем коэффициенты двигателей
     double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
-    std::vector<double> motorsVector(ui->MotorsTable->rowCount() * 6);
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
             moveCoefficientArray[i * 6 + j] = ui->MotorsTable->item(i, j)->text().toDouble();
@@ -106,7 +108,6 @@ void MainWindow::sendRobotSettings() {
 
     /// Считываем коэффициенты манипулятора
     double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
-    std::vector<double> handVector(ui->HandTable->columnCount());
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
         handCoefficientArray[j] = ui->HandTable->item(0, j)->text().toDouble();
     }
