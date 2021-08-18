@@ -44,12 +44,12 @@ void MainWindow::receiveRobotSettings() {
 
     RobotSettingsStruct robotSettingsStruct = RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT);
 
-    /// Выводим количество двигателей
+    /// Writing motors number
     const double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
     int motorsNumber = robotSettingsStruct.ThrusterNumber();
     ui->MotorsNumberSpinBox->setValue(motorsNumber);
 
-    /// Выводим коэффициенты двигателей
+    /// Writing motor coefficients
     for (int i = 0; i < motorsNumber; i++) {
         for (int j = 0; j < 6; j++) {
             QString itemText = QString::number(moveCoefficientArray[i * 6 + j]);
@@ -57,21 +57,21 @@ void MainWindow::receiveRobotSettings() {
         }
     }
 
-    /// Выводим число степеней свободы манипулятора
+    /// Writing the number of degrees of freedom of the hand
     const double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
     int handFreedom = robotSettingsStruct.HandFreedom();
     ui->HandFreedomSpinBox->setValue(handFreedom);
 
-    /// Выводим коэффициенты манипулятора
+    /// Writing hand coefficients
     for (int j = 0; j < handFreedom; j++) {
         QString itemText = QString::number(handCoefficientArray[j]);
         ui->HandTable->setItem(0, j, new QTableWidgetItem(itemText));
     }
 
-    /// Выводим максимальную скорость двигателей
+    /// Writing max motor speed
     ui->MaxSpeedEdit->setText(QString::number(robotSettingsStruct.MaxMotorsSpeed()));
 
-    /// Выводим протокол двигателей
+    /// Writing motors protocol
     switch (robotSettingsStruct.MotorsProtocol()) {
         case 1:
             ui->MotorsProtocolComboBox->setCurrentIndex(0);
@@ -98,7 +98,7 @@ void MainWindow::sendRobotSettings() {
 
     RobotSettingsStruct robotSettingsStruct(baseRobotSettingsStruct);
 
-    /// Считываем коэффициенты двигателей
+    /// Reading motor coefficients
     double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
@@ -106,16 +106,16 @@ void MainWindow::sendRobotSettings() {
         }
     }
 
-    /// Считываем коэффициенты манипулятора
+    /// Reading hand coefficients
     double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
         handCoefficientArray[j] = ui->HandTable->item(0, j)->text().toDouble();
     }
 
-    /// Считываем максимальную скорость двигателей
+    /// Reading max motor speed
     robotSettingsStruct.MaxMotorsSpeed() = (int16_t) ui->MaxSpeedEdit->text().toInt();
 
-    /// Считываем протокол двигателей
+    /// Reading motors protocol
     switch (ui->MotorsProtocolComboBox->currentIndex()) {
         case 0:
             robotSettingsStruct.MotorsProtocol() = DShotMode::DShot150;
@@ -131,10 +131,11 @@ void MainWindow::sendRobotSettings() {
             break;
     }
 
-    //Временный вывод настроек в консоль
+#if DEBUG
     std::cout << robotSettingsStruct;
+#endif
 
-    /// Отправка настроек роботу
+    /// Sending settings to robot
     RobotSettingsProtocol().Send(ui->RobotIPEdit->text(), SETTINGS_PORT, std::move(robotSettingsStruct));
 
     QMessageBox::information(this, "Сообщение", "Настройки успешно отправлены");
@@ -217,7 +218,7 @@ void MainWindow::refreshGamepads() {
     for (int id : gamepads) {
         ui->GamepadComboBox->addItem(QString::number(id));
     }
-    // Путь для получения выбранного ID:
+    // The path to get the selected ID:
     // ui->GamepadComboBox->itemText(ui->GamepadComboBox->currentIndex()).toInt()
 }
 
@@ -230,27 +231,27 @@ void MainWindow::switchFullScreen() {
 }
 
 void MainWindow::showTabBar() {
-    /// Показываем панель
+    /// Showing the TabBar
     ui->TabWidget->tabBar()->show();
 
-    /// Показываем все кнопки на панели
+    /// Showing all the buttons on the TabBar
     ui->FullScreenButton->show();
     ui->HideTabBarButton->show();
     ui->CommandsProtocolButton->show();
 
-    /// Скрываем кнопку показа панели
+    /// Hiding ShowTabBar button
     ui->ShowTabBarButton->hide();
 }
 
 void MainWindow::hideTabBar() {
-    /// Скрываем панель
+    /// Hiding the TabBar
     ui->TabWidget->tabBar()->hide();
 
-    /// Скрываем все кнопки на панели
+    /// Hiding all the buttons on the TabBar
     ui->FullScreenButton->hide();
     ui->HideTabBarButton->hide();
     ui->CommandsProtocolButton->hide();
 
-    /// Показываем кнопку показа панели (Ъеъ)
+    /// Showing ShowTabBar button
     ui->ShowTabBarButton->show();
 }
