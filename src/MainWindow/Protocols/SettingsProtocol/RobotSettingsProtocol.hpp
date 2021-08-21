@@ -5,7 +5,7 @@
 
 #include "../../DataStructs/RobotSettingsStruct/RobotSettingsStruct.hpp"
 #include "../BaseProtocol/BaseProtocol.hpp"
-#include "../Socket/Socket.hpp"
+#include <QTcpSocket>
 
 class RobotSettingsProtocol : protected BaseProtocol {
 public:

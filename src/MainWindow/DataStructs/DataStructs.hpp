@@ -6,5 +6,6 @@
 #include "./TelemetryStruct/TelemetryStruct.hpp"
 #include "./MotorsStruct/MotorsStruct.hpp"
 #include "./ClientSettingsStruct/ClientSettingsStruct.hpp"
+#include "./VideoPipelineStruct/VideoPipelineStruct.hpp"
 
 #endif

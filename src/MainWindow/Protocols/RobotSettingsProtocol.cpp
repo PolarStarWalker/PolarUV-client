@@ -24,35 +24,35 @@ void RobotSettingsProtocol::SendAsync(const QString &address, uint16_t port, Rob
 }
 
 RobotSettingsStruct RobotSettingsProtocol::Recv(const QString &address, uint16_t port) {
-    QTcpSocket _socket;
-    _socket.connectToHost(address, port);
-    bool connectionFlag = _socket.waitForConnected(1000);
+    QTcpSocket socket;
+    socket.connectToHost(address, port);
+    bool connectionFlag = socket.waitForConnected(1000);
 
     char direction = 'r';
-    _socket.write(&direction, 1);
-    _socket.waitForBytesWritten(1000);
+    socket.write(&direction, 1);
+    socket.waitForBytesWritten(1000);
     ///ToDo: ConnectionException
 
     BaseRobotSettingsStruct baseRobotSettings{};
 
-    if (_socket.bytesAvailable() < BaseRobotSettingsStructActualSize) {
-        _socket.waitForReadyRead(500);
+    if (socket.bytesAvailable() < BaseRobotSettingsStructActualSize) {
+        socket.waitForReadyRead(500);
         ///ToDo: TimeOutException
     }
 
-    _socket.read((char *) &baseRobotSettings, BaseRobotSettingsStructActualSize);
+    socket.read((char *) &baseRobotSettings, BaseRobotSettingsStructActualSize);
 
     RobotSettingsStruct tmpRobotSettings(baseRobotSettings);
 
-    if (_socket.bytesAvailable() < tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize) {
-        _socket.waitForReadyRead(500);
+    if (socket.bytesAvailable() < tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize) {
+        socket.waitForReadyRead(500);
         ///ToDo: TimeOutException
     }
 
-    _socket.read(tmpRobotSettings.Begin() + BaseRobotSettingsStructActualSize,
+    socket.read(tmpRobotSettings.Begin() + BaseRobotSettingsStructActualSize,
                  tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize);
 
-    _socket.disconnectFromHost();
+    socket.disconnectFromHost();
 
     return tmpRobotSettings;
 }
