@@ -1,6 +1,6 @@
 project ("DataStructs")
 
-add_library(DataStructs CommandsStruct.cpp RobotSettingsStruct.cpp ClientSettingsStruct.cpp MotorsStruct.cpp)
+add_library(DataStructs CommandsStruct.cpp RobotSettingsStruct.cpp ClientSettingsStruct.cpp MotorsStruct.cpp VideoPipelineStruct.cpp)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)

@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.16)
 add_executable(Client Startup.cpp Startup.hpp)
 
 file(COPY Icons DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY Pipelines DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
 
 if (WIN32)
     set(DEBUG_SUFFIX)

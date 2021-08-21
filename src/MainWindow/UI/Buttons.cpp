@@ -18,7 +18,7 @@ void MainWindow::setupButtons() {
 
 void MainWindow::switchVideoStream() {
     if (!_videoStream->IsOnline()) {
-        _videoStream->StartAsync(pipeline);
+        _videoStream->StartAsync(ui->RobotIPEdit->text());
     } else {
         _videoStream->Stop();
     }

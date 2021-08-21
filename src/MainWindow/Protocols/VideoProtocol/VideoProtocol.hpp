@@ -5,9 +5,11 @@
 #include <opencv2/videoio/videoio.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
+#include <fstream>
 #include <shared_mutex>
 #include <thread>
 
+#include <QTcpSocket>
 #include "../BaseProtocol/BaseProtocol.hpp"
 
 class VideoProtocol : public BaseProtocol{
@@ -15,12 +17,14 @@ public:
     VideoProtocol();
     ~VideoProtocol();
 
-    void Start(const std::string& pipeline);
+    void Start(const QString &address);
     void Stop();
 
     cv::Mat GetMatrix();
 
-    void StartAsync(const std::string& pipeline);
+    void StartAsync(const QString &address);
+
+    void SendVideoScript(const QString& address);
 
 private:
 
@@ -34,7 +38,6 @@ private:
         this->_currentFrame = std::move(newFrame);
         this->_frameMutex.unlock();
     }
-
 };
 
 
