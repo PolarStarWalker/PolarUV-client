@@ -3913,7 +3913,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>120</y>
+         <y>80</y>
          <width>171</width>
          <height>41</height>
         </rect>
@@ -3953,7 +3953,7 @@
         <property name="geometry">
          <rect>
           <x>200</x>
-          <y>125</y>
+          <y>85</y>
           <width>150</width>
           <height>30</height>
          </rect>
@@ -3972,7 +3972,7 @@
         <property name="geometry">
          <rect>
           <x>200</x>
-          <y>205</y>
+          <y>165</y>
           <width>110</width>
           <height>30</height>
          </rect>
@@ -3982,7 +3982,7 @@
         <property name="geometry">
          <rect>
           <x>320</x>
-          <y>205</y>
+          <y>165</y>
           <width>30</width>
           <height>30</height>
          </rect>
@@ -4023,7 +4023,7 @@
         <property name="geometry">
          <rect>
           <x>200</x>
-          <y>165</y>
+          <y>125</y>
           <width>150</width>
           <height>30</height>
          </rect>
@@ -4045,7 +4045,7 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>160</y>
+          <y>120</y>
           <width>171</width>
           <height>41</height>
          </rect>
@@ -4063,54 +4063,12 @@
          <string>IP-адрес клиента</string>
         </property>
        </widget>
-       <widget class="QLabel" name="ProtocolLabel">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>80</y>
-          <width>171</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>Протокол</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="ProtocolComboBox">
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>85</y>
-          <width>150</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <item>
-         <property name="text">
-          <string>TCP</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>UDP</string>
-         </property>
-        </item>
-       </widget>
       </widget>
       <widget class="QLabel" name="GamepadLabel">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>200</y>
+         <y>160</y>
          <width>171</width>
          <height>41</height>
         </rect>
