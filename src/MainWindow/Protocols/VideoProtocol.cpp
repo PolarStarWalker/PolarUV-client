@@ -23,13 +23,13 @@ void VideoProtocol::Start(const QString &address) {
     size_t size = file.tellg();
     file.seekg(0, std::fstream::beg);
 
-    VideoPipelineStruct videoStruct(size+1);
+    VideoPipelineStruct videoStruct(size + 1);
 
     file.read(videoStruct.StringBegin(), size);
     videoStruct.StringBegin()[size] = '\0';
     file.close();
 
-//   this->SendVideoScript(address);
+    this->SendVideoScript(address);
 
     this->_videoStream.open(pipeline, cv::CAP_GSTREAMER);
 
@@ -53,8 +53,9 @@ void VideoProtocol::Start(const QString &address) {
     this->SetThreadStatus(false);
 }
 
-void VideoProtocol::Stop() {
-    this->SetOnlineStatus(false);
+void VideoProtocol::Stop(const QString &address) {
+    if(this->SendStopSignal(address))
+        this->SetOnlineStatus(false);
 }
 
 cv::Mat VideoProtocol::GetMatrix() {
@@ -74,7 +75,7 @@ void VideoProtocol::StartAsync(const QString &address) {
     thread.detach();
 }
 
-void VideoProtocol::SendVideoScript(const QString& address) {
+void VideoProtocol::SendVideoScript(const QString &address) {
     std::fstream file("./Pipelines/robot.txt", std::ios_base::in);
 
     file.seekg(0, std::fstream::end);
@@ -96,5 +97,19 @@ void VideoProtocol::SendVideoScript(const QString& address) {
 
     socket.write(videoStruct.Begin(), videoStruct.Size() + 8);
     socket.waitForBytesWritten(500);
+}
+
+bool VideoProtocol::SendStopSignal(const QString &address) {
+    QTcpSocket socket;
+    socket.connectToHost(address, 28840);
+    if (!socket.waitForConnected(500))
+        return false;
+
+    char signal = 'f';
+    socket.write(&signal, 1);
+    if (!socket.waitForBytesWritten(500))
+        return false;
+
+    return true;
 }
 

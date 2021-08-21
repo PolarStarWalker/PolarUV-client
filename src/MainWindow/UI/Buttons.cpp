@@ -20,7 +20,7 @@ void MainWindow::switchVideoStream() {
     if (!_videoStream->IsOnline()) {
         _videoStream->StartAsync(ui->RobotIPEdit->text());
     } else {
-        _videoStream->Stop();
+        _videoStream->Stop(ui->RobotIPEdit->text());
     }
 }
 
