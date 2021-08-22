@@ -17,6 +17,8 @@ VideoProtocol::~VideoProtocol() {
 
 void VideoProtocol::Start(const QString &address) {
 
+    this->_videoStream.release();
+
     std::fstream file("./Pipelines/client.txt", std::ios_base::in);
 
     file.seekg(0, std::fstream::end);
@@ -54,7 +56,7 @@ void VideoProtocol::Start(const QString &address) {
 }
 
 void VideoProtocol::Stop(const QString &address) {
-    if(this->SendStopSignal(address))
+    if (this->SendStopSignal(address))
         this->SetOnlineStatus(false);
 }
 
