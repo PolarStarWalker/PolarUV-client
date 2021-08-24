@@ -17,14 +17,14 @@ public:
     VideoProtocol();
     ~VideoProtocol();
 
-    void Start(const QString &address);
+    void Start(const QString &robotAddress, const QString &clientAddress);
     void Stop(const QString& address);
 
     cv::Mat GetMatrix();
 
-    void StartAsync(const QString &address);
+    void StartAsync(const QString &robotAddress, const QString &clientAddress);
 
-    static void SendVideoScript(const QString& address);
+    static void SendVideoScript(const QString &robotAddress, const QString &clientAddress);
     static bool SendStopSignal(const QString& address);
 
 private:

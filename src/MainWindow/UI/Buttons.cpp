@@ -20,7 +20,9 @@ void MainWindow::setupButtons() {
 
 void MainWindow::switchVideoStream() {
     if (!_videoStream->IsOnline()) {
-        _videoStream->StartAsync(ui->RobotIPEdit->text());
+        QString clientAddress = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
+        QString robotAddress = ui->RobotIPEdit->text();
+        _videoStream->StartAsync(robotAddress, clientAddress);
     } else {
         _videoStream->Stop(ui->RobotIPEdit->text());
     }
@@ -237,7 +239,7 @@ void MainWindow::refreshClientIps() {
     std::list<std::string> ips = GetClientIps();
 
     // The path to get the selected ID:
-    QString ip = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
+    //QString ip = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
 
 }
 

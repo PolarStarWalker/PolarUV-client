@@ -1,8 +1,9 @@
 #include "VideoProtocol/VideoProtocol.hpp"
 #include "../DataStructs/VideoPipelineStruct/VideoPipelineStruct.hpp"
 
-
-constexpr char pipeline[] = "udpsrc port=5000 ! gdpdepay ! rtph264depay ! decodebin ! autovideoconvert ! appsink sync=false";
+constexpr char destination[] = " ! udpsink=                 port=5000";
+constexpr size_t destinationSize = sizeof(destination);
+const size_t destinationIpPosition = std::find(destination, destination + destinationSize, '=') - destination;
 
 VideoProtocol::VideoProtocol() {
     this->_isOnline = false;
@@ -15,7 +16,7 @@ VideoProtocol::~VideoProtocol() {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
 }
 
-void VideoProtocol::Start(const QString &address) {
+void VideoProtocol::Start(const QString &robotAddress, const QString &clientAddress) {
 
     this->_videoStream.release();
 
@@ -31,9 +32,9 @@ void VideoProtocol::Start(const QString &address) {
     videoStruct.StringBegin()[size] = '\0';
     file.close();
 
-    this->SendVideoScript(address);
+    this->SendVideoScript(robotAddress, clientAddress);
 
-    this->_videoStream.open(pipeline, cv::CAP_GSTREAMER);
+    this->_videoStream.open(videoStruct.StringBegin(), cv::CAP_GSTREAMER);
 
     SetOnlineStatus(_videoStream.isOpened());
 
@@ -69,27 +70,31 @@ cv::Mat VideoProtocol::GetMatrix() {
     return outFrame;
 }
 
-void VideoProtocol::StartAsync(const QString &address) {
+void VideoProtocol::StartAsync(const QString &robotAddress, const QString &clientAddress) {
     if (this->IsOnline())
         return;
 
-    std::thread thread(&VideoProtocol::Start, this, address);
+    std::thread thread(&VideoProtocol::Start, this, robotAddress, clientAddress);
     thread.detach();
 }
 
-void VideoProtocol::SendVideoScript(const QString &address) {
+void VideoProtocol::SendVideoScript(const QString &robotAddress, const QString &clientAddress) {
     std::fstream file("./Pipelines/robot.txt", std::ios_base::in);
 
     file.seekg(0, std::fstream::end);
     size_t size = file.tellg();
     file.seekg(0, std::fstream::beg);
 
-    VideoPipelineStruct videoStruct(size);
+    VideoPipelineStruct videoStruct(size + destinationSize);
 
     file.read(videoStruct.StringBegin(), size);
 
+    std::memcpy(videoStruct.StringBegin() + size, destination, destinationSize);
+    std::string clientIp = clientAddress.toStdString();
+    std::memcpy(videoStruct.StringBegin() + size + destinationIpPosition, clientIp.c_str(), clientIp.size());
+
     QTcpSocket socket;
-    socket.connectToHost(address, 28840);
+    socket.connectToHost(robotAddress, 28840);
     socket.waitForConnected(500);
 
     char action = 's';
