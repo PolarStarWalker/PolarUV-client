@@ -17,4 +17,4 @@ add_subdirectory(DataStructs)
 target_link_libraries(MainWindow Protocols)
 target_link_libraries(MainWindow Gamepad)
 target_link_libraries(MainWindow DataStructs)
-
+target_link_libraries(MainWindow iphlpapi)

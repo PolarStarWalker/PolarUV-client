@@ -1,3 +1,4 @@
+#include <iphlpapi.h>
 #include "../MainWindow.hpp"
 #include "../ui_mainwindow.h"
 
@@ -11,6 +12,7 @@ void MainWindow::setupButtons() {
     this->connect(ui->SaveClientSettingsButton, SIGNAL(clicked(bool)), SLOT(saveClientSettings()));
     this->connect(ui->LoadClientSettingsButton, SIGNAL(clicked(bool)), SLOT(loadClientSettings()));
     this->connect(ui->RefreshGamepadsButton, SIGNAL(clicked(bool)), SLOT(refreshGamepads()));
+    this->connect(ui->RefreshClientIPsButton, SIGNAL(clicked(bool)), SLOT(refreshClientIps()));
     this->connect(ui->FullScreenButton, SIGNAL(clicked(bool)), SLOT(switchFullScreen()));
     this->connect(ui->ShowTabBarButton, SIGNAL(clicked(bool)), SLOT(showTabBar()));
     this->connect(ui->HideTabBarButton, SIGNAL(clicked(bool)), SLOT(hideTabBar()));
@@ -218,8 +220,25 @@ void MainWindow::refreshGamepads() {
     for (int id : gamepads) {
         ui->GamepadComboBox->addItem(QString::number(id));
     }
+
+    std::list<std::string> ips = GetClientIps();
+
     // The path to get the selected ID:
     // ui->GamepadComboBox->itemText(ui->GamepadComboBox->currentIndex()).toInt()
+}
+
+void MainWindow::refreshClientIps() {
+    std::list<std::string> addresses = GetClientIps();
+    ui->ClientIPComboBox->clear();
+    for (std::string address : addresses) {
+        ui->ClientIPComboBox->addItem(QString::fromStdString(address));
+    }
+
+    std::list<std::string> ips = GetClientIps();
+
+    // The path to get the selected ID:
+    QString ip = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
+
 }
 
 void MainWindow::switchFullScreen() {
@@ -254,4 +273,44 @@ void MainWindow::hideTabBar() {
 
     /// Showing ShowTabBar button
     ui->ShowTabBarButton->show();
+}
+
+std::list<std::string> GetClientIps() {
+    std::list<std::string> ips;
+    PIP_ADAPTER_INFO adapterInfo = nullptr;
+    ULONG ulOutBufLen = 0;
+
+    DWORD result = GetAdaptersInfo(nullptr, &ulOutBufLen);
+
+    if (result == ERROR_BUFFER_OVERFLOW) {
+        HeapFree(GetProcessHeap(), 0, adapterInfo);
+        adapterInfo = new IP_ADAPTER_INFO[ulOutBufLen / sizeof(IP_ADAPTER_INFO)];
+        result = GetAdaptersInfo(adapterInfo, &ulOutBufLen);
+    }
+
+    if (result != ERROR_SUCCESS) {
+
+        HeapFree(GetProcessHeap(), 0, adapterInfo);
+
+        return ips;
+    }
+
+    PIP_ADAPTER_INFO deleteAdapter = adapterInfo;
+
+    std::string nullIp = "0.0.0.0";
+    for (size_t i = 0; i < ulOutBufLen / sizeof(IP_ADAPTER_INFO); ++i) {
+
+        bool isEqual = !std::strcmp(nullIp.c_str(), adapterInfo->IpAddressList.IpAddress.String);
+
+        if (isEqual) {
+            adapterInfo = adapterInfo->Next;
+            continue;
+        }
+
+        ips.push_back(std::string(adapterInfo->IpAddressList.IpAddress.String));
+        adapterInfo = adapterInfo->Next;
+    }
+
+    delete[] deleteAdapter;
+    return ips;
 }

@@ -17,19 +17,14 @@
 #include "./Protocols/Protocols.hpp"
 #include "./Gamepad/Gamepad.hpp"
 
-#define SERVER_IP "169.254.154.5"
-// 192.168.1.50 - motov.s
-// 169.254.154.5 - shushkov.d
 #define COMMANDS_PORT 1999
 #define SETTINGS_PORT 14322
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 constexpr char pipeline[] = "tcpclientsrc host=169.254.154.5 port=5000 ! gdpdepay ! rtph264depay ! decodebin ! autovideoconvert  ! appsink sync=false";
-
 
 class MainWindow : public QMainWindow
 {
@@ -66,6 +61,7 @@ private slots:
     void loadClientSettings();
     void saveClientSettings();
     void refreshGamepads();
+    void refreshClientIps();
     void switchFullScreen();
     void hideTabBar();
     void showTabBar();
@@ -89,5 +85,8 @@ private:
     QShortcut *_keyB = nullptr;
 
 };
+
+std::list<std::string> GetClientIps();
+
 #endif
 
