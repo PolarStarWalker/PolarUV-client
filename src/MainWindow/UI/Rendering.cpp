@@ -20,6 +20,7 @@ void MainWindow::setupRendering() {
     ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));
     ui->ScreenshotButton->setIcon(QIcon("Icons/ScreenshotIcon.png"));
     ui->VideoCaptureButton->setIcon(QIcon("Icons/WhiteVideoIcon.png"));
+    ui->RefreshClientIPsButton->setIcon(QIcon("Icons/ReloadIcon.png"));
     ui->RefreshGamepadsButton->setIcon(QIcon("Icons/ReloadIcon.png"));
 
     /// Setting a transparent background for some buttons
@@ -30,6 +31,32 @@ void MainWindow::setupRendering() {
 
     /// Hiding the TabBar button
     ui->ShowTabBarButton->hide();
+
+    /// Adding a shadow effect to telemetry labels
+    QLabel *telemetryLabels[23] = {
+            ui->AccelerationLabel, ui->AccelerationXLabel, ui->AccelerationXValue, ui->AccelerationXUnits,
+            ui->AccelerationYLabel, ui->AccelerationYValue, ui->AccelerationYUnits, ui->AccelerationZLabel,
+            ui->AccelerationZValue, ui->AccelerationZUnits, ui->EulerLabel, ui->EulerXLabel, ui->EulerXValue,
+            ui->EulerXUnits, ui->EulerYLabel, ui->EulerYValue, ui->EulerYUnits, ui->EulerZLabel, ui->EulerZValue,
+            ui->EulerZUnits, ui->DepthLabel, ui->PressureLabel, ui->VoltageLabel
+    };
+    for (auto &telemetryLabel : telemetryLabels) {
+        auto *shadowEffect = new QGraphicsDropShadowEffect(this);
+        shadowEffect->setOffset(2, 2);
+        shadowEffect->setColor(Qt::black);
+        telemetryLabel->setGraphicsEffect(shadowEffect);
+    }
+
+    /// Adding a shadow effect to tab_1 buttons
+    QPushButton *buttons[4] = {
+        ui->ShowTabBarButton, ui->VideoStreamButton, ui->ScreenshotButton, ui->VideoCaptureButton
+    };
+    for (auto &button : buttons) {
+        auto *shadowEffect = new QGraphicsDropShadowEffect(this);
+        shadowEffect->setOffset(2, 2);
+        shadowEffect->setColor(Qt::black);
+        button->setGraphicsEffect(shadowEffect);
+    }
 }
 
 void MainWindow::placeWidgets() {
@@ -73,12 +100,17 @@ void MainWindow::placeWidgets() {
     x = ui->VideoStreamButton->x() - ui->ScreenshotButton->width() - offset;
     y = ui->VideoStreamButton->y();
     ui->ScreenshotButton->move(x, y);
+////////////////////////////////////
+    /// Moving the MotorsSettings widget
+    offset = 30; // Horizontal distance between widgets
+    x = (ui->tab_2->width() - (ui->MotorsSettingsWidget->width() + ui->HandSettingsWidget->width() + offset)) / 2;
+    y = (ui->tab_2->height() - ui->MotorsSettingsWidget->height()) / 2;
+    ui->MotorsSettingsWidget->move(x, y);
 
-    /// Moving the RobotSettings widget
-    x = (ui->tab_2->width() / 2) - (ui->RobotSettingsWidget->width() / 2);
-    y = (ui->tab_2->height() / 2) - (ui->RobotSettingsWidget->height() / 2);
-    ui->RobotSettingsWidget->move(x, y);
-
+    /// Moving the HandSettings widget
+    x = ui->MotorsSettingsWidget->x() + ui->MotorsSettingsWidget->width() + offset;
+    ui->HandSettingsWidget->move(x, y);
+////////////////////////////////////////
     /// Moving the KeyAssignments widget
     offset = 30; // Horizontal distance between widgets
     x = (ui->tab_3->width() - (ui->KeyAssignmentsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
@@ -89,10 +121,19 @@ void MainWindow::placeWidgets() {
     x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() + offset;
     ui->ClientSettingsWidget->move(x, y);
 
-    /// Moving the RobotSettings label
-    x = ui->RobotSettingsWidget->x() + ui->RobotSettingsWidget->width() / 2 - ui->RobotSettingsLabel->width() / 2;
-    y = ui->RobotSettingsWidget->y() - ui->RobotSettingsLabel->height() / 2;
-    ui->RobotSettingsLabel->move(x, y);
+    /// Moving the Telemetry widget
+    offset = 10; // Distance from the top edge of the window
+    ui->TelemetryWidget->move(ui->tab_1->width() - ui->TelemetryWidget->width(), 0 + offset);
+
+    /// Moving the MotorsSettings label
+    x = ui->MotorsSettingsWidget->x() + ui->MotorsSettingsWidget->width() / 2 - ui->MotorsSettingsLabel->width() / 2;
+    y = ui->MotorsSettingsWidget->y() - ui->MotorsSettingsLabel->height() / 2;
+    ui->MotorsSettingsLabel->move(x, y);
+
+    /// Moving the HandSettings label
+    x = ui->HandSettingsWidget->x() + ui->HandSettingsWidget->width() / 2 - ui->HandSettingsLabel->width() / 2;
+    y = ui->HandSettingsWidget->y() - ui->HandSettingsLabel->height() / 2;
+    ui->HandSettingsLabel->move(x, y);
 
     /// Moving the KeyAssignments label
     x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() / 2 - ui->KeyAssignmentsLabel->width() / 2;

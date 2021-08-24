@@ -11,6 +11,7 @@
 #include <QPainter>
 #include <QThread>
 #include <QShortcut>
+#include <QGraphicsDropShadowEffect>
 
 #include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"

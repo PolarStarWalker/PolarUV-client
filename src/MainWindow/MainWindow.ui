@@ -475,7 +475,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Полярник 3.353b-mk.II</string>
+   <string>Полярник 3.357b-mk.II</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -787,6 +787,9 @@
      <property name="accessibleName">
       <string/>
      </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
      <attribute name="icon">
       <iconset>
        <normaloff>../../../../../../Icon.png</normaloff>../../../../../../Icon.png</iconset>
@@ -816,10 +819,13 @@
        </font>
       </property>
       <property name="mouseTracking">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="text">
-       <string>Нет изображения. Проверьте папку с иконками</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Нет изображения&lt;/p&gt;&lt;p&gt;Проверьте папку с иконками&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::RichText</enum>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -828,7 +834,7 @@
        <set>Qt::AlignCenter</set>
       </property>
       <property name="wordWrap">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="VideoStreamButton">
@@ -972,6 +978,800 @@
        <bool>true</bool>
       </property>
      </widget>
+     <widget class="QWidget" name="TelemetryWidget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>949</x>
+        <y>10</y>
+        <width>361</width>
+        <height>371</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <widget class="QLabel" name="EulerLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>130</y>
+         <width>151</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Наклон</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerXLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>130</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>X</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerYLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>170</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Y</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerZLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>210</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Z</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="DepthLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>260</y>
+         <width>151</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Глубина</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="PressureLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>300</y>
+         <width>151</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Давление</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="VoltageLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>340</y>
+         <width>141</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Напряжение</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerXValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>130</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerYValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>170</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerZValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>210</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="DepthValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>260</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="PressureValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>300</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="VoltageValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>340</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerXUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>130</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>°</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerYUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>170</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>°</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="EulerZUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>210</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>°</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="DepthUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>260</y>
+         <width>51</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>м</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="PressureUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>300</y>
+         <width>51</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>кПа</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="VoltageUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>340</y>
+         <width>51</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>В</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationXValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>0</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationXUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>0</y>
+         <width>51</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>м/с²</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationZValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>80</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationZLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>80</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Z</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationYUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>40</y>
+         <width>51</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>м/с²</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationYValue">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>40</y>
+         <width>111</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="text">
+        <string>000,000</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationZUnits">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>80</y>
+         <width>51</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>м/с²</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationLabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>151</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Ускорение</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationXLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>0</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>X</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="AccelerationYLabel">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>40</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <underline>false</underline>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>Y</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <property name="sizePolicy">
@@ -996,268 +1796,26 @@
      <attribute name="toolTip">
       <string>Настройки ТНПА</string>
      </attribute>
-     <widget class="QWidget" name="RobotSettingsWidget" native="true">
+     <widget class="QWidget" name="MotorsSettingsWidget" native="true">
       <property name="enabled">
        <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>280</x>
-        <y>124</y>
-        <width>721</width>
-        <height>551</height>
+        <x>250</x>
+        <y>130</y>
+        <width>400</width>
+        <height>540</height>
        </rect>
       </property>
       <property name="mouseTracking">
        <bool>false</bool>
       </property>
-      <widget class="Line" name="HandTopRightLine">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>240</y>
-         <width>21</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>3</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-      <widget class="QLabel" name="HandFreedomLabel">
-       <property name="geometry">
-        <rect>
-         <x>429</x>
-         <y>75</y>
-         <width>161</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>12</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Степени свободы</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="HandFreedomSpinBox">
-       <property name="geometry">
-        <rect>
-         <x>609</x>
-         <y>80</y>
-         <width>60</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>6</number>
-       </property>
-       <property name="value">
-        <number>2</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="HandLabel">
-       <property name="geometry">
-        <rect>
-         <x>429</x>
-         <y>35</y>
-         <width>241</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Манипулятор</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="HandCoefficientsLabel">
-       <property name="geometry">
-        <rect>
-         <x>479</x>
-         <y>201</y>
-         <width>141</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>12</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Коэффициенты</string>
-       </property>
-      </widget>
-      <widget class="Line" name="HandBottomRightLine">
-       <property name="geometry">
-        <rect>
-         <x>590</x>
-         <y>290</y>
-         <width>21</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>3</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-      <widget class="QTableWidget" name="HandTable">
-       <property name="geometry">
-        <rect>
-         <x>500</x>
-         <y>261</y>
-         <width>101</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>1</number>
-       </property>
-       <property name="midLineWidth">
-        <number>1</number>
-       </property>
-       <property name="verticalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
-       <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
-       <property name="autoScroll">
-        <bool>false</bool>
-       </property>
-       <property name="alternatingRowColors">
-        <bool>false</bool>
-       </property>
-       <property name="selectionMode">
-        <enum>QAbstractItemView::NoSelection</enum>
-       </property>
-       <property name="showGrid">
-        <bool>true</bool>
-       </property>
-       <property name="gridStyle">
-        <enum>Qt::SolidLine</enum>
-       </property>
-       <property name="sortingEnabled">
-        <bool>false</bool>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-       <property name="cornerButtonEnabled">
-        <bool>false</bool>
-       </property>
-       <property name="rowCount">
-        <number>1</number>
-       </property>
-       <property name="columnCount">
-        <number>2</number>
-       </property>
-       <attribute name="horizontalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>49</number>
-       </attribute>
-       <attribute name="horizontalHeaderHighlightSections">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>false</bool>
-       </attribute>
-       <attribute name="verticalHeaderDefaultSectionSize">
-        <number>26</number>
-       </attribute>
-       <attribute name="verticalHeaderHighlightSections">
-        <bool>false</bool>
-       </attribute>
-       <row/>
-       <column/>
-       <column/>
-       <item row="0" column="0">
-        <property name="text">
-         <string>0</string>
-        </property>
-       </item>
-       <item row="0" column="1">
-        <property name="text">
-         <string>0</string>
-        </property>
-       </item>
-      </widget>
       <widget class="QLabel" name="MotorsMaxSpeedLabel">
        <property name="geometry">
         <rect>
          <x>21</x>
-         <y>155</y>
+         <y>125</y>
          <width>241</width>
          <height>41</height>
         </rect>
@@ -1282,7 +1840,7 @@
        <property name="geometry">
         <rect>
          <x>21</x>
-         <y>115</y>
+         <y>85</y>
          <width>241</width>
          <height>41</height>
         </rect>
@@ -1307,7 +1865,7 @@
        <property name="geometry">
         <rect>
          <x>344</x>
-         <y>252</y>
+         <y>219</y>
          <width>20</width>
          <height>231</height>
         </rect>
@@ -1332,7 +1890,7 @@
        <property name="geometry">
         <rect>
          <x>41</x>
-         <y>241</y>
+         <y>209</y>
          <width>31</width>
          <height>20</height>
         </rect>
@@ -1354,7 +1912,7 @@
        <property name="geometry">
         <rect>
          <x>325</x>
-         <y>241</y>
+         <y>209</y>
          <width>31</width>
          <height>20</height>
         </rect>
@@ -1376,7 +1934,7 @@
        <property name="geometry">
         <rect>
          <x>21</x>
-         <y>75</y>
+         <y>45</y>
          <width>171</width>
          <height>41</height>
         </rect>
@@ -1397,39 +1955,11 @@
         <string>Количество</string>
        </property>
       </widget>
-      <widget class="QLabel" name="MotorsLabel">
-       <property name="geometry">
-        <rect>
-         <x>21</x>
-         <y>35</y>
-         <width>361</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Двигатели</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
       <widget class="QLabel" name="MotorsCoefficientsLabel">
        <property name="geometry">
         <rect>
          <x>126</x>
-         <y>201</y>
+         <y>170</y>
          <width>141</width>
          <height>41</height>
         </rect>
@@ -1454,7 +1984,7 @@
        <property name="geometry">
         <rect>
          <x>32</x>
-         <y>252</y>
+         <y>219</y>
          <width>20</width>
          <height>231</height>
         </rect>
@@ -1479,7 +2009,7 @@
        <property name="geometry">
         <rect>
          <x>325</x>
-         <y>474</y>
+         <y>440</y>
          <width>31</width>
          <height>20</height>
         </rect>
@@ -1501,7 +2031,7 @@
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>80</y>
+         <y>50</y>
          <width>120</width>
          <height>30</height>
         </rect>
@@ -1523,7 +2053,7 @@
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>160</y>
+         <y>130</y>
          <width>120</width>
          <height>30</height>
         </rect>
@@ -1539,7 +2069,7 @@
        <property name="geometry">
         <rect>
          <x>41</x>
-         <y>474</y>
+         <y>440</y>
          <width>31</width>
          <height>20</height>
         </rect>
@@ -1561,7 +2091,7 @@
        <property name="geometry">
         <rect>
          <x>50</x>
-         <y>261</y>
+         <y>230</y>
          <width>297</width>
          <height>212</height>
         </rect>
@@ -1896,36 +2426,11 @@
         </property>
        </item>
       </widget>
-      <widget class="Line" name="HandRightLine">
-       <property name="geometry">
-        <rect>
-         <x>599</x>
-         <y>250</y>
-         <width>20</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>3</number>
-       </property>
-       <property name="midLineWidth">
-        <number>0</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
       <widget class="QComboBox" name="MotorsProtocolComboBox">
        <property name="geometry">
         <rect>
          <x>260</x>
-         <y>120</y>
+         <y>90</y>
          <width>120</width>
          <height>30</height>
         </rect>
@@ -1957,82 +2462,13 @@
         </property>
        </item>
       </widget>
-      <widget class="Line" name="HandBottomLeftLine">
-       <property name="geometry">
-        <rect>
-         <x>489</x>
-         <y>290</y>
-         <width>21</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>3</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-      <widget class="Line" name="HandTopLeftLine">
-       <property name="geometry">
-        <rect>
-         <x>489</x>
-         <y>240</y>
-         <width>21</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>3</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-      <widget class="Line" name="HandLeftLine">
-       <property name="geometry">
-        <rect>
-         <x>480</x>
-         <y>250</y>
-         <width>20</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="lineWidth">
-        <number>3</number>
-       </property>
-       <property name="midLineWidth">
-        <number>0</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-      <widget class="QFrame" name="RobotSettingsWidgetFrame">
+      <widget class="QFrame" name="MotorsSettingsWidgetFrame">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>720</width>
-         <height>550</height>
+         <width>400</width>
+         <height>540</height>
         </rect>
        </property>
        <property name="mouseTracking">
@@ -2054,74 +2490,13 @@
         <number>0</number>
        </property>
       </widget>
-      <widget class="QPushButton" name="SendSettingsButton">
-       <property name="geometry">
-        <rect>
-         <x>410</x>
-         <y>400</y>
-         <width>270</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Отправить настройки</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="ReceiveSettingsButton">
-       <property name="geometry">
-        <rect>
-         <x>410</x>
-         <y>345</y>
-         <width>270</width>
-         <height>50</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="mouseTracking">
-        <bool>false</bool>
-       </property>
-       <property name="text">
-        <string>Получить настройки</string>
-       </property>
-       <property name="flat">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <zorder>RobotSettingsWidgetFrame</zorder>
-      <zorder>HandTopRightLine</zorder>
-      <zorder>HandFreedomLabel</zorder>
-      <zorder>HandFreedomSpinBox</zorder>
-      <zorder>HandLabel</zorder>
-      <zorder>HandCoefficientsLabel</zorder>
-      <zorder>HandBottomRightLine</zorder>
-      <zorder>HandTable</zorder>
+      <zorder>MotorsSettingsWidgetFrame</zorder>
       <zorder>MotorsMaxSpeedLabel</zorder>
       <zorder>MotorsProtocolLabel</zorder>
       <zorder>MotorsRightLine</zorder>
       <zorder>MotorsTopLeftLine</zorder>
       <zorder>MotorsTopRightLine</zorder>
       <zorder>MotorsNumberLabel</zorder>
-      <zorder>MotorsLabel</zorder>
       <zorder>MotorsCoefficientsLabel</zorder>
       <zorder>MotorsLeftLine</zorder>
       <zorder>MotorsBottomRightLine</zorder>
@@ -2129,19 +2504,13 @@
       <zorder>MaxSpeedEdit</zorder>
       <zorder>MotorsBottomLeftLine</zorder>
       <zorder>MotorsTable</zorder>
-      <zorder>HandRightLine</zorder>
       <zorder>MotorsProtocolComboBox</zorder>
-      <zorder>HandBottomLeftLine</zorder>
-      <zorder>HandTopLeftLine</zorder>
-      <zorder>HandLeftLine</zorder>
-      <zorder>SendSettingsButton</zorder>
-      <zorder>ReceiveSettingsButton</zorder>
      </widget>
-     <widget class="QLabel" name="RobotSettingsLabel">
+     <widget class="QLabel" name="MotorsSettingsLabel">
       <property name="geometry">
        <rect>
-        <x>540</x>
-        <y>100</y>
+        <x>340</x>
+        <y>106</y>
         <width>230</width>
         <height>50</height>
        </rect>
@@ -2165,12 +2534,495 @@
        <enum>QFrame::Panel</enum>
       </property>
       <property name="text">
-       <string>Настройки</string>
+       <string>Двигатели</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="HandSettingsLabel">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>106</y>
+        <width>230</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="text">
+       <string>Манипулятор</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QWidget" name="HandSettingsWidget" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>130</y>
+        <width>370</width>
+        <height>540</height>
+       </rect>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
+      <widget class="Line" name="HandTopRightLine">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>209</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="HandFreedomLabel">
+       <property name="geometry">
+        <rect>
+         <x>65</x>
+         <y>45</y>
+         <width>161</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Степени свободы</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="HandFreedomSpinBox">
+       <property name="geometry">
+        <rect>
+         <x>245</x>
+         <y>50</y>
+         <width>60</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>6</number>
+       </property>
+       <property name="value">
+        <number>2</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="HandCoefficientsLabel">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>170</y>
+         <width>141</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Коэффициенты</string>
+       </property>
+      </widget>
+      <widget class="Line" name="HandBottomRightLine">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>259</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QTableWidget" name="HandTable">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>230</y>
+         <width>101</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>1</number>
+       </property>
+       <property name="midLineWidth">
+        <number>1</number>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="autoScroll">
+        <bool>false</bool>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>false</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::NoSelection</enum>
+       </property>
+       <property name="showGrid">
+        <bool>true</bool>
+       </property>
+       <property name="gridStyle">
+        <enum>Qt::SolidLine</enum>
+       </property>
+       <property name="sortingEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+       <property name="cornerButtonEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="rowCount">
+        <number>1</number>
+       </property>
+       <property name="columnCount">
+        <number>2</number>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>49</number>
+       </attribute>
+       <attribute name="horizontalHeaderHighlightSections">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderDefaultSectionSize">
+        <number>26</number>
+       </attribute>
+       <attribute name="verticalHeaderHighlightSections">
+        <bool>false</bool>
+       </attribute>
+       <row/>
+       <column/>
+       <column/>
+       <item row="0" column="0">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+       <item row="0" column="1">
+        <property name="text">
+         <string>0</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="Line" name="HandRightLine">
+       <property name="geometry">
+        <rect>
+         <x>239</x>
+         <y>219</y>
+         <width>20</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="midLineWidth">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+      <widget class="Line" name="HandBottomLeftLine">
+       <property name="geometry">
+        <rect>
+         <x>129</x>
+         <y>259</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="Line" name="HandTopLeftLine">
+       <property name="geometry">
+        <rect>
+         <x>129</x>
+         <y>209</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="Line" name="HandLeftLine">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>219</y>
+         <width>20</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="midLineWidth">
+        <number>0</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+      <widget class="QFrame" name="HandSettingsWidgetFrame">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>370</width>
+         <height>355</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>1</number>
+       </property>
+       <property name="midLineWidth">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QFrame" name="RobotSettingsWidgetFrame_1">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>385</y>
+         <width>370</width>
+         <height>155</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>1</number>
+       </property>
+       <property name="midLineWidth">
+        <number>0</number>
+       </property>
+       <widget class="QPushButton" name="ReceiveSettingsButton">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>25</y>
+          <width>320</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Получить настройки</string>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="SendSettingsButton">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>80</y>
+          <width>320</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Отправить настройки</string>
+        </property>
+       </widget>
+      </widget>
+      <zorder>HandSettingsWidgetFrame</zorder>
+      <zorder>HandTopRightLine</zorder>
+      <zorder>HandFreedomLabel</zorder>
+      <zorder>HandFreedomSpinBox</zorder>
+      <zorder>HandCoefficientsLabel</zorder>
+      <zorder>HandBottomRightLine</zorder>
+      <zorder>HandTable</zorder>
+      <zorder>HandRightLine</zorder>
+      <zorder>HandBottomLeftLine</zorder>
+      <zorder>HandTopLeftLine</zorder>
+      <zorder>HandLeftLine</zorder>
+      <zorder>RobotSettingsWidgetFrame_1</zorder>
+     </widget>
+     <zorder>MotorsSettingsWidget</zorder>
+     <zorder>MotorsSettingsLabel</zorder>
+     <zorder>HandSettingsWidget</zorder>
+     <zorder>HandSettingsLabel</zorder>
     </widget>
     <widget class="QWidget" name="tab_3">
      <property name="mouseTracking">
@@ -3891,7 +4743,7 @@
        <enum>QFrame::Panel</enum>
       </property>
       <property name="text">
-       <string>Настройки</string>
+       <string>Подключение</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -3914,7 +4766,7 @@
         <rect>
          <x>20</x>
          <y>80</y>
-         <width>171</width>
+         <width>131</width>
          <height>41</height>
         </rect>
        </property>
@@ -3928,7 +4780,7 @@
         </font>
        </property>
        <property name="text">
-        <string>IP-адрес ТНПА</string>
+        <string>IP ТНПА</string>
        </property>
       </widget>
       <widget class="QFrame" name="ClientSettingsWidgetFrame_2">
@@ -3952,7 +4804,7 @@
        <widget class="QLineEdit" name="RobotIPEdit">
         <property name="geometry">
          <rect>
-          <x>200</x>
+          <x>160</x>
           <y>85</y>
           <width>150</width>
           <height>30</height>
@@ -3971,9 +4823,9 @@
        <widget class="QComboBox" name="GamepadComboBox">
         <property name="geometry">
          <rect>
-          <x>200</x>
+          <x>160</x>
           <y>165</y>
-          <width>110</width>
+          <width>151</width>
           <height>30</height>
          </rect>
         </property>
@@ -4016,37 +4868,15 @@
          <bool>false</bool>
         </property>
        </widget>
-       <widget class="QLineEdit" name="ClientIPEdit">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>200</x>
-          <y>125</y>
-          <width>150</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="inputMask">
-         <string>000.000.000.000</string>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-        <property name="frame">
-         <bool>true</bool>
-        </property>
-       </widget>
        <widget class="QLabel" name="ClientIPLabel">
         <property name="enabled">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="geometry">
          <rect>
           <x>20</x>
           <y>120</y>
-          <width>171</width>
+          <width>131</width>
           <height>41</height>
          </rect>
         </property>
@@ -4060,7 +4890,55 @@
          </font>
         </property>
         <property name="text">
-         <string>IP-адрес клиента</string>
+         <string>IP клиента</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="ClientIPComboBox">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>125</y>
+          <width>151</width>
+          <height>30</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="RefreshClientIPsButton">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>125</y>
+          <width>30</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <stylestrategy>PreferDefault</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
         </property>
        </widget>
       </widget>
@@ -4114,7 +4992,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Восстановить настройки клиента</string>
+         <string>Восстановить настройки</string>
         </property>
        </widget>
        <widget class="QPushButton" name="SaveClientSettingsButton">
@@ -4127,7 +5005,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Сохранить настройки клиента</string>
+         <string>Сохранить настройки</string>
         </property>
        </widget>
       </widget>
