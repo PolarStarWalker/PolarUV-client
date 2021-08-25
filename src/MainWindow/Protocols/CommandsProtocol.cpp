@@ -66,7 +66,7 @@ void CommandsProtocol::Stop() {
 }
 
 void CommandsProtocol::StartAsync(const QString &address, uint16_t port) {
-    if (this->IsOnline())
+    if (this->IsStreamOnline())
         return;
 
     this->_transferThread = std::thread(&CommandsProtocol::Start, this, address, port);

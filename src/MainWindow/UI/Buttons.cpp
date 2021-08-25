@@ -19,7 +19,7 @@ void MainWindow::setupButtons() {
 }
 
 void MainWindow::switchVideoStream() {
-    if (!_videoStream->IsOnline()) {
+    if (!_videoStream->IsStreamOnline()) {
         QString clientAddress = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
         QString robotAddress = ui->RobotIPEdit->text();
         _videoStream->StartAsync(robotAddress, clientAddress);
@@ -29,19 +29,19 @@ void MainWindow::switchVideoStream() {
 }
 
 void MainWindow::takeScreenshot() {
-
+    _videoStream->MakeScreenShot();
 }
 
 void MainWindow::switchVideoCapture() {
-
+    _videoStream->IsVideoWriterOnline() ?
+    _videoStream->StopVideoWrite() :
+    _videoStream->StartVideoWrite();
 }
 
 void MainWindow::switchSendingCommands() {
-    if (!_commandsProtocol->IsOnline()) {
-        _commandsProtocol->StartAsync(ui->RobotIPEdit->text(), COMMANDS_PORT);
-    } else {
-        _commandsProtocol->Stop();
-    }
+    _commandsProtocol->IsStreamOnline() ?
+    _commandsProtocol->Stop() :
+    _commandsProtocol->StartAsync(ui->RobotIPEdit->text(), COMMANDS_PORT);
 }
 
 void MainWindow::receiveRobotSettings() {

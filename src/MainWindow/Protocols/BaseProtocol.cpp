@@ -1,10 +1,10 @@
 #include "./BaseProtocol/BaseProtocol.hpp"
 
-bool BaseProtocol::IsOnline() const {
+bool BaseProtocol::IsStreamOnline() const {
 
-    this->_statusStatusMutex.lock_shared();
+    this->_protocolStatusMutex.lock_shared();
     bool isOnline = this->_isOnline;
-    this->_statusStatusMutex.unlock_shared();
+    this->_protocolStatusMutex.unlock_shared();
 
     return isOnline;
 }

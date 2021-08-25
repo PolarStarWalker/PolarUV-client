@@ -154,7 +154,7 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     if (!this->_widgetsPlaced) this->placeWidgets();
 
     /// Painting a video frame or placeholder image
-    if (this->_videoStream->IsOnline()) {
+    if (this->_videoStream->IsStreamOnline()) {
         cv::Mat mat = this->_videoStream->GetMatrix();
         ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
     } else {
@@ -162,14 +162,14 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     }
 
     /// Selecting the color of the CommandsProtocol button
-    if (this->_commandsProtocol->IsOnline()) {
+    if (this->_commandsProtocol->IsStreamOnline()) {
         ui->CommandsProtocolButton->setIcon(QIcon("Icons/GreenStartIcon.png"));
     } else {
         ui->CommandsProtocolButton->setIcon(QIcon("Icons/RedStartIcon.png"));
     }
 
     /// Selecting the color of the VideoStream button
-    if (_videoStream->IsOnline()) {
+    if (_videoStream->IsStreamOnline()) {
         ui->VideoStreamButton->setIcon(QIcon("Icons/PauseIcon.png"));
     } else {
         ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));

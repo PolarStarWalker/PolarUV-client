@@ -14,12 +14,12 @@ public:
         ConnectionLost = 2,
     };
 
-    bool IsOnline() const;
+    bool IsStreamOnline() const;
 
     bool IsThreadActive() const;
 
 protected:
-    mutable std::shared_mutex _statusStatusMutex;
+    mutable std::shared_mutex _protocolStatusMutex;
     mutable std::shared_mutex _threadStatusMutex;
 
     std::thread _transferThread;
@@ -28,9 +28,9 @@ protected:
     bool _isThreadActive;
 
     inline void SetOnlineStatus(bool status) {
-        this->_statusStatusMutex.lock();
+        this->_protocolStatusMutex.lock();
         this->_isOnline = status;
-        this->_statusStatusMutex.unlock();
+        this->_protocolStatusMutex.unlock();
     }
 
     inline void SetThreadStatus(bool status) {
