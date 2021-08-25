@@ -33,16 +33,18 @@ void MainWindow::setupRendering() {
     ui->ShowTabBarButton->hide();
 
     /// Adding a shadow effect to telemetry labels
-    QLabel *telemetryLabels[23] = {
+    QLabel *telemetryLabels[29] = {
             ui->AccelerationLabel, ui->AccelerationXLabel, ui->AccelerationXValue, ui->AccelerationXUnits,
             ui->AccelerationYLabel, ui->AccelerationYValue, ui->AccelerationYUnits, ui->AccelerationZLabel,
             ui->AccelerationZValue, ui->AccelerationZUnits, ui->EulerLabel, ui->EulerXLabel, ui->EulerXValue,
             ui->EulerXUnits, ui->EulerYLabel, ui->EulerYValue, ui->EulerYUnits, ui->EulerZLabel, ui->EulerZValue,
-            ui->EulerZUnits, ui->DepthLabel, ui->PressureLabel, ui->VoltageLabel
+            ui->EulerZUnits, ui->DepthLabel, ui->DepthValue, ui->DepthUnits, ui->PressureLabel, ui->PressureValue,
+            ui->PressureUnits, ui->VoltageLabel, ui->VoltageValue, ui->VoltageUnits
     };
     for (auto &telemetryLabel : telemetryLabels) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
-        shadowEffect->setOffset(2, 2);
+        shadowEffect->setOffset(0, 0);
+        shadowEffect->setBlurRadius(5.0);
         shadowEffect->setColor(Qt::black);
         telemetryLabel->setGraphicsEffect(shadowEffect);
     }
@@ -53,7 +55,8 @@ void MainWindow::setupRendering() {
     };
     for (auto &button : buttons) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
-        shadowEffect->setOffset(2, 2);
+        shadowEffect->setOffset(0, 0);
+        shadowEffect->setBlurRadius(5.0);
         shadowEffect->setColor(Qt::black);
         button->setGraphicsEffect(shadowEffect);
     }
@@ -100,7 +103,7 @@ void MainWindow::placeWidgets() {
     x = ui->VideoStreamButton->x() - ui->ScreenshotButton->width() - offset;
     y = ui->VideoStreamButton->y();
     ui->ScreenshotButton->move(x, y);
-////////////////////////////////////
+
     /// Moving the MotorsSettings widget
     offset = 30; // Horizontal distance between widgets
     x = (ui->tab_2->width() - (ui->MotorsSettingsWidget->width() + ui->HandSettingsWidget->width() + offset)) / 2;
@@ -110,7 +113,7 @@ void MainWindow::placeWidgets() {
     /// Moving the HandSettings widget
     x = ui->MotorsSettingsWidget->x() + ui->MotorsSettingsWidget->width() + offset;
     ui->HandSettingsWidget->move(x, y);
-////////////////////////////////////////
+
     /// Moving the KeyAssignments widget
     offset = 30; // Horizontal distance between widgets
     x = (ui->tab_3->width() - (ui->KeyAssignmentsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
