@@ -49,6 +49,7 @@ protected:
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
     void RawSendClientSettings();
+    void RawReceiveClientSettings();
 
 private slots:
     void on_MotorsNumberSpinBox_valueChanged(int value);
@@ -58,8 +59,8 @@ private slots:
     void switchVideoStream();
     void takeScreenshot();
     void switchVideoCapture();
-    void receiveRobotSettings();
-    void sendRobotSettings();
+    void ReceiveRobotSettings();
+    void SendRobotSettings();
     void loadClientSettings();
     void saveClientSettings();
     void refreshGamepads();

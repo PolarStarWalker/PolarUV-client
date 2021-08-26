@@ -50,3 +50,50 @@ void MainWindow::RawSendClientSettings() {
     RobotSettingsProtocol().Send(ui->RobotIPEdit->text(), SETTINGS_PORT, std::move(robotSettingsStruct));
 }
 
+void MainWindow::RawReceiveClientSettings() {
+
+    RobotSettingsStruct robotSettingsStruct = RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT);
+
+    /// Writing motors number
+    const double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
+    int motorsNumber = robotSettingsStruct.ThrusterNumber();
+    ui->MotorsNumberSpinBox->setValue(motorsNumber);
+
+    /// Writing motor coefficients
+    for (int i = 0; i < motorsNumber; i++) {
+        for (int j = 0; j < 6; j++) {
+            QString itemText = QString::number(moveCoefficientArray[i * 6 + j]);
+            ui->MotorsTable->setItem(i, j, new QTableWidgetItem(itemText));
+        }
+    }
+
+    /// Writing the number of degrees of freedom of the hand
+    const double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
+    int handFreedom = robotSettingsStruct.HandFreedom();
+    ui->HandFreedomSpinBox->setValue(handFreedom);
+
+    /// Writing hand coefficients
+    for (int j = 0; j < handFreedom; j++) {
+        QString itemText = QString::number(handCoefficientArray[j]);
+        ui->HandTable->setItem(0, j, new QTableWidgetItem(itemText));
+    }
+
+    /// Writing max motor speed
+    ui->MaxSpeedEdit->setText(QString::number(robotSettingsStruct.MaxMotorsSpeed()));
+
+    /// Writing motors protocol
+    switch (robotSettingsStruct.MotorsProtocol()) {
+        case 1:
+            ui->MotorsProtocolComboBox->setCurrentIndex(0);
+            break;
+        case 2:
+            ui->MotorsProtocolComboBox->setCurrentIndex(1);
+            break;
+        case 4:
+            ui->MotorsProtocolComboBox->setCurrentIndex(2);
+            break;
+        case 8:
+            ui->MotorsProtocolComboBox->setCurrentIndex(3);
+            break;
+    }
+}

@@ -8,8 +8,8 @@ void MainWindow::setupButtons() {
     this->connect(ui->ScreenshotButton, SIGNAL(clicked(bool)), SLOT(takeScreenshot()));
     this->connect(ui->VideoCaptureButton, SIGNAL(clicked(bool)), SLOT(switchVideoCapture()));
     this->connect(ui->CommandsProtocolButton, SIGNAL(clicked(bool)), SLOT(switchSendingCommands()));
-    this->connect(ui->ReceiveSettingsButton, SIGNAL(clicked(bool)), SLOT(receiveRobotSettings()));
-    this->connect(ui->SendSettingsButton, SIGNAL(clicked(bool)), SLOT(sendRobotSettings()));
+    this->connect(ui->ReceiveSettingsButton, SIGNAL(clicked(bool)), SLOT(ReceiveRobotSettings()));
+    this->connect(ui->SendSettingsButton, SIGNAL(clicked(bool)), SLOT(SendRobotSettings()));
     this->connect(ui->SaveClientSettingsButton, SIGNAL(clicked(bool)), SLOT(saveClientSettings()));
     this->connect(ui->LoadClientSettingsButton, SIGNAL(clicked(bool)), SLOT(loadClientSettings()));
     this->connect(ui->RefreshGamepadsButton, SIGNAL(clicked(bool)), SLOT(refreshGamepads()));
@@ -45,57 +45,12 @@ void MainWindow::switchSendingCommands() {
     _commandsProtocol->StartAsync(ui->RobotIPEdit->text(), COMMANDS_PORT);
 }
 
-void MainWindow::receiveRobotSettings() {
-
-    RobotSettingsStruct robotSettingsStruct = RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT);
-
-    /// Writing motors number
-    const double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
-    int motorsNumber = robotSettingsStruct.ThrusterNumber();
-    ui->MotorsNumberSpinBox->setValue(motorsNumber);
-
-    /// Writing motor coefficients
-    for (int i = 0; i < motorsNumber; i++) {
-        for (int j = 0; j < 6; j++) {
-            QString itemText = QString::number(moveCoefficientArray[i * 6 + j]);
-            ui->MotorsTable->setItem(i, j, new QTableWidgetItem(itemText));
-        }
-    }
-
-    /// Writing the number of degrees of freedom of the hand
-    const double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
-    int handFreedom = robotSettingsStruct.HandFreedom();
-    ui->HandFreedomSpinBox->setValue(handFreedom);
-
-    /// Writing hand coefficients
-    for (int j = 0; j < handFreedom; j++) {
-        QString itemText = QString::number(handCoefficientArray[j]);
-        ui->HandTable->setItem(0, j, new QTableWidgetItem(itemText));
-    }
-
-    /// Writing max motor speed
-    ui->MaxSpeedEdit->setText(QString::number(robotSettingsStruct.MaxMotorsSpeed()));
-
-    /// Writing motors protocol
-    switch (robotSettingsStruct.MotorsProtocol()) {
-        case 1:
-            ui->MotorsProtocolComboBox->setCurrentIndex(0);
-            break;
-        case 2:
-            ui->MotorsProtocolComboBox->setCurrentIndex(1);
-            break;
-        case 4:
-            ui->MotorsProtocolComboBox->setCurrentIndex(2);
-            break;
-        case 8:
-            ui->MotorsProtocolComboBox->setCurrentIndex(3);
-            break;
-    }
-
-    QMessageBox::information(this, "Сообщение", "Настройки успешно получены");
+void MainWindow::ReceiveRobotSettings() {
+    std::function<void(MainWindow*)> function = &MainWindow::RawReceiveClientSettings;
+    ExceptionHandler(this, function, "Успех", "Настройки успешно приняты");
 }
 
-void MainWindow::sendRobotSettings() {
+void MainWindow::SendRobotSettings() {
 
     std::function<void(MainWindow*)> function = &MainWindow::RawSendClientSettings;
 
