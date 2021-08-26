@@ -5,6 +5,8 @@
 #include <thread>
 #include <chrono>
 
+#include "../../Exceptions/Exceptions.hpp"
+
 class BaseProtocol {
 public:
 

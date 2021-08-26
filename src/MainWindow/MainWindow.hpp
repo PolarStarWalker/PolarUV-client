@@ -48,6 +48,8 @@ protected:
     static QImage cvMatToQImage(const cv::Mat &mat);
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
+    void RawSendClientSettings();
+
 private slots:
     void on_MotorsNumberSpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);

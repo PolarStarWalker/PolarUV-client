@@ -3,14 +3,18 @@
 void RobotSettingsProtocol::Send(const QString &address, uint16_t port, RobotSettingsStruct &&robotSettingsStruct) {
     QTcpSocket _socket;
     _socket.connectToHost(address, port);
-    bool connectionFlag = _socket.waitForConnected(1000);
+    if(!_socket.waitForConnected(1000))
+        throw Exception::ConnectionException("Не удалось подключиться к роботу");
 
     char direction = 'w';
     _socket.write(&direction, 1);
-    _socket.waitForBytesWritten(1000);
+    if(!_socket.waitForBytesWritten(1000))
+        throw Exception::ConnectionException("Не удалось отправить настройки робота");
 
     _socket.write(robotSettingsStruct.Begin(), robotSettingsStruct.Size());
-    _socket.waitForBytesWritten(1000);
+    if(!_socket.waitForBytesWritten(1000))
+        throw Exception::ConnectionException("Не удалось отправить настройки робота");
+
     _socket.disconnectFromHost();
 }
 
