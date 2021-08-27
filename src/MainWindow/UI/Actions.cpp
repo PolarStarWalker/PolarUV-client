@@ -2,7 +2,7 @@
 #include "../ui_mainwindow.h"
 #include "../ExceptionHandler/ExceptionHandler.hpp"
 
-void MainWindow::RawSendClientSettings() {
+void MainWindow::RawSendRobotSettings() {
     BaseRobotSettingsStruct baseRobotSettingsStruct{};
     baseRobotSettingsStruct.ThrusterNumber = ui->MotorsTable->rowCount();
     baseRobotSettingsStruct.HandFreedom = ui->HandTable->columnCount();
@@ -50,7 +50,7 @@ void MainWindow::RawSendClientSettings() {
     RobotSettingsProtocol().Send(ui->RobotIPEdit->text(), SETTINGS_PORT, std::move(robotSettingsStruct));
 }
 
-void MainWindow::RawReceiveClientSettings() {
+void MainWindow::RawReceiveRobotSettings() {
 
     RobotSettingsStruct robotSettingsStruct = RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT);
 
@@ -96,4 +96,74 @@ void MainWindow::RawReceiveClientSettings() {
             ui->MotorsProtocolComboBox->setCurrentIndex(3);
             break;
     }
+}
+
+void MainWindow::RawSaveClientSettings() {
+    ClientSettingsStruct settings;
+
+    std::memcpy(settings.serverIP, ui->RobotIPEdit->text().begin(), sizeof(settings.serverIP));
+
+    settings.leftShoulderActionID = (int8_t) ui->LeftShoulderComboBox->currentIndex();
+    settings.rightShoulderActionID = (int8_t) ui->RightShoulderComboBox->currentIndex();
+    settings.leftStickXActionID = (int8_t) ui->LeftStickXComboBox->currentIndex();
+    settings.leftStickYActionID = (int8_t) ui->LeftStickYComboBox->currentIndex();
+    settings.leftStickPressActionID = (int8_t) ui->LeftStickPressComboBox->currentIndex();
+    settings.rightStickXActionID = (int8_t) ui->RightStickXComboBox->currentIndex();
+    settings.rightStickYActionID = (int8_t) ui->RightStickYComboBox->currentIndex();
+    settings.rightStickPressActionID = (int8_t) ui->RightStickPressComboBox->currentIndex();
+    settings.dPadXActionID = (int8_t) ui->DPadXComboBox->currentIndex();
+    settings.dPadYActionID = (int8_t) ui->DPadYComboBox->currentIndex();
+    settings.triangleActionID = (int8_t) ui->TriangleComboBox->currentIndex();
+    settings.crossActionID = (int8_t) ui->CrossComboBox->currentIndex();
+    settings.rectangleActionID = (int8_t) ui->RectangleComboBox->currentIndex();
+    settings.circleActionID = (int8_t) ui->CircleComboBox->currentIndex();
+    settings.startActionID = (int8_t) ui->StartComboBox->currentIndex();
+    settings.backActionID = (int8_t) ui->BackComboBox->currentIndex();
+
+    settings.leftShoulderInverted = ui->LeftShoulderCheckBox->isChecked();
+    settings.rightShoulderInverted = ui->RightShoulderCheckBox->isChecked();
+    settings.leftStickXInverted = ui->LeftStickXCheckBox->isChecked();
+    settings.leftStickYInverted = ui->LeftStickYCheckBox->isChecked();
+    settings.rightStickXInverted = ui->RightStickXCheckBox->isChecked();
+    settings.rightStickYInverted = ui->RightStickYCheckBox->isChecked();
+    settings.dPadXInverted = ui->DPadXCheckBox->isChecked();
+    settings.dPadYInverted = ui->DPadYCheckBox->isChecked();
+
+    settings.Save();
+}
+
+void MainWindow::RawLoadClientSettings() {
+    ClientSettingsStruct settings;
+    if (!settings.Load()) {
+        QMessageBox::critical(this,"Ошибка","Файл настроек клиента не найден. "
+                                            "Установлены значения по-умолчанию");
+    }
+
+    ui->RobotIPEdit->setText(QString(settings.serverIP));
+
+    ui->LeftShoulderComboBox->setCurrentIndex(settings.leftShoulderActionID);
+    ui->RightShoulderComboBox->setCurrentIndex(settings.rightShoulderActionID);
+    ui->LeftStickXComboBox->setCurrentIndex(settings.leftStickXActionID);
+    ui->LeftStickYComboBox->setCurrentIndex(settings.leftStickYActionID);
+    ui->LeftStickPressComboBox->setCurrentIndex(settings.leftStickPressActionID);
+    ui->RightStickXComboBox->setCurrentIndex(settings.rightStickXActionID);
+    ui->RightStickYComboBox->setCurrentIndex(settings.rightStickYActionID);
+    ui->RightStickPressComboBox->setCurrentIndex(settings.rightStickPressActionID);
+    ui->DPadXComboBox->setCurrentIndex(settings.dPadXActionID);
+    ui->DPadYComboBox->setCurrentIndex(settings.dPadYActionID);
+    ui->TriangleComboBox->setCurrentIndex(settings.triangleActionID);
+    ui->CrossComboBox->setCurrentIndex(settings.crossActionID);
+    ui->RectangleComboBox->setCurrentIndex(settings.rectangleActionID);
+    ui->CircleComboBox->setCurrentIndex(settings.circleActionID);
+    ui->StartComboBox->setCurrentIndex(settings.startActionID);
+    ui->BackComboBox->setCurrentIndex(settings.backActionID);
+
+    ui->LeftShoulderCheckBox->setChecked(settings.leftShoulderInverted);
+    ui->RightShoulderCheckBox->setChecked(settings.rightShoulderInverted);
+    ui->LeftStickXCheckBox->setChecked(settings.leftStickXInverted);
+    ui->LeftStickYCheckBox->setChecked(settings.leftStickYInverted);
+    ui->RightStickXCheckBox->setChecked(settings.rightStickXInverted);
+    ui->RightStickYCheckBox->setChecked(settings.rightStickYInverted);
+    ui->DPadXCheckBox->setChecked(settings.dPadXInverted);
+    ui->DPadYCheckBox->setChecked(settings.dPadYInverted);
 }

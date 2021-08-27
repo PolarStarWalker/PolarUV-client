@@ -48,8 +48,11 @@ protected:
     static QImage cvMatToQImage(const cv::Mat &mat);
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
-    void RawSendClientSettings();
-    void RawReceiveClientSettings();
+    void RawSendRobotSettings();
+    void RawReceiveRobotSettings();
+
+    void RawSaveClientSettings();
+    void RawLoadClientSettings();
 
 private slots:
     void on_MotorsNumberSpinBox_valueChanged(int value);

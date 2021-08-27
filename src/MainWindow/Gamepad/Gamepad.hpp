@@ -177,6 +177,7 @@ namespace Control {
         void SetVibration(uint16_t left, uint16_t right) const;
 
         void UpdateGamepadId(size_t id);
+        size_t GetGamepadId() const;
 
     private:
         size_t _id;

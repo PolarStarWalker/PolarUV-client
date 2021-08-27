@@ -5,7 +5,6 @@
 #include <cstring>
 #include <QString>
 
-
 enum RobotAnalogActions : int8_t {
     NoAnalogAction = 0,
     MoveX = 1,
@@ -32,7 +31,7 @@ public:
 
     void Save();
 
-    void Load();
+    bool Load();
 
     int32_t gamepadID;
     QChar serverIP[16];

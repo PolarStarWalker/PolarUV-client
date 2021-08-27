@@ -14,6 +14,9 @@ public:
 
     bool GetError() const;
 
+    void SetGamepadId(size_t id);
+    size_t GetGamepadId() const;
+
     void StartAsync(const QString &address, uint16_t port);
     void Stop();
 

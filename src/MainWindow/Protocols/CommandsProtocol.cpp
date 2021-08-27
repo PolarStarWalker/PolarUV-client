@@ -17,6 +17,14 @@ CommandsProtocol::~CommandsProtocol() {
         std::this_thread::sleep_for(std::chrono::microseconds(1));
 }
 
+void CommandsProtocol::SetGamepadId(size_t id) {
+    this->_gamepad.UpdateGamepadId(id);
+}
+
+size_t CommandsProtocol::GetGamepadId() const {
+    this->_gamepad.GetGamepadId();
+}
+
 bool CommandsProtocol::GetError() const {
 
     this->_errorStatusMutex.lock_shared();

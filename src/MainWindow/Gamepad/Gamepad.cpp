@@ -79,5 +79,12 @@ void Gamepad::UpdateGamepadId(size_t id) {
     this->_idMutex.unlock();
 }
 
+size_t Gamepad::GetGamepadId() const {
+    this->_idMutex.lock();
+    size_t id = this->_id;
+    this->_idMutex.unlock();
+    return id;
+}
+
 
 
