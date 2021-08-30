@@ -9,9 +9,10 @@ void MainWindow::setupRendering() {
     setWindowIcon(QIcon("Icons/WindowIcon.png"));
 
     /// Setting the tab icons
-    ui->TabWidget->setTabIcon(0, QIcon("Icons/CameraIcon"));
-    ui->TabWidget->setTabIcon(1, QIcon("Icons/RobotIcon"));
-    ui->TabWidget->setTabIcon(2, QIcon("Icons/ClientIcon"));
+    ui->TabWidget->setTabIcon(0, QIcon("Icons/CameraIcon.png"));
+    ui->TabWidget->setTabIcon(1, QIcon("Icons/RobotIcon.png"));
+    ui->TabWidget->setTabIcon(2, QIcon("Icons/ClientIcon.png"));
+    ui->TabWidget->setTabIcon(3,QIcon("Icons/CodeIcon.png"));
 
     /// Setting the button icons
     ui->FullScreenButton->setIcon(QIcon("Icons/FullScreenIcon.png"));
@@ -69,13 +70,23 @@ void MainWindow::placeWidgets() {
     /// Changing the size of the CameraLabel
     ui->CameraLabel->setGeometry(ui->tab_1->geometry());
 
+    /// Changing the size of the backgrounds
+    ui->Tab2BackgroundLabel->setGeometry(ui->tab_2->geometry());
+    ui->Tab3BackgroundLabel->setGeometry(ui->tab_3->geometry());
+    ui->Tab4BackgroundLabel->setGeometry(ui->tab_4->geometry());
+
+    /// Changing the size of the TextEdit
+    ui->TextEdit->setFixedWidth(ui->tab_4->width() - 140);
+    ui->TextEdit->setFixedHeight(ui->tab_4->height() - 140);
+
     /// Moving the CommandsProtocol button
     int offset = 0; // Distance from the bottom edge of window
-    ui->CommandsProtocolButton->move(0, ui->MainWidget->height() - ui->CommandsProtocolButton->height() - offset);
+    int x = 0;
+    ui->CommandsProtocolButton->move(x, ui->MainWidget->height() - ui->CommandsProtocolButton->height() - offset);
 
     /// Moving the FullScreen button
-    offset = 10; // Vertical distance between widgets
-    int x = 0;
+    offset = 10; // Vertical distance between buttons
+    x = 0;
     int y = (ui->MainWidget->height() - (ui->FullScreenButton->height() + ui->HideTabBarButton->height() + offset)) / 2;
     ui->FullScreenButton->move(x, y);
 
@@ -156,9 +167,17 @@ void MainWindow::paintEvent(QPaintEvent *event) {
     /// Painting a video frame or placeholder image
     if (this->_videoStream->IsStreamOnline()) {
         cv::Mat mat = this->_videoStream->GetMatrix();
-        ui->CameraLabel->setPixmap(QPixmap(cvMatToPixmap(mat)));
+        QPixmap videoFrame(cvMatToPixmap(mat));
+        ui->CameraLabel->setPixmap(videoFrame);
+        ui->Tab2BackgroundLabel->setPixmap(videoFrame);
+        ui->Tab3BackgroundLabel->setPixmap(videoFrame);
+        ui->Tab4BackgroundLabel->setPixmap(videoFrame);
     } else {
-        ui->CameraLabel->setPixmap(QPixmap("Icons/CameraPlaceholder.png"));
+        QPixmap background("Icons/Background.png");
+        ui->CameraLabel->setPixmap(background);
+        ui->Tab2BackgroundLabel->setPixmap(background);
+        ui->Tab3BackgroundLabel->setPixmap(background);
+        ui->Tab4BackgroundLabel->setPixmap(background);
     }
 
     /// Selecting the color of the CommandsProtocol button

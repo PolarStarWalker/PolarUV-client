@@ -37,9 +37,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -109,18 +109,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -136,18 +136,18 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="ToolTipBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -183,9 +183,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -255,18 +255,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -282,18 +282,18 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="ToolTipBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -329,9 +329,9 @@
      <colorrole role="Button">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -401,18 +401,18 @@
      <colorrole role="Base">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="Window">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -428,18 +428,18 @@
      <colorrole role="AlternateBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
      <colorrole role="ToolTipBase">
       <brush brushstyle="SolidPattern">
        <color alpha="255">
-        <red>50</red>
-        <green>50</green>
-        <blue>50</blue>
+        <red>40</red>
+        <green>40</green>
+        <blue>40</blue>
        </color>
       </brush>
      </colorrole>
@@ -475,7 +475,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Полярник 3.357b-mk.II</string>
+   <string>Полярник 3.4.0</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -497,6 +497,161 @@
    <property name="autoFillBackground">
     <bool>false</bool>
    </property>
+   <widget class="QPushButton" name="FullScreenButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>360</y>
+      <width>71</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="toolTip">
+     <string>Полный экран</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="CommandsProtocolButton">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>730</y>
+      <width>71</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="toolTip">
+     <string>Начать работу</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="HideTabBarButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>430</y>
+      <width>71</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="toolTip">
+     <string>Скрыть панель</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ShowTabBarButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>0</y>
+      <width>71</width>
+      <height>65</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="toolTip">
+     <string/>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
    <widget class="QTabWidget" name="TabWidget">
     <property name="enabled">
      <bool>true</bool>
@@ -792,7 +947,7 @@
      </property>
      <attribute name="icon">
       <iconset>
-       <normaloff>../../../../../../Icon.png</normaloff>../../../../../../Icon.png</iconset>
+       <normaloff>../../../Icon.png</normaloff>../../../Icon.png</iconset>
      </attribute>
      <attribute name="title">
       <string/>
@@ -872,7 +1027,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>play-button-arrowhead.png</normaloff>play-button-arrowhead.png</iconset>
+        <normaloff>../CLionProjects/client/src/MainWindow/play-button-arrowhead.png</normaloff>../CLionProjects/client/src/MainWindow/play-button-arrowhead.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -919,7 +1074,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>play-button-arrowhead.png</normaloff>play-button-arrowhead.png</iconset>
+        <normaloff>../CLionProjects/client/src/MainWindow/play-button-arrowhead.png</normaloff>../CLionProjects/client/src/MainWindow/play-button-arrowhead.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -966,7 +1121,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>play-button-arrowhead.png</normaloff>play-button-arrowhead.png</iconset>
+        <normaloff>../CLionProjects/client/src/MainWindow/play-button-arrowhead.png</normaloff>../CLionProjects/client/src/MainWindow/play-button-arrowhead.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -1788,7 +1943,7 @@
      </property>
      <attribute name="icon">
       <iconset>
-       <normaloff>../../../../../../Icon.png</normaloff>../../../../../../Icon.png</iconset>
+       <normaloff>../../../Icon.png</normaloff>../../../Icon.png</iconset>
      </attribute>
      <attribute name="title">
       <string/>
@@ -2036,6 +2191,15 @@
          <height>30</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
        <property name="mouseTracking">
         <bool>false</bool>
        </property>
@@ -2057,6 +2221,15 @@
          <width>120</width>
          <height>30</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
        </property>
        <property name="mouseTracking">
         <bool>false</bool>
@@ -2101,6 +2274,15 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
        </property>
        <property name="mouseTracking">
         <bool>false</bool>
@@ -2435,6 +2617,15 @@
          <height>30</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
        <property name="mouseTracking">
         <bool>false</bool>
        </property>
@@ -2475,7 +2666,14 @@
         <bool>false</bool>
        </property>
        <property name="autoFillBackground">
-        <bool>true</bool>
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(40,40,40);
+    border-width:1px;
+    border-color :rgb(100,100,100);
+    border-radius:20px;
+    border-style:solid;</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Panel</enum>
@@ -2509,9 +2707,9 @@
      <widget class="QLabel" name="MotorsSettingsLabel">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>370</x>
         <y>106</y>
-        <width>230</width>
+        <width>160</width>
         <height>50</height>
        </rect>
       </property>
@@ -2528,7 +2726,17 @@
        <bool>false</bool>
       </property>
       <property name="autoFillBackground">
-       <bool>true</bool>
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(40,40,40);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:20px;
+border-style:solid;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Panel</enum>
@@ -2543,9 +2751,9 @@
      <widget class="QLabel" name="HandSettingsLabel">
       <property name="geometry">
        <rect>
-        <x>750</x>
+        <x>770</x>
         <y>106</y>
-        <width>230</width>
+        <width>190</width>
         <height>50</height>
        </rect>
       </property>
@@ -2562,7 +2770,17 @@
        <bool>false</bool>
       </property>
       <property name="autoFillBackground">
-       <bool>true</bool>
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(40,40,40);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:20px;
+border-style:solid;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Panel</enum>
@@ -2593,7 +2811,7 @@
        <property name="geometry">
         <rect>
          <x>230</x>
-         <y>209</y>
+         <y>129</y>
          <width>21</width>
          <height>20</height>
         </rect>
@@ -2645,6 +2863,15 @@
          <height>30</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
        <property name="mouseTracking">
         <bool>false</bool>
        </property>
@@ -2662,7 +2889,7 @@
        <property name="geometry">
         <rect>
          <x>115</x>
-         <y>170</y>
+         <y>90</y>
          <width>141</width>
          <height>41</height>
         </rect>
@@ -2687,7 +2914,7 @@
        <property name="geometry">
         <rect>
          <x>230</x>
-         <y>259</y>
+         <y>179</y>
          <width>21</width>
          <height>20</height>
         </rect>
@@ -2709,7 +2936,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>230</y>
+         <y>150</y>
          <width>101</width>
          <height>30</height>
         </rect>
@@ -2719,6 +2946,15 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>8</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
        </property>
        <property name="mouseTracking">
         <bool>false</bool>
@@ -2807,7 +3043,7 @@
        <property name="geometry">
         <rect>
          <x>239</x>
-         <y>219</y>
+         <y>139</y>
          <width>20</width>
          <height>51</height>
         </rect>
@@ -2832,7 +3068,7 @@
        <property name="geometry">
         <rect>
          <x>129</x>
-         <y>259</y>
+         <y>179</y>
          <width>21</width>
          <height>20</height>
         </rect>
@@ -2854,7 +3090,7 @@
        <property name="geometry">
         <rect>
          <x>129</x>
-         <y>209</y>
+         <y>129</y>
          <width>21</width>
          <height>20</height>
         </rect>
@@ -2876,7 +3112,7 @@
        <property name="geometry">
         <rect>
          <x>120</x>
-         <y>219</y>
+         <y>139</y>
          <width>20</width>
          <height>51</height>
         </rect>
@@ -2903,14 +3139,21 @@
          <x>0</x>
          <y>0</y>
          <width>370</width>
-         <height>355</height>
+         <height>220</height>
         </rect>
        </property>
        <property name="mouseTracking">
         <bool>false</bool>
        </property>
        <property name="autoFillBackground">
-        <bool>true</bool>
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(40,40,40);
+    border-width:1px;
+    border-color :rgb(100,100,100);
+    border-radius:20px;
+    border-style:solid;</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Panel</enum>
@@ -2929,7 +3172,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>385</y>
+         <y>250</y>
          <width>370</width>
          <height>155</height>
         </rect>
@@ -2938,7 +3181,14 @@
         <bool>false</bool>
        </property>
        <property name="autoFillBackground">
-        <bool>true</bool>
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(40,40,40);
+    border-width:1px;
+    border-color :rgb(100,100,100);
+    border-radius:20px;
+    border-style:solid;</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Panel</enum>
@@ -2952,59 +3202,79 @@
        <property name="midLineWidth">
         <number>0</number>
        </property>
-       <widget class="QPushButton" name="ReceiveSettingsButton">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>25</y>
-          <width>320</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Получить настройки</string>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="SendSettingsButton">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>80</y>
-          <width>320</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Отправить настройки</string>
-        </property>
-       </widget>
+      </widget>
+      <widget class="QPushButton" name="SendSettingsButton">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>330</y>
+         <width>320</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(45,45,45);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:10px;
+border-style:solid;</string>
+       </property>
+       <property name="text">
+        <string>Отправить настройки</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ReceiveSettingsButton">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>275</y>
+         <width>320</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(45,45,45);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:10px;
+border-style:solid;</string>
+       </property>
+       <property name="text">
+        <string>Получить настройки</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
       </widget>
       <zorder>HandSettingsWidgetFrame</zorder>
       <zorder>HandTopRightLine</zorder>
@@ -3018,7 +3288,32 @@
       <zorder>HandTopLeftLine</zorder>
       <zorder>HandLeftLine</zorder>
       <zorder>RobotSettingsWidgetFrame_1</zorder>
+      <zorder>SendSettingsButton</zorder>
+      <zorder>ReceiveSettingsButton</zorder>
      </widget>
+     <widget class="QLabel" name="Tab2BackgroundLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1319</width>
+        <height>786</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::RichText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <zorder>Tab2BackgroundLabel</zorder>
      <zorder>MotorsSettingsWidget</zorder>
      <zorder>MotorsSettingsLabel</zorder>
      <zorder>HandSettingsWidget</zorder>
@@ -3030,7 +3325,7 @@
      </property>
      <attribute name="icon">
       <iconset>
-       <normaloff>../../../../../../Icon.png</normaloff>../../../../../../Icon.png</iconset>
+       <normaloff>../../../Icon.png</normaloff>../../../Icon.png</iconset>
      </attribute>
      <attribute name="title">
       <string/>
@@ -3041,9 +3336,9 @@
      <widget class="QLabel" name="KeyAssignmentsLabel">
       <property name="geometry">
        <rect>
-        <x>370</x>
+        <x>360</x>
         <y>110</y>
-        <width>240</width>
+        <width>260</width>
         <height>50</height>
        </rect>
       </property>
@@ -3060,7 +3355,17 @@
        <bool>false</bool>
       </property>
       <property name="autoFillBackground">
-       <bool>true</bool>
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(40,40,40);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:20px;
+border-style:solid;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Panel</enum>
@@ -3097,7 +3402,14 @@
         <bool>false</bool>
        </property>
        <property name="autoFillBackground">
-        <bool>true</bool>
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(40,40,40);
+    border-width:1px;
+    border-color :rgb(100,100,100);
+    border-radius:20px;
+    border-style:solid;</string>
        </property>
        <property name="frameShape">
         <enum>QFrame::Panel</enum>
@@ -3105,1622 +3417,1622 @@
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
        </property>
-       <widget class="QLabel" name="Label_21">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>480</y>
-          <width>141</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+      </widget>
+      <widget class="QLabel" name="Label_56">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>320</y>
+         <width>121</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Левый</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="BackComboBox">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>485</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>2</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
         <property name="text">
-         <string>Влево/вправо</string>
+         <string>Нет действия</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_22">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>405</y>
-          <width>371</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Стрелки</string>
+         <string>Включение ТНПА</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="Label_23">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>440</y>
-          <width>141</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Вверх/вниз</string>
+         <string>Выключение ТНПА</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_28">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>200</y>
-          <width>141</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="TriangleComboBox">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>85</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
         <property name="text">
-         <string>Вверх/вниз</string>
+         <string>Нет действия</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_27">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>165</y>
-          <width>371</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Перемещение левого стика</string>
+         <string>Включение ТНПА</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="Label_16">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>360</y>
-          <width>141</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Влево/вправо</string>
+         <string>Выключение ТНПА</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_17">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>285</y>
-          <width>371</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_41">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>160</y>
+         <width>121</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Квадрат</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_21">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>480</y>
+         <width>141</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Влево/вправо</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_23">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>440</y>
+         <width>141</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Вверх/вниз</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_26">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>240</y>
+         <width>141</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Влево/вправо</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="LeftStickPressComboBox">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>325</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
         <property name="text">
-         <string>Перемещение правого стика</string>
+         <string>Нет действия</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="Label_18">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>320</y>
-          <width>141</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Вверх/вниз</string>
+         <string>Включение ТНПА</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_26">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>240</y>
-          <width>141</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Влево/вправо</string>
+         <string>Выключение ТНПА</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_36">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>80</y>
-          <width>141</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="LeftStickXComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>245</y>
+         <width>231</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>2</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
         <property name="text">
-         <string>Левый</string>
+         <string>Нет действия</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_34">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>45</y>
-          <width>371</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Курки/бамперы</string>
+         <string>Движение по оси Х</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="Label_35">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>120</y>
-          <width>141</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Правый</string>
+         <string>Движение по оси Y</string>
         </property>
-       </widget>
-       <widget class="QComboBox" name="LeftShoulderComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>85</y>
-          <width>231</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="currentIndex">
-         <number>4</number>
-        </property>
-        <property name="frame">
-         <bool>true</bool>
-        </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Сжатие манипулятора</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение манипулятора</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="Label_37">
-        <property name="geometry">
-         <rect>
-          <x>400</x>
-          <y>45</y>
-          <width>121</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Инверсия</string>
+         <string>Движение по оси Z</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="LeftShoulderCheckBox">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>85</y>
-          <width>20</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string/>
+         <string>Вращение по оси Х</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="RightShoulderCheckBox">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>125</y>
-          <width>20</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string/>
+         <string>Вращение по оси Y</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="LeftStickXCheckBox">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>245</y>
-          <width>20</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string/>
+         <string>Вращение по оси Z</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="LeftStickYCheckBox">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>205</y>
-          <width>20</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string/>
+         <string>Сжатие манипулятора</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="RightStickXCheckBox">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>365</y>
-          <width>20</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string/>
+         <string>Вращение манипулятора</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="DPadXCheckBox">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>485</y>
-          <width>20</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_35">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>120</y>
+         <width>141</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Правый</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_27">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>165</y>
+         <width>371</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Перемещение левого стика</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LeftStickXCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>245</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="RightStickYComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>325</y>
+         <width>231</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
         <property name="text">
-         <string/>
+         <string>Нет действия</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="RightStickYCheckBox">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>325</y>
-          <width>20</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string/>
+         <string>Движение по оси Х</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="DPadYCheckBox">
-        <property name="geometry">
-         <rect>
-          <x>450</x>
-          <y>445</y>
-          <width>20</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string/>
+         <string>Движение по оси Y</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="Label_38">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>120</y>
-          <width>121</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Крест</string>
+         <string>Движение по оси Z</string>
         </property>
-       </widget>
-       <widget class="QComboBox" name="TriangleComboBox">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>85</y>
-          <width>180</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <property name="frame">
-         <bool>true</bool>
-        </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Включение ТНПА</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Выключение ТНПА</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QLabel" name="Label_39">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>45</y>
-          <width>361</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Фигуры</string>
+         <string>Вращение по оси Х</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="Label_40">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>80</y>
-          <width>121</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Треугольник</string>
+         <string>Вращение по оси Y</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_41">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>160</y>
-          <width>121</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Квадрат</string>
+         <string>Вращение по оси Z</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_42">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>200</y>
-          <width>121</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Круг</string>
+         <string>Сжатие манипулятора</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_52">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>360</y>
-          <width>121</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Правый</string>
+         <string>Вращение манипулятора</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_53">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>440</y>
-          <width>121</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_36">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>80</y>
+         <width>141</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Левый</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="LeftShoulderComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>85</y>
+         <width>231</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>4</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
         <property name="text">
-         <string>Старт</string>
+         <string>Нет действия</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_54">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>480</y>
-          <width>121</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Назад</string>
+         <string>Движение по оси Х</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_55">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>285</y>
-          <width>361</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Нажатие на стики</string>
+         <string>Движение по оси Y</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="Label_56">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>320</y>
-          <width>121</width>
-          <height>40</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Левый</string>
+         <string>Движение по оси Z</string>
         </property>
-       </widget>
-       <widget class="QLabel" name="Label_57">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>405</y>
-          <width>361</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
+       </item>
+       <item>
         <property name="text">
-         <string>Меню</string>
+         <string>Вращение по оси Х</string>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Y</string>
         </property>
-       </widget>
-       <widget class="QComboBox" name="RightShoulderComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>125</y>
-          <width>231</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Z</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Сжатие манипулятора</string>
         </property>
-        <property name="currentIndex">
-         <number>5</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение манипулятора</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_57">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>405</y>
+         <width>311</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Меню</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_54">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>480</y>
+         <width>121</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Назад</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="RightStickXComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>365</y>
+         <width>231</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>6</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Сжатие манипулятора</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение манипулятора</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="LeftStickYComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>205</y>
-          <width>231</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Х</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Y</string>
         </property>
-        <property name="currentIndex">
-         <number>3</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Z</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Х</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Сжатие манипулятора</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение манипулятора</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="LeftStickXComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>245</y>
-          <width>231</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Y</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Z</string>
         </property>
-        <property name="currentIndex">
-         <number>2</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Сжатие манипулятора</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение манипулятора</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Сжатие манипулятора</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение манипулятора</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="RightStickYComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>325</y>
-          <width>231</width>
-          <height>30</height>
-         </rect>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_28">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>200</y>
+         <width>141</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Вверх/вниз</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="RightShoulderComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>125</y>
+         <width>231</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>5</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Х</string>
         </property>
-        <property name="currentIndex">
-         <number>1</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Y</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Z</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Сжатие манипулятора</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение манипулятора</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="RightStickXComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>365</y>
-          <width>231</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Х</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Y</string>
         </property>
-        <property name="currentIndex">
-         <number>6</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Z</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Сжатие манипулятора</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Сжатие манипулятора</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение манипулятора</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="DPadYComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>445</y>
-          <width>231</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение манипулятора</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="RectangleComboBox">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>165</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <property name="currentIndex">
-         <number>7</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Включение ТНПА</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Выключение ТНПА</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Сжатие манипулятора</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение манипулятора</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="DPadXComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>485</y>
-          <width>231</width>
-          <height>30</height>
-         </rect>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_53">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>440</y>
+         <width>121</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Старт</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_39">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>45</y>
+         <width>311</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Фигуры</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="RightStickYCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>325</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_22">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>405</y>
+         <width>371</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Стрелки</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="StartComboBox">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>445</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>1</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Включение ТНПА</string>
         </property>
-        <property name="currentIndex">
-         <number>8</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Выключение ТНПА</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_55">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>285</y>
+         <width>311</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Нажатие на стики</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_34">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>45</y>
+         <width>371</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Курки/бамперы</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_40">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>80</y>
+         <width>121</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Треугольник</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_16">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>360</y>
+         <width>141</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Влево/вправо</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LeftShoulderCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>85</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_37">
+       <property name="geometry">
+        <rect>
+         <x>400</x>
+         <y>45</y>
+         <width>121</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Инверсия</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="RightShoulderCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>125</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_17">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>285</y>
+         <width>371</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>14</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Перемещение правого стика</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="CrossComboBox">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>125</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Движение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Х</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Y</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение по оси Z</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Сжатие манипулятора</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Вращение манипулятора</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="CrossComboBox">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>125</y>
-          <width>180</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Включение ТНПА</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Выключение ТНПА</string>
         </property>
-        <property name="currentIndex">
-         <number>0</number>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_38">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>120</y>
+         <width>121</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Крест</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_42">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>200</y>
+         <width>121</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Круг</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="LeftStickYCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>205</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Label_18">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>320</y>
+         <width>141</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Вверх/вниз</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="RightStickXCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>365</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="DPadXComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>485</y>
+         <width>231</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>8</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Х</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Включение ТНПА</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Выключение ТНПА</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="RectangleComboBox">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>165</y>
-          <width>180</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Y</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Z</string>
         </property>
-        <property name="currentIndex">
-         <number>0</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Х</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Y</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Включение ТНПА</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Выключение ТНПА</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="CircleComboBox">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>205</y>
-          <width>180</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Z</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Сжатие манипулятора</string>
         </property>
-        <property name="currentIndex">
-         <number>0</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение манипулятора</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+      </widget>
+      <widget class="QLabel" name="Label_52">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>360</y>
+         <width>121</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Правый</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="RightStickPressComboBox">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>365</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Включение ТНПА</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Выключение ТНПА</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="RightStickPressComboBox">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>365</y>
-          <width>180</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Включение ТНПА</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Выключение ТНПА</string>
         </property>
-        <property name="currentIndex">
-         <number>0</number>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="LeftStickYComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>205</y>
+         <width>231</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>3</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Х</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Включение ТНПА</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Выключение ТНПА</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="LeftStickPressComboBox">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>325</y>
-          <width>180</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Y</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Z</string>
         </property>
-        <property name="currentIndex">
-         <number>0</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Х</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Y</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Включение ТНПА</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Выключение ТНПА</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="BackComboBox">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>485</y>
-          <width>180</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Z</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Сжатие манипулятора</string>
         </property>
-        <property name="currentIndex">
-         <number>2</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение манипулятора</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="DPadYComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>445</y>
+         <width>231</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>7</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Включение ТНПА</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Выключение ТНПА</string>
-         </property>
-        </item>
-       </widget>
-       <widget class="QComboBox" name="StartComboBox">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>445</y>
-          <width>180</width>
-          <height>30</height>
-         </rect>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Х</string>
         </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Y</string>
         </property>
-        <property name="currentIndex">
-         <number>1</number>
+       </item>
+       <item>
+        <property name="text">
+         <string>Движение по оси Z</string>
         </property>
-        <property name="frame">
-         <bool>true</bool>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Х</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Нет действия</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Включение ТНПА</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Выключение ТНПА</string>
-         </property>
-        </item>
-       </widget>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Y</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение по оси Z</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Сжатие манипулятора</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Вращение манипулятора</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QCheckBox" name="DPadXCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>485</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="CircleComboBox">
+       <property name="geometry">
+        <rect>
+         <x>660</x>
+         <y>205</y>
+         <width>180</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Нет действия</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Включение ТНПА</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Выключение ТНПА</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QCheckBox" name="DPadYCheckBox">
+       <property name="geometry">
+        <rect>
+         <x>450</x>
+         <y>445</y>
+         <width>20</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
       </widget>
      </widget>
      <widget class="QLabel" name="ClientSettingsLabel">
       <property name="geometry">
        <rect>
-        <x>990</x>
+        <x>1010</x>
         <y>110</y>
-        <width>240</width>
+        <width>200</width>
         <height>50</height>
        </rect>
       </property>
@@ -4737,7 +5049,17 @@
        <bool>false</bool>
       </property>
       <property name="autoFillBackground">
-       <bool>true</bool>
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(40,40,40);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:20px;
+border-style:solid;</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Panel</enum>
@@ -4761,6 +5083,198 @@
       <property name="mouseTracking">
        <bool>false</bool>
       </property>
+      <widget class="QFrame" name="ClientSettingsWidgetFrame_1">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>370</width>
+         <height>220</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(40,40,40);
+    border-width:1px;
+    border-color :rgb(100,100,100);
+    border-radius:20px;
+    border-style:solid;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+      </widget>
+      <widget class="QFrame" name="ClientSettingsWidgetFrame_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>250</y>
+         <width>370</width>
+         <height>155</height>
+        </rect>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(40,40,40);
+    border-width:1px;
+    border-color :rgb(100,100,100);
+    border-radius:20px;
+    border-style:solid;</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Panel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="RefreshClientIPsButton">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>125</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <stylestrategy>PreferDefault</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="ClientIPComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>125</y>
+         <width>151</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="GamepadComboBox">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>165</y>
+         <width>151</width>
+         <height>30</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="ClientIPLabel">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>120</y>
+         <width>131</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="text">
+        <string>IP клиента</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="RefreshGamepadsButton">
+       <property name="geometry">
+        <rect>
+         <x>320</x>
+         <y>165</y>
+         <width>30</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <stylestrategy>PreferDefault</stylestrategy>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="RobotIPEdit">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>85</y>
+         <width>150</width>
+         <height>30</height>
+        </rect>
+       </property>
+       <property name="inputMask">
+        <string>000.000.000.000</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+      </widget>
       <widget class="QLabel" name="RobotIPLabel">
        <property name="geometry">
         <rect>
@@ -4782,165 +5296,6 @@
        <property name="text">
         <string>IP ТНПА</string>
        </property>
-      </widget>
-      <widget class="QFrame" name="ClientSettingsWidgetFrame_2">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>370</width>
-         <height>355</height>
-        </rect>
-       </property>
-       <property name="autoFillBackground">
-        <bool>true</bool>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <widget class="QLineEdit" name="RobotIPEdit">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>85</y>
-          <width>150</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="inputMask">
-         <string>000.000.000.000</string>
-        </property>
-        <property name="text">
-         <string>...</string>
-        </property>
-        <property name="frame">
-         <bool>true</bool>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="GamepadComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>165</y>
-          <width>151</width>
-          <height>30</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="RefreshGamepadsButton">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>165</y>
-          <width>30</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <stylestrategy>PreferDefault</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>ArrowCursor</cursorShape>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="autoDefault">
-         <bool>false</bool>
-        </property>
-       </widget>
-       <widget class="QLabel" name="ClientIPLabel">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>120</y>
-          <width>131</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="text">
-         <string>IP клиента</string>
-        </property>
-       </widget>
-       <widget class="QComboBox" name="ClientIPComboBox">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>125</y>
-          <width>151</width>
-          <height>30</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="RefreshClientIPsButton">
-        <property name="geometry">
-         <rect>
-          <x>320</x>
-          <y>125</y>
-          <width>30</width>
-          <height>30</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <stylestrategy>PreferDefault</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>ArrowCursor</cursorShape>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="autoDefault">
-         <bool>false</bool>
-        </property>
-       </widget>
       </widget>
       <widget class="QLabel" name="GamepadLabel">
        <property name="geometry">
@@ -4964,217 +5319,231 @@
         <string>ID геймпада</string>
        </property>
       </widget>
-      <widget class="QFrame" name="ClientSettingsWidgetFrame_4">
+      <widget class="QPushButton" name="SaveClientSettingsButton">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>385</y>
-         <width>370</width>
-         <height>155</height>
+         <x>25</x>
+         <y>330</y>
+         <width>320</width>
+         <height>50</height>
         </rect>
        </property>
-       <property name="autoFillBackground">
-        <bool>true</bool>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
        </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(45,45,45);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:10px;
+border-style:solid;</string>
        </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
+       <property name="text">
+        <string>Сохранить настройки</string>
        </property>
-       <widget class="QPushButton" name="LoadClientSettingsButton">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>25</y>
-          <width>320</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Восстановить настройки</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="SaveClientSettingsButton">
-        <property name="geometry">
-         <rect>
-          <x>25</x>
-          <y>80</y>
-          <width>320</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Сохранить настройки</string>
-        </property>
-       </widget>
       </widget>
-      <zorder>ClientSettingsWidgetFrame_2</zorder>
-      <zorder>GamepadLabel</zorder>
-      <zorder>RobotIPLabel</zorder>
-      <zorder>ClientSettingsWidgetFrame_4</zorder>
+      <widget class="QPushButton" name="LoadClientSettingsButton">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>275</y>
+         <width>320</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+         <kerning>true</kerning>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(45,45,45);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:10px;
+border-style:solid;</string>
+       </property>
+       <property name="text">
+        <string>Восстановить настройки</string>
+       </property>
+      </widget>
      </widget>
+     <widget class="QLabel" name="Tab3BackgroundLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1319</width>
+        <height>786</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::RichText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <zorder>Tab3BackgroundLabel</zorder>
      <zorder>KeyAssignmentsWidget</zorder>
      <zorder>KeyAssignmentsLabel</zorder>
      <zorder>ClientSettingsWidget</zorder>
      <zorder>ClientSettingsLabel</zorder>
     </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string/>
+     </attribute>
+     <attribute name="toolTip">
+      <string>Программа АНПА</string>
+     </attribute>
+     <widget class="QTextEdit" name="TextEdit">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>70</y>
+        <width>1179</width>
+        <height>646</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Courier New</family>
+        <pointsize>14</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(40,40,40);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:10px;
+border-style:solid;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="midLineWidth">
+       <number>0</number>
+      </property>
+      <property name="acceptRichText">
+       <bool>false</bool>
+      </property>
+      <property name="placeholderText">
+       <string>Вставьте сюда свой код</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="Tab4BackgroundLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1319</width>
+        <height>786</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::RichText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="KeyAssignmentsLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>21</y>
+        <width>290</width>
+        <height>50</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(40,40,40);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+border-bottom-width:0px;
+border-style:solid;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="text">
+       <string>Редактор кода АНПА</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <zorder>Tab4BackgroundLabel</zorder>
+     <zorder>TextEdit</zorder>
+     <zorder>KeyAssignmentsLabel_2</zorder>
+    </widget>
    </widget>
-   <widget class="QPushButton" name="FullScreenButton">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>360</y>
-      <width>71</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="toolTip">
-     <string>Полный экран</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="CommandsProtocolButton">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>730</y>
-      <width>71</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-      <kerning>true</kerning>
-     </font>
-    </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="toolTip">
-     <string>Начать работу</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="HideTabBarButton">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>430</y>
-      <width>71</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="toolTip">
-     <string>Скрыть панель</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ShowTabBarButton">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>0</y>
-      <width>71</width>
-      <height>65</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Arial</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-      <kerning>true</kerning>
-     </font>
-    </property>
-    <property name="mouseTracking">
-     <bool>false</bool>
-    </property>
-    <property name="toolTip">
-     <string/>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
+   <zorder>TabWidget</zorder>
+   <zorder>CommandsProtocolButton</zorder>
+   <zorder>FullScreenButton</zorder>
+   <zorder>HideTabBarButton</zorder>
+   <zorder>ShowTabBarButton</zorder>
   </widget>
  </widget>
  <resources/>
