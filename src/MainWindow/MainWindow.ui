@@ -475,7 +475,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Полярник 3.4.0</string>
+   <string>Полярник 3.4.1</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -1625,7 +1625,7 @@
         </font>
        </property>
        <property name="text">
-        <string>кПа</string>
+        <string>Бар</string>
        </property>
        <property name="wordWrap">
         <bool>false</bool>
@@ -5419,7 +5419,7 @@ border-style:solid;</string>
      <attribute name="toolTip">
       <string>Программа АНПА</string>
      </attribute>
-     <widget class="QTextEdit" name="TextEdit">
+     <widget class="QTextEdit" name="CodeEdit">
       <property name="geometry">
        <rect>
         <x>70</x>
@@ -5463,7 +5463,7 @@ border-style:solid;</string>
        <bool>false</bool>
       </property>
       <property name="placeholderText">
-       <string>Вставьте сюда свой код</string>
+       <string>print(&quot;Hello, World!&quot;)</string>
       </property>
      </widget>
      <widget class="QLabel" name="Tab4BackgroundLabel">
@@ -5488,7 +5488,7 @@ border-style:solid;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="KeyAssignmentsLabel_2">
+     <widget class="QLabel" name="CodeEditLabel">
       <property name="geometry">
        <rect>
         <x>510</x>
@@ -5534,9 +5534,57 @@ border-style:solid;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QPushButton" name="ReleaseCodeButton">
+      <property name="geometry">
+       <rect>
+        <x>1210</x>
+        <y>720</y>
+        <width>40</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(45,45,45);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:10px;
+border-style:solid;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="DebugCodeButton">
+      <property name="geometry">
+       <rect>
+        <x>1165</x>
+        <y>720</y>
+        <width>40</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(45,45,45);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:10px;
+border-style:solid;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
      <zorder>Tab4BackgroundLabel</zorder>
-     <zorder>TextEdit</zorder>
-     <zorder>KeyAssignmentsLabel_2</zorder>
+     <zorder>ReleaseCodeButton</zorder>
+     <zorder>DebugCodeButton</zorder>
+     <zorder>CodeEdit</zorder>
+     <zorder>CodeEditLabel</zorder>
     </widget>
    </widget>
    <zorder>TabWidget</zorder>

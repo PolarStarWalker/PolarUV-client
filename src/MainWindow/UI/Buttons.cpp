@@ -3,23 +3,23 @@
 #include "../ui_mainwindow.h"
 #include "../ExceptionHandler/ExceptionHandler.hpp"
 
-void MainWindow::setupButtons() {
-    this->connect(ui->VideoStreamButton, SIGNAL(clicked(bool)), SLOT(switchVideoStream()));
-    this->connect(ui->ScreenshotButton, SIGNAL(clicked(bool)), SLOT(takeScreenshot()));
-    this->connect(ui->VideoCaptureButton, SIGNAL(clicked(bool)), SLOT(switchVideoCapture()));
-    this->connect(ui->CommandsProtocolButton, SIGNAL(clicked(bool)), SLOT(switchSendingCommands()));
+void MainWindow::SetupButtons() {
+    this->connect(ui->VideoStreamButton, SIGNAL(clicked(bool)), SLOT(SwitchVideoStream()));
+    this->connect(ui->ScreenshotButton, SIGNAL(clicked(bool)), SLOT(TakeScreenshot()));
+    this->connect(ui->VideoCaptureButton, SIGNAL(clicked(bool)), SLOT(SwitchVideoCapture()));
+    this->connect(ui->CommandsProtocolButton, SIGNAL(clicked(bool)), SLOT(SwitchSendingCommands()));
     this->connect(ui->ReceiveSettingsButton, SIGNAL(clicked(bool)), SLOT(ReceiveRobotSettings()));
     this->connect(ui->SendSettingsButton, SIGNAL(clicked(bool)), SLOT(SendRobotSettings()));
-    this->connect(ui->SaveClientSettingsButton, SIGNAL(clicked(bool)), SLOT(saveClientSettings()));
-    this->connect(ui->LoadClientSettingsButton, SIGNAL(clicked(bool)), SLOT(loadClientSettings()));
-    this->connect(ui->RefreshGamepadsButton, SIGNAL(clicked(bool)), SLOT(refreshGamepads()));
-    this->connect(ui->RefreshClientIPsButton, SIGNAL(clicked(bool)), SLOT(refreshClientIps()));
-    this->connect(ui->FullScreenButton, SIGNAL(clicked(bool)), SLOT(switchFullScreen()));
-    this->connect(ui->ShowTabBarButton, SIGNAL(clicked(bool)), SLOT(showTabBar()));
-    this->connect(ui->HideTabBarButton, SIGNAL(clicked(bool)), SLOT(hideTabBar()));
+    this->connect(ui->SaveClientSettingsButton, SIGNAL(clicked(bool)), SLOT(SaveClientSettings()));
+    this->connect(ui->LoadClientSettingsButton, SIGNAL(clicked(bool)), SLOT(LoadClientSettings()));
+    this->connect(ui->RefreshGamepadsButton, SIGNAL(clicked(bool)), SLOT(RefreshGamepads()));
+    this->connect(ui->RefreshClientIPsButton, SIGNAL(clicked(bool)), SLOT(RefreshClientIps()));
+    this->connect(ui->FullScreenButton, SIGNAL(clicked(bool)), SLOT(SwitchFullScreen()));
+    this->connect(ui->ShowTabBarButton, SIGNAL(clicked(bool)), SLOT(ShowTabBar()));
+    this->connect(ui->HideTabBarButton, SIGNAL(clicked(bool)), SLOT(HideTabBar()));
 }
 
-void MainWindow::switchVideoStream() {
+void MainWindow::SwitchVideoStream() {
     if (!_videoStream->IsStreamOnline()) {
         QString clientAddress = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
         QString robotAddress = ui->RobotIPEdit->text();
@@ -29,17 +29,17 @@ void MainWindow::switchVideoStream() {
     }
 }
 
-void MainWindow::takeScreenshot() {
-    _videoStream->MakeScreenShot();
+void MainWindow::TakeScreenshot() {
+    _videoStream->TakeScreenshot();
 }
 
-void MainWindow::switchVideoCapture() {
+void MainWindow::SwitchVideoCapture() {
     _videoStream->IsVideoWriterOnline() ?
     _videoStream->StopVideoWrite() :
     _videoStream->StartVideoWrite();
 }
 
-void MainWindow::switchSendingCommands() {
+void MainWindow::SwitchSendingCommands() {
     _commandsProtocol->IsStreamOnline() ?
     _commandsProtocol->Stop() :
     _commandsProtocol->StartAsync(ui->RobotIPEdit->text(), COMMANDS_PORT);
@@ -57,21 +57,21 @@ void MainWindow::SendRobotSettings() {
     ExceptionHandler(this, function, "Успех", "Настройки успешно отправлены");
 }
 
-void MainWindow::saveClientSettings() {
+void MainWindow::SaveClientSettings() {
 
     RawSaveClientSettings();
 
     QMessageBox::information(this, "Сообщение", "Настройки успешно сохранены");
 }
 
-void MainWindow::loadClientSettings() {
+void MainWindow::LoadClientSettings() {
 
     RawLoadClientSettings();
 
     //QMessageBox::information(this, "Сообщение", "Настройки успешно восстановлены");
 }
 
-void MainWindow::refreshGamepads() {
+void MainWindow::RefreshGamepads() {
     std::list<int> gamepads = Control::GetGamepadsIds();
     ui->GamepadComboBox->clear();
     for (int id : gamepads) {
@@ -84,7 +84,7 @@ void MainWindow::refreshGamepads() {
     // ui->GamepadComboBox->itemText(ui->GamepadComboBox->currentIndex()).toInt()
 }
 
-void MainWindow::refreshClientIps() {
+void MainWindow::RefreshClientIps() {
     std::list<std::string> addresses = GetClientIps();
     ui->ClientIPComboBox->clear();
     for (std::string address : addresses) {
@@ -98,13 +98,13 @@ void MainWindow::refreshClientIps() {
 
 }
 
-void MainWindow::switchFullScreen() {
+void MainWindow::SwitchFullScreen() {
     this->windowState() == Qt::WindowFullScreen ?
     this->setWindowState(Qt::WindowNoState) :
     this->setWindowState(Qt::WindowFullScreen);
 }
 
-void MainWindow::showTabBar() {
+void MainWindow::ShowTabBar() {
     /// Showing the TabBar
     ui->TabWidget->tabBar()->show();
 
@@ -117,7 +117,7 @@ void MainWindow::showTabBar() {
     ui->ShowTabBarButton->hide();
 }
 
-void MainWindow::hideTabBar() {
+void MainWindow::HideTabBar() {
     /// Hiding the TabBar
     ui->TabWidget->tabBar()->hide();
 

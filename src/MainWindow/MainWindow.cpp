@@ -9,10 +9,10 @@ MainWindow::MainWindow(QWidget *parent)
     this->_commandsProtocol = new CommandsProtocol(0);
     this->_videoStream = new VideoProtocol();
 
-    this->loadClientSettings();
+    this->LoadClientSettings();
 
     this->setupRendering();
-    this->setupButtons();
+    this->SetupButtons();
     this->setupShortcuts();
 }
 

@@ -13,6 +13,10 @@ project(Client)
 set(GSTREAMER_DIR "/lib/gstreamer-dev/1.0/msvc_x86_64/bin")
 link_directories(GSTREAMER_DIR)
 
+# Подключение библиотек python
+find_package(Python COMPONENTS Interpreter Development)
+include_directories(${Python_INCLUDE_DIRS})
+
 #чтобы сработало библиотека должна быть в PATH
 set(OpenCV_STATIC ON)
 find_package(OpenCV REQUIRED)

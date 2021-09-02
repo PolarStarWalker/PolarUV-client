@@ -12,7 +12,7 @@ void MainWindow::setupRendering() {
     ui->TabWidget->setTabIcon(0, QIcon("Icons/CameraIcon.png"));
     ui->TabWidget->setTabIcon(1, QIcon("Icons/RobotIcon.png"));
     ui->TabWidget->setTabIcon(2, QIcon("Icons/ClientIcon.png"));
-    ui->TabWidget->setTabIcon(3,QIcon("Icons/CodeIcon.png"));
+    ui->TabWidget->setTabIcon(3, QIcon("Icons/CodeIcon.png"));
 
     /// Setting the button icons
     ui->FullScreenButton->setIcon(QIcon("Icons/FullScreenIcon.png"));
@@ -23,6 +23,8 @@ void MainWindow::setupRendering() {
     ui->VideoCaptureButton->setIcon(QIcon("Icons/WhiteVideoIcon.png"));
     ui->RefreshClientIPsButton->setIcon(QIcon("Icons/ReloadIcon.png"));
     ui->RefreshGamepadsButton->setIcon(QIcon("Icons/ReloadIcon.png"));
+    ui->ReleaseCodeButton->setIcon(QIcon("Icons/PlayIcon.png"));
+    ui->DebugCodeButton->setIcon(QIcon("Icons/BugIcon.png"));
 
     /// Setting a transparent background for some buttons
     ui->ShowTabBarButton->setStyleSheet("background-color: transparent");
@@ -52,7 +54,7 @@ void MainWindow::setupRendering() {
 
     /// Adding a shadow effect to tab_1 buttons
     QPushButton *buttons[4] = {
-        ui->ShowTabBarButton, ui->VideoStreamButton, ui->ScreenshotButton, ui->VideoCaptureButton
+            ui->ShowTabBarButton, ui->VideoStreamButton, ui->ScreenshotButton, ui->VideoCaptureButton
     };
     for (auto &button : buttons) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
@@ -76,8 +78,8 @@ void MainWindow::placeWidgets() {
     ui->Tab4BackgroundLabel->setGeometry(ui->tab_4->geometry());
 
     /// Changing the size of the TextEdit
-    ui->TextEdit->setFixedWidth(ui->tab_4->width() - 140);
-    ui->TextEdit->setFixedHeight(ui->tab_4->height() - 140);
+    ui->CodeEdit->setFixedWidth(ui->tab_4->width() - 140);
+    ui->CodeEdit->setFixedHeight(ui->tab_4->height() - 140);
 
     /// Moving the CommandsProtocol button
     int offset = 0; // Distance from the bottom edge of window
@@ -114,6 +116,18 @@ void MainWindow::placeWidgets() {
     x = ui->VideoStreamButton->x() - ui->ScreenshotButton->width() - offset;
     y = ui->VideoStreamButton->y();
     ui->ScreenshotButton->move(x, y);
+
+    /// Moving the ReleaseCode button
+    offset = 10; // Vertical distance from the CodeEdit
+    x = ui->CodeEdit->x() + ui->CodeEdit->width() - ui->ReleaseCodeButton->width();
+    y = ui->CodeEdit->y() + ui->CodeEdit->height() + offset;
+    ui->ReleaseCodeButton->move(x, y);
+
+    /// Moving the DebugCode button
+    offset = 10; // Horizontal distance from the ReleaseCode button
+    x = ui->ReleaseCodeButton->x() - ui->DebugCodeButton->width() - offset;
+    y = ui->ReleaseCodeButton->y();
+    ui->DebugCodeButton->move(x, y);
 
     /// Moving the MotorsSettings widget
     offset = 30; // Horizontal distance between widgets
@@ -158,6 +172,11 @@ void MainWindow::placeWidgets() {
     x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width() / 2 - ui->ClientSettingsLabel->width() / 2;
     y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
     ui->ClientSettingsLabel->move(x, y);
+
+    /// Moving the CodeEdit Label
+    x = ui->CodeEdit->x() + ui->CodeEdit->width() / 2 - ui->CodeEditLabel->width() / 2;
+    y = ui->CodeEditLabel->y();
+    ui->CodeEditLabel->move(x, y);
 }
 
 void MainWindow::paintEvent(QPaintEvent *event) {

@@ -44,7 +44,7 @@ public:
         return flag;
     }
 
-    void MakeScreenShot();
+    void TakeScreenshot();
 private:
 
     std::shared_mutex _frameMutex;

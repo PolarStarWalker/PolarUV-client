@@ -208,7 +208,7 @@ bool VideoProtocol::SendStopSignal(const QString &address) {
     return true;
 }
 
-void VideoProtocol::MakeScreenShot() {
+void VideoProtocol::TakeScreenshot() {
     this->SetScreenshotState(true);
 }
 

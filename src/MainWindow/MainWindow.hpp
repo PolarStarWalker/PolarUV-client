@@ -5,6 +5,7 @@
 #include <windows.h>
 #include <thread>
 #include <chrono>
+#include <Python.h>
 
 #include <QMainWindow>
 #include <QMessageBox>
@@ -40,7 +41,7 @@ protected:
     void resizeEvent(QResizeEvent *event) override;
 
     void setupRendering();
-    void setupButtons();
+    void SetupButtons();
     void setupShortcuts();
 
     void placeWidgets();
@@ -58,19 +59,19 @@ private slots:
     void on_MotorsNumberSpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);
 
-    void switchSendingCommands();
-    void switchVideoStream();
-    void takeScreenshot();
-    void switchVideoCapture();
+    void SwitchSendingCommands();
+    void SwitchVideoStream();
+    void TakeScreenshot();
+    void SwitchVideoCapture();
     void ReceiveRobotSettings();
     void SendRobotSettings();
-    void loadClientSettings();
-    void saveClientSettings();
-    void refreshGamepads();
-    void refreshClientIps();
-    void switchFullScreen();
-    void hideTabBar();
-    void showTabBar();
+    void LoadClientSettings();
+    void SaveClientSettings();
+    void RefreshGamepads();
+    void RefreshClientIps();
+    void SwitchFullScreen();
+    void HideTabBar();
+    void ShowTabBar();
 
     void shortcutEsc();
     void shortcutTab();
