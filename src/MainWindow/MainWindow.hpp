@@ -1,11 +1,17 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
+#pragma push_macro("slots")
+#undef slots
+
 #include <iostream>
 #include <fstream>
 #include <windows.h>
 #include <thread>
 #include <chrono>
 #include <Python.h>
+
+#pragma pop_macro("slots")
 
 #include <QMainWindow>
 #include <QMessageBox>
