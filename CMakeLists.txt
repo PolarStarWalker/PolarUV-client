@@ -14,8 +14,9 @@ set(GSTREAMER_DIR "/lib/gstreamer-dev/1.0/msvc_x86_64/bin")
 link_directories(GSTREAMER_DIR)
 
 # Подключение библиотек python
-find_package(Python COMPONENTS Interpreter Development)
+find_package (Python3 COMPONENTS Interpreter Development)
 include_directories(${Python_INCLUDE_DIRS})
+include_directories(${Python3_INCLUDE_DIRS})
 
 #чтобы сработало библиотека должна быть в PATH
 set(OpenCV_STATIC ON)
@@ -37,3 +38,4 @@ find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 add_subdirectory(src)
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(${PROJECT_NAME} ${Python3_LIBRARIES})
