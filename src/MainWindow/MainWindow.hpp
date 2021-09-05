@@ -3,15 +3,15 @@
 
 #pragma push_macro("slots")
 #undef slots
+#include <Python.h>
+#pragma pop_macro("slots")
 
 #include <iostream>
 #include <fstream>
 #include <windows.h>
 #include <thread>
 #include <chrono>
-#include <Python.h>
-
-#pragma pop_macro("slots")
+#include <iphlpapi.h>
 
 #include <QMainWindow>
 #include <QMessageBox>
@@ -55,9 +55,12 @@ protected:
     static QImage cvMatToQImage(const cv::Mat &mat);
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
+    void RawSwitchVideoStream();
+    void RawSwitchVideoCapture();
+    void RawTakeScreenshot();
+    void RawSwitchSendingCommands();
     void RawSendRobotSettings();
     void RawReceiveRobotSettings();
-
     void RawSaveClientSettings();
     void RawLoadClientSettings();
 
@@ -78,6 +81,8 @@ private slots:
     void SwitchFullScreen();
     void HideTabBar();
     void ShowTabBar();
+    void ReleaseCode();
+    void DebugCode();
 
     void shortcutEsc();
     void shortcutTab();

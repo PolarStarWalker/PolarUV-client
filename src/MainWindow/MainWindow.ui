@@ -475,7 +475,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Полярник 3.4.1</string>
+   <string>Полярник 3.4.2</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -561,7 +561,7 @@
      <bool>false</bool>
     </property>
     <property name="toolTip">
-     <string>Начать работу</string>
+     <string>Отправка команд</string>
     </property>
     <property name="text">
      <string/>

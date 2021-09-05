@@ -2,6 +2,61 @@
 #include "../ui_mainwindow.h"
 #include "../ExceptionHandler/ExceptionHandler.hpp"
 
+void MainWindow::RawSwitchVideoStream() {
+    if (ui->RobotIPEdit->text() == "..." ||
+        ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex()) == "") {
+
+        throw Exception::InvalidOperationException("Невозможно начать трансляцию:\n"
+                                                   "не указан IP-адрес ТНПА или клиента\n"
+                                                   "(Настройки клиента - Подключение)");
+    }
+
+    if (!_videoStream->IsStreamOnline()) {
+        QString clientAddress = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
+        QString robotAddress = ui->RobotIPEdit->text();
+        _videoStream->StartAsync(robotAddress, clientAddress);
+    } else {
+        _videoStream->Stop(ui->RobotIPEdit->text());
+    }
+}
+
+void MainWindow::RawSwitchVideoCapture() {
+    if (!_videoStream->IsStreamOnline()) {
+        throw Exception::InvalidOperationException("Невозможно записать видео:\n"
+                                                   "трансляция не включена");
+    }
+
+    if (_videoStream->IsVideoWriterOnline()) {
+        _videoStream->StopVideoWrite();
+        ui->VideoCaptureButton->setIcon(QIcon("Icons/WhiteVideoIcon.png"));
+    } else {
+        _videoStream->StartVideoWrite();
+        ui->VideoCaptureButton->setIcon(QIcon("Icons/GreenVideoIcon.png"));
+    }
+}
+
+void MainWindow::RawTakeScreenshot() {
+    if (!_videoStream->IsStreamOnline()) {
+        throw Exception::InvalidOperationException("Невозможно сделать снимок:\n"
+                                                   "трансляция не включена");
+    }
+
+    _videoStream->TakeScreenshot();
+}
+
+void MainWindow::RawSwitchSendingCommands() {
+    std::cout << ui->RobotIPEdit->text().toStdString();
+    if (_commandsProtocol->IsStreamOnline()) {
+        _commandsProtocol->Stop();
+    } else if (ui->RobotIPEdit->text() == "...") {
+        throw Exception::InvalidOperationException("Невозможно начать отправку команд:\n"
+                                                   "не указан IP-адрес ТНПА\n"
+                                                   "(Настройки клиента - Подключение)");
+    } else {
+        _commandsProtocol->StartAsync(ui->RobotIPEdit->text(), COMMANDS_PORT);
+    }
+}
+
 void MainWindow::RawSendRobotSettings() {
     BaseRobotSettingsStruct baseRobotSettingsStruct{};
     baseRobotSettingsStruct.ThrusterNumber = ui->MotorsTable->rowCount();
@@ -135,8 +190,8 @@ void MainWindow::RawSaveClientSettings() {
 void MainWindow::RawLoadClientSettings() {
     ClientSettingsStruct settings;
     if (!settings.Load()) {
-        QMessageBox::critical(this,"Ошибка","Файл настроек клиента не найден. "
-                                            "Установлены значения по-умолчанию");
+        QMessageBox::critical(this, "Ошибка", "Файл настроек клиента не найден. "
+                                              "Установлены значения по-умолчанию");
     }
 
     ui->RobotIPEdit->setText(QString(settings.serverIP));
@@ -166,4 +221,44 @@ void MainWindow::RawLoadClientSettings() {
     ui->RightStickYCheckBox->setChecked(settings.rightStickYInverted);
     ui->DPadXCheckBox->setChecked(settings.dPadXInverted);
     ui->DPadYCheckBox->setChecked(settings.dPadYInverted);
+}
+
+std::list<std::string> GetClientIps() {
+    std::list<std::string> ips;
+    PIP_ADAPTER_INFO adapterInfo = nullptr;
+    ULONG ulOutBufLen = 0;
+
+    DWORD result = GetAdaptersInfo(nullptr, &ulOutBufLen);
+
+    if (result == ERROR_BUFFER_OVERFLOW) {
+        HeapFree(GetProcessHeap(), 0, adapterInfo);
+        adapterInfo = new IP_ADAPTER_INFO[ulOutBufLen / sizeof(IP_ADAPTER_INFO)];
+        result = GetAdaptersInfo(adapterInfo, &ulOutBufLen);
+    }
+
+    if (result != ERROR_SUCCESS) {
+
+        HeapFree(GetProcessHeap(), 0, adapterInfo);
+
+        return ips;
+    }
+
+    PIP_ADAPTER_INFO deleteAdapter = adapterInfo;
+
+    std::string nullIp = "0.0.0.0";
+    for (size_t i = 0; i < ulOutBufLen / sizeof(IP_ADAPTER_INFO); ++i) {
+
+        bool isEqual = !std::strcmp(nullIp.c_str(), adapterInfo->IpAddressList.IpAddress.String);
+
+        if (isEqual) {
+            adapterInfo = adapterInfo->Next;
+            continue;
+        }
+
+        ips.push_back(std::string(adapterInfo->IpAddressList.IpAddress.String));
+        adapterInfo = adapterInfo->Next;
+    }
+
+    delete[] deleteAdapter;
+    return ips;
 }
