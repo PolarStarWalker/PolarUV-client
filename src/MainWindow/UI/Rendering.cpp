@@ -77,9 +77,12 @@ void MainWindow::placeWidgets() {
     ui->Tab3BackgroundLabel->setGeometry(ui->tab_3->geometry());
     ui->Tab4BackgroundLabel->setGeometry(ui->tab_4->geometry());
 
-    /// Changing the size of the TextEdit
+    /// Changing the size of the CodeEdit
     ui->CodeEdit->setFixedWidth(ui->tab_4->width() - 140);
-    ui->CodeEdit->setFixedHeight(ui->tab_4->height() - 140);
+    ui->CodeEdit->setFixedHeight(ui->tab_4->height() - ui->OutputEdit->height() - 140 - 10);
+
+    /// Changing the size of the OutputEdit
+    ui->OutputEdit->setFixedWidth(ui->tab_4->width() - 140);
 
     /// Moving the CommandsProtocol button
     int offset = 0; // Distance from the bottom edge of window
@@ -118,9 +121,9 @@ void MainWindow::placeWidgets() {
     ui->ScreenshotButton->move(x, y);
 
     /// Moving the ReleaseCode button
-    offset = 10; // Vertical distance from the CodeEdit
-    x = ui->CodeEdit->x() + ui->CodeEdit->width() - ui->ReleaseCodeButton->width();
-    y = ui->CodeEdit->y() + ui->CodeEdit->height() + offset;
+    offset = 10; // Vertical distance from the OutputEdit
+    x = ui->OutputEdit->x() + ui->OutputEdit->width() - ui->ReleaseCodeButton->width();
+    y = ui->OutputEdit->y() + ui->OutputEdit->height() + offset;
     ui->ReleaseCodeButton->move(x, y);
 
     /// Moving the DebugCode button
@@ -128,6 +131,17 @@ void MainWindow::placeWidgets() {
     x = ui->ReleaseCodeButton->x() - ui->DebugCodeButton->width() - offset;
     y = ui->ReleaseCodeButton->y();
     ui->DebugCodeButton->move(x, y);
+
+    /// Moving the ProgressBar frame
+    offset = 10; // Horizontal distance from the DebugCode button
+    x = ui->DebugCodeButton->x() - ui->ProgressBarFrame->width() - offset;
+    y = ui->DebugCodeButton->y();
+    ui->ProgressBarFrame->move(x, y);
+
+    /// Moving the ProgressBar
+    x = ui->ProgressBarFrame->x() + ui->ProgressBarFrame->width()/2 - ui->ProgressBar->width()/2;
+    y = ui->ProgressBarFrame->y() + ui->ProgressBarFrame->height()/2 - ui->ProgressBar->height()/2;
+    ui->ProgressBar->move(x,y);
 
     /// Moving the MotorsSettings widget
     offset = 30; // Horizontal distance between widgets
@@ -152,6 +166,10 @@ void MainWindow::placeWidgets() {
     /// Moving the Telemetry widget
     offset = 10; // Distance from the top edge of the window
     ui->TelemetryWidget->move(ui->tab_1->width() - ui->TelemetryWidget->width(), 0 + offset);
+
+    /// Moving the OutputEdit
+    offset = 10; // Vertical distance from the CodeEdit
+    ui->OutputEdit->move(ui->OutputEdit->x(),ui->CodeEdit->y() + ui->CodeEdit->height() + offset);
 
     /// Moving the MotorsSettings label
     x = ui->MotorsSettingsWidget->x() + ui->MotorsSettingsWidget->width() / 2 - ui->MotorsSettingsLabel->width() / 2;
