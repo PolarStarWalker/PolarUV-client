@@ -68,14 +68,28 @@ void MainWindow::RawSendRobotSettings() {
     double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
-            moveCoefficientArray[i * 6 + j] = ui->MotorsTable->item(i, j)->text().toDouble();
+            bool isConverted;
+            double value = ui->MotorsTable->item(i, j)->text().toDouble(&isConverted);
+            if(isConverted) {
+                moveCoefficientArray[i * 6 + j] = value;
+            } else {
+                throw Exception::InvalidOperationException("Матрица коэффициентов двигателей\n"
+                                                           "содержит некорректный символ");
+            }
         }
     }
 
     /// Reading hand coefficients
     double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
-        handCoefficientArray[j] = ui->HandTable->item(0, j)->text().toDouble();
+        bool isConverted;
+        double value = ui->HandTable->item(0, j)->text().toDouble(&isConverted);
+        if(isConverted) {
+            handCoefficientArray[j] = value;
+        } else {
+            throw Exception::InvalidOperationException("Матрица коэффициентов манипулятора\n"
+                                                       "содержит некорректный символ");
+        }
     }
 
     /// Reading max motor speed

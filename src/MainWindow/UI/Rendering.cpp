@@ -144,7 +144,7 @@ void MainWindow::placeWidgets() {
     ui->ProgressBar->move(x,y);
 
     /// Moving the MotorsSettings widget
-    offset = 30; // Horizontal distance between widgets
+    offset = 35; // Horizontal distance between widgets
     x = (ui->tab_2->width() - (ui->MotorsSettingsWidget->width() + ui->HandSettingsWidget->width() + offset)) / 2;
     y = (ui->tab_2->height() - ui->MotorsSettingsWidget->height()) / 2;
     ui->MotorsSettingsWidget->move(x, y);
@@ -154,7 +154,7 @@ void MainWindow::placeWidgets() {
     ui->HandSettingsWidget->move(x, y);
 
     /// Moving the KeyAssignments widget
-    offset = 30; // Horizontal distance between widgets
+    offset = 35; // Horizontal distance between widgets
     x = (ui->tab_3->width() - (ui->KeyAssignmentsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
     y = (ui->tab_3->height() - ui->KeyAssignmentsWidget->height()) / 2;
     ui->KeyAssignmentsWidget->move(x, y);
@@ -263,7 +263,7 @@ void MainWindow::on_MotorsNumberSpinBox_valueChanged(int value) {
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
             if (ui->MotorsTable->item(i, j) == nullptr) {
-                ui->MotorsTable->setItem(i, j, new QTableWidgetItem("0"));
+                ui->MotorsTable->setItem(i, j, new QTableWidgetItem("0.0"));
             }
         }
     }
@@ -303,7 +303,7 @@ void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
     /// Filling the empty cells with zeros
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
         if (ui->HandTable->item(0, j) == nullptr) {
-            ui->HandTable->setItem(0, j, new QTableWidgetItem("0"));
+            ui->HandTable->setItem(0, j, new QTableWidgetItem("0.0"));
         }
     }
 }
