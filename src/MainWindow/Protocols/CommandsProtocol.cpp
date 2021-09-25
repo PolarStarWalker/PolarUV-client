@@ -52,14 +52,18 @@ void CommandsProtocol::Start(const QString &address, uint16_t port) {
 
         std::shared_ptr<CommandsStruct> commands = this->_gamepad.GetCommandsStruct();
         QByteArray commandsStruct((char *) commands.get(), CommandsStructLen);
-        _socket.SendCommand(commandsStruct);
+        _socket.Send(commandsStruct, 0);
+
+        TelemetryStruct telemetry{};
+        _socket.Recv((char *) &telemetry, TelemetryStructLen);
+
+        this->SetTelemetryStruct(telemetry);
 
         ///ToDo: найти способ получше держать период 2мс
         while (std::chrono::duration<double, std::micro>(timer.now() - currentTime).count() < 2000) {}
 
         //std::this_thread::sleep_for(std::chrono::microseconds(2000 - (size_t) deltaTime));
-
-        std::cout << i << ' ' <<std::chrono::duration<double, std::micro>(timer.now() - currentTime).count()<<std::endl;
+        //std::cout << i << ' ' <<std::chrono::duration<double, std::micro>(timer.now() - currentTime).count()<<std::endl;
 
     }
 
@@ -81,6 +85,13 @@ void CommandsProtocol::StartAsync(const QString &address, uint16_t port) {
     this->_transferThread.detach();
 
     this->SetThreadStatus(true);
+}
+
+TelemetryStruct CommandsProtocol::GetTelemetryStruct() {
+    this->_telemetryMutex.lock_shared();
+    TelemetryStruct telemetry = this->_telemetry;
+    this->_telemetryMutex.unlock_shared();
+    return telemetry;
 }
 
 

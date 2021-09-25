@@ -10,8 +10,8 @@ class Socket {
 public:
     bool ConnectToServer(const QString& address, uint16_t port);
     void Disconnect();
-    void SendCommand(const QByteArray &command);
-    void SendSettings(const QByteArray &settings);
+    void Send(const char *data, size_t size);
+    void Recv(char *data, size_t size);
     bool IsOnline() const;
 
 private:
