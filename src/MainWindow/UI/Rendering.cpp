@@ -261,16 +261,16 @@ void MainWindow::timerEvent(QTimerEvent *event) {
 
     TelemetryStruct telemetry = this->_commandsProtocol->GetTelemetryStruct();
 
-    ui->AccelerationXValue->setText(QString::number(telemetry.AccelerationX));
-    ui->AccelerationYValue->setText(QString::number(telemetry.AccelerationY));
-    ui->AccelerationZValue->setText(QString::number(telemetry.AccelerationZ));
-    ui->EulerXValue->setText(QString::number(telemetry.AngleX));
-    ui->EulerYValue->setText(QString::number(telemetry.AngleY));
-    ui->EulerZValue->setText(QString::number(telemetry.AngleZ));
+    ui->AccelerationXValue->setText(QString::number(telemetry.Acceleration[TelemetryStruct::X]));
+    ui->AccelerationYValue->setText(QString::number(telemetry.Acceleration[TelemetryStruct::Y]));
+    ui->AccelerationZValue->setText(QString::number(telemetry.Acceleration[TelemetryStruct::Z]));
+    ui->EulerXValue->setText(QString::number(telemetry.Rotation[TelemetryStruct::X]));
+    ui->EulerYValue->setText(QString::number(telemetry.Rotation[TelemetryStruct::Y]));
+    ui->EulerZValue->setText(QString::number(telemetry.Rotation[TelemetryStruct::Z]));
     ui->DepthValue->setText(QString::number(telemetry.Depth));
 
-    this->PaintRollIndicator(telemetry.AngleX);
-    this->PaintCompass(telemetry.AngleZ);
+    this->PaintRollIndicator(telemetry.Rotation[TelemetryStruct::X]);
+    this->PaintCompass(telemetry.Rotation[TelemetryStruct::Z]);
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {

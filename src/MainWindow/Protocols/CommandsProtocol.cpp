@@ -51,13 +51,14 @@ void CommandsProtocol::Start(const QString &address, uint16_t port) {
         auto currentTime = timer.now();
 
         std::shared_ptr<CommandsStruct> commands = this->_gamepad.GetCommandsStruct();
-        QByteArray commandsStruct((char *) commands.get(), CommandsStructLen);
-        _socket.Send(commandsStruct, 0);
+        _socket.Send((char *) (commands.get()), CommandsStructLen);
 
         TelemetryStruct telemetry{};
         _socket.Recv((char *) &telemetry, TelemetryStructLen);
 
         this->SetTelemetryStruct(telemetry);
+
+        std::cout << telemetry << std::endl;
 
         ///ToDo: найти способ получше держать период 2мс
         while (std::chrono::duration<double, std::micro>(timer.now() - currentTime).count() < 2000) {}

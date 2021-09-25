@@ -45,7 +45,6 @@ void MainWindow::RawTakeScreenshot() {
 }
 
 void MainWindow::RawSwitchSendingCommands() {
-    std::cout << ui->RobotIPEdit->text().toStdString();
     if (_commandsProtocol->IsStreamOnline()) {
         _commandsProtocol->Stop();
     } else if (ui->RobotIPEdit->text() == "...") {
