@@ -62,8 +62,6 @@ public:
     bool rightStickYInverted;
     bool leftShoulderInverted;
     bool rightShoulderInverted;
-
-
 };
 
 extern ClientSettingsStruct ClientSettingsStructData;

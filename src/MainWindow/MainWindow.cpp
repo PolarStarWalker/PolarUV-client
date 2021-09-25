@@ -11,9 +11,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->LoadClientSettings();
 
-    this->setupRendering();
+    this->SetupRendering();
     this->SetupButtons();
-    this->setupShortcuts();
+    this->SetupShortcuts();
 }
 
 MainWindow::~MainWindow() {

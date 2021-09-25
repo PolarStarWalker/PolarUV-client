@@ -165,16 +165,35 @@ void MainWindow::ReleaseCode() {
 }
 
 void MainWindow::DebugCode() {
-    Py_Initialize();
+//    Py_Initialize();
+//
+//    ui->ProgressBar->setValue(25);
+//
+//    const char *str = qPrintable(ui->CodeEdit->toPlainText());
+//    PyRun_SimpleString(str);
+//
+//    ui->ProgressBar->setValue(100);
+//
+//    Py_Finalize();
+//
+//    ui->ProgressBar->setValue(0);
 
-    ui->ProgressBar->setValue(25);
+    auto *manager = new QNetworkAccessManager(this);
+    connect(manager, SIGNAL(finished(QNetworkReply * )), this, SLOT(HandleNetworkReply(QNetworkReply * )));
+    std::cout << "Download is starting" << std::endl;
+    manager->get(QNetworkRequest(QUrl("https://www.defense.gov/")));
+}
 
-    const char *str = qPrintable(ui->CodeEdit->toPlainText());
-    PyRun_SimpleString(str);
-
-    ui->ProgressBar->setValue(100);
-
-    Py_Finalize();
-
-    ui->ProgressBar->setValue(0);
+void MainWindow::HandleNetworkReply(QNetworkReply *reply) {
+    if(reply->error()){
+        qDebug() << "ERROR";
+        qDebug() << reply->errorString();
+    } else {
+        QFile *file = new QFile("C:/file.xml");
+        if(file->open(QFile::WriteOnly)){
+            file->write(reply->readAll());
+            file->close();
+            qDebug() << "Download is completed";
+        }
+    }
 }

@@ -1,7 +1,7 @@
 #include "../MainWindow.hpp"
 #include "../ui_mainwindow.h"
 
-void MainWindow::setupShortcuts() {
+void MainWindow::SetupShortcuts() {
     this->_keyEsc = new QShortcut(Qt::Key_Escape, this, SLOT(shortcutEsc()));
     this->_keyTab = new QShortcut(Qt::Key_Tab, this, SLOT(shortcutTab()));
     this->_keyF11 = new QShortcut(Qt::Key_F11, this, SLOT(shortcutF11()));

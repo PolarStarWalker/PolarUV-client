@@ -1,7 +1,7 @@
 #include "../MainWindow.hpp"
 #include "../ui_mainwindow.h"
 
-void MainWindow::setupRendering() {
+void MainWindow::SetupRendering() {
     /// Starting the window rendering timer
     this->startTimer(1000 / 60, Qt::PreciseTimer);
 
@@ -35,14 +35,28 @@ void MainWindow::setupRendering() {
     /// Hiding the TabBar button
     ui->ShowTabBarButton->hide();
 
+    /// Adding a shadow effect to roll label
+    auto *rollShadowEffect = new QGraphicsDropShadowEffect(this);
+    rollShadowEffect->setOffset(0, 0);
+    rollShadowEffect->setBlurRadius(5.0);
+    rollShadowEffect->setColor(Qt::black);
+    ui->RollLabel->setGraphicsEffect(rollShadowEffect);
+
+    /// Adding a shadow effect to compass label
+    auto *compassShadowEffect = new QGraphicsDropShadowEffect(this);
+    compassShadowEffect->setOffset(0, 0);
+    compassShadowEffect->setBlurRadius(5.0);
+    compassShadowEffect->setColor(Qt::black);
+    ui->CompassLabel->setGraphicsEffect(compassShadowEffect);
+
     /// Adding a shadow effect to telemetry labels
-    QLabel *telemetryLabels[29] = {
+    QLabel *telemetryLabels[26] = {
             ui->AccelerationLabel, ui->AccelerationXLabel, ui->AccelerationXValue, ui->AccelerationXUnits,
             ui->AccelerationYLabel, ui->AccelerationYValue, ui->AccelerationYUnits, ui->AccelerationZLabel,
             ui->AccelerationZValue, ui->AccelerationZUnits, ui->EulerLabel, ui->EulerXLabel, ui->EulerXValue,
             ui->EulerXUnits, ui->EulerYLabel, ui->EulerYValue, ui->EulerYUnits, ui->EulerZLabel, ui->EulerZValue,
-            ui->EulerZUnits, ui->DepthLabel, ui->DepthValue, ui->DepthUnits, ui->PressureLabel, ui->PressureValue,
-            ui->PressureUnits, ui->VoltageLabel, ui->VoltageValue, ui->VoltageUnits
+            ui->EulerZUnits, ui->DepthLabel, ui->DepthValue, ui->DepthUnits, ui->VoltageLabel, ui->VoltageValue,
+            ui->VoltageUnits
     };
     for (auto &telemetryLabel : telemetryLabels) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
@@ -102,6 +116,16 @@ void MainWindow::placeWidgets() {
     /// Moving the ShowTabBar button
     ui->ShowTabBarButton->move(0, 0);
 
+    /// Moving the roll label
+    x = (ui->tab_1->width() - ui->RollLabel->width()) / 2;
+    y = (ui->tab_1->height() - ui->RollLabel->height()) / 2;
+    ui->RollLabel->move(x, y);
+
+    /// Moving the compass label
+    x = ui->tab_1->width() - ui->CompassLabel->width();
+    y = ui->tab_1->height() - ui->CompassLabel->height();
+    ui->CompassLabel->move(x, y);
+
     /// Moving the VideoStream button
     offset = 10; // Distance from the bottom edge of window
     x = (ui->tab_1->width() / 2) - (ui->VideoStreamButton->width() / 2);
@@ -139,9 +163,9 @@ void MainWindow::placeWidgets() {
     ui->ProgressBarFrame->move(x, y);
 
     /// Moving the ProgressBar
-    x = ui->ProgressBarFrame->x() + ui->ProgressBarFrame->width()/2 - ui->ProgressBar->width()/2;
-    y = ui->ProgressBarFrame->y() + ui->ProgressBarFrame->height()/2 - ui->ProgressBar->height()/2;
-    ui->ProgressBar->move(x,y);
+    x = ui->ProgressBarFrame->x() + ui->ProgressBarFrame->width() / 2 - ui->ProgressBar->width() / 2;
+    y = ui->ProgressBarFrame->y() + ui->ProgressBarFrame->height() / 2 - ui->ProgressBar->height() / 2;
+    ui->ProgressBar->move(x, y);
 
     /// Moving the MotorsSettings widget
     offset = 35; // Horizontal distance between widgets
@@ -169,7 +193,7 @@ void MainWindow::placeWidgets() {
 
     /// Moving the OutputEdit
     offset = 10; // Vertical distance from the CodeEdit
-    ui->OutputEdit->move(ui->OutputEdit->x(),ui->CodeEdit->y() + ui->CodeEdit->height() + offset);
+    ui->OutputEdit->move(ui->OutputEdit->x(), ui->CodeEdit->y() + ui->CodeEdit->height() + offset);
 
     /// Moving the MotorsSettings label
     x = ui->MotorsSettingsWidget->x() + ui->MotorsSettingsWidget->width() / 2 - ui->MotorsSettingsLabel->width() / 2;
@@ -234,6 +258,19 @@ void MainWindow::paintEvent(QPaintEvent *event) {
 
 void MainWindow::timerEvent(QTimerEvent *event) {
     this->repaint();
+
+    TelemetryStruct telemetry = this->_commandsProtocol->GetTelemetryStruct();
+
+    ui->AccelerationXValue->setText(QString::number(telemetry.AccelerationX));
+    ui->AccelerationYValue->setText(QString::number(telemetry.AccelerationY));
+    ui->AccelerationZValue->setText(QString::number(telemetry.AccelerationZ));
+    ui->EulerXValue->setText(QString::number(telemetry.AngleX));
+    ui->EulerYValue->setText(QString::number(telemetry.AngleY));
+    ui->EulerZValue->setText(QString::number(telemetry.AngleZ));
+    ui->DepthValue->setText(QString::number(telemetry.Depth));
+
+    this->PaintRollIndicator(telemetry.AngleX);
+    this->PaintCompass(telemetry.AngleZ);
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
@@ -325,4 +362,75 @@ QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
     QImage image = cvMatToQImage(mat);
     image = std::move(image).rgbSwapped();
     return QPixmap::fromImage(image);
+}
+
+void MainWindow::PaintRollIndicator(float rollAngle) {
+    auto *pixmap = new QPixmap(ui->RollLabel->width(), ui->RollLabel->height());
+    pixmap->fill(Qt::transparent);
+
+    QPainter painter(pixmap);
+    painter.setPen(QPen(Qt::white, 3));
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.translate(pixmap->width() / 2, pixmap->height() / 2);
+
+    /// Painting the first part of the main line
+    painter.rotate(-rollAngle);
+    painter.drawEllipse(QPoint(0,0),5,5);
+    painter.drawArc(QRect(-15,-15,30,30),0,-180 * 16);
+    painter.drawLine(16,-1,200,0);
+    painter.drawLine(-16,-1,-200,0);
+
+    ui->RollLabel->setPixmap((const QPixmap) *pixmap);
+}
+
+void MainWindow::PaintPitchIndicator(float pitchAngle) {
+
+}
+
+void MainWindow::PaintYawIndicator(float yawAngle) {
+
+}
+
+void MainWindow::PaintCompass(float angle) {
+    auto *pixmap = new QPixmap(ui->CompassLabel->width(), ui->CompassLabel->height());
+    pixmap->fill(Qt::transparent);
+
+    QPainter painter(pixmap);
+    painter.setPen(QPen(Qt::white, 3));
+    painter.setFont(QFont("Times", 16));
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.translate(pixmap->width() / 2, pixmap->height() / 2);
+
+    /// Painting the arrow
+    painter.drawLine(QPointF(0, -0), QPointF(0, -80));
+
+    /// Painting the north line
+    painter.rotate(-angle);
+    painter.drawLine(QPointF(0, -90), QPointF(0, -110));
+
+    /// Painting the letters
+    painter.drawText(-8, -120, "С");
+    painter.drawText(-8, 140, "Ю");
+    painter.drawText(-135, 10, "З");
+    painter.drawText(120, 10, "В");
+
+    /// Painting the other lines
+    for (ssize_t i = 2; i <= 32; i++) {
+        painter.rotate(11.25);
+        if ((i == 9) || (i == 17) || (i == 25)) {
+            painter.drawLine(QPointF(0, -90), QPointF(0, -110));
+        } else if ((i == 5) || (i == 13) || (i == 21) || (i == 29)) {
+            painter.drawLine(QPointF(0, -90), QPointF(0, -110));
+        } else
+            painter.drawLine(QPointF(0, -100), QPointF(0, -110));
+    }
+
+    ui->CompassLabel->setPixmap((const QPixmap) *pixmap);
+}
+
+void MainWindow::PaintEulerIndicators(float xAngle, float yAngle, float zAngle) {
+    this->PaintRollIndicator(xAngle);
+    this->PaintPitchIndicator(yAngle);
+    this->PaintYawIndicator(zAngle);
+    this->PaintCompass(zAngle);
 }

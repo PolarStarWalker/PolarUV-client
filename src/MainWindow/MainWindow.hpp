@@ -19,6 +19,9 @@
 #include <QThread>
 #include <QShortcut>
 #include <QGraphicsDropShadowEffect>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QFile>
 
 #include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"
@@ -46,14 +49,21 @@ protected:
     void timerEvent(QTimerEvent *event) override;
     void resizeEvent(QResizeEvent *event) override;
 
-    void setupRendering();
+    void SetupRendering();
+    void SetupLocalization();
     void SetupButtons();
-    void setupShortcuts();
+    void SetupShortcuts();
 
     void placeWidgets();
 
     static QImage cvMatToQImage(const cv::Mat &mat);
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
+
+    void PaintEulerIndicators(float xAngle, float yAngle, float zAngle); // in degrees
+    void PaintRollIndicator(float rollAngle);
+    void PaintPitchIndicator(float pitchAngle);
+    void PaintYawIndicator(float yawAngle);
+    void PaintCompass(float angle);
 
     void RawSwitchVideoStream();
     void RawSwitchVideoCapture();
@@ -67,6 +77,8 @@ protected:
 private slots:
     void on_MotorsNumberSpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);
+
+    void HandleNetworkReply(QNetworkReply*);
 
     void SwitchSendingCommands();
     void SwitchVideoStream();
