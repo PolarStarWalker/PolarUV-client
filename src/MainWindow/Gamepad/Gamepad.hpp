@@ -172,7 +172,7 @@ namespace Control {
     public:
         explicit Gamepad(size_t id);
 
-        std::shared_ptr<CommandsStruct> GetCommandsStruct() const;
+        CommandsStruct GetCommandsStruct() const;
 
         void SetVibration(uint16_t left, uint16_t right) const;
 

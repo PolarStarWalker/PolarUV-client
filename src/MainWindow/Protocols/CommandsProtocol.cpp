@@ -50,8 +50,8 @@ void CommandsProtocol::Start(const QString &address, uint16_t port) {
     for (size_t i = 0; _socket.IsOnline(); i++) {
         auto currentTime = timer.now();
 
-        std::shared_ptr<CommandsStruct> commands = this->_gamepad.GetCommandsStruct();
-        _socket.Send((char *) (commands.get()), CommandsStructLen);
+        CommandsStruct commands = this->_gamepad.GetCommandsStruct();
+        _socket.Send((char *) (&commands), CommandsStructLen);
 
         TelemetryStruct telemetry{};
         _socket.Recv((char *) &telemetry, TelemetryStructLen);

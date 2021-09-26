@@ -365,13 +365,13 @@ QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
 }
 
 void MainWindow::PaintRollIndicator(float rollAngle) {
-    auto *pixmap = new QPixmap(ui->RollLabel->width(), ui->RollLabel->height());
-    pixmap->fill(Qt::transparent);
+    QPixmap pixmap (ui->RollLabel->width(), ui->RollLabel->height());
+    pixmap.fill(Qt::transparent);
 
-    QPainter painter(pixmap);
+    QPainter painter(&pixmap);
     painter.setPen(QPen(Qt::white, 3));
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.translate(pixmap->width() / 2, pixmap->height() / 2);
+    painter.translate(pixmap.width() / 2, pixmap.height() / 2);
 
     /// Painting the first part of the main line
     painter.rotate(-rollAngle);
@@ -380,7 +380,7 @@ void MainWindow::PaintRollIndicator(float rollAngle) {
     painter.drawLine(16,-1,200,0);
     painter.drawLine(-16,-1,-200,0);
 
-    ui->RollLabel->setPixmap((const QPixmap) *pixmap);
+    ui->RollLabel->setPixmap(pixmap);
 }
 
 void MainWindow::PaintPitchIndicator(float pitchAngle) {
@@ -392,14 +392,14 @@ void MainWindow::PaintYawIndicator(float yawAngle) {
 }
 
 void MainWindow::PaintCompass(float angle) {
-    auto *pixmap = new QPixmap(ui->CompassLabel->width(), ui->CompassLabel->height());
-    pixmap->fill(Qt::transparent);
+    QPixmap pixmap (ui->CompassLabel->width(), ui->CompassLabel->height());
+    pixmap.fill(Qt::transparent);
 
-    QPainter painter(pixmap);
+    QPainter painter(&pixmap);
     painter.setPen(QPen(Qt::white, 3));
     painter.setFont(QFont("Times", 16));
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.translate(pixmap->width() / 2, pixmap->height() / 2);
+    painter.translate(pixmap.width() / 2, pixmap.height() / 2);
 
     /// Painting the arrow
     painter.drawLine(QPointF(0, -0), QPointF(0, -80));
@@ -425,7 +425,7 @@ void MainWindow::PaintCompass(float angle) {
             painter.drawLine(QPointF(0, -100), QPointF(0, -110));
     }
 
-    ui->CompassLabel->setPixmap((const QPixmap) *pixmap);
+    ui->CompassLabel->setPixmap(pixmap);
 }
 
 void MainWindow::PaintEulerIndicators(float xAngle, float yAngle, float zAngle) {
