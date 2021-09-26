@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 
-add_executable(Client Startup.cpp Startup.hpp)
+if (CMAKE_BUILD_TYPE MATCHES "Release")
+    add_executable(Client WIN32 Startup.cpp Startup.hpp)
+else()
+    add_executable(Client Startup.cpp Startup.hpp)
+endif()
 
 file(COPY Icons DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 file(COPY Pipelines DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
