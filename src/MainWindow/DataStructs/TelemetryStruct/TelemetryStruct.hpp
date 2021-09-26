@@ -43,6 +43,7 @@ inline std::ostream &operator<<(std::ostream &ostream, TelemetryStruct telemetry
     ostream << "Pressure: " << telemetryStruct.Pressure << std::endl;
     ostream << "Voltage: " << telemetryStruct.BatteryVoltage << std::endl;
 
+    return ostream;
 }
 
 

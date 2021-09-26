@@ -22,7 +22,7 @@ void CommandsProtocol::SetGamepadId(size_t id) {
 }
 
 size_t CommandsProtocol::GetGamepadId() const {
-    this->_gamepad.GetGamepadId();
+    return this->_gamepad.GetGamepadId();
 }
 
 bool CommandsProtocol::GetError() const {
@@ -68,6 +68,9 @@ void CommandsProtocol::Start(const QString &address, uint16_t port) {
 
     }
 
+    TelemetryStruct telemetryStruct{};
+    this->SetTelemetryStruct(telemetryStruct);
+
     this->SetOnlineStatus(false);
     this->SetThreadStatus(false);
 }
@@ -88,11 +91,6 @@ void CommandsProtocol::StartAsync(const QString &address, uint16_t port) {
     this->SetThreadStatus(true);
 }
 
-TelemetryStruct CommandsProtocol::GetTelemetryStruct() {
-    this->_telemetryMutex.lock_shared();
-    TelemetryStruct telemetry = this->_telemetry;
-    this->_telemetryMutex.unlock_shared();
-    return telemetry;
-}
+
 
 

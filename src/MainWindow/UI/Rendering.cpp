@@ -356,6 +356,8 @@ QImage MainWindow::cvMatToQImage(const cv::Mat &mat) {
             return image;
         }
     }
+
+    return QImage();
 }
 
 QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {

@@ -4,7 +4,7 @@
 #include <QString>
 #include <QTcpSocket>
 
-#include <mutex>
+#include <shared_mutex>
 
 class Socket {
 public:
@@ -17,7 +17,14 @@ public:
 private:
     QTcpSocket _qTcpSocket;
     mutable std::mutex _socketMutex;
+    mutable std::shared_mutex _statusMutex;
     bool _isOnline = false;
+
+    inline void SetOnlineStatus(bool isOnline){
+        this->_statusMutex.lock();
+        this->_isOnline = isOnline;
+        this->_statusMutex.unlock();
+    }
 };
 
 #endif

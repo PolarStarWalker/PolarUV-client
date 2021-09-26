@@ -8,21 +8,31 @@
 #include "../../Gamepad/Gamepad.hpp"
 #include "../../DataStructs/TelemetryStruct/TelemetryStruct.hpp"
 
-class CommandsProtocol : public BaseProtocol{
+class CommandsProtocol : public BaseProtocol {
 
 public:
     explicit CommandsProtocol(size_t gamepadId);
+
     ~CommandsProtocol();
 
     bool GetError() const;
 
     void SetGamepadId(size_t id);
+
     size_t GetGamepadId() const;
 
-    TelemetryStruct GetTelemetryStruct();
-
     void StartAsync(const QString &address, uint16_t port);
+
     void Stop();
+
+    inline TelemetryStruct GetTelemetryStruct() {
+
+        this->_telemetryMutex.lock_shared();
+        TelemetryStruct telemetry = this->_telemetry;
+        this->_telemetryMutex.unlock_shared();
+
+        return telemetry;
+    }
 
 private:
     Socket _socket;
@@ -44,10 +54,10 @@ private:
         this->_errorStatusMutex.unlock();
     }
 
-    inline void SetTelemetryStruct(const TelemetryStruct& telemetry){
+    inline void SetTelemetryStruct(const TelemetryStruct &telemetry) {
         this->_telemetryMutex.lock();
         this->_telemetry = telemetry;
-        this->_telemetryMutex.unlock_shared();
+        this->_telemetryMutex.unlock();
     }
 };
 
