@@ -1849,10 +1849,10 @@
      <widget class="QLabel" name="RollLabel">
       <property name="geometry">
        <rect>
-        <x>450</x>
-        <y>145</y>
-        <width>500</width>
-        <height>500</height>
+        <x>390</x>
+        <y>180</y>
+        <width>410</width>
+        <height>410</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1884,6 +1884,33 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="PitchLabel">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>155</y>
+        <width>350</width>
+        <height>460</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <zorder>CameraLabel</zorder>
+     <zorder>VideoStreamButton</zorder>
+     <zorder>ScreenshotButton</zorder>
+     <zorder>VideoCaptureButton</zorder>
+     <zorder>TelemetryWidget</zorder>
+     <zorder>CompassLabel</zorder>
+     <zorder>PitchLabel</zorder>
+     <zorder>RollLabel</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <property name="sizePolicy">

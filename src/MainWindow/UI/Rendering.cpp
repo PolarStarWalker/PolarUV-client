@@ -42,6 +42,13 @@ void MainWindow::SetupRendering() {
     rollShadowEffect->setColor(Qt::black);
     ui->RollLabel->setGraphicsEffect(rollShadowEffect);
 
+    /// Adding a shadow effect to pitch label
+    auto *pitchShadowEffect = new QGraphicsDropShadowEffect(this);
+    pitchShadowEffect->setOffset(0, 0);
+    pitchShadowEffect->setBlurRadius(5.0);
+    pitchShadowEffect->setColor(Qt::black);
+    ui->PitchLabel->setGraphicsEffect(pitchShadowEffect);
+
     /// Adding a shadow effect to compass label
     auto *compassShadowEffect = new QGraphicsDropShadowEffect(this);
     compassShadowEffect->setOffset(0, 0);
@@ -120,6 +127,12 @@ void MainWindow::placeWidgets() {
     x = (ui->tab_1->width() - ui->RollLabel->width()) / 2;
     y = (ui->tab_1->height() - ui->RollLabel->height()) / 2;
     ui->RollLabel->move(x, y);
+
+    /// Moving the pitch label
+    offset = 120;
+    x = ui->RollLabel->x() - offset;
+    y = (ui->tab_1->height() - ui->PitchLabel->height()) / 2;
+    ui->PitchLabel->move(x, y);
 
     /// Moving the compass label
     x = ui->tab_1->width() - ui->CompassLabel->width();
@@ -270,6 +283,7 @@ void MainWindow::timerEvent(QTimerEvent *event) {
     ui->DepthValue->setText(QString::number(telemetry.Depth));
 
     this->PaintRollIndicator(telemetry.Rotation[TelemetryStruct::X]);
+    this->PaintPitchIndicator(telemetry.Rotation[TelemetryStruct::Y]);
     this->PaintCompass(telemetry.Rotation[TelemetryStruct::Z]);
 }
 
@@ -367,7 +381,7 @@ QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
 }
 
 void MainWindow::PaintRollIndicator(float rollAngle) {
-    QPixmap pixmap (ui->RollLabel->width(), ui->RollLabel->height());
+    QPixmap pixmap(ui->RollLabel->width(), ui->RollLabel->height());
     pixmap.fill(Qt::transparent);
 
     QPainter painter(&pixmap);
@@ -376,17 +390,47 @@ void MainWindow::PaintRollIndicator(float rollAngle) {
     painter.translate(pixmap.width() / 2, pixmap.height() / 2);
 
     /// Painting the first part of the main line
-    painter.rotate(-rollAngle);
-    painter.drawEllipse(QPoint(0,0),5,5);
-    painter.drawArc(QRect(-15,-15,30,30),0,-180 * 16);
-    painter.drawLine(16,-1,200,0);
-    painter.drawLine(-16,-1,-200,0);
+    painter.rotate(rollAngle);
+    painter.drawEllipse(QPoint(0, 0), 5, 5);
+    painter.drawArc(QRect(-15, -15, 30, 30), 0, -180 * 16);
+    painter.drawLine(16, -1, 180, 0);
+    painter.drawLine(-16, -1, -180, 0);
 
     ui->RollLabel->setPixmap(pixmap);
 }
 
 void MainWindow::PaintPitchIndicator(float pitchAngle) {
+    QPixmap pixmap(ui->PitchLabel->width(), ui->PitchLabel->height());
+    pixmap.fill(Qt::transparent);
 
+    QPainter painter(&pixmap);
+    painter.setPen(QPen(Qt::white, 3));
+    painter.setRenderHint(QPainter::Antialiasing);
+
+    painter.drawLine(5, 5, 95, 5);
+    painter.drawLine(95, 5, 95, 455);
+    painter.drawLine(5, 455, 95, 455);
+
+    painter.translate(325, 230);
+    auto y = ((int32_t) pitchAngle);
+    if (y < -180) y = -180;
+    else if ((-180 <= y) && (y < -90)) y = -(y + 180) * 2; // Смотрит назад, нижняя полусфера
+    else if ((-90 <= y) && (y < 0)) y = y * 2; // Смотрит вперед, нижняя полусфера
+    else if ((0 <= y) && (y < 90)) y = y * 2; // Смотрит вперед, верхняя полусфера
+    else if ((90 <= y) && (y <= 180)) y = -(y - 180) * 2; // Смотрит назад, верхняя полусфера
+    else if (y > 180) y = 180;
+    painter.drawEllipse(QPoint(0, y), 5, 5);
+    painter.setPen(QPen(Qt::white, 3, Qt::PenStyle::DashLine));
+    if (y < 0) painter.drawLine(0, -5, 0, y + 5);
+    else if (y > 0) painter.drawLine(0, 5, 0, y - 5);
+
+    painter.setPen(QPen(Qt::white, 3));
+    painter.setFont(QFont("Times", 16));
+    painter.drawLine(-231, y, -240, y - 5);
+    painter.drawLine(-231, y, -240, y + 5);
+    painter.drawText(-290, y + 8, QString::number(y / 2));
+
+    ui->PitchLabel->setPixmap(pixmap);
 }
 
 void MainWindow::PaintYawIndicator(float yawAngle) {
@@ -394,7 +438,7 @@ void MainWindow::PaintYawIndicator(float yawAngle) {
 }
 
 void MainWindow::PaintCompass(float angle) {
-    QPixmap pixmap (ui->CompassLabel->width(), ui->CompassLabel->height());
+    QPixmap pixmap(ui->CompassLabel->width(), ui->CompassLabel->height());
     pixmap.fill(Qt::transparent);
 
     QPainter painter(&pixmap);
