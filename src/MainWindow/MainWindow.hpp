@@ -60,10 +60,11 @@ protected:
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
     void PaintEulerIndicators(float xAngle, float yAngle, float zAngle); // in degrees
-    void PaintRollIndicator(float rollAngle);
-    void PaintPitchIndicator(float pitchAngle);
-    void PaintYawIndicator(float yawAngle);
-    void PaintCompass(float angle);
+    void PaintRollIndicator(float rollAngle, float sizeMultiplier);
+    void PaintPitchIndicator(float pitchAngle, float sizeMultiplier);
+    void PaintYawIndicator(float yawAngle, float sizeMultiplier);
+    void PaintCompass(float angle, float sizeMultiplier);
+    void PaintDepthIndicator(float depth, int32_t valueRange, float sizeMultiplier);
 
     void RawSwitchVideoStream();
     void RawSwitchVideoCapture();

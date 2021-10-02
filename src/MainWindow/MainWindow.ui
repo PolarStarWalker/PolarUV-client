@@ -1133,730 +1133,17 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QWidget" name="TelemetryWidget" native="true">
-      <property name="geometry">
-       <rect>
-        <x>949</x>
-        <y>10</y>
-        <width>361</width>
-        <height>331</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <widget class="QLabel" name="EulerLabel">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>130</y>
-         <width>151</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Наклон</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerXLabel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>130</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>X</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerYLabel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>170</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Y</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerZLabel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>210</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Z</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="DepthLabel">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>260</y>
-         <width>151</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Глубина</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="VoltageLabel">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>300</y>
-         <width>141</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Напряжение</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerXValue">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>130</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="text">
-        <string>000,000</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerYValue">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>170</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="text">
-        <string>000,000</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerZValue">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>210</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="text">
-        <string>000,000</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="DepthValue">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>260</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="text">
-        <string>000,000</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="VoltageValue">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>300</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="text">
-        <string>000,000</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerXUnits">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>130</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>°</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerYUnits">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>170</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>°</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="EulerZUnits">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>210</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>°</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="DepthUnits">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>260</y>
-         <width>51</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>м</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="VoltageUnits">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>300</y>
-         <width>51</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>В</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationXValue">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>0</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="text">
-        <string>000,000</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationXUnits">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>0</y>
-         <width>51</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>м/с²</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationZValue">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>80</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="text">
-        <string>000,000</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationZLabel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>80</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Z</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationYUnits">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>40</y>
-         <width>51</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>м/с²</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationYValue">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>40</y>
-         <width>111</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Panel</enum>
-       </property>
-       <property name="text">
-        <string>000,000</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationZUnits">
-       <property name="geometry">
-        <rect>
-         <x>310</x>
-         <y>80</y>
-         <width>51</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>м/с²</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationLabel">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>0</y>
-         <width>151</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Ускорение</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationXLabel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>0</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>X</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="AccelerationYLabel">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>40</y>
-         <width>20</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <family>Arial</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-         <underline>false</underline>
-         <kerning>true</kerning>
-        </font>
-       </property>
-       <property name="text">
-        <string>Y</string>
-       </property>
-       <property name="wordWrap">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </widget>
      <widget class="QLabel" name="RollLabel">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>180</y>
-        <width>410</width>
-        <height>410</height>
+        <x>290</x>
+        <y>30</y>
+        <width>610</width>
+        <height>720</height>
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Box</enum>
       </property>
       <property name="text">
        <string/>
@@ -1875,7 +1162,7 @@
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Box</enum>
       </property>
       <property name="text">
        <string/>
@@ -1887,14 +1174,52 @@
      <widget class="QLabel" name="PitchLabel">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>155</y>
-        <width>350</width>
-        <height>460</height>
+        <x>200</x>
+        <y>70</y>
+        <width>450</width>
+        <height>640</height>
        </rect>
       </property>
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="DepthLabel">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>70</y>
+        <width>450</width>
+        <height>640</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="RoundPitchLabel">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>480</y>
+        <width>300</width>
+        <height>300</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
       </property>
       <property name="text">
        <string/>
@@ -1907,10 +1232,11 @@
      <zorder>VideoStreamButton</zorder>
      <zorder>ScreenshotButton</zorder>
      <zorder>VideoCaptureButton</zorder>
-     <zorder>TelemetryWidget</zorder>
      <zorder>CompassLabel</zorder>
      <zorder>PitchLabel</zorder>
+     <zorder>DepthLabel</zorder>
      <zorder>RollLabel</zorder>
+     <zorder>RoundPitchLabel</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <property name="sizePolicy">

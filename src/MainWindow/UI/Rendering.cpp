@@ -35,46 +35,20 @@ void MainWindow::SetupRendering() {
     /// Hiding the TabBar button
     ui->ShowTabBarButton->hide();
 
-    /// Adding a shadow effect to roll label
-    auto *rollShadowEffect = new QGraphicsDropShadowEffect(this);
-    rollShadowEffect->setOffset(0, 0);
-    rollShadowEffect->setBlurRadius(5.0);
-    rollShadowEffect->setColor(Qt::black);
-    ui->RollLabel->setGraphicsEffect(rollShadowEffect);
-
-    /// Adding a shadow effect to pitch label
-    auto *pitchShadowEffect = new QGraphicsDropShadowEffect(this);
-    pitchShadowEffect->setOffset(0, 0);
-    pitchShadowEffect->setBlurRadius(5.0);
-    pitchShadowEffect->setColor(Qt::black);
-    ui->PitchLabel->setGraphicsEffect(pitchShadowEffect);
-
-    /// Adding a shadow effect to compass label
-    auto *compassShadowEffect = new QGraphicsDropShadowEffect(this);
-    compassShadowEffect->setOffset(0, 0);
-    compassShadowEffect->setBlurRadius(5.0);
-    compassShadowEffect->setColor(Qt::black);
-    ui->CompassLabel->setGraphicsEffect(compassShadowEffect);
-
-    /// Adding a shadow effect to telemetry labels
-    QLabel *telemetryLabels[26] = {
-            ui->AccelerationLabel, ui->AccelerationXLabel, ui->AccelerationXValue, ui->AccelerationXUnits,
-            ui->AccelerationYLabel, ui->AccelerationYValue, ui->AccelerationYUnits, ui->AccelerationZLabel,
-            ui->AccelerationZValue, ui->AccelerationZUnits, ui->EulerLabel, ui->EulerXLabel, ui->EulerXValue,
-            ui->EulerXUnits, ui->EulerYLabel, ui->EulerYValue, ui->EulerYUnits, ui->EulerZLabel, ui->EulerZValue,
-            ui->EulerZUnits, ui->DepthLabel, ui->DepthValue, ui->DepthUnits, ui->VoltageLabel, ui->VoltageValue,
-            ui->VoltageUnits
+    /// Adding a shadow effect to tab_1 labels
+    QLabel *labels[] = {
+            ui->RollLabel, ui->PitchLabel, ui->CompassLabel, ui->DepthLabel, ui->RoundPitchLabel
     };
-    for (auto &telemetryLabel : telemetryLabels) {
+    for (auto &label : labels) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
         shadowEffect->setOffset(0, 0);
         shadowEffect->setBlurRadius(5.0);
         shadowEffect->setColor(Qt::black);
-        telemetryLabel->setGraphicsEffect(shadowEffect);
+        label->setGraphicsEffect(shadowEffect);
     }
 
     /// Adding a shadow effect to tab_1 buttons
-    QPushButton *buttons[4] = {
+    QPushButton *buttons[] = {
             ui->ShowTabBarButton, ui->VideoStreamButton, ui->ScreenshotButton, ui->VideoCaptureButton
     };
     for (auto &button : buttons) {
@@ -134,10 +108,21 @@ void MainWindow::placeWidgets() {
     y = (ui->tab_1->height() - ui->PitchLabel->height()) / 2;
     ui->PitchLabel->move(x, y);
 
+    /// Moving the depth label
+    offset = 120;
+    x = ui->RollLabel->x() + ui->RollLabel->width() - ui->DepthLabel->width() + offset;
+    y = (ui->tab_1->height() - ui->DepthLabel->height()) / 2;
+    ui->DepthLabel->move(x, y);
+
     /// Moving the compass label
     x = ui->tab_1->width() - ui->CompassLabel->width();
     y = ui->tab_1->height() - ui->CompassLabel->height();
     ui->CompassLabel->move(x, y);
+
+    /// Moving the round pitch label
+    x = ui->CompassLabel->x() - ui->RoundPitchLabel->width();
+    y = ui->CompassLabel->y();
+    ui->RoundPitchLabel->move(x, y);
 
     /// Moving the VideoStream button
     offset = 10; // Distance from the bottom edge of window
@@ -199,10 +184,6 @@ void MainWindow::placeWidgets() {
     /// Moving the ClientSettings widget
     x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() + offset;
     ui->ClientSettingsWidget->move(x, y);
-
-    /// Moving the Telemetry widget
-    offset = 10; // Distance from the top edge of the window
-    ui->TelemetryWidget->move(ui->tab_1->width() - ui->TelemetryWidget->width(), 0 + offset);
 
     /// Moving the OutputEdit
     offset = 10; // Vertical distance from the CodeEdit
@@ -274,17 +255,10 @@ void MainWindow::timerEvent(QTimerEvent *event) {
 
     TelemetryStruct telemetry = this->_commandsProtocol->GetTelemetryStruct();
 
-    ui->AccelerationXValue->setText(QString::number(telemetry.Acceleration[TelemetryStruct::X]));
-    ui->AccelerationYValue->setText(QString::number(telemetry.Acceleration[TelemetryStruct::Y]));
-    ui->AccelerationZValue->setText(QString::number(telemetry.Acceleration[TelemetryStruct::Z]));
-    ui->EulerXValue->setText(QString::number(telemetry.Rotation[TelemetryStruct::X]));
-    ui->EulerYValue->setText(QString::number(telemetry.Rotation[TelemetryStruct::Y]));
-    ui->EulerZValue->setText(QString::number(telemetry.Rotation[TelemetryStruct::Z]));
-    ui->DepthValue->setText(QString::number(telemetry.Depth));
-
-    this->PaintRollIndicator(telemetry.Rotation[TelemetryStruct::X]);
-    this->PaintPitchIndicator(telemetry.Rotation[TelemetryStruct::Y]);
-    this->PaintCompass(telemetry.Rotation[TelemetryStruct::Z]);
+    this->PaintRollIndicator(telemetry.Rotation[TelemetryStruct::X], 1);
+    this->PaintPitchIndicator(telemetry.Rotation[TelemetryStruct::Y], 1);
+    this->PaintCompass(telemetry.Rotation[TelemetryStruct::Z], 1);
+    this->PaintDepthIndicator(0, 10, 1);
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event) {
@@ -380,7 +354,7 @@ QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
     return QPixmap::fromImage(image);
 }
 
-void MainWindow::PaintRollIndicator(float rollAngle) {
+void MainWindow::PaintRollIndicator(float rollAngle, float sizeMultiplier) {
     QPixmap pixmap(ui->RollLabel->width(), ui->RollLabel->height());
     pixmap.fill(Qt::transparent);
 
@@ -389,17 +363,26 @@ void MainWindow::PaintRollIndicator(float rollAngle) {
     painter.setRenderHint(QPainter::Antialiasing);
     painter.translate(pixmap.width() / 2, pixmap.height() / 2);
 
-    /// Painting the first part of the main line
+    QRect boundingRect(-40,
+                       (ui->RollLabel->height() / 2) - 35,
+                       80,
+                       30);
+    painter.setPen(QPen(Qt::white, 2));
+    painter.setFont(QFont("Times", 16));
+    painter.drawRect(boundingRect);
+    painter.drawText(boundingRect, Qt::AlignCenter, QString::number((int32_t) rollAngle) + QString("°"));
+
+    painter.setPen(QPen(Qt::white, 3));
     painter.rotate(rollAngle);
     painter.drawEllipse(QPoint(0, 0), 5, 5);
     painter.drawArc(QRect(-15, -15, 30, 30), 0, -180 * 16);
-    painter.drawLine(16, -1, 180, 0);
-    painter.drawLine(-16, -1, -180, 0);
+    painter.drawLine(16, -1, 270, 0);
+    painter.drawLine(-16, -1, -270, 0);
 
     ui->RollLabel->setPixmap(pixmap);
 }
 
-void MainWindow::PaintPitchIndicator(float pitchAngle) {
+void MainWindow::PaintPitchIndicator(float pitchAngle, float sizeMultiplier) {
     QPixmap pixmap(ui->PitchLabel->width(), ui->PitchLabel->height());
     pixmap.fill(Qt::transparent);
 
@@ -407,76 +390,156 @@ void MainWindow::PaintPitchIndicator(float pitchAngle) {
     painter.setPen(QPen(Qt::white, 3));
     painter.setRenderHint(QPainter::Antialiasing);
 
-    painter.drawLine(5, 5, 95, 5);
-    painter.drawLine(95, 5, 95, 455);
-    painter.drawLine(5, 455, 95, 455);
+    painter.drawLine(50, 5, 119, 5);
+    painter.drawLine(120, 6, 120,
+                     ui->PitchLabel->height() - 6);
+    painter.drawLine(50,
+                     ui->PitchLabel->height() - 5,
+                     119,
+                     ui->PitchLabel->height() - 5);
 
-    painter.translate(325, 230);
+    painter.translate(425, 320);
     auto y = ((int32_t) pitchAngle);
     if (y < -180) y = -180;
-    else if ((-180 <= y) && (y < -90)) y = -(y + 180) * 2; // Смотрит назад, нижняя полусфера
-    else if ((-90 <= y) && (y < 0)) y = y * 2; // Смотрит вперед, нижняя полусфера
-    else if ((0 <= y) && (y < 90)) y = y * 2; // Смотрит вперед, верхняя полусфера
-    else if ((90 <= y) && (y <= 180)) y = -(y - 180) * 2; // Смотрит назад, верхняя полусфера
+    else if ((-180 <= y) && (y < -90)) y = -(y + 180) * 3; // Смотрит назад, нижняя полусфера
+    else if ((-90 <= y) && (y < 90)) y = y * 3;            // Смотрит вперед
+    else if ((90 <= y) && (y <= 180)) y = -(y - 180) * 3;  // Смотрит назад, верхняя полусфера
     else if (y > 180) y = 180;
+
     painter.drawEllipse(QPoint(0, y), 5, 5);
     painter.setPen(QPen(Qt::white, 3, Qt::PenStyle::DashLine));
     if (y < 0) painter.drawLine(0, -5, 0, y + 5);
     else if (y > 0) painter.drawLine(0, 5, 0, y - 5);
 
-    painter.setPen(QPen(Qt::white, 3));
+    painter.setPen(QPen(Qt::white, 2));
     painter.setFont(QFont("Times", 16));
-    painter.drawLine(-231, y, -240, y - 5);
-    painter.drawLine(-231, y, -240, y + 5);
-    painter.drawText(-290, y + 8, QString::number(y / 2));
+
+    /// Painting the scale and its values
+    for (int32_t i = 270; i >= -270; i -= 90) {
+        painter.drawLine(-330, i, -310, i);
+        if (abs(y - i) >= 30) { // If the arrow is far enough from current scale value
+            QRect boundingRect(-395, i - 15, 60, 30);
+            painter.drawText(boundingRect, Qt::AlignCenter, QString::number(i / 3) + QString("°"));
+        }
+    }
+
+    /// Painting the arrow
+    painter.drawLine(-341, y, -359, y - 15);
+    painter.drawLine(-341, y, -359, y + 15);
+
+    /// Painting the bounding rect
+    QRect boundingRect(-420, y - 15, 60, 30);
+    painter.setPen(QPen(Qt::white, 2));
+    painter.drawLine(-420, y - 15, -360, y - 15);
+    painter.drawLine(-420, y + 15, -360, y + 15);
+    painter.drawLine(-420, y - 15, -420, y + 15);
+    painter.drawText(boundingRect, Qt::AlignCenter, QString::number((int32_t) pitchAngle) + QString("°"));
 
     ui->PitchLabel->setPixmap(pixmap);
 }
 
-void MainWindow::PaintYawIndicator(float yawAngle) {
+void MainWindow::PaintYawIndicator(float yawAngle, float sizeMultiplier) {
 
 }
 
-void MainWindow::PaintCompass(float angle) {
+void MainWindow::PaintCompass(float angle, float sizeMultiplier) {
+    ui->CompassLabel->setGeometry(ui->CompassLabel->x(),
+                                  ui->CompassLabel->y(),
+                                  (int32_t) (300.0f * sizeMultiplier),
+                                  (int32_t) (300.0f * sizeMultiplier));
     QPixmap pixmap(ui->CompassLabel->width(), ui->CompassLabel->height());
     pixmap.fill(Qt::transparent);
 
     QPainter painter(&pixmap);
     painter.setPen(QPen(Qt::white, 3));
-    painter.setFont(QFont("Times", 16));
+    painter.setFont(QFont("Times", (int32_t) (16 * sizeMultiplier)));
     painter.setRenderHint(QPainter::Antialiasing);
     painter.translate(pixmap.width() / 2, pixmap.height() / 2);
 
     /// Painting the arrow
-    painter.drawLine(QPointF(0, -0), QPointF(0, -80));
+    painter.drawLine(QPointF(0, -0), QPointF(0, (int32_t) (-70 * sizeMultiplier)));
+
+    /// Painting the angle
+    QRect boundingRect((int32_t) (-40 * sizeMultiplier),
+                       (int32_t) (10 * sizeMultiplier),
+                       (int32_t) (80 * sizeMultiplier),
+                       (int32_t) (30 * sizeMultiplier));
+    painter.setPen(QPen(Qt::white, 2));
+    painter.drawRect(boundingRect);
+    painter.setPen(QPen(Qt::white, 3));
+    painter.drawText(boundingRect, Qt::AlignCenter, QString::number((int32_t) angle) + QString("°"));
+
+    /// Painting the circle
+    painter.drawEllipse(QPoint(0, 0),
+                        (int32_t) (110 * sizeMultiplier),
+                        (int32_t) (110 * sizeMultiplier));
 
     /// Painting the north line
     painter.rotate(-angle);
-    painter.drawLine(QPointF(0, -90), QPointF(0, -110));
+    painter.drawLine(QPointF(0, (int32_t) (-80 * sizeMultiplier)),
+                     QPointF(0, (int32_t) (-110 * sizeMultiplier)));
 
     /// Painting the letters
-    painter.drawText(-8, -120, "С");
-    painter.drawText(-8, 140, "Ю");
-    painter.drawText(-135, 10, "З");
-    painter.drawText(120, 10, "В");
+    painter.drawText((int32_t) (-8 * sizeMultiplier), (int32_t) (-120 * sizeMultiplier), "С");
+    painter.drawText((int32_t) (-8 * sizeMultiplier), (int32_t) (140 * sizeMultiplier), "Ю");
+    painter.drawText((int32_t) (-135 * sizeMultiplier), (int32_t) (10 * sizeMultiplier), "З");
+    painter.drawText((int32_t) (120 * sizeMultiplier), (int32_t) (10 * sizeMultiplier), "В");
 
     /// Painting the other lines
-    for (ssize_t i = 2; i <= 32; i++) {
-        painter.rotate(11.25);
-        if ((i == 9) || (i == 17) || (i == 25)) {
-            painter.drawLine(QPointF(0, -90), QPointF(0, -110));
-        } else if ((i == 5) || (i == 13) || (i == 21) || (i == 29)) {
-            painter.drawLine(QPointF(0, -90), QPointF(0, -110));
-        } else
-            painter.drawLine(QPointF(0, -100), QPointF(0, -110));
+    for (ssize_t i = 1; i < 16; i++) {
+        painter.rotate(22.5);
+        if (i % 2 == 0) {
+            painter.setPen(QPen(Qt::white, 3));
+            painter.drawLine(QPointF(0, (int32_t) (-80 * sizeMultiplier)),
+                             QPointF(0, (int32_t) (-110 * sizeMultiplier)));
+        } else {
+            painter.setPen(QPen(Qt::white, 2));
+            painter.drawLine(QPointF(0, (int32_t) (-90 * sizeMultiplier)),
+                             QPointF(0, (int32_t) (-110 * sizeMultiplier)));
+        }
     }
 
     ui->CompassLabel->setPixmap(pixmap);
 }
 
+void MainWindow::PaintDepthIndicator(float depth, int32_t valueRange, float sizeMultiplier) {
+    QPixmap pixmap(ui->DepthLabel->width(), ui->DepthLabel->height());
+    pixmap.fill(Qt::transparent);
+
+    QPainter painter(&pixmap);
+    painter.setPen(QPen(Qt::white, 3));
+    painter.setRenderHint(QPainter::Antialiasing);
+
+    painter.drawLine(331, 5, 400, 5);
+    painter.drawLine(330, 6, 330,
+                     ui->DepthLabel->height() - 6);
+    painter.drawLine(331,
+                     ui->DepthLabel->height() - 5,
+                     400,
+                     ui->DepthLabel->height() - 5);
+
+    painter.translate(25, 320);
+
+    painter.setPen(QPen(Qt::white, 2));
+    painter.setFont(QFont("Times", 16));
+
+    /// Painting the scale and its values
+    int32_t j = 0;
+    for (int32_t i = -270; i <= 270; i += 108) {
+        painter.drawLine(310, i, 330, i);
+        if (abs((int32_t) depth - i) >= 30) { // if the arrow is far enough from current scale value
+            QRect boundingRect(335, i - 15, 60, 30);
+            painter.drawText(boundingRect, Qt::AlignCenter, QString::number(j) + QString("м"));
+        }
+        j = j + (valueRange / 5);
+    }
+
+    ui->DepthLabel->setPixmap(pixmap);
+}
+
 void MainWindow::PaintEulerIndicators(float xAngle, float yAngle, float zAngle) {
-    this->PaintRollIndicator(xAngle);
-    this->PaintPitchIndicator(yAngle);
-    this->PaintYawIndicator(zAngle);
-    this->PaintCompass(zAngle);
+    this->PaintRollIndicator(xAngle, 1);
+    this->PaintPitchIndicator(yAngle, 1);
+    this->PaintYawIndicator(zAngle, 1);
+    this->PaintCompass(zAngle, 1);
 }
