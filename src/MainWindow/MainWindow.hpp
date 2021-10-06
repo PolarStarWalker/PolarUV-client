@@ -22,6 +22,9 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QFile>
+#include <QTimer>
+
+#include "./UI/Resources/Resources.hpp"
 
 #include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"
@@ -45,22 +48,16 @@ public:
     ~MainWindow() override;
 
 protected:
-    void paintEvent(QPaintEvent *event) override;
-    void timerEvent(QTimerEvent *event) override;
-    void resizeEvent(QResizeEvent *event) override;
 
     void SetupRendering();
     void SetupLocalization();
     void SetupButtons();
     void SetupShortcuts();
 
-    void placeWidgets();
-
     static QImage cvMatToQImage(const cv::Mat &mat);
     static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
-    void PaintEulerIndicators(float xAngle, float yAngle, float zAngle); // in degrees
-    void PaintRollIndicator(float rollAngle, float sizeMultiplier);
+    void PaintRollIndicator(float rollAngle, float sizeMultiplier); // Angle in degrees
     void PaintPitchIndicator(float pitchAngle, float sizeMultiplier);
     void PaintYawIndicator(float yawAngle, float sizeMultiplier);
     void PaintCompass(float angle, float sizeMultiplier);
@@ -79,7 +76,8 @@ private slots:
     void on_MotorsNumberSpinBox_valueChanged(int value);
     void on_HandFreedomSpinBox_valueChanged(int value);
 
-    void HandleNetworkReply(QNetworkReply*);
+    void MoveWidgets();
+    void UpdateWidgets();
 
     void SwitchSendingCommands();
     void SwitchVideoStream();
@@ -105,16 +103,29 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    Resources *_resources;
+
+    QTimer *_updateTimer;
+
     VideoProtocol *_videoStream;
     CommandsProtocol *_commandsProtocol;
 
-    bool _widgetsPlaced = false;
+    bool _isVideoFrame = false;   // For UpdateWidgets() function
+    bool _isGreen = false;        // in order not to draw the same
+    bool _isPause = false;        // images
+    int32_t _oldEulerX = -1;      //
+    int32_t _oldEulerY = -1;      //
+    int32_t _oldEulerZ = -1;      //
+    int32_t _oldDepth = -1;       //
+    QPixmap _oldVideoFrame{};     //
+
+    std::chrono::time_point<std::chrono::system_clock> _oldTime{};
+    uint8_t _fps = 0;
 
     QShortcut *_keyEsc = nullptr;
     QShortcut *_keyTab = nullptr;
     QShortcut *_keyF11 = nullptr;
     QShortcut *_keyB = nullptr;
-
 };
 
 std::list<std::string> GetClientIps();

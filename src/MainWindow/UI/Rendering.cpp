@@ -2,29 +2,33 @@
 #include "../ui_mainwindow.h"
 
 void MainWindow::SetupRendering() {
-    /// Starting the window rendering timer
-    this->startTimer(1000 / 60, Qt::PreciseTimer);
-
     /// Setting the application icon
     setWindowIcon(QIcon("Icons/WindowIcon.png"));
 
     /// Setting the tab icons
-    ui->TabWidget->setTabIcon(0, QIcon("Icons/CameraIcon.png"));
-    ui->TabWidget->setTabIcon(1, QIcon("Icons/RobotIcon.png"));
-    ui->TabWidget->setTabIcon(2, QIcon("Icons/ClientIcon.png"));
-    ui->TabWidget->setTabIcon(3, QIcon("Icons/CodeIcon.png"));
+    ui->TabWidget->setTabIcon(0, *this->_resources->cameraIcon);
+    ui->TabWidget->setTabIcon(1, *this->_resources->robotIcon);
+    ui->TabWidget->setTabIcon(2, *this->_resources->clientIcon);
+    ui->TabWidget->setTabIcon(3, *this->_resources->codeIcon);
 
     /// Setting the button icons
-    ui->FullScreenButton->setIcon(QIcon("Icons/FullScreenIcon.png"));
-    ui->ShowTabBarButton->setIcon(QIcon("Icons/ShowTabBarIcon.png"));
-    ui->HideTabBarButton->setIcon(QIcon("Icons/HideTabBarIcon.png"));
-    ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));
-    ui->ScreenshotButton->setIcon(QIcon("Icons/ScreenshotIcon.png"));
-    ui->VideoCaptureButton->setIcon(QIcon("Icons/WhiteVideoIcon.png"));
-    ui->RefreshClientIPsButton->setIcon(QIcon("Icons/ReloadIcon.png"));
-    ui->RefreshGamepadsButton->setIcon(QIcon("Icons/ReloadIcon.png"));
-    ui->ReleaseCodeButton->setIcon(QIcon("Icons/PlayIcon.png"));
-    ui->DebugCodeButton->setIcon(QIcon("Icons/BugIcon.png"));
+    ui->CommandsProtocolButton->setIcon(*this->_resources->redStartIcon);
+    ui->FullScreenButton->setIcon(*this->_resources->fullScreenIcon);
+    ui->ShowTabBarButton->setIcon(*this->_resources->showTabBarIcon);
+    ui->HideTabBarButton->setIcon(*this->_resources->hideTabBarIcon);
+    ui->VideoStreamButton->setIcon(*this->_resources->playIcon);
+    ui->ScreenshotButton->setIcon(*this->_resources->screenshotIcon);
+    ui->VideoCaptureButton->setIcon(*this->_resources->whiteVideoIcon);
+    ui->RefreshClientIPsButton->setIcon(*this->_resources->reloadIcon);
+    ui->RefreshGamepadsButton->setIcon(*this->_resources->reloadIcon);
+    ui->ReleaseCodeButton->setIcon(*this->_resources->playIcon);
+    ui->DebugCodeButton->setIcon(*this->_resources->bugIcon);
+
+    /// Setting the background
+    ui->CameraLabel->setPixmap(*this->_resources->background);
+    ui->Tab2BackgroundLabel->setPixmap(*this->_resources->background);
+    ui->Tab3BackgroundLabel->setPixmap(*this->_resources->background);
+    ui->Tab4BackgroundLabel->setPixmap(*this->_resources->background);
 
     /// Setting a transparent background for some buttons
     ui->ShowTabBarButton->setStyleSheet("background-color: transparent");
@@ -37,7 +41,7 @@ void MainWindow::SetupRendering() {
 
     /// Adding a shadow effect to tab_1 labels
     QLabel *labels[] = {
-            ui->RollLabel, ui->PitchLabel, ui->CompassLabel, ui->DepthLabel, ui->RoundPitchLabel
+            ui->FPSLabel, ui->RollLabel, ui->PitchLabel, ui->CompassLabel, ui->DepthLabel, ui->RoundPitchLabel
     };
     for (auto &label : labels) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
@@ -60,7 +64,7 @@ void MainWindow::SetupRendering() {
     }
 }
 
-void MainWindow::placeWidgets() {
+void MainWindow::MoveWidgets() {
     /// Changing the size of the TabWidget
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
 
@@ -142,6 +146,10 @@ void MainWindow::placeWidgets() {
     y = ui->VideoStreamButton->y();
     ui->ScreenshotButton->move(x, y);
 
+    /// Moving the fps label
+    x = ui->tab_1->width() - ui->FPSLabel->width();
+    ui->FPSLabel->move(x, 0);
+
     /// Moving the ReleaseCode button
     offset = 10; // Vertical distance from the OutputEdit
     x = ui->OutputEdit->x() + ui->OutputEdit->width() - ui->ReleaseCodeButton->width();
@@ -215,54 +223,81 @@ void MainWindow::placeWidgets() {
     ui->CodeEditLabel->move(x, y);
 }
 
-void MainWindow::paintEvent(QPaintEvent *event) {
-    /// Placing widgets if this is the first painting since the launch
-    if (!this->_widgetsPlaced) this->placeWidgets();
+void MainWindow::UpdateWidgets() {
+
+    this->MoveWidgets();
 
     /// Painting a video frame or placeholder image
     if (this->_videoStream->IsStreamOnline()) {
         cv::Mat mat = this->_videoStream->GetMatrix();
-        QPixmap videoFrame(cvMatToPixmap(mat));
-        ui->CameraLabel->setPixmap(videoFrame);
-        ui->Tab2BackgroundLabel->setPixmap(videoFrame);
-        ui->Tab3BackgroundLabel->setPixmap(videoFrame);
-        ui->Tab4BackgroundLabel->setPixmap(videoFrame);
-    } else {
-        QPixmap background("Icons/Background.png");
-        ui->CameraLabel->setPixmap(background);
-        ui->Tab2BackgroundLabel->setPixmap(background);
-        ui->Tab3BackgroundLabel->setPixmap(background);
-        ui->Tab4BackgroundLabel->setPixmap(background);
+        QPixmap currentVideoFrame(cvMatToPixmap(mat));
+        if (currentVideoFrame != this->_oldVideoFrame) {
+            ui->CameraLabel->setPixmap(currentVideoFrame);
+            ui->Tab2BackgroundLabel->setPixmap(currentVideoFrame);
+            ui->Tab3BackgroundLabel->setPixmap(currentVideoFrame);
+            ui->Tab4BackgroundLabel->setPixmap(currentVideoFrame);
+        }
+        this->_isVideoFrame = true;
+    } else if (!this->_videoStream->IsStreamOnline() && this->_isVideoFrame) {
+        ui->CameraLabel->setPixmap(*this->_resources->background);
+        ui->Tab2BackgroundLabel->setPixmap(*this->_resources->background);
+        ui->Tab3BackgroundLabel->setPixmap(*this->_resources->background);
+        ui->Tab4BackgroundLabel->setPixmap(*this->_resources->background);
+        this->_isVideoFrame = false;
     }
 
     /// Selecting the color of the CommandsProtocol button
-    if (this->_commandsProtocol->IsStreamOnline()) {
-        ui->CommandsProtocolButton->setIcon(QIcon("Icons/GreenStartIcon.png"));
-    } else {
-        ui->CommandsProtocolButton->setIcon(QIcon("Icons/RedStartIcon.png"));
+    if (this->_commandsProtocol->IsStreamOnline() && !this->_isGreen) {
+        ui->CommandsProtocolButton->setIcon(*this->_resources->greenStartIcon);
+        this->_isGreen = true;
+    } else if (!this->_commandsProtocol->IsStreamOnline() && this->_isGreen) {
+        ui->CommandsProtocolButton->setIcon(*this->_resources->redStartIcon);
+        this->_isGreen = false;
     }
 
     /// Selecting the color of the VideoStream button
-    if (_videoStream->IsStreamOnline()) {
-        ui->VideoStreamButton->setIcon(QIcon("Icons/PauseIcon.png"));
-    } else {
-        ui->VideoStreamButton->setIcon(QIcon("Icons/PlayIcon.png"));
+    if (_videoStream->IsStreamOnline() && !this->_isPause) {
+        ui->VideoStreamButton->setIcon(*this->_resources->pauseIcon);
+        this->_isPause = true;
+    } else if (!_videoStream->IsStreamOnline() && this->_isPause) {
+        ui->VideoStreamButton->setIcon(*this->_resources->playIcon);
+        this->_isPause = false;
     }
-}
 
-void MainWindow::timerEvent(QTimerEvent *event) {
-    this->repaint();
+    TelemetryStruct telemetryStruct = this->_commandsProtocol->GetTelemetryStruct();
 
-    TelemetryStruct telemetry = this->_commandsProtocol->GetTelemetryStruct();
+    /// Painting the roll indicator if angle changed
+    float currentEulerX = telemetryStruct.Rotation[TelemetryStruct::X];
+    if ((int32_t) currentEulerX != this->_oldEulerX) {
+        this->PaintRollIndicator(currentEulerX, 1);
+        this->_oldEulerX = (int32_t) currentEulerX;
+    }
 
-    this->PaintRollIndicator(telemetry.Rotation[TelemetryStruct::X], 1);
-    this->PaintPitchIndicator(telemetry.Rotation[TelemetryStruct::Y], 1);
-    this->PaintCompass(telemetry.Rotation[TelemetryStruct::Z], 1);
-    this->PaintDepthIndicator(0, 10, 1);
-}
+    /// Painting the pitch indicator if angle changed
+    float currentEulerY = telemetryStruct.Rotation[TelemetryStruct::Y];
+    if ((int32_t) currentEulerY != this->_oldEulerY) {
+        this->PaintPitchIndicator(currentEulerY, 1);
+        this->_oldEulerY = (int32_t) currentEulerY;
+    }
 
-void MainWindow::resizeEvent(QResizeEvent *event) {
-    this->placeWidgets();
+    /// Painting the compass if angle changed
+    float currentEulerZ = telemetryStruct.Rotation[TelemetryStruct::Z];
+    if ((int32_t) currentEulerZ != this->_oldEulerZ) {
+        this->PaintCompass(currentEulerZ, 1);
+        this->_oldEulerZ = (int32_t) currentEulerZ;
+    }
+
+    /// Painting the depth indicator
+    this->PaintDepthIndicator(telemetryStruct.Depth, 10, 1);
+
+    /// Counting FPS - printing every 1 sec
+    this->_fps++;
+    if (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() -
+                                                         this->_oldTime) >= std::chrono::seconds{1}) {
+        this->_oldTime = std::chrono::high_resolution_clock::now();
+        ui->FPSLabel->setText(QString("FPS: ") + QString::number(this->_fps));
+        this->_fps = 0;
+    }
 }
 
 void MainWindow::on_MotorsNumberSpinBox_valueChanged(int value) {
@@ -299,7 +334,8 @@ void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
     ui->HandTable->setFixedWidth((value * 49) + ((int) (value * 0.5))); // 49 - width of one column
 
     /// Moving the table under the HandCoefficients label
-    int x = (ui->HandCoefficientsLabel->x() + (ui->HandCoefficientsLabel->width() / 2)) - (ui->HandTable->width() / 2);
+    int x = (ui->HandCoefficientsLabel->x() + (ui->HandCoefficientsLabel->width() / 2)) -
+            (ui->HandTable->width() / 2);
     int y = ui->HandTable->y();
     ui->HandTable->move(x, y);
 
@@ -535,11 +571,4 @@ void MainWindow::PaintDepthIndicator(float depth, int32_t valueRange, float size
     }
 
     ui->DepthLabel->setPixmap(pixmap);
-}
-
-void MainWindow::PaintEulerIndicators(float xAngle, float yAngle, float zAngle) {
-    this->PaintRollIndicator(xAngle, 1);
-    this->PaintPitchIndicator(yAngle, 1);
-    this->PaintYawIndicator(zAngle, 1);
-    this->PaintCompass(zAngle, 1);
 }
