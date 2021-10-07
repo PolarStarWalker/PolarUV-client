@@ -3,32 +3,32 @@
 
 void MainWindow::SetupRendering() {
     /// Setting the application icon
-    setWindowIcon(QIcon("Icons/WindowIcon.png"));
+    setWindowIcon(this->_mainWindowResources->GetMainWindowIcon());
 
     /// Setting the tab icons
-    ui->TabWidget->setTabIcon(0, *this->_resources->cameraIcon);
-    ui->TabWidget->setTabIcon(1, *this->_resources->robotIcon);
-    ui->TabWidget->setTabIcon(2, *this->_resources->clientIcon);
-    ui->TabWidget->setTabIcon(3, *this->_resources->codeIcon);
+    ui->TabWidget->setTabIcon(0, this->_mainWindowResources->GetCameraIcon());
+    ui->TabWidget->setTabIcon(1, this->_mainWindowResources->GetRobotIcon());
+    ui->TabWidget->setTabIcon(2, this->_mainWindowResources->GetClientIcon());
+    ui->TabWidget->setTabIcon(3, this->_mainWindowResources->GetCodeIcon());
 
     /// Setting the button icons
-    ui->CommandsProtocolButton->setIcon(*this->_resources->redStartIcon);
-    ui->FullScreenButton->setIcon(*this->_resources->fullScreenIcon);
-    ui->ShowTabBarButton->setIcon(*this->_resources->showTabBarIcon);
-    ui->HideTabBarButton->setIcon(*this->_resources->hideTabBarIcon);
-    ui->VideoStreamButton->setIcon(*this->_resources->playIcon);
-    ui->ScreenshotButton->setIcon(*this->_resources->screenshotIcon);
-    ui->VideoCaptureButton->setIcon(*this->_resources->whiteVideoIcon);
-    ui->RefreshClientIPsButton->setIcon(*this->_resources->reloadIcon);
-    ui->RefreshGamepadsButton->setIcon(*this->_resources->reloadIcon);
-    ui->ReleaseCodeButton->setIcon(*this->_resources->playIcon);
-    ui->DebugCodeButton->setIcon(*this->_resources->bugIcon);
+    ui->CommandsProtocolButton->setIcon(this->_mainWindowResources->GetRedStartIcon());
+    ui->FullScreenButton->setIcon(this->_mainWindowResources->GetFullScreenIcon());
+    ui->ShowTabBarButton->setIcon(this->_mainWindowResources->GetShowTabBarIcon());
+    ui->HideTabBarButton->setIcon(this->_mainWindowResources->GetHideTabBarIcon());
+    ui->VideoStreamButton->setIcon(this->_mainWindowResources->GetPlayIcon());
+    ui->ScreenshotButton->setIcon(this->_mainWindowResources->GetScreenshotIcon());
+    ui->VideoCaptureButton->setIcon(this->_mainWindowResources->GetWhiteVideoIcon());
+    ui->RefreshClientIPsButton->setIcon(this->_mainWindowResources->GetReloadIcon());
+    ui->RefreshGamepadsButton->setIcon(this->_mainWindowResources->GetReloadIcon());
+    ui->ReleaseCodeButton->setIcon(this->_mainWindowResources->GetPlayIcon());
+    ui->DebugCodeButton->setIcon(this->_mainWindowResources->GetBugIcon());
 
     /// Setting the background
-    ui->CameraLabel->setPixmap(*this->_resources->background);
-    ui->Tab2BackgroundLabel->setPixmap(*this->_resources->background);
-    ui->Tab3BackgroundLabel->setPixmap(*this->_resources->background);
-    ui->Tab4BackgroundLabel->setPixmap(*this->_resources->background);
+    ui->CameraLabel->setPixmap(this->_mainWindowResources->GetBackground());
+    ui->Tab2BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
+    ui->Tab3BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
+    ui->Tab4BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
 
     /// Setting a transparent background for some buttons
     ui->ShowTabBarButton->setStyleSheet("background-color: transparent");
@@ -239,28 +239,28 @@ void MainWindow::UpdateWidgets() {
         }
         this->_isVideoFrame = true;
     } else if (!this->_videoStream->IsStreamOnline() && this->_isVideoFrame) {
-        ui->CameraLabel->setPixmap(*this->_resources->background);
-        ui->Tab2BackgroundLabel->setPixmap(*this->_resources->background);
-        ui->Tab3BackgroundLabel->setPixmap(*this->_resources->background);
-        ui->Tab4BackgroundLabel->setPixmap(*this->_resources->background);
+        ui->CameraLabel->setPixmap(this->_mainWindowResources->GetBackground());
+        ui->Tab2BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
+        ui->Tab3BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
+        ui->Tab4BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
         this->_isVideoFrame = false;
     }
 
     /// Selecting the color of the CommandsProtocol button
     if (this->_commandsProtocol->IsStreamOnline() && !this->_isGreen) {
-        ui->CommandsProtocolButton->setIcon(*this->_resources->greenStartIcon);
+        ui->CommandsProtocolButton->setIcon(this->_mainWindowResources->GetGreenStartIcon());
         this->_isGreen = true;
     } else if (!this->_commandsProtocol->IsStreamOnline() && this->_isGreen) {
-        ui->CommandsProtocolButton->setIcon(*this->_resources->redStartIcon);
+        ui->CommandsProtocolButton->setIcon(this->_mainWindowResources->GetRedStartIcon());
         this->_isGreen = false;
     }
 
     /// Selecting the color of the VideoStream button
     if (_videoStream->IsStreamOnline() && !this->_isPause) {
-        ui->VideoStreamButton->setIcon(*this->_resources->pauseIcon);
+        ui->VideoStreamButton->setIcon(this->_mainWindowResources->GetPauseIcon());
         this->_isPause = true;
     } else if (!_videoStream->IsStreamOnline() && this->_isPause) {
-        ui->VideoStreamButton->setIcon(*this->_resources->playIcon);
+        ui->VideoStreamButton->setIcon(this->_mainWindowResources->GetPlayIcon());
         this->_isPause = false;
     }
 

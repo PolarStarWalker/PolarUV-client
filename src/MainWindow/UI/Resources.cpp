@@ -1,22 +1,28 @@
-#include "./Resources/Resources.hpp"
+#include "./Resources/MainWindowResources.hpp"
 
-Resources::Resources() {
-    this->background = new QPixmap("Icons/Background.png");
+MainWindowResources::MainWindowResources() {
 
-    this->cameraIcon = new QIcon("Icons/CameraIcon.png");
-    this->robotIcon = new QIcon("Icons/RobotIcon.png");
-    this->clientIcon = new QIcon("Icons/ClientIcon.png");
-    this->codeIcon = new QIcon("Icons/CodeIcon.png");
-    this->fullScreenIcon = new QIcon("Icons/FullScreenIcon.png");
-    this->showTabBarIcon = new QIcon("Icons/ShowTabBarIcon.png");
-    this->hideTabBarIcon = new QIcon("Icons/HideTabBarIcon.png");
-    this->screenshotIcon = new QIcon("Icons/ScreenshotIcon.png");
-    this->whiteVideoIcon = new QIcon("Icons/WhiteVideoIcon.png");
-    this->reloadIcon = new QIcon("Icons/ReloadIcon.png");
-    this->bugIcon = new QIcon("Icons/BugIcon.png");
-    this->greenStartIcon = new QIcon("Icons/GreenStartIcon.png");
-    this->redStartIcon = new QIcon("Icons/RedStartIcon.png");
-    this->pauseIcon = new QIcon("Icons/PauseIcon.png");
-    this->playIcon = new QIcon("Icons/PlayIcon.png");
+    this->_resources = new Resources;
+
+    this->_resources->Background = QPixmap("Icons/Background.png");
+    this->_resources->CameraIcon = QIcon("Icons/CameraIcon.png");
+    this->_resources->RobotIcon = QIcon("Icons/RobotIcon.png");
+    this->_resources->ClientIcon = QIcon("Icons/ClientIcon.png");
+    this->_resources->CodeIcon = QIcon("Icons/CodeIcon.png");
+    this->_resources->FullScreenIcon = QIcon("Icons/FullScreenIcon.png");
+    this->_resources->ShowTabBarIcon = QIcon("Icons/ShowTabBarIcon.png");
+    this->_resources->HideTabBarIcon = QIcon("Icons/HideTabBarIcon.png");
+    this->_resources->ScreenshotIcon = QIcon("Icons/ScreenshotIcon.png");
+    this->_resources->WhiteVideoIcon = QIcon("Icons/WhiteVideoIcon.png");
+    this->_resources->ReloadIcon = QIcon("Icons/ReloadIcon.png");
+    this->_resources->BugIcon = QIcon("Icons/BugIcon.png");
+    this->_resources->GreenStartIcon = QIcon("Icons/GreenStartIcon.png");
+    this->_resources->RedStartIcon = QIcon("Icons/RedStartIcon.png");
+    this->_resources->PauseIcon = QIcon("Icons/PauseIcon.png");
+    this->_resources->PlayIcon = QIcon("Icons/PlayIcon.png");
+    this->_resources->WindowIcon = QIcon("Icons/WindowIcon.png");
 }
 
+MainWindowResources::~MainWindowResources() {
+    delete this->_resources;
+}

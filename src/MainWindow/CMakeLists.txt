@@ -7,7 +7,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 
-add_library(MainWindow MainWindow.cpp MainWindow.hpp UI/Shortcuts.cpp UI/Buttons.cpp UI/Rendering.cpp UI/Actions.cpp)
+add_library(MainWindow MainWindow.cpp MainWindow.hpp UI/Shortcuts.cpp UI/Buttons.cpp UI/Rendering.cpp UI/Actions.cpp UI/Resources.cpp )
 target_link_libraries(MainWindow ${REQUIRED_LIBS_QUALIFIED})
 
 add_subdirectory(Protocols)

@@ -24,7 +24,7 @@
 #include <QFile>
 #include <QTimer>
 
-#include "./UI/Resources/Resources.hpp"
+#include "./UI/Resources/MainWindowResources.hpp"
 
 #include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"
@@ -103,7 +103,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    Resources *_resources;
+    MainWindowResources *_mainWindowResources;
 
     QTimer *_updateTimer;
 

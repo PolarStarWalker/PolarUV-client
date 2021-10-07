@@ -5,7 +5,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     ui->setupUi(this);
 
-    this->_resources = new Resources();
+    this->_mainWindowResources = MainWindowResources::GetInstance();
 
     this->_commandsProtocol = new CommandsProtocol(0);
     this->_videoStream = new VideoProtocol();
