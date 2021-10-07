@@ -103,7 +103,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    MainWindowResources *_mainWindowResources;
+    const MainWindowResources *_mainWindowResources;
 
     QTimer *_updateTimer;
 

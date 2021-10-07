@@ -35,83 +35,82 @@ public:
 
     ~MainWindowResources();
 
-    static MainWindowResources *GetInstance() {
+    static const MainWindowResources *GetInstance(){
         static MainWindowResources instance;
         return &instance;
     }
 
-    inline const QPixmap &GetBackground() {
+    inline const QPixmap &GetBackground() const {
         return this->_resources->Background;
     }
 
-    inline const QIcon &GetMainWindowIcon() {
+    inline const QIcon &GetMainWindowIcon() const{
         return this->_resources->WindowIcon;
     }
 
-    inline const QIcon &GetCameraIcon() {
+    inline const QIcon &GetCameraIcon() const{
         return this->_resources->CameraIcon;
     }
 
-    inline const QIcon &GetRobotIcon() {
+    inline const QIcon &GetRobotIcon() const {
         return this->_resources->RobotIcon;
     }
 
-    inline const QIcon &GetClientIcon() {
+    inline const QIcon &GetClientIcon() const{
         return this->_resources->ClientIcon;
     }
 
-    inline const QIcon &GetCodeIcon() {
+    inline const QIcon &GetCodeIcon() const{
         return this->_resources->CodeIcon;
     }
 
-    inline const QIcon &GetFullScreenIcon() {
+    inline const QIcon &GetFullScreenIcon()const {
         return this->_resources->FullScreenIcon;
     }
 
-    inline const QIcon &GetShowTabBarIcon() {
+    inline const QIcon &GetShowTabBarIcon()const {
         return this->_resources->ShowTabBarIcon;
     }
 
-    inline const QIcon &GetHideTabBarIcon() {
+    inline const QIcon &GetHideTabBarIcon() const{
         return this->_resources->HideTabBarIcon;
     }
 
-    inline const QIcon &GetScreenshotIcon() {
+    inline const QIcon &GetScreenshotIcon() const{
         return this->_resources->ScreenshotIcon;
     }
 
-    inline const QIcon &GetWhiteVideoIcon() {
+    inline const QIcon &GetWhiteVideoIcon()const {
         return this->_resources->WhiteVideoIcon;
     }
 
-    inline const QIcon &GetReloadIcon() {
+    inline const QIcon &GetReloadIcon()const {
         return this->_resources->ReloadIcon;
     }
 
-    inline const QIcon &GetBugIcon() {
+    inline const QIcon &GetBugIcon()const {
         return this->_resources->BugIcon;
     }
 
-    inline const QIcon &GetGreenStartIcon() {
+    inline const QIcon &GetGreenStartIcon() const{
         return this->_resources->GreenStartIcon;
     }
 
-    inline const QIcon &GetRedStartIcon() {
+    inline const QIcon &GetRedStartIcon()const {
         return this->_resources->RedStartIcon;
     }
 
-    inline const QIcon &GetPauseIcon() {
+    inline const QIcon &GetPauseIcon() const{
         return this->_resources->PauseIcon;
     }
 
-    inline const QIcon &GetPlayIcon() {
+    inline const QIcon &GetPlayIcon()const {
         return this->_resources->PlayIcon;
     }
 
-    inline const QIcon &GetApplicationIcon() {
+    inline const QIcon &GetApplicationIcon() const{
         return this->_resources->ApplicationIcon;
     }
-
 };
 
 #endif
