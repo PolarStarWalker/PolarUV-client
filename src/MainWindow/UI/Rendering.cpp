@@ -41,7 +41,8 @@ void MainWindow::SetupRendering() {
 
     /// Adding a shadow effect to tab_1 labels
     QLabel *labels[] = {
-            ui->FPSLabel, ui->RollLabel, ui->PitchLabel, ui->CompassLabel, ui->DepthLabel, ui->RoundPitchLabel
+            ui->FPSLabel, ui->RollLabel, ui->PitchLabel, ui->CompassLabel, ui->DepthLabel, ui->RoundPitchLabel,
+            ui->YawLabel
     };
     for (auto &label : labels) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
@@ -111,6 +112,10 @@ void MainWindow::MoveWidgets() {
     x = ui->RollLabel->x() - offset;
     y = (ui->tab_1->height() - ui->PitchLabel->height()) / 2;
     ui->PitchLabel->move(x, y);
+
+    /// Moving the yaw label
+    x = (ui->tab_1->width() - ui->YawLabel->width()) / 2;
+    ui->YawLabel->move(x, 0);
 
     /// Moving the depth label
     offset = 120;
@@ -280,9 +285,11 @@ void MainWindow::UpdateWidgets() {
         this->_oldEulerY = (int32_t) currentEulerY;
     }
 
-    /// Painting the compass if angle changed
+    /// Painting the yaw indicator and compass if angle changed
     float currentEulerZ = telemetryStruct.Rotation[TelemetryStruct::Z];
+    //float currentEulerZ = 212.0f;
     if ((int32_t) currentEulerZ != this->_oldEulerZ) {
+        this->PaintYawIndicator(currentEulerZ, 1);
         this->PaintCompass(currentEulerZ, 1);
         this->_oldEulerZ = (int32_t) currentEulerZ;
     }
@@ -475,7 +482,159 @@ void MainWindow::PaintPitchIndicator(float pitchAngle, float sizeMultiplier) {
 }
 
 void MainWindow::PaintYawIndicator(float yawAngle, float sizeMultiplier) {
+    QPixmap pixmap(ui->YawLabel->width(), ui->YawLabel->height());
+    pixmap.fill(Qt::transparent);
 
+    QPainter painter(&pixmap);
+    painter.setPen(QPen(Qt::white, 3));
+    painter.setRenderHint(QPainter::Antialiasing);
+
+    painter.drawLine(5,
+                     ui->YawLabel->height() / 2,
+                     15,
+                     ui->YawLabel->height() - 11);
+    painter.drawLine(15,
+                     ui->YawLabel->height() - 10,
+                     ui->YawLabel->width() - 15,
+                     ui->YawLabel->height() - 10);
+    painter.drawLine(ui->YawLabel->width() - 15,
+                     ui->YawLabel->height() - 10,
+                     ui->YawLabel->width() - 5,
+                     ui->YawLabel->height() / 2);
+
+    painter.translate(ui->YawLabel->width() / 2, 0);
+    painter.drawLine(0, ui->YawLabel->height() - 11, 0, ui->YawLabel->height() - 31);
+
+    /// IMPORTANT VARIABLES
+    int32_t valueRectWidth = 60;
+    int32_t valueRectHeight = 30;
+    int32_t step = 5;
+    int32_t distance = 35;
+
+    /// Painting center value
+    int32_t valueOffset = ((int32_t) yawAngle) % step;
+    int32_t scaleOffset = (valueOffset * (valueRectWidth + distance)) / step;
+    painter.translate(-scaleOffset, 0);
+    QRect boundingRect(-(valueRectWidth / 2), valueRectHeight / 2, valueRectWidth, valueRectHeight);
+    painter.setFont(QFont("Times", 16));
+    int32_t centerValue = ((int32_t) yawAngle) - valueOffset;
+    switch (centerValue) {
+        case 0:
+            painter.drawText(boundingRect, Qt::AlignCenter, "С");
+            break;
+        case 45:
+            painter.drawText(boundingRect, Qt::AlignCenter, "СВ");
+            break;
+        case 90:
+            painter.drawText(boundingRect, Qt::AlignCenter, "В");
+            break;
+        case 135:
+            painter.drawText(boundingRect, Qt::AlignCenter, "ЮВ");
+            break;
+        case 180:
+            painter.drawText(boundingRect, Qt::AlignCenter, "Ю");
+            break;
+        case 225:
+            painter.drawText(boundingRect, Qt::AlignCenter, "ЮЗ");
+            break;
+        case 270:
+            painter.drawText(boundingRect, Qt::AlignCenter, "З");
+            break;
+        case 315:
+            painter.drawText(boundingRect, Qt::AlignCenter, "СЗ");
+            break;
+        default:
+            painter.drawText(boundingRect, Qt::AlignCenter, QString::number(centerValue));
+    }
+
+    /// Painting left values
+    int32_t currentX = (ui->YawLabel->width() / 2) - scaleOffset;
+    int8_t translationNumber = 1;
+    while (currentX >= ((valueRectWidth + distance) * 2)) {
+        painter.translate(-(valueRectWidth + distance), 0);
+        QRect rect(-(valueRectWidth / 2), valueRectHeight / 2, valueRectWidth, valueRectHeight);
+        int32_t value = (((int32_t) yawAngle) - valueOffset) - (step * translationNumber);
+        if (value < 0) value = 360 + value;
+        else if (value > 360) value = value - 360;
+        switch (value) {
+            case 0:
+                painter.drawText(rect, Qt::AlignCenter, "С");
+                break;
+            case 45:
+                painter.drawText(rect, Qt::AlignCenter, "СВ");
+                break;
+            case 90:
+                painter.drawText(rect, Qt::AlignCenter, "В");
+                break;
+            case 135:
+                painter.drawText(rect, Qt::AlignCenter, "ЮВ");
+                break;
+            case 180:
+                painter.drawText(rect, Qt::AlignCenter, "Ю");
+                break;
+            case 225:
+                painter.drawText(rect, Qt::AlignCenter, "ЮЗ");
+                break;
+            case 270:
+                painter.drawText(rect, Qt::AlignCenter, "З");
+                break;
+            case 315:
+                painter.drawText(rect, Qt::AlignCenter, "СЗ");
+                break;
+            default:
+                painter.drawText(rect, Qt::AlignCenter, QString::number(value));
+        }
+        translationNumber++;
+        currentX -= valueRectWidth;
+    }
+
+    /// Reset variables
+    for (size_t i = 0; i < translationNumber - 1; i++) {
+        painter.translate(valueRectWidth + distance, 0);
+        currentX += valueRectWidth;
+    }
+    translationNumber = 1;
+
+    /// Painting right values
+    while (currentX <= (ui->YawLabel->width() - ((valueRectWidth + distance) * 2))) {
+        painter.translate(valueRectWidth + distance, 0);
+        QRect rect(-(valueRectWidth / 2), valueRectHeight / 2, valueRectWidth, valueRectHeight);
+        int32_t value = (((int32_t) yawAngle) - valueOffset) + (step * translationNumber);
+        if (value < 0) value = 360 - value;
+        else if (value > 360) value = value - 360;
+        switch (value) {
+            case 0:
+                painter.drawText(rect, Qt::AlignCenter, "С");
+                break;
+            case 45:
+                painter.drawText(rect, Qt::AlignCenter, "СВ");
+                break;
+            case 90:
+                painter.drawText(rect, Qt::AlignCenter, "В");
+                break;
+            case 135:
+                painter.drawText(rect, Qt::AlignCenter, "ЮВ");
+                break;
+            case 180:
+                painter.drawText(rect, Qt::AlignCenter, "Ю");
+                break;
+            case 225:
+                painter.drawText(rect, Qt::AlignCenter, "ЮЗ");
+                break;
+            case 270:
+                painter.drawText(rect, Qt::AlignCenter, "З");
+                break;
+            case 315:
+                painter.drawText(rect, Qt::AlignCenter, "СЗ");
+                break;
+            default:
+                painter.drawText(rect, Qt::AlignCenter, QString::number(value));
+        }
+        translationNumber++;
+        currentX += valueRectWidth;
+    }
+
+    ui->YawLabel->setPixmap(pixmap);
 }
 
 void MainWindow::PaintCompass(float angle, float sizeMultiplier) {
