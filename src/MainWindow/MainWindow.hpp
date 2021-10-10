@@ -21,7 +21,6 @@
 #include <QGraphicsDropShadowEffect>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QFile>
 #include <QTimer>
 
 #include "./UI/Resources/MainWindowResources.hpp"
@@ -83,13 +82,15 @@ private slots:
     void SwitchVideoStream();
     void TakeScreenshot();
     void SwitchVideoCapture();
+    void SwitchToPage1();
+    void SwitchToPage2();
+    void SwitchToPage3();
     void ReceiveRobotSettings();
     void SendRobotSettings();
     void LoadClientSettings();
     void SaveClientSettings();
     void RefreshGamepads();
     void RefreshClientIps();
-    void SwitchFullScreen();
     void HideTabBar();
     void ShowTabBar();
     void ReleaseCode();

@@ -33,13 +33,11 @@ void MainWindow::shortcutF11() {
 void MainWindow::shortcutB() {
     if (ui->TabWidget->tabBar()->isVisible()) {
         ui->TabWidget->tabBar()->hide();
-        ui->FullScreenButton->hide();
         ui->HideTabBarButton->hide();
         ui->CommandsProtocolButton->hide();
         ui->ShowTabBarButton->show();
     } else {
         ui->TabWidget->tabBar()->show();
-        ui->FullScreenButton->show();
         ui->HideTabBarButton->show();
         ui->CommandsProtocolButton->show();
         ui->ShowTabBarButton->hide();

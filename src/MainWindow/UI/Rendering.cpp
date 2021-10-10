@@ -7,15 +7,13 @@ void MainWindow::SetupRendering() {
 
     /// Setting the tab icons
     ui->TabWidget->setTabIcon(0, this->_mainWindowResources->GetCameraIcon());
-    ui->TabWidget->setTabIcon(1, this->_mainWindowResources->GetRobotIcon());
-    ui->TabWidget->setTabIcon(2, this->_mainWindowResources->GetClientIcon());
-    ui->TabWidget->setTabIcon(3, this->_mainWindowResources->GetCodeIcon());
+    ui->TabWidget->setTabIcon(1, this->_mainWindowResources->GetSettingsIcon());
+    ui->TabWidget->setTabIcon(2, this->_mainWindowResources->GetCodeIcon());
 
     /// Setting the button icons
     ui->CommandsProtocolButton->setIcon(this->_mainWindowResources->GetRedStartIcon());
-    ui->FullScreenButton->setIcon(this->_mainWindowResources->GetFullScreenIcon());
-    ui->ShowTabBarButton->setIcon(this->_mainWindowResources->GetShowTabBarIcon());
-    ui->HideTabBarButton->setIcon(this->_mainWindowResources->GetHideTabBarIcon());
+    ui->ShowTabBarButton->setIcon(this->_mainWindowResources->GetHamburgerIcon());
+    ui->HideTabBarButton->setIcon(this->_mainWindowResources->GetHamburgerIcon());
     ui->VideoStreamButton->setIcon(this->_mainWindowResources->GetPlayIcon());
     ui->ScreenshotButton->setIcon(this->_mainWindowResources->GetScreenshotIcon());
     ui->VideoCaptureButton->setIcon(this->_mainWindowResources->GetWhiteVideoIcon());
@@ -24,14 +22,34 @@ void MainWindow::SetupRendering() {
     ui->ReleaseCodeButton->setIcon(this->_mainWindowResources->GetPlayIcon());
     ui->DebugCodeButton->setIcon(this->_mainWindowResources->GetBugIcon());
 
+    /// Setting the gamepad button icons
+    ui->AButtonLabel->setPixmap(this->_mainWindowResources->GetAButtonIcon());
+    ui->BButtonLabel->setPixmap(this->_mainWindowResources->GetBButtonIcon());
+    ui->XButtonLabel->setPixmap(this->_mainWindowResources->GetXButtonIcon());
+    ui->YButtonLabel->setPixmap(this->_mainWindowResources->GetYButtonIcon());
+    ui->DPadHorizontalLabel->setPixmap(this->_mainWindowResources->GetDPadHorizontalIcon());
+    ui->DPadVerticalLabel->setPixmap(this->_mainWindowResources->GetDPadVerticalIcon());
+    ui->LSHorizontalLabel->setPixmap(this->_mainWindowResources->GetLSHorizontalIcon());
+    ui->LSVerticalLabel->setPixmap(this->_mainWindowResources->GetLSVerticalIcon());
+    ui->LSPressLabel->setPixmap(this->_mainWindowResources->GetLSPressIcon());
+    ui->RSHorizontalLabel->setPixmap(this->_mainWindowResources->GetRSHorizontalIcon());
+    ui->RSVerticalLabel->setPixmap(this->_mainWindowResources->GetRSVerticalIcon());
+    ui->RSPressLabel->setPixmap(this->_mainWindowResources->GetRSPressIcon());
+    ui->LBLTButtonLabel->setPixmap(this->_mainWindowResources->GetLBLTButtonIcon());
+    ui->RBRTButtonLabel->setPixmap(this->_mainWindowResources->GetRBRTButtonIcon());
+    ui->BackButtonLabel->setPixmap(this->_mainWindowResources->GetBackButtonIcon());
+    ui->MenuButtonLabel->setPixmap(this->_mainWindowResources->GetMenuButtonIcon());
+
     /// Setting the background
+    QPixmap pixmap(10, 10);
+    pixmap.fill(QColor::fromRgb(50, 50, 50));
     ui->CameraLabel->setPixmap(this->_mainWindowResources->GetBackground());
-    ui->Tab2BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
-    ui->Tab3BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
-    ui->Tab4BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
+    ui->SettingsTabBackgroundLabel->setPixmap(pixmap);
+    ui->CodeTabBackgroundLabel->setPixmap(pixmap);
 
     /// Setting a transparent background for some buttons
     ui->ShowTabBarButton->setStyleSheet("background-color: transparent");
+    ui->HideTabBarButton->setStyleSheet("background-color: transparent");
     ui->VideoStreamButton->setStyleSheet("background-color: transparent");
     ui->ScreenshotButton->setStyleSheet("background-color: transparent");
     ui->VideoCaptureButton->setStyleSheet("background-color: transparent");
@@ -39,93 +57,92 @@ void MainWindow::SetupRendering() {
     /// Hiding the TabBar button
     ui->ShowTabBarButton->hide();
 
-    /// Adding a shadow effect to tab_1 labels
-    QLabel *labels[] = {
+    /// Adding a shadow effect to some elements
+    QWidget *elements[] = {
+            // Labels
             ui->FPSLabel, ui->RollLabel, ui->PitchLabel, ui->CompassLabel, ui->DepthLabel, ui->RoundPitchLabel,
-            ui->YawLabel
+            ui->YawLabel,
+            // Buttons
+            ui->ShowTabBarButton, ui->HideTabBarButton, ui->VideoStreamButton, ui->ScreenshotButton,
     };
-    for (auto &label : labels) {
+    for (auto &element : elements) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
         shadowEffect->setOffset(0, 0);
         shadowEffect->setBlurRadius(5.0);
         shadowEffect->setColor(Qt::black);
-        label->setGraphicsEffect(shadowEffect);
+        element->setGraphicsEffect(shadowEffect);
     }
 
-    /// Adding a shadow effect to tab_1 buttons
-    QPushButton *buttons[] = {
-            ui->ShowTabBarButton, ui->VideoStreamButton, ui->ScreenshotButton, ui->VideoCaptureButton
+    /// Adding a frames to indicators
+#if DEBUG
+    QLabel *indicators[] = {
+            ui->RollLabel, ui->PitchLabel, ui->YawLabel, ui->CompassLabel, ui->RoundPitchLabel, ui->DepthLabel,
     };
-    for (auto &button : buttons) {
-        auto *shadowEffect = new QGraphicsDropShadowEffect(this);
-        shadowEffect->setOffset(0, 0);
-        shadowEffect->setBlurRadius(5.0);
-        shadowEffect->setColor(Qt::black);
-        button->setGraphicsEffect(shadowEffect);
+    for (auto &indicator : indicators) {
+        indicator->setFrameShape(QFrame::Box);
     }
+#endif
+
 }
 
 void MainWindow::MoveWidgets() {
     /// Changing the size of the TabWidget
     ui->TabWidget->setGeometry(ui->MainWidget->geometry());
 
+    /// Changing the size of the SettingsStackedWidget
+    ui->SettingsStackedWidget->setFixedWidth(ui->SettingsTab->width());
+    ui->SettingsStackedWidget->setFixedHeight(ui->SettingsTab->height() - 100);
+
     /// Changing the size of the CameraLabel
-    ui->CameraLabel->setGeometry(ui->tab_1->geometry());
+    ui->CameraLabel->setGeometry(ui->MainTab->geometry());
 
     /// Changing the size of the backgrounds
-    ui->Tab2BackgroundLabel->setGeometry(ui->tab_2->geometry());
-    ui->Tab3BackgroundLabel->setGeometry(ui->tab_3->geometry());
-    ui->Tab4BackgroundLabel->setGeometry(ui->tab_4->geometry());
+    ui->SettingsTabBackgroundLabel->setGeometry(ui->SettingsTab->geometry());
+    ui->CodeTabBackgroundLabel->setGeometry(ui->CodeTab->geometry());
 
     /// Changing the size of the CodeEdit
-    ui->CodeEdit->setFixedWidth(ui->tab_4->width() - 140);
-    ui->CodeEdit->setFixedHeight(ui->tab_4->height() - ui->OutputEdit->height() - 140 - 10);
+    ui->CodeEdit->setFixedWidth(ui->CodeTab->width() - 140);
+    ui->CodeEdit->setFixedHeight(ui->CodeTab->height() - ui->OutputEdit->height() - 140 - 10);
 
     /// Changing the size of the OutputEdit
-    ui->OutputEdit->setFixedWidth(ui->tab_4->width() - 140);
+    ui->OutputEdit->setFixedWidth(ui->CodeTab->width() - 140);
 
     /// Moving the CommandsProtocol button
     int offset = 0; // Distance from the bottom edge of window
     int x = 0;
     ui->CommandsProtocolButton->move(x, ui->MainWidget->height() - ui->CommandsProtocolButton->height() - offset);
 
-    /// Moving the FullScreen button
-    offset = 10; // Vertical distance between buttons
-    x = 0;
-    int y = (ui->MainWidget->height() - (ui->FullScreenButton->height() + ui->HideTabBarButton->height() + offset)) / 2;
-    ui->FullScreenButton->move(x, y);
-
     /// Moving the HideTabBar button
-    y = ui->FullScreenButton->y() + ui->HideTabBarButton->height() + offset;
-    ui->HideTabBarButton->move(x, y);
+    offset = 70; // Horizontal distance from the left edge of window
+    ui->HideTabBarButton->move(offset, 0);
 
     /// Moving the ShowTabBar button
     ui->ShowTabBarButton->move(0, 0);
 
     /// Moving the roll label
-    x = (ui->tab_1->width() - ui->RollLabel->width()) / 2;
-    y = (ui->tab_1->height() - ui->RollLabel->height()) / 2;
+    x = (ui->MainTab->width() - ui->RollLabel->width()) / 2;
+    int y = (ui->MainTab->height() - ui->RollLabel->height()) / 2;
     ui->RollLabel->move(x, y);
 
     /// Moving the pitch label
     offset = 120;
     x = ui->RollLabel->x() - offset;
-    y = (ui->tab_1->height() - ui->PitchLabel->height()) / 2;
+    y = (ui->MainTab->height() - ui->PitchLabel->height()) / 2;
     ui->PitchLabel->move(x, y);
 
     /// Moving the yaw label
-    x = (ui->tab_1->width() - ui->YawLabel->width()) / 2;
+    x = (ui->MainTab->width() - ui->YawLabel->width()) / 2;
     ui->YawLabel->move(x, 0);
 
     /// Moving the depth label
     offset = 120;
     x = ui->RollLabel->x() + ui->RollLabel->width() - ui->DepthLabel->width() + offset;
-    y = (ui->tab_1->height() - ui->DepthLabel->height()) / 2;
+    y = (ui->MainTab->height() - ui->DepthLabel->height()) / 2;
     ui->DepthLabel->move(x, y);
 
     /// Moving the compass label
-    x = ui->tab_1->width() - ui->CompassLabel->width();
-    y = ui->tab_1->height() - ui->CompassLabel->height();
+    x = ui->MainTab->width() - ui->CompassLabel->width();
+    y = ui->MainTab->height() - ui->CompassLabel->height();
     ui->CompassLabel->move(x, y);
 
     /// Moving the round pitch label
@@ -135,8 +152,8 @@ void MainWindow::MoveWidgets() {
 
     /// Moving the VideoStream button
     offset = 10; // Distance from the bottom edge of window
-    x = (ui->tab_1->width() / 2) - (ui->VideoStreamButton->width() / 2);
-    y = ui->tab_1->height() - ui->VideoStreamButton->height() - offset;
+    x = (ui->MainTab->width() / 2) - (ui->VideoStreamButton->width() / 2);
+    y = ui->MainTab->height() - ui->VideoStreamButton->height() - offset;
     ui->VideoStreamButton->move(x, y);
 
     /// Moving the VideoCapture button
@@ -152,7 +169,7 @@ void MainWindow::MoveWidgets() {
     ui->ScreenshotButton->move(x, y);
 
     /// Moving the fps label
-    x = ui->tab_1->width() - ui->FPSLabel->width();
+    x = ui->MainTab->width() - ui->FPSLabel->width();
     ui->FPSLabel->move(x, 0);
 
     /// Moving the ReleaseCode button
@@ -178,10 +195,17 @@ void MainWindow::MoveWidgets() {
     y = ui->ProgressBarFrame->y() + ui->ProgressBarFrame->height() / 2 - ui->ProgressBar->height() / 2;
     ui->ProgressBar->move(x, y);
 
+    /// Moving the SettingsPageSelector widget
+    offset = 20; // Vertical distance from the top edge of window
+    x = (ui->SettingsTab->width() / 2) - (ui->SettingsPageSelectorWidget->width() / 2);
+    y = offset;
+    ui->SettingsPageSelectorWidget->move(x, y);
+
     /// Moving the MotorsSettings widget
     offset = 35; // Horizontal distance between widgets
-    x = (ui->tab_2->width() - (ui->MotorsSettingsWidget->width() + ui->HandSettingsWidget->width() + offset)) / 2;
-    y = (ui->tab_2->height() - ui->MotorsSettingsWidget->height()) / 2;
+    x = (ui->SettingsStackedWidget->width() - (ui->MotorsSettingsWidget->width()
+                                               + ui->HandSettingsWidget->width() + offset)) / 2;
+    y = (ui->SettingsStackedWidget->height() - ui->MotorsSettingsWidget->height()) / 2;
     ui->MotorsSettingsWidget->move(x, y);
 
     /// Moving the HandSettings widget
@@ -190,13 +214,25 @@ void MainWindow::MoveWidgets() {
 
     /// Moving the KeyAssignments widget
     offset = 35; // Horizontal distance between widgets
-    x = (ui->tab_3->width() - (ui->KeyAssignmentsWidget->width() + ui->ClientSettingsWidget->width() + offset)) / 2;
-    y = (ui->tab_3->height() - ui->KeyAssignmentsWidget->height()) / 2;
+    x = (ui->SettingsStackedWidget->width() - (ui->KeyAssignmentsWidget->width()
+                                               + ui->GamepadTestWidget->width() + offset)) / 2;
+    y = (ui->SettingsStackedWidget->height() - ui->KeyAssignmentsWidget->height()) / 2;
     ui->KeyAssignmentsWidget->move(x, y);
 
-    /// Moving the ClientSettings widget
+    /// Moving the GamepadTest widget
     x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() + offset;
-    ui->ClientSettingsWidget->move(x, y);
+    ui->GamepadTestWidget->move(x, y);
+
+    /// Moving the UISettings widget
+    offset = 35; // Horizontal distance between widgets
+    x = (ui->SettingsStackedWidget->width() - (ui->UISettingsWidget->width()
+                                               + ui->OtherSettingsWidget->width() + offset)) / 2;
+    y = (ui->SettingsStackedWidget->height() - ui->UISettingsWidget->height()) / 2;
+    ui->UISettingsWidget->move(x, y);
+
+    /// Moving the OtherSettings widget
+    x = ui->UISettingsWidget->x() + ui->UISettingsWidget->width() + offset;
+    ui->OtherSettingsWidget->move(x, y);
 
     /// Moving the OutputEdit
     offset = 10; // Vertical distance from the CodeEdit
@@ -217,10 +253,20 @@ void MainWindow::MoveWidgets() {
     y = ui->KeyAssignmentsWidget->y() - ui->KeyAssignmentsLabel->height() / 2;
     ui->KeyAssignmentsLabel->move(x, y);
 
-    /// Moving the ClientSettings label
-    x = ui->ClientSettingsWidget->x() + ui->ClientSettingsWidget->width() / 2 - ui->ClientSettingsLabel->width() / 2;
-    y = ui->ClientSettingsWidget->y() - ui->ClientSettingsLabel->height() / 2;
-    ui->ClientSettingsLabel->move(x, y);
+    /// Moving the GamepadTest label
+    x = ui->GamepadTestWidget->x() + ui->GamepadTestWidget->width() / 2 - ui->GamepadTestLabel->width() / 2;
+    y = ui->GamepadTestWidget->y() - ui->GamepadTestLabel->height() / 2;
+    ui->GamepadTestLabel->move(x, y);
+
+    /// Moving the UISettings label
+    x = ui->UISettingsWidget->x() + ui->UISettingsWidget->width() / 2 - ui->UISettingsLabel->width() / 2;
+    y = ui->UISettingsWidget->y() - ui->UISettingsLabel->height() / 2;
+    ui->UISettingsLabel->move(x, y);
+
+    /// Moving the OtherSettings label
+    x = ui->OtherSettingsWidget->x() + ui->OtherSettingsWidget->width() / 2 - ui->OtherSettingsLabel->width() / 2;
+    y = ui->OtherSettingsWidget->y() - ui->OtherSettingsLabel->height() / 2;
+    ui->OtherSettingsLabel->move(x, y);
 
     /// Moving the CodeEdit Label
     x = ui->CodeEdit->x() + ui->CodeEdit->width() / 2 - ui->CodeEditLabel->width() / 2;
@@ -238,16 +284,10 @@ void MainWindow::UpdateWidgets() {
         QPixmap currentVideoFrame(cvMatToPixmap(mat));
         if (currentVideoFrame != this->_oldVideoFrame) {
             ui->CameraLabel->setPixmap(currentVideoFrame);
-            ui->Tab2BackgroundLabel->setPixmap(currentVideoFrame);
-            ui->Tab3BackgroundLabel->setPixmap(currentVideoFrame);
-            ui->Tab4BackgroundLabel->setPixmap(currentVideoFrame);
         }
         this->_isVideoFrame = true;
     } else if (!this->_videoStream->IsStreamOnline() && this->_isVideoFrame) {
         ui->CameraLabel->setPixmap(this->_mainWindowResources->GetBackground());
-        ui->Tab2BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
-        ui->Tab3BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
-        ui->Tab4BackgroundLabel->setPixmap(this->_mainWindowResources->GetBackground());
         this->_isVideoFrame = false;
     }
 

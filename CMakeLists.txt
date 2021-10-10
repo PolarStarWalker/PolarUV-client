@@ -24,7 +24,7 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 #Путь до Qt
-set(CMAKE_PREFIX_PATH "/lib/mingw81_64/lib/cmake")
+set(CMAKE_PREFIX_PATH "C:/Users/DanShoo/CLionProjects/client/lib/mingw81_64/lib/cmake")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
