@@ -51,7 +51,7 @@ void MainWindow::SwitchToPage1() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 
     ui->SettingsPage2Button->setStyleSheet("color:rgb(255,255,255);\n"
@@ -60,7 +60,7 @@ void MainWindow::SwitchToPage1() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 
     ui->SettingsPage3Button->setStyleSheet("color:rgb(255,255,255);\n"
@@ -69,7 +69,7 @@ void MainWindow::SwitchToPage1() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 }
 
@@ -82,7 +82,7 @@ void MainWindow::SwitchToPage2() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 
     ui->SettingsPage2Button->setStyleSheet("color:rgb(255,255,255);\n"
@@ -91,7 +91,7 @@ void MainWindow::SwitchToPage2() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 
     ui->SettingsPage3Button->setStyleSheet("color:rgb(255,255,255);\n"
@@ -100,7 +100,7 @@ void MainWindow::SwitchToPage2() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 }
 
@@ -113,7 +113,7 @@ void MainWindow::SwitchToPage3() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 
     ui->SettingsPage2Button->setStyleSheet("color:rgb(255,255,255);\n"
@@ -122,7 +122,7 @@ void MainWindow::SwitchToPage3() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 
     ui->SettingsPage3Button->setStyleSheet("color:rgb(255,255,255);\n"
@@ -131,7 +131,7 @@ void MainWindow::SwitchToPage3() {
                                            "\n"
                                            "border-width:1px;\n"
                                            "border-color :rgb(100,100,100);\n"
-                                           "border-radius:10px;\n"
+                                           "border-radius:5px;\n"
                                            "border-style:solid;");
 }
 

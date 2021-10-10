@@ -1656,7 +1656,7 @@
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -1691,7 +1691,7 @@
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -1735,7 +1735,7 @@ background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
          </property>
          <property name="text">
@@ -1770,7 +1770,7 @@ background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
          </property>
          <property name="text">
@@ -1856,7 +1856,7 @@ background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
          </property>
          <property name="text">
@@ -1910,7 +1910,7 @@ border-style:solid;</string>
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -1928,6 +1928,67 @@ border-style:solid;</string>
            <width>151</width>
            <height>30</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
         </widget>
         <widget class="QLabel" name="ConnectionSettingsLabel">
@@ -1961,7 +2022,7 @@ background-color:rgb(40,40,40);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:20px;
+border-radius:10px;
 border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -2027,7 +2088,7 @@ background-color:rgb(40,40,40);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:20px;
+border-radius:10px;
 border-style:solid;</string>
         </property>
         <property name="frameShape">
@@ -2709,17 +2770,85 @@ border-style:solid;</string>
            <height>30</height>
           </rect>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <family>Arial</family>
            <pointsize>10</pointsize>
            <weight>50</weight>
+           <italic>false</italic>
            <bold>false</bold>
            <kerning>true</kerning>
           </font>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>3</number>
@@ -2764,7 +2893,7 @@ border-style:solid;</string>
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -2827,7 +2956,7 @@ background-color:rgb(40,40,40);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:20px;
+border-radius:10px;
 border-style:solid;</string>
         </property>
         <property name="frameShape">
@@ -2877,7 +3006,7 @@ background-color:rgb(40,40,40);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:20px;
+border-radius:10px;
 border-style:solid;</string>
         </property>
         <property name="locale">
@@ -2924,7 +3053,7 @@ background-color:rgb(40,40,40);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:20px;
+border-radius:10px;
 border-style:solid;</string>
         </property>
         <property name="frameShape">
@@ -2974,7 +3103,7 @@ border-style:solid;</string>
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -3027,6 +3156,67 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
+         </property>
          <property name="currentIndex">
           <number>2</number>
          </property>
@@ -3060,6 +3250,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>0</number>
@@ -3216,8 +3467,85 @@ border-style:solid;</string>
            <height>30</height>
           </rect>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <italic>false</italic>
+           <bold>false</bold>
+           <kerning>true</kerning>
+          </font>
+         </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>0</number>
@@ -3252,6 +3580,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>2</number>
@@ -3348,6 +3737,23 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:checked {
+    image: url(Icons/CheckBoxIndicator.png);
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -3372,6 +3778,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>1</number>
@@ -3468,6 +3935,67 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
+         </property>
          <property name="currentIndex">
           <number>4</number>
          </property>
@@ -3562,6 +4090,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>6</number>
@@ -3658,6 +4247,67 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
+         </property>
          <property name="currentIndex">
           <number>5</number>
          </property>
@@ -3721,6 +4371,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>0</number>
@@ -3787,6 +4498,23 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:checked {
+    image: url(Icons/CheckBoxIndicator.png);
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -3811,6 +4539,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>1</number>
@@ -3908,6 +4697,23 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:checked {
+    image: url(Icons/CheckBoxIndicator.png);
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -3961,6 +4767,23 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:checked {
+    image: url(Icons/CheckBoxIndicator.png);
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -3985,6 +4808,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>0</number>
@@ -4082,6 +4966,23 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:checked {
+    image: url(Icons/CheckBoxIndicator.png);
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -4138,6 +5039,23 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:checked {
+    image: url(Icons/CheckBoxIndicator.png);
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -4162,6 +5080,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>8</number>
@@ -4258,6 +5237,67 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
+         </property>
          <property name="currentIndex">
           <number>0</number>
          </property>
@@ -4291,6 +5331,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>3</number>
@@ -4356,6 +5457,67 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
+         </property>
          <property name="currentIndex">
           <number>7</number>
          </property>
@@ -4420,6 +5582,23 @@ border-style:solid;</string>
          <property name="mouseTracking">
           <bool>false</bool>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:checked {
+    image: url(Icons/CheckBoxIndicator.png);
+}</string>
+         </property>
          <property name="text">
           <string/>
          </property>
@@ -4444,6 +5623,67 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>0</number>
@@ -4478,6 +5718,23 @@ border-style:solid;</string>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 2px;
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:checked {
+    image: url(Icons/CheckBoxIndicator.png);
+}</string>
          </property>
          <property name="text">
           <string/>
@@ -4521,7 +5778,7 @@ border-style:solid;</string>
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -4547,7 +5804,7 @@ border-style:solid;</string>
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -4565,6 +5822,67 @@ border-style:solid;</string>
            <width>151</width>
            <height>30</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
         </widget>
         <widget class="QPushButton" name="RefreshGamepadsButton">
@@ -4662,7 +5980,7 @@ background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
          </property>
          <property name="text">
@@ -4694,7 +6012,7 @@ background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
          </property>
          <property name="text">
@@ -4736,7 +6054,7 @@ border-style:solid;</string>
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -4802,6 +6120,67 @@ border-style:solid;</string>
            <height>30</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
+         </property>
          <item>
           <property name="text">
            <string>Русский</string>
@@ -4821,6 +6200,67 @@ border-style:solid;</string>
            <width>190</width>
            <height>30</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
          </property>
          <property name="currentIndex">
           <number>1</number>
@@ -4868,7 +6308,7 @@ background-color:rgb(40,40,40);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:20px;
+border-radius:10px;
 border-style:solid;</string>
         </property>
         <property name="frameShape">
@@ -4909,7 +6349,7 @@ border-style:solid;</string>
           <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
          </property>
          <property name="frameShape">
@@ -4951,7 +6391,7 @@ background-color:rgb(40,40,40);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:20px;
+border-radius:10px;
 border-style:solid;</string>
         </property>
         <property name="frameShape">
@@ -5013,7 +6453,7 @@ border-style:solid;</string>
         <string notr="true">background-color:rgb(40,40,40);
     border-width:1px;
     border-color :rgb(100,100,100);
-    border-radius:20px;
+    border-radius:10px;
     border-style:solid;</string>
        </property>
        <property name="frameShape">
@@ -5051,7 +6491,7 @@ background-color:rgb(60,60,60);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
        </property>
        <property name="text">
@@ -5089,7 +6529,7 @@ background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
        </property>
        <property name="text">
@@ -5127,7 +6567,7 @@ background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
        </property>
        <property name="text">
@@ -5249,8 +6689,8 @@ background-color:rgb(40,40,40);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-top-left-radius:20px;
-border-top-right-radius:20px;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
 border-bottom-width:0px;
 border-style:solid;</string>
       </property>
