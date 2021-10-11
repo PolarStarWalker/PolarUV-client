@@ -879,7 +879,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1369,12 +1369,72 @@
            <family>Arial</family>
            <pointsize>10</pointsize>
            <weight>50</weight>
+           <italic>false</italic>
            <bold>false</bold>
            <kerning>true</kerning>
           </font>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSpinBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+	selection-background-color: black;
+	background: rgb(55,55,55);
+    padding-right: 15px; /* make room for the arrows */
+    border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+    width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	top: 4px;
+	right: 8px;
+}
+
+QSpinBox::up-button:pressed {
+    top: 5px;
+}
+
+QSpinBox::up-arrow {
+    image: url(Icons/ComboBoxUpArrow.png);
+	width: 10px;
+	height: 10px;
+}
+
+QSpinBox::up-arrow:disabled, QSpinBox::up-arrow:off { /* off state when value is max */
+   image: none;
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+    width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	bottom: 5px;
+	right: 8px;
+}
+
+QSpinBox::down-button:pressed {
+    bottom: 4px;
+}
+
+QSpinBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+}
+
+QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when value in min */
+ 	image: none;
+}</string>
          </property>
          <property name="minimum">
           <number>1</number>
@@ -1456,12 +1516,24 @@
            <family>Arial</family>
            <pointsize>8</pointsize>
            <weight>50</weight>
+           <italic>false</italic>
            <bold>false</bold>
            <kerning>true</kerning>
           </font>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableView {
+	font: 8pt &quot;Arial&quot;;
+	color: white;
+	background: rgb(55,55,55);
+    selection-background-color: black;
+	gridline-color: rgb(100,100,100);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+}</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -1494,7 +1566,7 @@
           <bool>true</bool>
          </property>
          <property name="gridStyle">
-          <enum>Qt::SolidLine</enum>
+          <enum>Qt::DashLine</enum>
          </property>
          <property name="sortingEnabled">
           <bool>false</bool>
@@ -1731,7 +1803,7 @@
          <property name="styleSheet">
           <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(45,45,45);
+background-color:rgb(55,55,55);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -1766,7 +1838,7 @@ border-style:solid;</string>
          <property name="styleSheet">
           <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(45,45,45);
+background-color:rgb(55,55,55);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -1788,6 +1860,16 @@ border-style:solid;</string>
            <width>150</width>
            <height>30</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+	background: rgb(55,55,55);
+	selection-background-color: black;
+    border: 1px solid rgb(100,100,100);
+    border-radius: 5px;
+}</string>
          </property>
          <property name="inputMask">
           <string>000.000.000.000</string>
@@ -1852,7 +1934,7 @@ border-style:solid;</string>
          <property name="styleSheet">
           <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(45,45,45);
+background-color:rgb(55,55,55);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -2349,12 +2431,72 @@ border-style:solid;</string>
            <family>Arial</family>
            <pointsize>10</pointsize>
            <weight>50</weight>
+           <italic>false</italic>
            <bold>false</bold>
            <kerning>true</kerning>
           </font>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSpinBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+	selection-background-color: black;
+	background: rgb(55,55,55);
+    padding-right: 15px; /* make room for the arrows */
+    border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+}
+
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+    width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	top: 4px;
+	right: 8px;
+}
+
+QSpinBox::up-button:pressed {
+    top: 5px;
+}
+
+QSpinBox::up-arrow {
+    image: url(Icons/ComboBoxUpArrow.png);
+	width: 10px;
+	height: 10px;
+}
+
+QSpinBox::up-arrow:disabled, QSpinBox::up-arrow:off { /* off state when value is max */
+   image: none;
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+    width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	bottom: 5px;
+	right: 8px;
+}
+
+QSpinBox::down-button:pressed {
+    bottom: 4px;
+}
+
+QSpinBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+}
+
+QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when value in min */
+ 	image: none;
+}</string>
          </property>
          <property name="minimum">
           <number>1</number>
@@ -2380,12 +2522,23 @@ border-style:solid;</string>
            <family>Arial</family>
            <pointsize>10</pointsize>
            <weight>50</weight>
+           <italic>false</italic>
            <bold>false</bold>
            <kerning>true</kerning>
           </font>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+	background: rgb(55,55,55);
+	selection-background-color: black;
+    border: 1px solid rgb(100,100,100);
+    border-radius: 5px;
+}</string>
          </property>
          <property name="text">
           <string>4000</string>
@@ -2433,12 +2586,24 @@ border-style:solid;</string>
            <family>Arial</family>
            <pointsize>8</pointsize>
            <weight>50</weight>
+           <italic>false</italic>
            <bold>false</bold>
            <kerning>true</kerning>
           </font>
          </property>
          <property name="mouseTracking">
           <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableView {
+	font: 8pt &quot;Arial&quot;;
+	color: white;
+	background: rgb(55,55,55);
+    selection-background-color: black;
+	gridline-color: rgb(100,100,100);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+}</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
@@ -2471,7 +2636,7 @@ border-style:solid;</string>
           <bool>true</bool>
          </property>
          <property name="gridStyle">
-          <enum>Qt::SolidLine</enum>
+          <enum>Qt::DashLine</enum>
          </property>
          <property name="sortingEnabled">
           <bool>false</bool>
@@ -5913,11 +6078,11 @@ QComboBox QAbstractItemView {
          <property name="styleSheet">
           <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(45,45,45);
+background-color:rgb(55,55,55);
 
 border-width:1px;
 border-color :rgb(100,100,100);
-border-radius:10px;
+border-radius:5px;
 border-style:solid;</string>
          </property>
          <property name="text">
@@ -5976,7 +6141,7 @@ border-style:solid;</string>
          <property name="styleSheet">
           <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(45,45,45);
+background-color:rgb(55,55,55);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -6008,7 +6173,7 @@ border-style:solid;</string>
          <property name="styleSheet">
           <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(45,45,45);
+background-color:rgb(55,55,55);
 
 border-width:1px;
 border-color :rgb(100,100,100);
