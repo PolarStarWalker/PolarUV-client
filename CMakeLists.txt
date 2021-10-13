@@ -4,8 +4,13 @@ set(CMAKE_CXX_STANDARD 20)
 set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CMAKE_COMMAND} -E time")
 
-set(CMAKE_CXX_FLAGS_DEBUG "-g")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+if (CMAKE_BUILD_TYPE MATCHES "Debug")
+    add_definitions(-DDEBUG)
+    set(CMAKE_CXX_FLAGS_DEBUG "-g")
+else ()
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+endif ()
+
 
 project(Client)
 
@@ -14,7 +19,7 @@ set(GSTREAMER_DIR "/lib/gstreamer-dev/1.0/msvc_x86_64/bin")
 link_directories(GSTREAMER_DIR)
 
 # Подключение библиотек python
-find_package (Python3 COMPONENTS Interpreter Development)
+find_package(Python3 COMPONENTS Interpreter Development)
 include_directories(${Python_INCLUDE_DIRS})
 include_directories(${Python3_INCLUDE_DIRS})
 
@@ -24,7 +29,7 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 #Путь до Qt
-set(CMAKE_PREFIX_PATH "C:/Users/DanShoo/CLionProjects/client/lib/mingw81_64/lib/cmake")
+set(CMAKE_PREFIX_PATH "/lib/mingw81_64/lib/cmake")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
