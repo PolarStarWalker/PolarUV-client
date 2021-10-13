@@ -8,7 +8,7 @@ void MainWindow::RawSwitchVideoStream() {
 
         throw Exception::InvalidOperationException("Невозможно начать трансляцию:\n"
                                                    "не указан IP-адрес ТНПА или клиента\n"
-                                                   "(Настройки клиента - Подключение)");
+                                                   "(Настройки -  ТНПА - Подключение)");
     }
 
     if (!_videoStream->IsStreamOnline()) {

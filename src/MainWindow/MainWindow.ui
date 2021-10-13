@@ -879,7 +879,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="iconSize">
      <size>
@@ -1138,9 +1138,9 @@
      <widget class="QLabel" name="PitchLabel">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>170</x>
         <y>70</y>
-        <width>450</width>
+        <width>730</width>
         <height>640</height>
        </rect>
       </property>
@@ -1157,9 +1157,9 @@
      <widget class="QLabel" name="DepthLabel">
       <property name="geometry">
        <rect>
-        <x>570</x>
+        <x>290</x>
         <y>70</y>
-        <width>450</width>
+        <width>730</width>
         <height>640</height>
        </rect>
       </property>
@@ -1229,7 +1229,7 @@
         <x>275</x>
         <y>0</y>
         <width>640</width>
-        <height>80</height>
+        <height>110</height>
        </rect>
       </property>
       <property name="frameShape">

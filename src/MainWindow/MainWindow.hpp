@@ -120,6 +120,8 @@ private:
     int32_t _oldDepth = -1;       //
     QPixmap _oldVideoFrame{};     //
 
+    int32_t _pitchY = 0;
+
     std::chrono::time_point<std::chrono::system_clock> _oldTime{};
     uint8_t _fps = 0;
 
