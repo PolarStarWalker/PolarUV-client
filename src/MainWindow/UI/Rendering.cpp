@@ -42,7 +42,7 @@ void MainWindow::SetupRendering() {
 
     /// Setting the background
     QPixmap pixmap(10, 10);
-    pixmap.fill(QColor::fromRgb(50, 50, 50));
+    pixmap.fill(QColor::fromRgb(40, 40, 40));
     ui->CameraLabel->setPixmap(this->_mainWindowResources->GetBackground());
     ui->SettingsTabBackgroundLabel->setPixmap(pixmap);
     ui->CodeTabBackgroundLabel->setPixmap(pixmap);
@@ -60,8 +60,8 @@ void MainWindow::SetupRendering() {
     /// Adding a shadow effect to some elements
     QWidget *elements[] = {
             // Labels
-            ui->FPSLabel, ui->RollLabel, ui->PitchLabel, ui->CompassLabel, ui->DepthLabel, ui->RoundPitchLabel,
-            ui->YawLabel,
+            ui->FPSLabel, ui->RollLabel, ui->PitchLabel, ui->CompassLabel, ui->DepthLabel, ui->YawLabel,
+            ui->CalibrationLabel, ui->VoltageLabel, ui->ChargeLabel,
             // Buttons
             ui->ShowTabBarButton, ui->HideTabBarButton, ui->VideoStreamButton, ui->ScreenshotButton,
     };
@@ -145,10 +145,18 @@ void MainWindow::MoveWidgets() {
     y = ui->MainTab->height() - ui->CompassLabel->height();
     ui->CompassLabel->move(x, y);
 
-    /// Moving the round pitch label
-    x = ui->CompassLabel->x() - ui->RoundPitchLabel->width();
-    y = ui->CompassLabel->y();
-    ui->RoundPitchLabel->move(x, y);
+    /// Moving the calibration label
+    offset = 5; // Distance from the left edge of window
+    y = ui->MainTab->height() - ui->CalibrationLabel->height();
+    ui->CalibrationLabel->move(offset, y - offset);
+
+    /// Moving the voltage label
+    y = ui->CalibrationLabel->y() - ui->VoltageLabel->height();
+    ui->VoltageLabel->move(offset, y);
+
+    /// Moving the charge label
+    y = ui->VoltageLabel->y() - ui->ChargeLabel->height();
+    ui->ChargeLabel->move(offset, y);
 
     /// Moving the VideoStream button
     offset = 10; // Distance from the bottom edge of window
@@ -336,6 +344,34 @@ void MainWindow::UpdateWidgets() {
     /// Painting the depth indicator
     this->PaintDepthIndicator(telemetryStruct.Depth, 10, 1);
 
+    /// Printing calibration data
+    int8_t currentCalibrationArray[4]{
+            telemetryStruct.MotionCalibration[0],
+            telemetryStruct.MotionCalibration[1],
+            telemetryStruct.MotionCalibration[2],
+            telemetryStruct.MotionCalibration[3]
+    };
+    if ((currentCalibrationArray[0] != this->_oldCalibrationArray[0]) ||
+        (currentCalibrationArray[1] != this->_oldCalibrationArray[1]) ||
+        (currentCalibrationArray[2] != this->_oldCalibrationArray[2]) ||
+        (currentCalibrationArray[3] != this->_oldCalibrationArray[3])) {
+        ui->CalibrationLabel->setText(QString("Калибровка: [") +
+                                      QString::number(telemetryStruct.MotionCalibration[0]) + QString(", ") +
+                                      QString::number(telemetryStruct.MotionCalibration[1]) + QString(", ") +
+                                      QString::number(telemetryStruct.MotionCalibration[2]) + QString(", ") +
+                                      QString::number(telemetryStruct.MotionCalibration[3]) + QString("]"));
+        this->_oldCalibrationArray[0] = currentCalibrationArray[0];
+        this->_oldCalibrationArray[1] = currentCalibrationArray[1];
+        this->_oldCalibrationArray[2] = currentCalibrationArray[2];
+        this->_oldCalibrationArray[3] = currentCalibrationArray[3];
+    }
+
+    /// Printing voltage data
+    float currentVoltage = telemetryStruct.BatteryVoltage;
+    if (currentVoltage != this->oldVoltage) {
+        ui->VoltageLabel->setText(QString("Напряжение: ") + QString::number(currentVoltage) + QString(" В"));
+    }
+
     /// Counting FPS - printing every 1 sec
     this->_fps++;
     if (std::chrono::duration_cast<std::chrono::seconds>(std::chrono::high_resolution_clock::now() -
@@ -487,7 +523,7 @@ void MainWindow::PaintPitchIndicator(float pitchAngle, float sizeMultiplier) {
 
     // Scale
     painter.drawLine(50, 5, 103, 5);
-    painter.drawLine(105,6, 119, 20);
+    painter.drawLine(105, 6, 119, 20);
     painter.drawLine(120, 22, 120,
                      ui->PitchLabel->height() - 22);
     painter.drawLine(119,
@@ -713,7 +749,7 @@ void MainWindow::PaintDepthIndicator(float depth, int32_t valueRange, float size
     painter.setRenderHint(QPainter::Antialiasing);
 
     painter.drawLine(680, 5, 627, 5);
-    painter.drawLine(625,6, 611, 20);
+    painter.drawLine(625, 6, 611, 20);
     painter.drawLine(610, 22, 610,
                      ui->DepthLabel->height() - 22);
     painter.drawLine(611,

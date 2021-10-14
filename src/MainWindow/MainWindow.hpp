@@ -113,12 +113,14 @@ private:
 
     bool _isVideoFrame = false;   // For UpdateWidgets() function
     bool _isGreen = false;        // in order not to draw the same
-    bool _isPause = false;        // images
+    bool _isPause = false;        // images or text
     int32_t _oldEulerX = -1;      //
     int32_t _oldEulerY = -1;      //
     int32_t _oldEulerZ = -1;      //
     int32_t _oldDepth = -1;       //
+    float oldVoltage = -1;        //
     QPixmap _oldVideoFrame{};     //
+    int8_t _oldCalibrationArray[4]{}; //
 
     int32_t _pitchY = 0;
 

@@ -1173,25 +1173,6 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="RoundPitchLabel">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>480</y>
-        <width>300</width>
-        <height>300</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
      <widget class="QLabel" name="FPSLabel">
       <property name="geometry">
        <rect>
@@ -1242,6 +1223,99 @@
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="VoltageLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>715</y>
+        <width>300</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="text">
+       <string>Напряжение: 0 В</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="CalibrationLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>750</y>
+        <width>300</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="text">
+       <string>Калибровка: [0, 0, 0, 0]</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ChargeLabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>680</y>
+        <width>300</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="text">
+       <string>Заряд: 0%</string>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
      <zorder>CameraLabel</zorder>
      <zorder>VideoStreamButton</zorder>
      <zorder>ScreenshotButton</zorder>
@@ -1250,9 +1324,11 @@
      <zorder>PitchLabel</zorder>
      <zorder>DepthLabel</zorder>
      <zorder>RollLabel</zorder>
-     <zorder>RoundPitchLabel</zorder>
      <zorder>FPSLabel</zorder>
      <zorder>YawLabel</zorder>
+     <zorder>VoltageLabel</zorder>
+     <zorder>CalibrationLabel</zorder>
+     <zorder>ChargeLabel</zorder>
     </widget>
     <widget class="QWidget" name="SettingsTab">
      <property name="sizePolicy">
@@ -1725,7 +1801,7 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -1760,7 +1836,7 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -1989,7 +2065,7 @@ border-style:solid;</string>
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -2100,7 +2176,7 @@ QComboBox QAbstractItemView {
          <property name="styleSheet">
           <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -2166,7 +2242,7 @@ border-style:solid;</string>
         <property name="styleSheet">
          <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -3055,7 +3131,7 @@ QComboBox QAbstractItemView {
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -3117,7 +3193,7 @@ QComboBox QAbstractItemView {
         <property name="styleSheet">
          <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -3167,7 +3243,7 @@ border-style:solid;</string>
         <property name="styleSheet">
          <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -3214,7 +3290,7 @@ border-style:solid;</string>
         <property name="styleSheet">
          <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -3265,7 +3341,7 @@ border-style:solid;</string>
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -5940,7 +6016,7 @@ QCheckBox::indicator:checked {
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -5966,7 +6042,7 @@ QCheckBox::indicator:checked {
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -6216,7 +6292,7 @@ border-style:solid;</string>
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -6469,7 +6545,7 @@ QComboBox QAbstractItemView {
         <property name="styleSheet">
          <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -6511,7 +6587,7 @@ border-style:solid;</string>
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color:rgb(40,40,40);
+          <string notr="true">background-color:rgb(45,45,45);
     border-width:1px;
     border-color :rgb(100,100,100);
     border-radius:10px;
@@ -6552,7 +6628,7 @@ border-style:solid;</string>
         <property name="styleSheet">
          <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -6775,7 +6851,7 @@ border-style:solid;</string>
       <property name="styleSheet">
        <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -6850,7 +6926,7 @@ border-style:solid;</string>
       <property name="styleSheet">
        <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
@@ -6936,7 +7012,7 @@ border-style:solid;</string>
       <property name="styleSheet">
        <string notr="true">color:rgb(255,255,255);
 
-background-color:rgb(40,40,40);
+background-color:rgb(45,45,45);
 
 border-width:1px;
 border-color :rgb(100,100,100);
