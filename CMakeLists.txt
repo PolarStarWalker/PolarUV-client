@@ -29,14 +29,14 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 #Путь до Qt
-set(CMAKE_PREFIX_PATH "/lib/mingw81_64/lib/cmake")
+set(CMAKE_PREFIX_PATH "C:/Users/DanShoo/CLionProjects/client/lib/mingw81_64/lib/cmake")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 set(QT_VERSION 5)
 set(REQUIRED_LIBS Core Gui Widgets Test Gamepad Network)
-set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Test Qt5::Network)
+set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Opengl32 Qt5::Widgets Qt5::Test Qt5::Network) # Для -l библиотек
 
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 

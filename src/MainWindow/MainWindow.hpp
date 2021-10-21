@@ -13,6 +13,7 @@
 #include <chrono>
 #include <iphlpapi.h>
 
+#include <QOpenGLWidget>
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QPainter>
@@ -22,8 +23,11 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QTimer>
+#include <QGridLayout>
 
 #include "./UI/Resources/MainWindowResources.hpp"
+
+#include "./UI/Indicators/YawIndicator.hpp"
 
 #include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"
@@ -111,14 +115,16 @@ private:
     VideoProtocol *_videoStream;
     CommandsProtocol *_commandsProtocol;
 
+    YawIndicator *_yawIndicator;
+
     bool _isVideoFrame = false;   // For UpdateWidgets() function
     bool _isGreen = false;        // in order not to draw the same
     bool _isPause = false;        // images or text
     int32_t _oldEulerX = -1;      //
     int32_t _oldEulerY = -1;      //
     int32_t _oldEulerZ = -1;      //
-    int32_t _oldDepth = -1;       //
-    float oldVoltage = -1;        //
+    float _oldDepth = -1;       //
+    float _oldVoltage = -1;        //
     QPixmap _oldVideoFrame{};     //
     int8_t _oldCalibrationArray[4]{}; //
 

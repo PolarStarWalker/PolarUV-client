@@ -76,7 +76,7 @@ void MainWindow::SetupRendering() {
     /// Adding a frames to indicators
 #if DEBUG
     QLabel *indicators[] = {
-            ui->RollLabel, ui->PitchLabel, ui->YawLabel, ui->CompassLabel, ui->RoundPitchLabel, ui->DepthLabel,
+            ui->RollLabel, ui->PitchLabel, ui->YawLabel, ui->CompassLabel, ui->DepthLabel,
     };
     for (auto &indicator : indicators) {
         indicator->setFrameShape(QFrame::Box);
@@ -133,6 +133,7 @@ void MainWindow::MoveWidgets() {
     /// Moving the yaw label
     x = (ui->MainTab->width() - ui->YawLabel->width()) / 2;
     ui->YawLabel->move(x, 0);
+    this->_yawIndicator->move(x,0);
 
     /// Moving the depth label
     offset = 120;
@@ -336,13 +337,18 @@ void MainWindow::UpdateWidgets() {
     /// Painting the yaw indicator and compass if angle changed
     float currentEulerZ = telemetryStruct.Rotation[TelemetryStruct::Z];
     if ((int32_t) currentEulerZ != this->_oldEulerZ) {
-        this->PaintYawIndicator(currentEulerZ, 1);
+        //this->PaintYawIndicator(currentEulerZ, 1);
+        this->_yawIndicator->update();
         this->PaintCompass(currentEulerZ, 1);
         this->_oldEulerZ = (int32_t) currentEulerZ;
     }
 
     /// Painting the depth indicator
-    this->PaintDepthIndicator(telemetryStruct.Depth, 10, 1);
+    float currentDepth = telemetryStruct.Depth;
+    if (currentDepth != this->_oldDepth) {
+        this->PaintDepthIndicator(currentDepth, 10, 1);
+        this->_oldDepth = currentDepth;
+    }
 
     /// Printing calibration data
     int8_t currentCalibrationArray[4]{
@@ -368,7 +374,7 @@ void MainWindow::UpdateWidgets() {
 
     /// Printing voltage data
     float currentVoltage = telemetryStruct.BatteryVoltage;
-    if (currentVoltage != this->oldVoltage) {
+    if (currentVoltage != this->_oldVoltage) {
         ui->VoltageLabel->setText(QString("Напряжение: ") + QString::number(currentVoltage) + QString(" В"));
     }
 

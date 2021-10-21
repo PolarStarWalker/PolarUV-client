@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     this->LoadClientSettings();
 
+    this->_yawIndicator = new YawIndicator(ui->MainTab,this->_commandsProtocol);
+
     this->SetupRendering();
     this->SetupButtons();
     this->SetupShortcuts();
