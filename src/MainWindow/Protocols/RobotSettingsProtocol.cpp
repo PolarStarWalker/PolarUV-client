@@ -35,27 +35,28 @@ RobotSettingsStruct RobotSettingsProtocol::Recv(const QString &address, uint16_t
 
     char direction = 'r';
     socket.write(&direction, 1);
-    if (socket.waitForBytesWritten(100))
+    if (!socket.waitForBytesWritten(1000))
         throw Exception::ConnectionException("Не удалось отправить данные");
 
     BaseRobotSettingsStruct baseRobotSettings{};
 
-    if (socket.bytesAvailable() < BaseRobotSettingsStructActualSize)
-        if (socket.waitForReadyRead(50))
-            throw Exception::ConnectionException("Не удалось считать данные");
-
+    baseRobotSettings.HandFreedom = 2;
+    baseRobotSettings.ThrusterNumber = 8;
 
     socket.read((char *) &baseRobotSettings, BaseRobotSettingsStructActualSize);
+    if (socket.bytesAvailable() < BaseRobotSettingsStructActualSize)
+        if (!socket.waitForReadyRead(500))
+            throw Exception::ConnectionException("Не удалось считать данные");
 
     RobotSettingsStruct tmpRobotSettings(baseRobotSettings);
 
-    if (socket.bytesAvailable() < tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize)
-        if (socket.waitForReadyRead(500))
-            throw Exception::ConnectionException("Не удалось считать данные");
-
-
     socket.read(tmpRobotSettings.Begin() + BaseRobotSettingsStructActualSize,
                 tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize);
+
+    if (socket.bytesAvailable() < (tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize))
+        if (!socket.waitForReadyRead(500))
+            throw Exception::ConnectionException("Не удалось считать данные");
+
 
     socket.disconnectFromHost();
 

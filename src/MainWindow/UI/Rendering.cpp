@@ -74,14 +74,14 @@ void MainWindow::SetupRendering() {
     }
 
     /// Adding a frames to indicators
-#if DEBUG
+/*#if DEBUG
     QLabel *indicators[] = {
             ui->RollLabel, ui->PitchLabel, ui->YawLabel, ui->CompassLabel, ui->DepthLabel,
     };
     for (auto &indicator : indicators) {
         indicator->setFrameShape(QFrame::Box);
     }
-#endif
+#endif*/
 
 }
 

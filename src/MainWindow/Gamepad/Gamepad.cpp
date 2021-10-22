@@ -3,6 +3,9 @@
 
 using namespace Control;
 
+constexpr float  cameraSpeed = 0.005;
+
+
 inline float GasFunction(double X) {
     if (X > 0) {
         return 0.278112 * X + 0.06916 * X * X + 0.648397 * X * X * X;
@@ -12,18 +15,17 @@ inline float GasFunction(double X) {
 }
 
 
-
-Gamepad::Gamepad(size_t id) {
+Gamepad::Gamepad(int id) {
     this->_id = id;
-    std::memset(&this->_buttonsStates, 0, sizeof(this->_buttonsStates));
+    _cameraPosition = 0.15;
 }
 
 CommandsStruct Gamepad::GetCommandsStruct() const {
     CommandsStruct commands{};
 
-    this->_idMutex.lock_shared();
-    int id = this->_id;
-    this->_idMutex.unlock_shared();
+    _idMutex.lock_shared();
+    int id = _id;
+    _idMutex.unlock_shared();
 
     XINPUT_STATE state{};
     XInputGetState(id, &state);
@@ -41,16 +43,16 @@ CommandsStruct Gamepad::GetCommandsStruct() const {
 
     commands.VectorArray[Mz] = GasFunction(-((double) state.Gamepad.sThumbRX) / MAGIC_NUMBER_ONE);
 
-    if (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_LEFT)
+    if (state.Gamepad.wButtons & DPadLeft)
         commands.TheHand[0] = -1;
-    else if (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_RIGHT)
+    else if (state.Gamepad.wButtons & DPadRight)
         commands.TheHand[0] = 1;
     else
         commands.TheHand[0] = 0;
 
-    if (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_UP)
+    if (state.Gamepad.wButtons & DPadUp)
         commands.TheHand[1] = 1;
-    else if (state.Gamepad.wButtons & XINPUT_GAMEPAD_DPAD_DOWN)
+    else if (state.Gamepad.wButtons & DPadDown)
         commands.TheHand[1] = -1;
     else
         commands.TheHand[1] = 0;
@@ -62,6 +64,23 @@ CommandsStruct Gamepad::GetCommandsStruct() const {
     commands.VectorArray[My] = std::round(commands.VectorArray[My] * 1000) / 1000;
     commands.VectorArray[Mz] = std::round(commands.VectorArray[Mz] * 1000) / 1000;
 
+    float cameraDirection = (state.Gamepad.wButtons & Cross) ? -1.0f : 0.0f + (state.Gamepad.wButtons & Triangle) ? 1.0f : 0.0f;
+
+    _cameraPosition += cameraDirection * cameraSpeed;
+
+    if(state.Gamepad.wButtons & RightStick)
+        _cameraPosition = 0.15;
+
+    if (_cameraPosition <= -1.0)
+        _cameraPosition = -1.0;
+    else if (_cameraPosition >= 0.15)
+        _cameraPosition = 0.15;
+
+
+    commands.Camera[0] = _cameraPosition;
+
+    //std::cout<<commands<<std::endl;
+
     return commands;
 }
 
@@ -70,19 +89,21 @@ void Gamepad::SetVibration(uint16_t left, uint16_t right) const {
     ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
     vibration.wLeftMotorSpeed = left;
     vibration.wRightMotorSpeed = right;
-    XInputSetState(this->_id, &vibration);
+    XInputSetState(_id, &vibration);
 }
 
 void Gamepad::UpdateGamepadId(size_t id) {
-    this->_idMutex.lock();
-    this->_id = id;
-    this->_idMutex.unlock();
+    _idMutex.lock();
+    _id = id;
+    _idMutex.unlock();
 }
 
 size_t Gamepad::GetGamepadId() const {
-    this->_idMutex.lock();
-    size_t id = this->_id;
-    this->_idMutex.unlock();
+
+    _idMutex.lock_shared();
+    int id = _id;
+    _idMutex.unlock_shared();
+
     return id;
 }
 

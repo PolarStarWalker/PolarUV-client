@@ -58,10 +58,10 @@ void CommandsProtocol::Start(const QString &address, uint16_t port) {
 
         this->SetTelemetryStruct(telemetry);
 
-        std::cout << telemetry << std::endl;
+        //std::cout << telemetry << std::endl;
 
         ///ToDo: найти способ получше держать период 2мс
-        while (std::chrono::duration<double, std::micro>(timer.now() - currentTime).count() < 2000) {}
+        while (std::chrono::duration<double, std::micro>(timer.now() - currentTime).count() < 1999) {}
 
         //std::this_thread::sleep_for(std::chrono::microseconds(2000 - (size_t) deltaTime));
         //std::cout << i << ' ' <<std::chrono::duration<double, std::micro>(timer.now() - currentTime).count()<<std::endl;
