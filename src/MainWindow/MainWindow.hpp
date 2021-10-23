@@ -28,6 +28,7 @@
 #include "./UI/Resources/MainWindowResources.hpp"
 
 #include "./UI/Indicators/YawIndicator.hpp"
+#include "./UI/Indicators/DepthIndicator.hpp"
 
 #include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"
@@ -116,16 +117,17 @@ private:
     CommandsProtocol *_commandsProtocol;
 
     YawIndicator *_yawIndicator;
+    DepthIndicator *_depthIndicator;
 
-    bool _isVideoFrame = false;   // For UpdateWidgets() function
-    bool _isGreen = false;        // in order not to draw the same
-    bool _isPause = false;        // images or text
-    int32_t _oldEulerX = -1;      //
-    int32_t _oldEulerY = -1;      //
-    int32_t _oldEulerZ = -1;      //
-    float _oldDepth = -1;       //
-    float _oldVoltage = -1;        //
-    QPixmap _oldVideoFrame{};     //
+    bool _isVideoFrame = false;       // For UpdateWidgets() function
+    bool _isGreen = false;            // in order not to draw the same
+    bool _isPause = false;            // images or text
+    int32_t _oldEulerX = -1;          //
+    int32_t _oldEulerY = -1;          //
+    int32_t _oldEulerZ = -1;          //
+    float _oldDepth = -1;             //
+    float _oldVoltage = -1;           //
+    QPixmap _oldVideoFrame{};         //
     int8_t _oldCalibrationArray[4]{}; //
 
     int32_t _pitchY = 0;

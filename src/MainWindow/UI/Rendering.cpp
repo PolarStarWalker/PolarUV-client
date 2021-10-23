@@ -140,6 +140,7 @@ void MainWindow::MoveWidgets() {
     x = ui->RollLabel->x() + ui->RollLabel->width() - ui->DepthLabel->width() + offset;
     y = (ui->MainTab->height() - ui->DepthLabel->height()) / 2;
     ui->DepthLabel->move(x, y);
+    this->_depthIndicator->move(x,y);
 
     /// Moving the compass label
     x = ui->MainTab->width() - ui->CompassLabel->width();
@@ -346,7 +347,8 @@ void MainWindow::UpdateWidgets() {
     /// Painting the depth indicator
     float currentDepth = telemetryStruct.Depth;
     if (currentDepth != this->_oldDepth) {
-        this->PaintDepthIndicator(currentDepth, 10, 1);
+        //this->PaintDepthIndicator(currentDepth, 10, 1);
+        this->_depthIndicator->update();
         this->_oldDepth = currentDepth;
     }
 

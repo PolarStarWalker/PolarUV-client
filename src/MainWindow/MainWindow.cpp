@@ -11,12 +11,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->_videoStream = new VideoProtocol();
 
     this->_updateTimer = new QTimer(this);
-    connect(this->_updateTimer,SIGNAL(timeout()),this,SLOT(UpdateWidgets()));
-    this->_updateTimer->start(1000/60);
+    connect(this->_updateTimer, SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
+    this->_updateTimer->start(1000 / 60);
 
     this->LoadClientSettings();
 
-    this->_yawIndicator = new YawIndicator(ui->MainTab,this->_commandsProtocol);
+    this->_yawIndicator = new YawIndicator(ui->MainTab, this->_commandsProtocol);
+    this->_depthIndicator = new DepthIndicator(ui->MainTab, this->_commandsProtocol);
 
     this->SetupRendering();
     this->SetupButtons();

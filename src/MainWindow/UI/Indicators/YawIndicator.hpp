@@ -2,11 +2,11 @@
 #define CLIENT_YAWINDICATOR_HPP
 
 #include <QOpenGLWidget>
-#include <QOpenGLContext>
-#include "../../../MainWindow/DataStructs/TelemetryStruct/TelemetryStruct.hpp"
-#include "../../../MainWindow/Protocols/Protocols.hpp"
 #include <QPainter>
 #include <QPainterPath>
+
+#include "../../../MainWindow/DataStructs/TelemetryStruct/TelemetryStruct.hpp"
+#include "../../../MainWindow/Protocols/Protocols.hpp"
 
 class YawIndicator : public QOpenGLWidget {
 public:
@@ -57,7 +57,7 @@ protected:
         font.setBold(true);
 
         QPainter painter(this);
-        painter.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
+        painter.setRenderHints(QPainter::Antialiasing);
         painter.save();
 
         /// Painting angle
@@ -90,17 +90,26 @@ protected:
         int8_t translationNumber = 1;
         while (currentX >= ((_valueRectWidth + _distance))) {
             painter.translate(-(_valueRectWidth + _distance), 0);
+            // Checking value
             int32_t value = (((int32_t) yawAngle) - valueOffset) - (_step * translationNumber);
             if (value < 0) value = 360 + value;
             else if (value > 360) value = value - 360;
+            // Calculating text offset
+            int32_t valueOffsetX;
+            if (value < 10) valueOffsetX = 9;
+            else if (value < 100) valueOffsetX = 16;
+            else valueOffsetX = 27;
+            // Creating path
             QPainterPath valuePath;
-            valuePath.addText(-textOffsetX,
+            valuePath.addText(-valueOffsetX,
                               (float) (this->height() - _borderOffsetY2 + _fontSize) / 2 + _textOffsetY,
                               font,
                               QString::number(value));
+            // Painting
             painter.setPen(QPen(Qt::black, _outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin));
             painter.setBrush(Qt::white);
             painter.drawPath(valuePath);
+            //
             translationNumber++;
             currentX -= _valueRectWidth;
         }
@@ -115,18 +124,27 @@ protected:
         /// Painting right values
         while (currentX <= (this->width() - ((_valueRectWidth + _distance)))) {
             painter.translate(_valueRectWidth + _distance, 0);
+            // Checking value
             int32_t value = (((int32_t) yawAngle) - valueOffset) + (_step * translationNumber);
             if (value < 0) value = 360 - value;
             else if (value == 360) value = 0;
             else if (value > 360) value = value - 360;
+            // Calculating text offset
+            int32_t valueOffsetX;
+            if (value < 10) valueOffsetX = 9;
+            else if (value < 100) valueOffsetX = 16;
+            else valueOffsetX = 27;
+            // Creating path
             QPainterPath valuePath;
-            valuePath.addText(-textOffsetX,
+            valuePath.addText(-valueOffsetX,
                               (float) (this->height() - _borderOffsetY2 + _fontSize) / 2 + _textOffsetY,
                               font,
                               QString::number(value));
+            // Painting
             painter.setPen(QPen(Qt::black, _outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin));
             painter.setBrush(Qt::white);
             painter.drawPath(valuePath);
+            //
             translationNumber++;
             currentX += _valueRectWidth;
         }
