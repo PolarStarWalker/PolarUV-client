@@ -48,11 +48,6 @@ protected:
 
         // this->valueRange = ...
 
-        int32_t textOffsetX;
-        if (depth < 10) textOffsetX = 9;
-        else if (depth < 100) textOffsetX = 16;
-        else textOffsetX = 27;
-
         QFont font("Times", (int32_t) _fontSize);
         font.setBold(true);
 
@@ -167,10 +162,10 @@ protected:
                 QPointF(_borderOffsetX2 + _edgeOffset,
                         _borderOffsetY1 + _lineWidth),
                 QPointF(_borderOffsetY2 + _horizontalLineLength,
-                        _borderOffsetY1 + _lineWidth)
+                        _borderOffsetY1 + _lineWidth),
         };
-
         framePath.addPolygon(QPolygonF(framePolygon));
+        framePath.closeSubpath();
         painter.setPen(QPen(Qt::black, _outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
         painter.setBrush(Qt::white);
         painter.drawPath(framePath);

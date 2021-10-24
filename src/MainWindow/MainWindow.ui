@@ -2005,7 +2005,7 @@ border-style:solid;</string>
         <widget class="QLabel" name="MotorsMaxSpeedLabel">
          <property name="geometry">
           <rect>
-           <x>25</x>
+           <x>30</x>
            <y>125</y>
            <width>160</width>
            <height>41</height>
@@ -2030,7 +2030,7 @@ border-style:solid;</string>
         <widget class="QLabel" name="MotorsProtocolLabel">
          <property name="geometry">
           <rect>
-           <x>25</x>
+           <x>30</x>
            <y>85</y>
            <width>160</width>
            <height>41</height>
@@ -2124,7 +2124,7 @@ border-style:solid;</string>
         <widget class="QLabel" name="MotorsNumberLabel">
          <property name="geometry">
           <rect>
-           <x>25</x>
+           <x>30</x>
            <y>45</y>
            <width>160</width>
            <height>41</height>
@@ -2224,7 +2224,7 @@ border-style:solid;</string>
         <widget class="QSpinBox" name="MotorsNumberSpinBox">
          <property name="geometry">
           <rect>
-           <x>195</x>
+           <x>200</x>
            <y>50</y>
            <width>120</width>
            <height>30</height>
@@ -2318,9 +2318,9 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
         <widget class="QLineEdit" name="MaxSpeedEdit">
          <property name="geometry">
           <rect>
-           <x>325</x>
+           <x>330</x>
            <y>130</y>
-           <width>50</width>
+           <width>40</width>
            <height>30</height>
           </rect>
          </property>
@@ -2348,10 +2348,10 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
 }</string>
          </property>
          <property name="text">
-          <string>4000</string>
+          <string>50</string>
          </property>
          <property name="maxLength">
-          <number>4</number>
+          <number>3</number>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -2742,7 +2742,7 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
         <widget class="QComboBox" name="MotorsProtocolComboBox">
          <property name="geometry">
           <rect>
-           <x>195</x>
+           <x>200</x>
            <y>90</y>
            <width>120</width>
            <height>30</height>
@@ -2890,7 +2890,7 @@ QComboBox QAbstractItemView {
         <widget class="QSlider" name="MaxSpeedSlider">
          <property name="geometry">
           <rect>
-           <x>195</x>
+           <x>200</x>
            <y>130</y>
            <width>121</width>
            <height>30</height>
@@ -2922,19 +2922,19 @@ QSlider::sub-page:horizontal {
 }</string>
          </property>
          <property name="maximum">
-          <number>5000</number>
+          <number>100</number>
          </property>
          <property name="singleStep">
-          <number>100</number>
+          <number>1</number>
          </property>
          <property name="pageStep">
-          <number>100</number>
+          <number>1</number>
          </property>
          <property name="value">
-          <number>4000</number>
+          <number>50</number>
          </property>
          <property name="sliderPosition">
-          <number>4000</number>
+          <number>50</number>
          </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -6483,7 +6483,7 @@ border-radius:5px;
 border-style:solid;</string>
        </property>
        <property name="text">
-        <string>Управление</string>
+        <string>Клиент</string>
        </property>
        <property name="flat">
         <bool>false</bool>

@@ -129,6 +129,7 @@ void MainWindow::MoveWidgets() {
     x = ui->RollLabel->x() - offset;
     y = (ui->MainTab->height() - ui->PitchLabel->height()) / 2;
     ui->PitchLabel->move(x, y);
+    this->_pitchIndicator->move(x,y);
 
     /// Moving the yaw label
     x = (ui->MainTab->width() - ui->YawLabel->width()) / 2;
@@ -313,7 +314,8 @@ void MainWindow::UpdateWidgets() {
     /// Painting the pitch indicator if angle changed
     float currentEulerY = telemetryStruct.Rotation[TelemetryStruct::Y];
     if ((int32_t) currentEulerY != this->_oldEulerY) {
-        this->PaintPitchIndicator(currentEulerY, 1);
+        //this->PaintPitchIndicator(currentEulerY, 1);
+        this->_pitchIndicator->update();
         this->_oldEulerY = (int32_t) currentEulerY;
     }
 

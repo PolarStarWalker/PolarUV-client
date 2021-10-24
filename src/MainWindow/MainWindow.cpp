@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     this->LoadClientSettings();
 
+    this->_pitchIndicator = new PitchIndicator(ui->MainTab, this->_commandsProtocol);
     this->_yawIndicator = new YawIndicator(ui->MainTab, this->_commandsProtocol);
     this->_depthIndicator = new DepthIndicator(ui->MainTab, this->_commandsProtocol);
 
