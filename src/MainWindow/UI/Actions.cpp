@@ -64,11 +64,11 @@ void MainWindow::RawSendRobotSettings() {
     RobotSettingsStruct robotSettingsStruct(baseRobotSettingsStruct);
 
     /// Reading motor coefficients
-    double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
+    float *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
             bool isConverted;
-            double value = ui->MotorsTable->item(i, j)->text().toDouble(&isConverted);
+            double value = ui->MotorsTable->item(i, j)->text().toFloat(&isConverted);
             if(isConverted) {
                 moveCoefficientArray[i * 6 + j] = value;
             } else {
@@ -79,10 +79,10 @@ void MainWindow::RawSendRobotSettings() {
     }
 
     /// Reading hand coefficients
-    double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
+    float *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
         bool isConverted;
-        double value = ui->HandTable->item(0, j)->text().toDouble(&isConverted);
+        double value = ui->HandTable->item(0, j)->text().toFloat(&isConverted);
         if(isConverted) {
             handCoefficientArray[j] = value;
         } else {
@@ -123,7 +123,7 @@ void MainWindow::RawReceiveRobotSettings() {
     RobotSettingsStruct robotSettingsStruct = RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT);
 
     /// Writing motors number
-    const double *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
+    const float *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
     int motorsNumber = robotSettingsStruct.ThrusterNumber();
     ui->MotorsNumberSpinBox->setValue(motorsNumber);
 
@@ -136,7 +136,7 @@ void MainWindow::RawReceiveRobotSettings() {
     }
 
     /// Writing the number of degrees of freedom of the hand
-    const double *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
+    const float *handCoefficientArray = robotSettingsStruct.HandCoefficientArray();
     int handFreedom = robotSettingsStruct.HandFreedom();
     ui->HandFreedomSpinBox->setValue(handFreedom);
 
