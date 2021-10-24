@@ -54,8 +54,8 @@ public:
 protected:
 
     void SetupRendering();
-    void SetupLocalization();
     void SetupButtons();
+    void SetupAnimations();
     void SetupShortcuts();
 
     static QImage cvMatToQImage(const cv::Mat &mat);
@@ -77,9 +77,6 @@ protected:
     void RawLoadClientSettings();
 
 private slots:
-    void on_MotorsNumberSpinBox_valueChanged(int value);
-    void on_HandFreedomSpinBox_valueChanged(int value);
-
     void MoveWidgets();
     void UpdateWidgets();
 
@@ -100,6 +97,11 @@ private slots:
     void ShowTabBar();
     void ReleaseCode();
     void DebugCode();
+
+    void UpdateMotorsTable(int value);
+    void UpdateHandTable(int value);
+    void UpdateMaxSpeedSlider(const QString& string);
+    void UpdateMaxSpeedEdit(int value);
 
     void shortcutEsc();
     void shortcutTab();

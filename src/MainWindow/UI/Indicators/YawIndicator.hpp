@@ -46,7 +46,7 @@ protected:
     }
 
     void paintGL() override {
-        float yawAngle = this->_commandsProtocol->GetTelemetryStruct().Rotation[TelemetryStruct::X];
+        float yawAngle = this->_commandsProtocol->GetTelemetryStruct().Rotation[TelemetryStruct::Z];
 
         int32_t textOffsetX;
         if (yawAngle < 10) textOffsetX = 9;

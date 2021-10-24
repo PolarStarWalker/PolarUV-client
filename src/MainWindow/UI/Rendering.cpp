@@ -133,14 +133,14 @@ void MainWindow::MoveWidgets() {
     /// Moving the yaw label
     x = (ui->MainTab->width() - ui->YawLabel->width()) / 2;
     ui->YawLabel->move(x, 0);
-    this->_yawIndicator->move(x,0);
+    this->_yawIndicator->move(x, 0);
 
     /// Moving the depth label
     offset = 120;
     x = ui->RollLabel->x() + ui->RollLabel->width() - ui->DepthLabel->width() + offset;
     y = (ui->MainTab->height() - ui->DepthLabel->height()) / 2;
     ui->DepthLabel->move(x, y);
-    this->_depthIndicator->move(x,y);
+    this->_depthIndicator->move(x, y);
 
     /// Moving the compass label
     x = ui->MainTab->width() - ui->CompassLabel->width();
@@ -225,24 +225,18 @@ void MainWindow::MoveWidgets() {
     /// Moving the KeyAssignments widget
     offset = 35; // Horizontal distance between widgets
     x = (ui->SettingsStackedWidget->width() - (ui->KeyAssignmentsWidget->width()
-                                               + ui->GamepadTestWidget->width() + offset)) / 2;
+                                               + ui->ConnectionSettingsWidget->width() + offset)) / 2;
     y = (ui->SettingsStackedWidget->height() - ui->KeyAssignmentsWidget->height()) / 2;
     ui->KeyAssignmentsWidget->move(x, y);
 
     /// Moving the GamepadTest widget
     x = ui->KeyAssignmentsWidget->x() + ui->KeyAssignmentsWidget->width() + offset;
-    ui->GamepadTestWidget->move(x, y);
+    ui->ConnectionSettingsWidget->move(x, y);
 
     /// Moving the UISettings widget
-    offset = 35; // Horizontal distance between widgets
-    x = (ui->SettingsStackedWidget->width() - (ui->UISettingsWidget->width()
-                                               + ui->OtherSettingsWidget->width() + offset)) / 2;
+    x = (ui->SettingsStackedWidget->width() - ui->UISettingsWidget->width()) / 2;
     y = (ui->SettingsStackedWidget->height() - ui->UISettingsWidget->height()) / 2;
     ui->UISettingsWidget->move(x, y);
-
-    /// Moving the OtherSettings widget
-    x = ui->UISettingsWidget->x() + ui->UISettingsWidget->width() + offset;
-    ui->OtherSettingsWidget->move(x, y);
 
     /// Moving the OutputEdit
     offset = 10; // Vertical distance from the CodeEdit
@@ -263,20 +257,15 @@ void MainWindow::MoveWidgets() {
     y = ui->KeyAssignmentsWidget->y() - ui->KeyAssignmentsLabel->height() / 2;
     ui->KeyAssignmentsLabel->move(x, y);
 
-    /// Moving the GamepadTest label
-    x = ui->GamepadTestWidget->x() + ui->GamepadTestWidget->width() / 2 - ui->GamepadTestLabel->width() / 2;
-    y = ui->GamepadTestWidget->y() - ui->GamepadTestLabel->height() / 2;
-    ui->GamepadTestLabel->move(x, y);
+    /// Moving the ConnectionSettings label
+    x = ui->ConnectionSettingsWidget->x() + ui->ConnectionSettingsWidget->width() / 2 - ui->ConnectionSettingsLabel->width() / 2;
+    y = ui->ConnectionSettingsWidget->y() - ui->ConnectionSettingsLabel->height() / 2;
+    ui->ConnectionSettingsLabel->move(x, y);
 
     /// Moving the UISettings label
     x = ui->UISettingsWidget->x() + ui->UISettingsWidget->width() / 2 - ui->UISettingsLabel->width() / 2;
     y = ui->UISettingsWidget->y() - ui->UISettingsLabel->height() / 2;
     ui->UISettingsLabel->move(x, y);
-
-    /// Moving the OtherSettings label
-    x = ui->OtherSettingsWidget->x() + ui->OtherSettingsWidget->width() / 2 - ui->OtherSettingsLabel->width() / 2;
-    y = ui->OtherSettingsWidget->y() - ui->OtherSettingsLabel->height() / 2;
-    ui->OtherSettingsLabel->move(x, y);
 
     /// Moving the CodeEdit Label
     x = ui->CodeEdit->x() + ui->CodeEdit->width() / 2 - ui->CodeEditLabel->width() / 2;
@@ -387,75 +376,6 @@ void MainWindow::UpdateWidgets() {
         this->_oldTime = std::chrono::high_resolution_clock::now();
         ui->FPSLabel->setText(QString("FPS: ") + QString::number(this->_fps));
         this->_fps = 0;
-    }
-}
-
-void MainWindow::on_MotorsNumberSpinBox_valueChanged(int value) {
-    /// Changing the height of the table
-    ui->MotorsTable->setFixedHeight((value * 26) + ((int) (value * 0.5))); // 26 - высота одной строки
-
-    /// Moving the lower lines
-    int x = ui->MotorsBottomLeftLine->x();
-    int y = ui->MotorsTable->y() + ui->MotorsTable->height();
-    ui->MotorsBottomLeftLine->move(x, y);
-    x = ui->MotorsBottomRightLine->x();
-    ui->MotorsBottomRightLine->move(x, y);
-
-    /// Changing the height of the side lines
-    int height = ui->MotorsBottomLeftLine->y() - ui->MotorsTopLeftLine->y();
-    ui->MotorsLeftLine->setFixedHeight(height);
-    ui->MotorsRightLine->setFixedHeight(height);
-
-    /// Setting the number of rows in the table
-    ui->MotorsTable->setRowCount(value);
-
-    /// Filling the empty cells with zeros
-    for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
-        for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
-            if (ui->MotorsTable->item(i, j) == nullptr) {
-                ui->MotorsTable->setItem(i, j, new QTableWidgetItem("0.0"));
-            }
-        }
-    }
-}
-
-void MainWindow::on_HandFreedomSpinBox_valueChanged(int value) {
-    /// Changing the width of the table
-    ui->HandTable->setFixedWidth((value * 49) + ((int) (value * 0.5))); // 49 - width of one column
-
-    /// Moving the table under the HandCoefficients label
-    int x = (ui->HandCoefficientsLabel->x() + (ui->HandCoefficientsLabel->width() / 2)) -
-            (ui->HandTable->width() / 2);
-    int y = ui->HandTable->y();
-    ui->HandTable->move(x, y);
-
-    /// Moving the side lines
-    x = ui->HandTable->x() - 20;
-    y = ui->HandLeftLine->y();
-    ui->HandLeftLine->move(x, y);
-    x = ui->HandTable->x() + ui->HandTable->width();
-    ui->HandRightLine->move(x, y);
-
-    /// Moving the upper and lower lines
-    x = ui->HandLeftLine->x() + 9;
-    y = ui->HandTopLeftLine->y();
-    ui->HandTopLeftLine->move(x, y);
-    y = ui->HandBottomLeftLine->y();
-    ui->HandBottomLeftLine->move(x, y);
-    x = ui->HandRightLine->x() - 9;
-    y = ui->HandTopRightLine->y();
-    ui->HandTopRightLine->move(x, y);
-    y = ui->HandBottomRightLine->y();
-    ui->HandBottomRightLine->move(x, y);
-
-    /// Setting the number of columns in the table
-    ui->HandTable->setColumnCount(value);
-
-    /// Filling the empty cells with zeros
-    for (int j = 0; j < ui->HandTable->columnCount(); j++) {
-        if (ui->HandTable->item(0, j) == nullptr) {
-            ui->HandTable->setItem(0, j, new QTableWidgetItem("0.0"));
-        }
     }
 }
 

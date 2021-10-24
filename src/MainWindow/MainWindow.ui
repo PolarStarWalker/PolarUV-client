@@ -1824,7 +1824,7 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>455</y>
+           <y>255</y>
            <width>370</width>
            <height>145</height>
           </rect>
@@ -1859,7 +1859,7 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>530</y>
+           <y>330</y>
            <width>330</width>
            <height>50</height>
           </rect>
@@ -1894,7 +1894,7 @@ border-style:solid;</string>
          <property name="geometry">
           <rect>
            <x>20</x>
-           <y>475</y>
+           <y>275</y>
            <width>330</width>
            <height>50</height>
           </rect>
@@ -1928,271 +1928,6 @@ border-style:solid;</string>
           <bool>false</bool>
          </property>
         </widget>
-        <widget class="QLineEdit" name="RobotIPEdit">
-         <property name="geometry">
-          <rect>
-           <x>160</x>
-           <y>325</y>
-           <width>150</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QLineEdit {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-	background: rgb(55,55,55);
-	selection-background-color: black;
-    border: 1px solid rgb(100,100,100);
-    border-radius: 5px;
-}</string>
-         </property>
-         <property name="inputMask">
-          <string>000.000.000.000</string>
-         </property>
-         <property name="text">
-          <string>...</string>
-         </property>
-         <property name="frame">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="ClientIPLabel">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>360</y>
-           <width>131</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="text">
-          <string>IP клиента</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="RefreshClientIPsButton">
-         <property name="geometry">
-          <rect>
-           <x>320</x>
-           <y>365</y>
-           <width>30</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <stylestrategy>PreferDefault</stylestrategy>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="cursor">
-          <cursorShape>ArrowCursor</cursorShape>
-         </property>
-         <property name="layoutDirection">
-          <enum>Qt::RightToLeft</enum>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(55,55,55);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:5px;
-border-style:solid;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>20</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-        </widget>
-        <widget class="QLabel" name="RobotIPLabel">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>320</y>
-           <width>131</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="text">
-          <string>IP ТНПА</string>
-         </property>
-        </widget>
-        <widget class="QFrame" name="ConnectionSettingsFrame">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>285</y>
-           <width>370</width>
-           <height>130</height>
-          </rect>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color:rgb(45,45,45);
-    border-width:1px;
-    border-color :rgb(100,100,100);
-    border-radius:10px;
-    border-style:solid;</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Panel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="ClientIPComboBox">
-         <property name="geometry">
-          <rect>
-           <x>160</x>
-           <y>365</y>
-           <width>151</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="ConnectionSettingsLabel">
-         <property name="geometry">
-          <rect>
-           <x>60</x>
-           <y>260</y>
-           <width>260</width>
-           <height>50</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>14</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="mouseTracking">
-          <bool>false</bool>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Panel</enum>
-         </property>
-         <property name="text">
-          <string>Подключение</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
         <zorder>HandSettingsWidgetFrame</zorder>
         <zorder>RobotSettingsWidgetFrame</zorder>
         <zorder>SendSettingsButton</zorder>
@@ -2207,18 +1942,11 @@ border-style:solid;</string>
         <zorder>HandTopLeftLine</zorder>
         <zorder>HandTopRightLine</zorder>
         <zorder>HandTable</zorder>
-        <zorder>ConnectionSettingsFrame</zorder>
-        <zorder>ClientIPComboBox</zorder>
-        <zorder>ConnectionSettingsLabel</zorder>
-        <zorder>ClientIPLabel</zorder>
-        <zorder>RefreshClientIPsButton</zorder>
-        <zorder>RobotIPEdit</zorder>
-        <zorder>RobotIPLabel</zorder>
        </widget>
        <widget class="QLabel" name="MotorsSettingsLabel">
         <property name="geometry">
          <rect>
-          <x>380</x>
+          <x>381</x>
           <y>21</y>
           <width>260</width>
           <height>50</height>
@@ -2265,7 +1993,7 @@ border-style:solid;</string>
         </property>
         <property name="geometry">
          <rect>
-          <x>310</x>
+          <x>311</x>
           <y>45</y>
           <width>400</width>
           <height>600</height>
@@ -2277,9 +2005,9 @@ border-style:solid;</string>
         <widget class="QLabel" name="MotorsMaxSpeedLabel">
          <property name="geometry">
           <rect>
-           <x>21</x>
+           <x>25</x>
            <y>125</y>
-           <width>241</width>
+           <width>160</width>
            <height>41</height>
           </rect>
          </property>
@@ -2296,15 +2024,15 @@ border-style:solid;</string>
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Максимальная скорость</string>
+          <string>Макс. скорость</string>
          </property>
         </widget>
         <widget class="QLabel" name="MotorsProtocolLabel">
          <property name="geometry">
           <rect>
-           <x>21</x>
+           <x>25</x>
            <y>85</y>
-           <width>241</width>
+           <width>160</width>
            <height>41</height>
           </rect>
          </property>
@@ -2327,7 +2055,7 @@ border-style:solid;</string>
         <widget class="Line" name="MotorsRightLine">
          <property name="geometry">
           <rect>
-           <x>344</x>
+           <x>349</x>
            <y>219</y>
            <width>20</width>
            <height>231</height>
@@ -2352,7 +2080,7 @@ border-style:solid;</string>
         <widget class="Line" name="MotorsTopLeftLine">
          <property name="geometry">
           <rect>
-           <x>41</x>
+           <x>46</x>
            <y>209</y>
            <width>31</width>
            <height>20</height>
@@ -2374,7 +2102,7 @@ border-style:solid;</string>
         <widget class="Line" name="MotorsTopRightLine">
          <property name="geometry">
           <rect>
-           <x>325</x>
+           <x>330</x>
            <y>209</y>
            <width>31</width>
            <height>20</height>
@@ -2396,9 +2124,9 @@ border-style:solid;</string>
         <widget class="QLabel" name="MotorsNumberLabel">
          <property name="geometry">
           <rect>
-           <x>21</x>
+           <x>25</x>
            <y>45</y>
-           <width>171</width>
+           <width>160</width>
            <height>41</height>
           </rect>
          </property>
@@ -2421,7 +2149,7 @@ border-style:solid;</string>
         <widget class="QLabel" name="MotorsCoefficientsLabel">
          <property name="geometry">
           <rect>
-           <x>32</x>
+           <x>37</x>
            <y>170</y>
            <width>331</width>
            <height>41</height>
@@ -2449,7 +2177,7 @@ border-style:solid;</string>
         <widget class="Line" name="MotorsLeftLine">
          <property name="geometry">
           <rect>
-           <x>32</x>
+           <x>37</x>
            <y>219</y>
            <width>20</width>
            <height>231</height>
@@ -2474,7 +2202,7 @@ border-style:solid;</string>
         <widget class="Line" name="MotorsBottomRightLine">
          <property name="geometry">
           <rect>
-           <x>325</x>
+           <x>330</x>
            <y>440</y>
            <width>31</width>
            <height>20</height>
@@ -2496,7 +2224,7 @@ border-style:solid;</string>
         <widget class="QSpinBox" name="MotorsNumberSpinBox">
          <property name="geometry">
           <rect>
-           <x>260</x>
+           <x>195</x>
            <y>50</y>
            <width>120</width>
            <height>30</height>
@@ -2574,6 +2302,9 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
  	image: none;
 }</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
          <property name="minimum">
           <number>1</number>
          </property>
@@ -2587,9 +2318,9 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
         <widget class="QLineEdit" name="MaxSpeedEdit">
          <property name="geometry">
           <rect>
-           <x>260</x>
+           <x>325</x>
            <y>130</y>
-           <width>120</width>
+           <width>50</width>
            <height>30</height>
           </rect>
          </property>
@@ -2619,11 +2350,17 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
          <property name="text">
           <string>4000</string>
          </property>
+         <property name="maxLength">
+          <number>4</number>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
         </widget>
         <widget class="Line" name="MotorsBottomLeftLine">
          <property name="geometry">
           <rect>
-           <x>41</x>
+           <x>46</x>
            <y>440</y>
            <width>31</width>
            <height>20</height>
@@ -2645,7 +2382,7 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
         <widget class="QTableWidget" name="MotorsTable">
          <property name="geometry">
           <rect>
-           <x>50</x>
+           <x>55</x>
            <y>230</y>
            <width>297</width>
            <height>212</height>
@@ -3005,7 +2742,7 @@ QSpinBox::down-arrow:disabled, QSpinBox::down-arrow:off { /* off state when valu
         <widget class="QComboBox" name="MotorsProtocolComboBox">
          <property name="geometry">
           <rect>
-           <x>260</x>
+           <x>195</x>
            <y>90</y>
            <width>120</width>
            <height>30</height>
@@ -3150,6 +2887,65 @@ QComboBox QAbstractItemView {
           <number>0</number>
          </property>
         </widget>
+        <widget class="QSlider" name="MaxSpeedSlider">
+         <property name="geometry">
+          <rect>
+           <x>195</x>
+           <y>130</y>
+           <width>121</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid rgb(100,100,100);
+	border-radius: 3px;
+    height: 8px;
+    background: rgb(55,55,55);
+    margin: 2px 0;
+}
+
+QSlider::handle:horizontal {
+    background: white;
+    border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 18px;
+    margin: -6px 0; /* handle is placed by default on the contents rect of the groove. Expand outside the groove */
+}
+
+QSlider::sub-page:horizontal {
+    border: 1px solid rgb(100,100,100);
+	border-radius: 3px;
+    height: 8px;
+    background: white;
+	margin: 2px 0;
+}</string>
+         </property>
+         <property name="maximum">
+          <number>5000</number>
+         </property>
+         <property name="singleStep">
+          <number>100</number>
+         </property>
+         <property name="pageStep">
+          <number>100</number>
+         </property>
+         <property name="value">
+          <number>4000</number>
+         </property>
+         <property name="sliderPosition">
+          <number>4000</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="tickPosition">
+          <enum>QSlider::TicksAbove</enum>
+         </property>
+         <property name="tickInterval">
+          <number>100</number>
+         </property>
+        </widget>
         <zorder>MotorsSettingsWidgetFrame</zorder>
         <zorder>MotorsMaxSpeedLabel</zorder>
         <zorder>MotorsProtocolComboBox</zorder>
@@ -3165,6 +2961,7 @@ QComboBox QAbstractItemView {
         <zorder>MotorsTopRightLine</zorder>
         <zorder>MotorsTopLeftLine</zorder>
         <zorder>MotorsTable</zorder>
+        <zorder>MaxSpeedSlider</zorder>
        </widget>
        <widget class="QLabel" name="HandSettingsLabel">
         <property name="geometry">
@@ -3258,50 +3055,6 @@ border-style:solid;</string>
         </property>
         <property name="text">
          <string>Назначение кнопок</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QLabel" name="GamepadTestLabel">
-        <property name="geometry">
-         <rect>
-          <x>955</x>
-          <y>15</y>
-          <width>260</width>
-          <height>50</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>14</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Panel</enum>
-        </property>
-        <property name="text">
-         <string>Проверка</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -5991,7 +5744,7 @@ QCheckBox::indicator:checked {
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="GamepadTestWidget" native="true">
+       <widget class="QWidget" name="ConnectionSettingsWidget" native="true">
         <property name="geometry">
          <rect>
           <x>900</x>
@@ -6003,37 +5756,11 @@ QCheckBox::indicator:checked {
         <property name="mouseTracking">
          <bool>false</bool>
         </property>
-        <widget class="QFrame" name="GamepadTestWidgetFrame">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>370</width>
-           <height>440</height>
-          </rect>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color:rgb(45,45,45);
-    border-width:1px;
-    border-color :rgb(100,100,100);
-    border-radius:10px;
-    border-style:solid;</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Panel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-        </widget>
         <widget class="QFrame" name="ClientSettingsWidgetFrame">
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>475</y>
+           <y>205</y>
            <width>370</width>
            <height>145</height>
           </rect>
@@ -6055,11 +5782,318 @@ QCheckBox::indicator:checked {
           <enum>QFrame::Plain</enum>
          </property>
         </widget>
+        <widget class="QPushButton" name="SaveClientSettingsButton">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>280</y>
+           <width>330</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(55,55,55);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:5px;
+border-style:solid;</string>
+         </property>
+         <property name="text">
+          <string>Сохранить настройки</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="LoadClientSettingsButton">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>225</y>
+           <width>330</width>
+           <height>50</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(55,55,55);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:5px;
+border-style:solid;</string>
+         </property>
+         <property name="text">
+          <string>Восстановить настройки</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="RobotIPEdit">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>40</y>
+           <width>150</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+	background: rgb(55,55,55);
+	selection-background-color: black;
+    border: 1px solid rgb(100,100,100);
+    border-radius: 5px;
+}</string>
+         </property>
+         <property name="inputMask">
+          <string>000.000.000.000</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="frame">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="RefreshClientIPsButton">
+         <property name="geometry">
+          <rect>
+           <x>320</x>
+           <y>80</y>
+           <width>30</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <stylestrategy>PreferDefault</stylestrategy>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>ArrowCursor</cursorShape>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::RightToLeft</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color:rgb(255,255,255);
+
+background-color:rgb(55,55,55);
+
+border-width:1px;
+border-color :rgb(100,100,100);
+border-radius:5px;
+border-style:solid;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="ClientIPLabel">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>75</y>
+           <width>131</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>IP клиента</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="RobotIPLabel">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>35</y>
+           <width>131</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>IP ТНПА</string>
+         </property>
+        </widget>
+        <widget class="QFrame" name="ConnectionSettingsFrame">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>370</width>
+           <height>170</height>
+          </rect>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:rgb(45,45,45);
+    border-width:1px;
+    border-color :rgb(100,100,100);
+    border-radius:10px;
+    border-style:solid;</string>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Panel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Plain</enum>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="ClientIPComboBox">
+         <property name="geometry">
+          <rect>
+           <x>160</x>
+           <y>80</y>
+           <width>151</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QComboBox {
+	font: 10pt &quot;Arial&quot;;
+	color: white;
+    padding: 1px 18px 1px 3px;
+}
+
+QComboBox:editable {
+    background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(55,55,55);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: rgb(55,55,55);
+    selection-background-color: rgb(40,40,40);
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="GamepadIDLabel">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>115</y>
+           <width>131</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="text">
+          <string>ID геймпада</string>
+         </property>
+        </widget>
         <widget class="QComboBox" name="GamepadComboBox">
          <property name="geometry">
           <rect>
            <x>160</x>
-           <y>60</y>
+           <y>120</y>
            <width>151</width>
            <height>30</height>
           </rect>
@@ -6130,7 +6164,7 @@ QComboBox QAbstractItemView {
          <property name="geometry">
           <rect>
            <x>320</x>
-           <y>60</y>
+           <y>120</y>
            <width>30</width>
            <height>30</height>
           </rect>
@@ -6174,355 +6208,24 @@ border-style:solid;</string>
           <bool>false</bool>
          </property>
         </widget>
-        <widget class="QLabel" name="GamepadIDLabel">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>55</y>
-           <width>131</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="text">
-          <string>ID геймпада</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="SaveClientSettingsButton">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>550</y>
-           <width>330</width>
-           <height>50</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(55,55,55);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:5px;
-border-style:solid;</string>
-         </property>
-         <property name="text">
-          <string>Сохранить настройки</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="LoadClientSettingsButton">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>495</y>
-           <width>330</width>
-           <height>50</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>10</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(55,55,55);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:5px;
-border-style:solid;</string>
-         </property>
-         <property name="text">
-          <string>Восстановить настройки</string>
-         </property>
-        </widget>
+        <zorder>ConnectionSettingsFrame</zorder>
+        <zorder>ClientSettingsWidgetFrame</zorder>
+        <zorder>SaveClientSettingsButton</zorder>
+        <zorder>LoadClientSettingsButton</zorder>
+        <zorder>RobotIPLabel</zorder>
+        <zorder>RobotIPEdit</zorder>
+        <zorder>ClientIPComboBox</zorder>
+        <zorder>ClientIPLabel</zorder>
+        <zorder>RefreshClientIPsButton</zorder>
+        <zorder>GamepadIDLabel</zorder>
+        <zorder>GamepadComboBox</zorder>
+        <zorder>RefreshGamepadsButton</zorder>
        </widget>
-       <zorder>KeyAssignmentsWidget</zorder>
-       <zorder>GamepadTestWidget</zorder>
-       <zorder>KeyAssignmentsLabel</zorder>
-       <zorder>GamepadTestLabel</zorder>
-      </widget>
-      <widget class="QWidget" name="AppearancePage">
-       <widget class="QWidget" name="OtherSettingsWidget" native="true">
+       <widget class="QLabel" name="ConnectionSettingsLabel">
         <property name="geometry">
          <rect>
-          <x>895</x>
-          <y>44</y>
-          <width>370</width>
-          <height>130</height>
-         </rect>
-        </property>
-        <property name="mouseTracking">
-         <bool>false</bool>
-        </property>
-        <widget class="QFrame" name="OtherSettingsWidgetFrame">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>370</width>
-           <height>130</height>
-          </rect>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color:rgb(45,45,45);
-    border-width:1px;
-    border-color :rgb(100,100,100);
-    border-radius:10px;
-    border-style:solid;</string>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Panel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-        </widget>
-        <widget class="QLabel" name="ThemeLabel">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>75</y>
-           <width>81</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="text">
-          <string>Тема</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="LanguageLabel">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>35</y>
-           <width>81</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Arial</family>
-           <pointsize>12</pointsize>
-           <weight>50</weight>
-           <bold>false</bold>
-           <kerning>true</kerning>
-          </font>
-         </property>
-         <property name="text">
-          <string>Язык</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="LanguageComboBox">
-         <property name="geometry">
-          <rect>
-           <x>160</x>
-           <y>40</y>
-           <width>190</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Русский</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>English</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QComboBox" name="ThemeComboBox">
-         <property name="geometry">
-          <rect>
-           <x>160</x>
-           <y>80</y>
-           <width>190</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-         </property>
-         <property name="currentIndex">
-          <number>1</number>
-         </property>
-         <item>
-          <property name="text">
-           <string>Светлая</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Темная</string>
-          </property>
-         </item>
-        </widget>
-       </widget>
-       <widget class="QLabel" name="OtherSettingsLabel">
-        <property name="geometry">
-         <rect>
-          <x>950</x>
-          <y>20</y>
+          <x>960</x>
+          <y>15</y>
           <width>260</width>
           <height>50</height>
          </rect>
@@ -6556,16 +6259,22 @@ border-style:solid;</string>
          <enum>QFrame::Panel</enum>
         </property>
         <property name="text">
-         <string>Прочее</string>
+         <string>Подключение</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
+       <zorder>KeyAssignmentsWidget</zorder>
+       <zorder>ConnectionSettingsWidget</zorder>
+       <zorder>KeyAssignmentsLabel</zorder>
+       <zorder>ConnectionSettingsLabel</zorder>
+      </widget>
+      <widget class="QWidget" name="AppearancePage">
        <widget class="QWidget" name="UISettingsWidget" native="true">
         <property name="geometry">
          <rect>
-          <x>60</x>
+          <x>320</x>
           <y>44</y>
           <width>800</width>
           <height>620</height>
@@ -6604,7 +6313,7 @@ border-style:solid;</string>
        <widget class="QLabel" name="UISettingsLabel">
         <property name="geometry">
          <rect>
-          <x>320</x>
+          <x>590</x>
           <y>20</y>
           <width>260</width>
           <height>50</height>

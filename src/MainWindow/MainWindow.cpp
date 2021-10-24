@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     this->SetupRendering();
     this->SetupButtons();
+    this->SetupAnimations();
     this->SetupShortcuts();
 }
 
