@@ -3,15 +3,14 @@
 #include <ctime>
 #include <processenv.h>
 
-
 constexpr char destination[] = " ! udpsink host=                 port=5000";
 const size_t DestinationSize = std::strlen(destination);
 const size_t DestinationIpPosition = std::find(destination, destination + DestinationSize, '=') - destination + 1;
 
-constexpr char ImageNameTemplate[] = "\\Media\\Image\\YYYY-MM-DD:HH-MM-SS.jpg";
-constexpr char VideoNameTemplate[] = "\\Media\\Video\\YYYY-MM-DD:HH-MM-SS.mkv";
-constexpr char VideoNameMask[] = "\\Media\\Video\\%Y-%m-%d-%H-%M-%S.mkv";
-constexpr char ImageNameMask[] = "\\Media\\Image\\%Y-%m-%d-%H-%M-%S.jpg";
+constexpr char ImageNameTemplate[] = R"(\Media\Image\YYYY-MM-DD:HH-MM-SS.jpg)";
+constexpr char VideoNameTemplate[] = R"(\Media\Video\YYYY-MM-DD:HH-MM-SS.mkv)";
+constexpr char VideoNameMask[] = R"(\Media\Video\%Y-%m-%d-%H-%M-%S.mkv)";
+constexpr char ImageNameMask[] = R"(\Media\Image\%Y-%m-%d-%H-%M-%S.jpg)";
 
 
 enum ContentType : int8_t {
@@ -36,6 +35,50 @@ std::string CreateFileName(ContentType contentType) {
              timeStruct);
 
     return fileName;
+}
+
+void SendVideoScript(const QString &robotAddress, const QString &clientAddress) {
+    std::fstream file("./Pipelines/robot.txt", std::ios_base::in);
+
+    file.seekg(0, std::fstream::end);
+    size_t size = (file.tellg());
+    file.seekg(0, std::fstream::beg);
+
+    size -= 2;
+
+    VideoPipelineStruct videoStruct(size + DestinationSize);
+
+    file.read(videoStruct.StringBegin(), size);
+
+    std::memcpy(videoStruct.StringBegin() + size, destination, DestinationSize);
+    std::string clientIp = clientAddress.toStdString();
+    std::memcpy(videoStruct.StringBegin() + size + DestinationIpPosition, clientIp.c_str(), clientIp.size());
+
+    QTcpSocket socket;
+    socket.connectToHost(robotAddress, 28840);
+    socket.waitForConnected(500);
+
+    char action = 's';
+
+    socket.write(&action, 1);
+    socket.waitForBytesWritten(500);
+
+    socket.write(videoStruct.Begin(), videoStruct.Size() + 8);
+    socket.waitForBytesWritten(500);
+}
+
+static bool SendStopSignal(const QString &address) {
+    QTcpSocket socket;
+    socket.connectToHost(address, 28840);
+    if (!socket.waitForConnected(500))
+        return false;
+
+    char signal = 'f';
+    socket.write(&signal, 1);
+    if (!socket.waitForBytesWritten(500))
+        return false;
+
+    return true;
 }
 
 
@@ -72,7 +115,7 @@ void VideoProtocol::Start(const QString &robotAddress, const QString &clientAddr
     videoStruct.StringBegin()[size] = '\0';
     file.close();
 
-    this->SendVideoScript(robotAddress, clientAddress);
+    SendVideoScript(robotAddress, clientAddress);
 
     this->_videoStream.open(videoStruct.StringBegin(), cv::CAP_GSTREAMER);
 
@@ -130,7 +173,7 @@ void VideoProtocol::Start(const QString &robotAddress, const QString &clientAddr
 }
 
 void VideoProtocol::Stop(const QString &address) {
-    if (!this->SendStopSignal(address))
+    if (!SendStopSignal(address))
         return;
 
     this->SetOnlineStatus(false);
@@ -164,52 +207,16 @@ void VideoProtocol::StartAsync(const QString &robotAddress, const QString &clien
     thread.detach();
 }
 
-void VideoProtocol::SendVideoScript(const QString &robotAddress, const QString &clientAddress) {
-    std::fstream file("./Pipelines/robot.txt", std::ios_base::in);
-
-    file.seekg(0, std::fstream::end);
-    size_t size = (file.tellg());
-    file.seekg(0, std::fstream::beg);
-
-    size -= 2;
-
-    VideoPipelineStruct videoStruct(size + DestinationSize);
-
-    file.read(videoStruct.StringBegin(), size);
-
-    std::memcpy(videoStruct.StringBegin() + size, destination, DestinationSize);
-    std::string clientIp = clientAddress.toStdString();
-    std::memcpy(videoStruct.StringBegin() + size + DestinationIpPosition, clientIp.c_str(), clientIp.size());
-
-    QTcpSocket socket;
-    socket.connectToHost(robotAddress, 28840);
-    socket.waitForConnected(500);
-
-    char action = 's';
-
-    socket.write(&action, 1);
-    socket.waitForBytesWritten(500);
-
-    socket.write(videoStruct.Begin(), videoStruct.Size() + 8);
-    socket.waitForBytesWritten(500);
-}
-
-bool VideoProtocol::SendStopSignal(const QString &address) {
-    QTcpSocket socket;
-    socket.connectToHost(address, 28840);
-    if (!socket.waitForConnected(500))
-        return false;
-
-    char signal = 'f';
-    socket.write(&signal, 1);
-    if (!socket.waitForBytesWritten(500))
-        return false;
-
-    return true;
-}
-
 void VideoProtocol::TakeScreenshot() {
     this->SetScreenshotState(true);
 }
+
+/*QPixmap VideoProtocol::GetPixmap() {
+    _qPixmapMutex.lock_shared();
+    //QPixmap pixmap = _pixmap;
+    _qPixmapMutex.unlock_shared();
+
+    return pixmap;
+}*/
 
 

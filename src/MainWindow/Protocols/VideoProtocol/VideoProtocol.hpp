@@ -23,12 +23,10 @@ public:
     void Stop(const QString& address);
 
     cv::Mat GetMatrix();
+    QPixmap GetPixmap();
 
     void StartVideoWrite();
     void StopVideoWrite();
-
-    static void SendVideoScript(const QString &robotAddress, const QString &clientAddress);
-    static bool SendStopSignal(const QString& address);
 
     inline bool IsVideoWriterOnline(){
         this->_frameMutex.lock_shared();
@@ -50,9 +48,11 @@ private:
     std::shared_mutex _frameMutex;
     std::shared_mutex _videoWriterMutex;
     std::shared_mutex _screenshotMutex;
+    std::shared_mutex _qPixmapMutex;
     cv::VideoCapture _videoStream;
     cv::VideoWriter _videoWriter;
     cv::Mat _currentFrame;
+    //QPixmap _pixmap;
 
     bool _videoWriterStatus;
     bool _screenshotStatus;
@@ -74,6 +74,11 @@ private:
         this->_currentFrame = std::move(newFrame);
         this->_frameMutex.unlock();
     }
+
+    inline void SetQPixmap(cv::Mat &newFrame){
+
+    }
+
 };
 
 

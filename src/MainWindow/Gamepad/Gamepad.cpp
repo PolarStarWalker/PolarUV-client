@@ -30,18 +30,18 @@ CommandsStruct Gamepad::GetCommandsStruct() const {
     XINPUT_STATE state{};
     XInputGetState(id, &state);
 
-    commands.VectorArray[Fx] = GasFunction(((double) state.Gamepad.sThumbRY) / MAGIC_NUMBER_ONE);
-    commands.VectorArray[Fy] = GasFunction(-((double) state.Gamepad.sThumbLX) / MAGIC_NUMBER_ONE);
-    commands.VectorArray[Fz] = GasFunction(((double) state.Gamepad.sThumbLY) / MAGIC_NUMBER_ONE);
-    commands.VectorArray[Mx] =
+    commands.MoveVector[Fx] = GasFunction(((double) state.Gamepad.sThumbRY) / MAGIC_NUMBER_ONE);
+    commands.MoveVector[Fy] = GasFunction(-((double) state.Gamepad.sThumbLX) / MAGIC_NUMBER_ONE);
+    commands.MoveVector[Fz] = GasFunction(((double) state.Gamepad.sThumbLY) / MAGIC_NUMBER_ONE);
+    commands.MoveVector[Mx] =
             GasFunction(((GetAxisDirection(state.Gamepad.wButtons, LeftShoulder)) *
                          ((double) state.Gamepad.bLeftTrigger) / MAGIC_NUMBER_TWO));
 
-    commands.VectorArray[My] =
+    commands.MoveVector[My] =
             GasFunction(((GetAxisDirection(state.Gamepad.wButtons, RightShoulder)) *
                          ((double) state.Gamepad.bRightTrigger) / MAGIC_NUMBER_TWO));
 
-    commands.VectorArray[Mz] = GasFunction(-((double) state.Gamepad.sThumbRX) / MAGIC_NUMBER_ONE);
+    commands.MoveVector[Mz] = GasFunction(-((double) state.Gamepad.sThumbRX) / MAGIC_NUMBER_ONE);
 
     if (state.Gamepad.wButtons & DPadLeft)
         commands.TheHand[0] = -1;
@@ -57,12 +57,12 @@ CommandsStruct Gamepad::GetCommandsStruct() const {
     else
         commands.TheHand[1] = 0;
 
-    commands.VectorArray[Fx] = std::round(commands.VectorArray[Fx] * 1000) / 1000;
-    commands.VectorArray[Fy] = std::round(commands.VectorArray[Fy] * 1000) / 1000;
-    commands.VectorArray[Fz] = std::round(commands.VectorArray[Fz] * 1000) / 1000;
-    commands.VectorArray[Mx] = std::round(commands.VectorArray[Mx] * 1000) / 1000;
-    commands.VectorArray[My] = std::round(commands.VectorArray[My] * 1000) / 1000;
-    commands.VectorArray[Mz] = std::round(commands.VectorArray[Mz] * 1000) / 1000;
+    commands.MoveVector[Fx] = std::round(commands.MoveVector[Fx] * 1000) / 1000;
+    commands.MoveVector[Fy] = std::round(commands.MoveVector[Fy] * 1000) / 1000;
+    commands.MoveVector[Fz] = std::round(commands.MoveVector[Fz] * 1000) / 1000;
+    commands.MoveVector[Mx] = std::round(commands.MoveVector[Mx] * 1000) / 1000;
+    commands.MoveVector[My] = std::round(commands.MoveVector[My] * 1000) / 1000;
+    commands.MoveVector[Mz] = std::round(commands.MoveVector[Mz] * 1000) / 1000;
 
     float cameraDirection = (state.Gamepad.wButtons & Cross) ? -1.0f : 0.0f + (state.Gamepad.wButtons & Triangle) ? 1.0f : 0.0f;
 
@@ -77,7 +77,7 @@ CommandsStruct Gamepad::GetCommandsStruct() const {
         _cameraPosition = 0.15;
 
 
-    commands.Camera[0] = _cameraPosition;
+    commands.LowPWM[0] = _cameraPosition;
 
     //std::cout<<commands<<std::endl;
 
