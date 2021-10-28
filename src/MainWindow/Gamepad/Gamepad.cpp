@@ -73,13 +73,10 @@ CommandsStruct Gamepad::GetCommandsStruct() const {
 
     if (_cameraPosition <= -1.0)
         _cameraPosition = -1.0;
-    else if (_cameraPosition >= 0.15)
-        _cameraPosition = 0.15;
-
+    else if (_cameraPosition >= 0.05)
+        _cameraPosition = 0.05;
 
     commands.LowPWM[0] = _cameraPosition;
-
-    //std::cout<<commands<<std::endl;
 
     return commands;
 }

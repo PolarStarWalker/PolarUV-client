@@ -44,7 +44,7 @@ protected:
     }
 
     void paintGL() override {
-        float depth = this->_commandsProtocol->GetTelemetryStruct().Rotation[TelemetryStruct::X];
+        float depth = this->_commandsProtocol->GetTelemetryStruct().Depth;
 
         // this->valueRange = ...
 
