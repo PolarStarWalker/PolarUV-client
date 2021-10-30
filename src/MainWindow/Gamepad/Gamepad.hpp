@@ -6,6 +6,7 @@
 #include <cmath>
 #include <list>
 #include <shared_mutex>
+#include <atomic>
 
 #include <xinput.h>
 #include <minwindef.h>
@@ -49,11 +50,10 @@ namespace Control {
 
         void UpdateGamepadId(size_t id);
 
-        size_t GetGamepadId() const;
+        int GetGamepadId() const;
 
     private:
-        int _id;
-        mutable std::shared_mutex _idMutex;
+        std::atomic<int> _id;
         mutable float _cameraPosition;
     };
 

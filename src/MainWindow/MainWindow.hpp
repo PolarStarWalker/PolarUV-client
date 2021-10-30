@@ -44,10 +44,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-constexpr char pipeline[] = "tcpclientsrc host=169.254.154.5 port=5000 ! gdpdepay ! rtph264depay ! decodebin !"
-                            "autovideoconvert ! appsink sync=false";
-
-class MainWindow : public QMainWindow {
+class MainWindow final : public QMainWindow {
 Q_OBJECT
 
 public:

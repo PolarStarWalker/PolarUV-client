@@ -5,6 +5,19 @@
       <paths name="Pi (d7eba367-8df8-4e75-8492-1989ae86ba9a)">
         <serverdata>
           <mappings>
+            <mapping deploy="/tmp/tmp.Z8LimX6mtG" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-robot" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-pi" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-robot" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-pi" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="Robot (7df3c253-492c-4416-a195-a4f528474168)">
+        <serverdata>
+          <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>

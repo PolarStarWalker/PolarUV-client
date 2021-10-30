@@ -15,24 +15,20 @@ void Socket::Disconnect() {
     this->SetOnlineStatus(false);
 }
 
-bool Socket::IsOnline() const {
-    this->_statusMutex.lock_shared();
-    bool status = this->_isOnline;
-    this->_statusMutex.unlock_shared();
-    return status;
-}
-
-void Socket::Send(const char *data, size_t size) {
+void Socket::Send(const char *data, ssize_t size) {
     std::lock_guard<std::mutex> guard(this->_socketMutex);
     this->_qTcpSocket.write(data, size);
     bool isOnline = this->_qTcpSocket.waitForBytesWritten(1000);
     this->SetOnlineStatus(isOnline);
 }
 
-void Socket::Recv(char *data, size_t size) {
+void Socket::Recv(char *data, ssize_t size) {
     std::lock_guard<std::mutex> guard(this->_socketMutex);
 
-    bool isHasData = _qTcpSocket.waitForReadyRead(1000);
+    bool isHasData = _qTcpSocket.bytesAvailable() >= size;
+
+    if(!isHasData)
+        isHasData = _qTcpSocket.waitForReadyRead(1000);
 
     if (isHasData)
         this->_qTcpSocket.read(data, size);

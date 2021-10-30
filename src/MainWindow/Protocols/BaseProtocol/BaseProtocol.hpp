@@ -4,6 +4,7 @@
 #include <shared_mutex>
 #include <thread>
 #include <chrono>
+#include <atomic>
 
 #include "../../Exceptions/Exceptions.hpp"
 
@@ -16,29 +17,23 @@ public:
         ConnectionLost = 2,
     };
 
-    bool IsStreamOnline() const;
+    bool IsStreamOnline() const { return _isOnline; }
 
-    bool IsThreadActive() const;
+    bool IsThreadActive() const { return _isThreadActive; }
+
 
 protected:
-    mutable std::shared_mutex _protocolStatusMutex;
-    mutable std::shared_mutex _threadStatusMutex;
-
     std::thread _transferThread;
 
-    bool _isOnline;
-    bool _isThreadActive;
+    std::atomic<bool> _isOnline;
+    std::atomic<bool> _isThreadActive;
 
     inline void SetOnlineStatus(bool status) {
-        this->_protocolStatusMutex.lock();
-        this->_isOnline = status;
-        this->_protocolStatusMutex.unlock();
+        _isOnline = status;
     }
 
     inline void SetThreadStatus(bool status) {
-        this->_threadStatusMutex.lock();
-        this->_isThreadActive = status;
-        this->_threadStatusMutex.unlock();
+        _isThreadActive = status;
     }
 };
 

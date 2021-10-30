@@ -1,29 +1,35 @@
 #ifndef CLIENT_COMMANDSPROTOCOL_HPP
 #define CLIENT_COMMANDSPROTOCOL_HPP
 
+#include <QObject>
+#include <QTimer>
 #include "synchapi.h"
+
+#include <chrono>
 
 #include "../Socket/Socket.hpp"
 #include "../BaseProtocol/BaseProtocol.hpp"
 #include "../../Gamepad/Gamepad.hpp"
 #include "../../DataStructs/TelemetryStruct/TelemetryStruct.hpp"
 
-class CommandsProtocol : public BaseProtocol {
+class CommandsProtocol final : public QObject, public BaseProtocol {
+
+Q_OBJECT
 
 public:
-    explicit CommandsProtocol(size_t gamepadId);
+    CommandsProtocol(int gamepadId, QObject *parent);
 
-    ~CommandsProtocol();
-
-    bool GetError() const;
+    ~CommandsProtocol() override;
 
     void SetGamepadId(size_t id);
 
     size_t GetGamepadId() const;
 
-    void StartAsync(const QString &address, uint16_t port);
-
     void Stop();
+
+    bool Connect(const QString &address, uint16_t port);
+
+    inline bool GetError() const { return _errorStatus; }
 
     inline TelemetryStruct GetTelemetryStruct() {
 
@@ -34,25 +40,24 @@ public:
         return telemetry;
     }
 
-private:
-    Socket _socket;
+public
+    slots:
+            void SendCommand();
 
+private:
     TelemetryStruct _telemetry;
 
-    mutable std::shared_mutex _errorStatusMutex;
+    Socket _socket;
+
     mutable std::shared_mutex _telemetryMutex;
 
     Control::Gamepad _gamepad;
 
-    ErrorType _errorStatus;
+    std::atomic<ErrorType> _errorStatus;
 
-    void Start(const QString &address, uint16_t port);
+    QTimer _timer;
 
-    inline void SetErrorStatus(BaseProtocol::ErrorType errorType) {
-        this->_errorStatusMutex.lock();
-        this->_errorStatus = errorType;
-        this->_errorStatusMutex.unlock();
-    }
+    inline void SetErrorStatus(BaseProtocol::ErrorType errorType) { _errorStatus = errorType; }
 
     inline void SetTelemetryStruct(const TelemetryStruct &telemetry) {
         this->_telemetryMutex.lock();

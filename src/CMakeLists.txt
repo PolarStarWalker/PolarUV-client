@@ -42,7 +42,7 @@ if (WIN32)
 endif ()
 
 add_subdirectory(MainWindow)
-
+ADD_SUBDIRECTORY(Lib)
 
 target_link_libraries(Client MainWindow)
 

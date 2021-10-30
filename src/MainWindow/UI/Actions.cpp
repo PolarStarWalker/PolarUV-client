@@ -45,15 +45,18 @@ void MainWindow::RawTakeScreenshot() {
 }
 
 void MainWindow::RawSwitchSendingCommands() {
-    if (_commandsProtocol->IsStreamOnline()) {
-        _commandsProtocol->Stop();
-    } else if (ui->RobotIPEdit->text() == "...") {
+
+    if (ui->RobotIPEdit->text() == "...")
         throw Exception::InvalidOperationException("Невозможно начать отправку команд:\n"
                                                    "не указан IP-адрес ТНПА\n"
                                                    "(Настройки клиента - Подключение)");
-    } else {
-        _commandsProtocol->StartAsync(ui->RobotIPEdit->text(), COMMANDS_PORT);
+
+    if (!_commandsProtocol->IsStreamOnline()) {
+        _commandsProtocol->Connect(ui->RobotIPEdit->text(), COMMANDS_PORT);
+        return;
     }
+
+    _commandsProtocol->Stop();
 }
 
 void MainWindow::RawSendRobotSettings() {
@@ -69,7 +72,7 @@ void MainWindow::RawSendRobotSettings() {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
             bool isConverted;
             double value = ui->MotorsTable->item(i, j)->text().toFloat(&isConverted);
-            if(isConverted) {
+            if (isConverted) {
                 moveCoefficientArray[i * 6 + j] = value;
             } else {
                 throw Exception::InvalidOperationException("Матрица коэффициентов двигателей\n"
@@ -83,7 +86,7 @@ void MainWindow::RawSendRobotSettings() {
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
         bool isConverted;
         double value = ui->HandTable->item(0, j)->text().toFloat(&isConverted);
-        if(isConverted) {
+        if (isConverted) {
             handCoefficientArray[j] = value;
         } else {
             throw Exception::InvalidOperationException("Матрица коэффициентов манипулятора\n"

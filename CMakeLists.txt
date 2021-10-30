@@ -15,7 +15,7 @@ endif ()
 project(Client)
 
 #путь до gst-launch-1.0.exe
-set(GSTREAMER_DIR "/lib/gstreamer-dev/1.0/msvc_x86_64/bin")
+set(GSTREAMER_DIR "./lib/gstreamer-dev/1.0/msvc_x86_64/bin")
 link_directories(GSTREAMER_DIR)
 
 # Подключение библиотек python
@@ -29,7 +29,7 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 #Путь до Qt
-set(CMAKE_PREFIX_PATH "/lib/mingw81_64/lib/cmake")
+set(CMAKE_PREFIX_PATH "C:/Qt/5.15.2/mingw81_64/lib/cmake")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)

@@ -8,22 +8,25 @@
 
 class Socket {
 public:
-    bool ConnectToServer(const QString& address, uint16_t port);
+    bool ConnectToServer(const QString &address, uint16_t port);
+
     void Disconnect();
-    void Send(const char *data, size_t size);
-    void Recv(char *data, size_t size);
-    bool IsOnline() const;
+
+    void Send(const char *data, ssize_t size);
+
+    void Recv(char *data, ssize_t size);
+
+    inline bool IsOnline() const {
+        return _isOnline;
+    };
 
 private:
     QTcpSocket _qTcpSocket;
     mutable std::mutex _socketMutex;
-    mutable std::shared_mutex _statusMutex;
-    bool _isOnline = false;
+    std::atomic<bool> _isOnline = false;
 
-    inline void SetOnlineStatus(bool isOnline){
-        this->_statusMutex.lock();
-        this->_isOnline = isOnline;
-        this->_statusMutex.unlock();
+    inline void SetOnlineStatus(bool isOnline) {
+        _isOnline = isOnline;
     }
 };
 
