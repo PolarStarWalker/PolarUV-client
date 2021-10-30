@@ -280,8 +280,7 @@ void MainWindow::UpdateWidgets() {
 
     /// Painting a video frame or placeholder image
     if (this->_videoStream->IsStreamOnline()) {
-        cv::Mat mat = this->_videoStream->GetMatrix();
-        QPixmap currentVideoFrame(cvMatToPixmap(mat));
+        QPixmap currentVideoFrame(_videoStream->GetPixmap());
         if (currentVideoFrame != this->_oldVideoFrame) {
             ui->CameraLabel->setPixmap(currentVideoFrame);
         }
@@ -379,27 +378,6 @@ void MainWindow::UpdateWidgets() {
         ui->FPSLabel->setText(QString("FPS: ") + QString::number(this->_fps));
         this->_fps = 0;
     }
-}
-
-QImage MainWindow::cvMatToQImage(const cv::Mat &mat) {
-    switch (mat.type()) {
-        case CV_8UC3: {
-            QImage image(mat.data, mat.cols, mat.rows, static_cast<int>(mat.step), QImage::Format_RGB888);
-            return image;
-        }
-        case CV_8UC4: {
-            QImage image(mat.data, mat.cols, mat.rows, static_cast<int>(mat.step), QImage::Format_ARGB32);
-            return image;
-        }
-    }
-
-    return QImage();
-}
-
-QPixmap MainWindow::cvMatToPixmap(const cv::Mat &mat) {
-    QImage image = cvMatToQImage(mat);
-    image = std::move(image).rgbSwapped();
-    return QPixmap::fromImage(image);
 }
 
 void MainWindow::PaintRollIndicator(float rollAngle, float sizeMultiplier) {

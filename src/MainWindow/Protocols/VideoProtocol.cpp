@@ -162,9 +162,11 @@ void VideoProtocol::Start(const QString &robotAddress, const QString &clientAddr
             this->SetScreenshotState(false);
         }
 
-        cv::waitKey(1);
+        cv::waitKey(20);
 
-        this->SetMatrix(std::move(inFrame));
+        SetQPixmap(inFrame);
+
+        //SetMatrix(std::move(inFrame));
     }
 
     this->_videoStream.release();
@@ -191,14 +193,6 @@ void VideoProtocol::StopVideoWrite() {
     SetVideoWriterState(false);
 }
 
-cv::Mat VideoProtocol::GetMatrix() {
-    this->_frameMutex.lock_shared();
-    cv::Mat outFrame = this->_currentFrame;
-    this->_frameMutex.unlock_shared();
-
-    return outFrame;
-}
-
 void VideoProtocol::StartAsync(const QString &robotAddress, const QString &clientAddress) {
     if (this->IsStreamOnline())
         return;
@@ -211,12 +205,34 @@ void VideoProtocol::TakeScreenshot() {
     this->SetScreenshotState(true);
 }
 
-/*QPixmap VideoProtocol::GetPixmap() {
+
+QPixmap VideoProtocol::GetPixmap() {
     _qPixmapMutex.lock_shared();
-    //QPixmap pixmap = _pixmap;
+    QPixmap pixmap = _pixmap;
     _qPixmapMutex.unlock_shared();
 
     return pixmap;
-}*/
+}
 
+void VideoProtocol::SetQPixmap(const cv::Mat &newFrame) {
+    QImage image;
+
+    switch (newFrame.type()) {
+        case CV_8UC3: {
+            image = QImage(newFrame.data, newFrame.cols, newFrame.rows, static_cast<int>(newFrame.step), QImage::Format_RGB888);
+            break;
+        }
+        case CV_8UC4: {
+            image = QImage(newFrame.data, newFrame.cols, newFrame.rows, static_cast<int>(newFrame.step), QImage::Format_ARGB32);
+            break;
+        }
+    }
+
+    image = std::move(image.rgbSwapped());
+    QPixmap pixmap = QPixmap::fromImage(image);
+
+    _qPixmapMutex.lock();
+    _pixmap = std::move(pixmap);
+    _qPixmapMutex.unlock();
+}
 
