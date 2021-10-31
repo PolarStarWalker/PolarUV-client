@@ -15,7 +15,7 @@ endif ()
 project(Client)
 
 #путь до gst-launch-1.0.exe
-set(GSTREAMER_DIR "./lib/gstreamer-dev/1.0/msvc_x86_64/bin")
+set(GSTREAMER_DIR "D:/lib/gstreamer/1.0/msvc_x86_64/bin")
 link_directories(GSTREAMER_DIR)
 
 # Подключение библиотек python

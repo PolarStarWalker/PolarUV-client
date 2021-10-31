@@ -138,7 +138,7 @@ void VideoProtocol::Start(const QString &robotAddress, const QString &clientAddr
 
                 std::string fileName = CreateFileName(Video);
 
-                int fourcc = static_cast<int>(_videoStream.get(cv::CAP_PROP_FOURCC));
+                const int fourcc = cv::VideoWriter::fourcc('H', '2', '6', '4');;
 
                 cv::Size frameSize = cv::Size((int) _videoStream.get(cv::CAP_PROP_FRAME_WIDTH),    // Acquire input size
                                               (int) _videoStream.get(cv::CAP_PROP_FRAME_HEIGHT));

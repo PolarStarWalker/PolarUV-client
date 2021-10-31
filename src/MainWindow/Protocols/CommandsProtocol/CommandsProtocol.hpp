@@ -40,6 +40,8 @@ public:
         return telemetry;
     }
 
+    bool IsStreamOnline() const { return _socket.IsOnline(); }
+
 public
     slots:
             void SendCommand();

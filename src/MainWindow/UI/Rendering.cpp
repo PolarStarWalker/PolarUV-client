@@ -490,13 +490,13 @@ void MainWindow::PaintYawIndicator(float yawAngle, float sizeMultiplier) {
     painter.setRenderHint(QPainter::Antialiasing);
 
     /// NON-MAGIC NUMBERS
-    const int32_t borderOffsetX = 15;
-    const int32_t borderOffsetY1 = 45;
-    const int32_t borderOffsetY2 = 60;
-    const int32_t valueRectWidth = 60;
-    const int32_t valueRectHeight = 30;
-    const int32_t step = 15;
-    const int32_t distance = 60;
+    constexpr int32_t borderOffsetX = 15;
+    constexpr int32_t borderOffsetY1 = 45;
+    constexpr int32_t borderOffsetY2 = 60;
+    constexpr int32_t valueRectWidth = 60;
+    constexpr int32_t valueRectHeight = 30;
+    constexpr int32_t step = 15;
+    constexpr int32_t distance = 60;
 
     painter.drawLine(1,
                      0,

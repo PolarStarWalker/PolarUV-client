@@ -17,10 +17,9 @@ public:
         ConnectionLost = 2,
     };
 
-    bool IsStreamOnline() const { return _isOnline; }
+    virtual bool IsStreamOnline() const { return _isOnline; }
 
-    bool IsThreadActive() const { return _isThreadActive; }
-
+    virtual bool IsThreadActive() const { return _isThreadActive; }
 
 protected:
     std::thread _transferThread;
@@ -28,13 +27,9 @@ protected:
     std::atomic<bool> _isOnline;
     std::atomic<bool> _isThreadActive;
 
-    inline void SetOnlineStatus(bool status) {
-        _isOnline = status;
-    }
+    inline void SetOnlineStatus(bool status) { _isOnline = status; }
 
-    inline void SetThreadStatus(bool status) {
-        _isThreadActive = status;
-    }
+    inline void SetThreadStatus(bool status) { _isThreadActive = status; }
 };
 
 #endif
