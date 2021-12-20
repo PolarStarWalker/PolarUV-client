@@ -14,6 +14,9 @@ endif ()
 
 project(Client)
 
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
 #путь до gst-launch-1.0.exe
 set(GSTREAMER_DIR "D:/lib/gstreamer/1.0/msvc_x86_64/bin")
 link_directories(GSTREAMER_DIR)
@@ -39,6 +42,8 @@ set(REQUIRED_LIBS Core Gui Widgets Test Gamepad Network)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Opengl32 Qt5::Widgets Qt5::Test Qt5::Network) # Для -l библиотек
 
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
+
+
 
 add_subdirectory(src)
 
