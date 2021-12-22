@@ -2,8 +2,8 @@
     protobuf/3.17.1
     lz4/1.9.3
     boost/1.77.0
-#   qt/5.15.2
-#   opencv/4.5.0@starwalker/stable
+#    qt/5.15.2
+#    opencv/4.5.0@starwalker/stable
 
 [options]
     boost:shared = False
@@ -14,6 +14,8 @@
     boost:extra_b2_flags = "-defines=BOOST_DISABLE_THREADS"
 
     qt:shared = False
+    qt:with_sqlite3 = False
+    qt:with_zstd = True
 
     openssl:shared = False
 

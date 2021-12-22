@@ -151,8 +151,8 @@ void MainWindow::SaveClientSettings() {
 }
 
 void MainWindow::LoadClientSettings() {
-    RawLoadClientSettings();
-    //QMessageBox::information(this, "Сообщение", "Настройки успешно восстановлены");
+    std::function<void(MainWindow*)> function = &MainWindow::RawLoadClientSettings;
+    ExceptionHandler(this, function, "Успех", "Настройки успешно загружены");
 }
 
 void MainWindow::RefreshGamepads() {

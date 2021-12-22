@@ -11,11 +11,7 @@ else ()
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 endif ()
 
-
 project(Client)
-
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()
 
 #путь до gst-launch-1.0.exe
 set(GSTREAMER_DIR "D:/lib/gstreamer/1.0/msvc_x86_64/bin")
@@ -31,11 +27,12 @@ set(OpenCV_STATIC ON)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-#Путь до Qt
-set(CMAKE_PREFIX_PATH "C:/Qt/5.15.2/mingw81_64/lib/cmake")
+#Qt
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
+
+set(QT_CMAKE_PREFIX_PATH "C:/Qt/5.15.2/mingw81_64/lib/cmake")
 
 set(QT_VERSION 5)
 set(REQUIRED_LIBS Core Gui Widgets Test Gamepad Network)
@@ -43,7 +40,9 @@ set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Opengl32 Qt5::Widgets Qt5::Test Q
 
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
-
+#conan
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
 
 add_subdirectory(src)
 

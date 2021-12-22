@@ -1,6 +1,8 @@
 #include "../MainWindow.hpp"
 #include "../ui_mainwindow.h"
 #include "../ExceptionHandler/ExceptionHandler.hpp"
+#include "../Exceptions/Exceptions.hpp"
+
 
 void MainWindow::RawSwitchVideoStream() {
     if (ui->RobotIPEdit->text() == "..." ||
@@ -205,10 +207,9 @@ void MainWindow::RawSaveClientSettings() {
 
 void MainWindow::RawLoadClientSettings() {
     ClientSettingsStruct settings;
-    if (!settings.Load()) {
-        QMessageBox::critical(this, "Ошибка", "Файл настроек клиента не найден. "
-                                              "Установлены значения по-умолчанию");
-    }
+
+    if (!settings.Load())
+        throw Exception::InvalidOperationException("Файл настроек не существует");
 
     ui->RobotIPEdit->setText(QString(settings.serverIP));
 

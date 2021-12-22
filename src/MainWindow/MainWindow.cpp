@@ -14,8 +14,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(this->_updateTimer, SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
     this->_updateTimer->start(1000 / 60);
 
-    this->LoadClientSettings();
-
     this->_pitchIndicator = new PitchIndicator(ui->MainTab, this->_commandsProtocol);
     this->_yawIndicator = new YawIndicator(ui->MainTab, this->_commandsProtocol);
     this->_depthIndicator = new DepthIndicator(ui->MainTab, this->_commandsProtocol);
@@ -24,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->SetupButtons();
     this->SetupAnimations();
     this->SetupShortcuts();
+
+    this->LoadClientSettings();
 }
 
 MainWindow::~MainWindow() {
