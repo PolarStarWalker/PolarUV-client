@@ -1,0 +1,58 @@
+syntax = "proto2";
+
+option optimize_for = LITE_RUNTIME;
+
+message ClientSettingsMessage {
+
+  enum RobotAnalogActions{
+    NO_ANALOG_ACTION = 0;
+    MOVE_X = 1;
+    MOVE_Y = 2;
+    MOVE_Z = 3;
+    ROTATE_X = 4;
+    ROTATE_Y = 5;
+    ROTATE_Z = 6;
+    GRAB_HAND = 7;
+    ROTATE_HAND = 8;
+  };
+
+  enum RobotDiscreteActions {
+    NO_DISCRETE_ACTION = 0;
+    TURN_ON = 1;
+    TURN_OF = 2;
+  };
+
+  optional int32 gamepad_ID = 1 [default = -1];
+  optional string server_IP = 2 [default = ""];
+
+  optional RobotAnalogActions dpad_x_action = 3 [default = ROTATE_HAND];
+  optional RobotAnalogActions dpad_y_action = 4 [default = GRAB_HAND];
+
+  optional RobotAnalogActions left_stick_x_action = 7 [default = MOVE_X];
+  optional RobotAnalogActions left_stick_y_action = 8 [default = MOVE_Z];
+  optional RobotAnalogActions right_stick_x_action = 9 [default = ROTATE_Z];
+  optional RobotAnalogActions right_stick_y_action = 10 [default = MOVE_X];
+
+  optional RobotAnalogActions left_shoulder_action = 11 [default = ROTATE_X];
+  optional RobotAnalogActions right_shoulder_action = 12 [default = ROTATE_Y];
+
+  optional RobotDiscreteActions left_stick_press_action = 5 [default = NO_DISCRETE_ACTION];
+  optional RobotDiscreteActions right_stick_press_action = 6 [default = NO_DISCRETE_ACTION];
+
+  optional RobotDiscreteActions square_action = 13 [default = NO_DISCRETE_ACTION];
+  optional RobotDiscreteActions triangle_action = 14 [default = NO_DISCRETE_ACTION];
+  optional RobotDiscreteActions circle_action = 15 [default = NO_DISCRETE_ACTION];
+  optional RobotDiscreteActions cross_action = 16 [default = NO_DISCRETE_ACTION];
+
+  optional RobotDiscreteActions start_action = 17 [default = TURN_ON];
+  optional RobotDiscreteActions back_action = 18 [default = TURN_OF];
+
+  optional bool dpad_x_inverted = 19 [default = false];
+  optional bool dpad_y_inverted = 20 [default = false];
+  optional bool left_stick_x_inverted = 21 [default = false];
+  optional bool left_stick_y_inverted = 22 [default = false];
+  optional bool right_stick_x_inverted = 23 [default = false];
+  optional bool right_stick_y_inverted = 24 [default = false];
+  optional bool left_shoulder_inverted = 25 [default = false];
+  optional bool right_shoulder_inverted = 26 [default = false];
+}

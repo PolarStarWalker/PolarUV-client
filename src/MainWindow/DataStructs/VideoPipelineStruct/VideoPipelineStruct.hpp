@@ -1,5 +1,6 @@
 #ifndef CLIENT_VIDEOPIPELINESTRUCT_HPP
 #define CLIENT_VIDEOPIPELINESTRUCT_HPP
+#include <cstdio>
 
 class VideoPipelineStruct {
 private:

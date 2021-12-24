@@ -5,7 +5,7 @@
 #include "./RobotSettingsStruct/RobotSettingsStruct.hpp"
 #include "./TelemetryStruct/TelemetryStruct.hpp"
 #include "./MotorsStruct/MotorsStruct.hpp"
-#include "./ClientSettingsStruct/ClientSettingsStruct.hpp"
+#include "./ClientSettings/ClientSettingsDto.hpp"
 #include "./VideoPipelineStruct/VideoPipelineStruct.hpp"
 
 #endif

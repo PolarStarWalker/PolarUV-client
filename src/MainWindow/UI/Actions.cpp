@@ -172,33 +172,41 @@ void MainWindow::RawReceiveRobotSettings() {
 }
 
 void MainWindow::RawSaveClientSettings() {
-    ClientSettingsStruct settings;
 
-    std::memcpy(settings.serverIP, ui->RobotIPEdit->text().begin(), sizeof(settings.serverIP));
+    ClientSettingsDto settings;
 
-    settings.leftShoulderActionID = (int8_t) ui->LeftShoulderComboBox->currentIndex();
-    settings.rightShoulderActionID = (int8_t) ui->RightShoulderComboBox->currentIndex();
-    settings.leftStickXActionID = (int8_t) ui->LeftStickXComboBox->currentIndex();
-    settings.leftStickYActionID = (int8_t) ui->LeftStickYComboBox->currentIndex();
-    settings.leftStickPressActionID = (int8_t) ui->LeftStickPressComboBox->currentIndex();
-    settings.rightStickXActionID = (int8_t) ui->RightStickXComboBox->currentIndex();
-    settings.rightStickYActionID = (int8_t) ui->RightStickYComboBox->currentIndex();
-    settings.rightStickPressActionID = (int8_t) ui->RightStickPressComboBox->currentIndex();
-    settings.dPadXActionID = (int8_t) ui->DPadXComboBox->currentIndex();
-    settings.dPadYActionID = (int8_t) ui->DPadYComboBox->currentIndex();
-    settings.triangleActionID = (int8_t) ui->TriangleComboBox->currentIndex();
-    settings.crossActionID = (int8_t) ui->CrossComboBox->currentIndex();
-    settings.rectangleActionID = (int8_t) ui->RectangleComboBox->currentIndex();
-    settings.circleActionID = (int8_t) ui->CircleComboBox->currentIndex();
-    settings.startActionID = (int8_t) ui->StartComboBox->currentIndex();
-    settings.backActionID = (int8_t) ui->BackComboBox->currentIndex();
+    std::string serverIp = ui->RobotIPEdit->text().toStdString();
+    std::memcpy(settings.ServerIP, serverIp.c_str(), serverIp.size());
 
-    settings.leftShoulderInverted = ui->LeftShoulderCheckBox->isChecked();
-    settings.rightShoulderInverted = ui->RightShoulderCheckBox->isChecked();
-    settings.leftStickXInverted = ui->LeftStickXCheckBox->isChecked();
-    settings.leftStickYInverted = ui->LeftStickYCheckBox->isChecked();
-    settings.rightStickXInverted = ui->RightStickXCheckBox->isChecked();
-    settings.rightStickYInverted = ui->RightStickYCheckBox->isChecked();
+    settings.LeftShoulderAction = ui->LeftShoulderComboBox->currentIndex();
+    settings.RightShoulderAction = ui->RightShoulderComboBox->currentIndex();
+
+    settings.LeftStickXAction = ui->LeftStickXComboBox->currentIndex();
+    settings.LeftStickYAction = ui->LeftStickYComboBox->currentIndex();
+
+    settings.RightStickXAction = ui->RightStickXComboBox->currentIndex();
+    settings.RightStickYAction = ui->RightStickYComboBox->currentIndex();
+
+    settings.dPadXAction = ui->DPadXComboBox->currentIndex();
+    settings.dPadYAction = ui->DPadYComboBox->currentIndex();
+
+    settings.LeftStickPressAction = ui->LeftStickPressComboBox->currentIndex();
+    settings.RightStickPressAction = ui->RightStickPressComboBox->currentIndex();
+
+    settings.TriangleAction = ui->TriangleComboBox->currentIndex();
+    settings.CrossAction = ui->CrossComboBox->currentIndex();
+    settings.SquareAction = ui->RectangleComboBox->currentIndex();
+    settings.CircleAction = ui->CircleComboBox->currentIndex();
+
+    settings.StartAction = ui->StartComboBox->currentIndex();
+    settings.BackAction = ui->BackComboBox->currentIndex();
+
+    settings.LeftShoulderInverted = ui->LeftShoulderCheckBox->isChecked();
+    settings.RightShoulderInverted = ui->RightShoulderCheckBox->isChecked();
+    settings.LeftStickXInverted = ui->LeftStickXCheckBox->isChecked();
+    settings.LeftStickYInverted = ui->LeftStickYCheckBox->isChecked();
+    settings.RightStickXInverted = ui->RightStickXCheckBox->isChecked();
+    settings.RightStickYInverted = ui->RightStickYCheckBox->isChecked();
     settings.dPadXInverted = ui->DPadXCheckBox->isChecked();
     settings.dPadYInverted = ui->DPadYCheckBox->isChecked();
 
@@ -206,38 +214,37 @@ void MainWindow::RawSaveClientSettings() {
 }
 
 void MainWindow::RawLoadClientSettings() {
-    ClientSettingsStruct settings;
 
-    if (!settings.Load())
-        throw Exception::InvalidOperationException("Файл настроек не существует");
+    ClientSettingsDto settings = ClientSettingsDto::Load();
 
-    ui->RobotIPEdit->setText(QString(settings.serverIP));
+    ui->RobotIPEdit->setText(QString(settings.ServerIP));
 
-    ui->LeftShoulderComboBox->setCurrentIndex(settings.leftShoulderActionID);
-    ui->RightShoulderComboBox->setCurrentIndex(settings.rightShoulderActionID);
-    ui->LeftStickXComboBox->setCurrentIndex(settings.leftStickXActionID);
-    ui->LeftStickYComboBox->setCurrentIndex(settings.leftStickYActionID);
-    ui->LeftStickPressComboBox->setCurrentIndex(settings.leftStickPressActionID);
-    ui->RightStickXComboBox->setCurrentIndex(settings.rightStickXActionID);
-    ui->RightStickYComboBox->setCurrentIndex(settings.rightStickYActionID);
-    ui->RightStickPressComboBox->setCurrentIndex(settings.rightStickPressActionID);
-    ui->DPadXComboBox->setCurrentIndex(settings.dPadXActionID);
-    ui->DPadYComboBox->setCurrentIndex(settings.dPadYActionID);
-    ui->TriangleComboBox->setCurrentIndex(settings.triangleActionID);
-    ui->CrossComboBox->setCurrentIndex(settings.crossActionID);
-    ui->RectangleComboBox->setCurrentIndex(settings.rectangleActionID);
-    ui->CircleComboBox->setCurrentIndex(settings.circleActionID);
-    ui->StartComboBox->setCurrentIndex(settings.startActionID);
-    ui->BackComboBox->setCurrentIndex(settings.backActionID);
+    ui->LeftShoulderComboBox->setCurrentIndex(settings.LeftShoulderAction);
+    ui->RightShoulderComboBox->setCurrentIndex(settings.RightShoulderAction);
+    ui->LeftStickXComboBox->setCurrentIndex(settings.LeftStickXAction);
+    ui->LeftStickYComboBox->setCurrentIndex(settings.LeftStickYAction);
+    ui->LeftStickPressComboBox->setCurrentIndex(settings.LeftStickPressAction);
+    ui->RightStickXComboBox->setCurrentIndex(settings.RightStickXAction);
+    ui->RightStickYComboBox->setCurrentIndex(settings.RightStickYAction);
+    ui->RightStickPressComboBox->setCurrentIndex(settings.RightStickPressAction);
+    ui->DPadXComboBox->setCurrentIndex(settings.dPadXAction);
+    ui->DPadYComboBox->setCurrentIndex(settings.dPadYAction);
+    ui->TriangleComboBox->setCurrentIndex(settings.TriangleAction);
+    ui->CrossComboBox->setCurrentIndex(settings.CrossAction);
+    ui->RectangleComboBox->setCurrentIndex(settings.SquareAction);
+    ui->CircleComboBox->setCurrentIndex(settings.CircleAction);
+    ui->StartComboBox->setCurrentIndex(settings.StartAction);
+    ui->BackComboBox->setCurrentIndex(settings.BackAction);
 
-    ui->LeftShoulderCheckBox->setChecked(settings.leftShoulderInverted);
-    ui->RightShoulderCheckBox->setChecked(settings.rightShoulderInverted);
-    ui->LeftStickXCheckBox->setChecked(settings.leftStickXInverted);
-    ui->LeftStickYCheckBox->setChecked(settings.leftStickYInverted);
-    ui->RightStickXCheckBox->setChecked(settings.rightStickXInverted);
-    ui->RightStickYCheckBox->setChecked(settings.rightStickYInverted);
+    ui->LeftShoulderCheckBox->setChecked(settings.LeftShoulderInverted);
+    ui->RightShoulderCheckBox->setChecked(settings.RightShoulderInverted);
+    ui->LeftStickXCheckBox->setChecked(settings.LeftStickXInverted);
+    ui->LeftStickYCheckBox->setChecked(settings.LeftStickYInverted);
+    ui->RightStickXCheckBox->setChecked(settings.RightStickXInverted);
+    ui->RightStickYCheckBox->setChecked(settings.RightStickYInverted);
     ui->DPadXCheckBox->setChecked(settings.dPadXInverted);
     ui->DPadYCheckBox->setChecked(settings.dPadYInverted);
+
 }
 
 std::list<std::string> GetClientIps() {

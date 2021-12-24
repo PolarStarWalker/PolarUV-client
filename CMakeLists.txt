@@ -27,14 +27,11 @@ set(OpenCV_STATIC ON)
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-#Qt
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-
 set(QT_CMAKE_PREFIX_PATH "C:/Qt/5.15.2/mingw81_64/lib/cmake")
+set(CMAKE_PREFIX_PATH ${QT_CMAKE_PREFIX_PATH})
 
 set(QT_VERSION 5)
+
 set(REQUIRED_LIBS Core Gui Widgets Test Gamepad Network)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Opengl32 Qt5::Widgets Qt5::Test Qt5::Network) # Для -l библиотек
 
@@ -46,5 +43,6 @@ conan_basic_setup()
 
 add_subdirectory(src)
 
+target_link_libraries(${PROJECT_NAME} ${PROTOBUF_LIBRARY})
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(${PROJECT_NAME} ${Python3_LIBRARIES})
