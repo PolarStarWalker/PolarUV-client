@@ -1,4 +1,6 @@
 #include "MainWindow.hpp"
+
+#include <memory>
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -7,16 +9,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     this->_mainWindowResources = MainWindowResources::GetInstance();
 
-    this->_commandsProtocol = new CommandsProtocol(0, this);
-    this->_videoStream = new VideoProtocol();
+    this->_commandsProtocol = std::make_unique<CommandsProtocol>(0, this);
+    this->_videoStream = std::make_unique<VideoProtocol>();
 
-    this->_updateTimer = new QTimer(this);
-    connect(this->_updateTimer, SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
+    this->_updateTimer = std::make_unique<QTimer>(this);
+
+    connect(this->_updateTimer.get(), SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
     this->_updateTimer->start(1000 / 60);
 
-    this->_pitchIndicator = new PitchIndicator(ui->MainTab, this->_commandsProtocol);
-    this->_yawIndicator = new YawIndicator(ui->MainTab, this->_commandsProtocol);
-    this->_depthIndicator = new DepthIndicator(ui->MainTab, this->_commandsProtocol);
+    this->_pitchIndicator = std::make_unique<PitchIndicator>(ui->MainTab, this->_commandsProtocol.get());
+    this->_yawIndicator = std::make_unique<YawIndicator>(ui->MainTab, this->_commandsProtocol.get());
+    this->_depthIndicator = std::make_unique<DepthIndicator>(ui->MainTab, this->_commandsProtocol.get());
 
     this->SetupRendering();
     this->SetupButtons();
@@ -24,10 +27,4 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->SetupShortcuts();
 
     this->LoadClientSettings();
-}
-
-MainWindow::~MainWindow() {
-    delete this->ui;
-    delete this->_commandsProtocol;
-    delete this->_videoStream;
 }

@@ -50,8 +50,6 @@ Q_OBJECT
 public:
     explicit MainWindow(QWidget *parent = nullptr);
 
-    ~MainWindow() override;
-
 protected:
 
     void SetupRendering();
@@ -61,10 +59,6 @@ protected:
     void SetupAnimations();
 
     void SetupShortcuts();
-
-    static QImage cvMatToQImage(const cv::Mat &mat);
-
-    static QPixmap cvMatToPixmap(const cv::Mat &mat);
 
     void PaintRollIndicator(float rollAngle, float sizeMultiplier); // Angle in degrees
     void PaintPitchIndicator(float pitchAngle, float sizeMultiplier);
@@ -150,16 +144,17 @@ private
 private:
     Ui::MainWindow *ui;
 
-    const MainWindowResources *_mainWindowResources;
+    /// Singleton
+    const MainWindowResources* _mainWindowResources;
 
-    QTimer *_updateTimer;
+    std::unique_ptr<QTimer> _updateTimer;
 
-    VideoProtocol *_videoStream;
-    CommandsProtocol *_commandsProtocol;
+    std::unique_ptr<VideoProtocol> _videoStream;
+    std::unique_ptr<CommandsProtocol> _commandsProtocol;
 
-    PitchIndicator *_pitchIndicator;
-    YawIndicator *_yawIndicator;
-    DepthIndicator *_depthIndicator;
+    std::unique_ptr<PitchIndicator> _pitchIndicator;
+    std::unique_ptr<YawIndicator> _yawIndicator;
+    std::unique_ptr<DepthIndicator> _depthIndicator;
 
     bool _isVideoFrame = false;       // For UpdateWidgets() function
     bool _isGreen = false;            // in order not to draw the same

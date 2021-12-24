@@ -40,7 +40,7 @@ public:
         return telemetry;
     }
 
-    bool IsStreamOnline() const { return _socket.IsOnline(); }
+    bool IsStreamOnline() const final { return _socket.IsOnline(); }
 
 public
     slots:

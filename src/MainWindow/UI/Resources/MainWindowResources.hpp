@@ -47,14 +47,17 @@ private:
 
     MainWindowResources();
 
-    Resources *_resources;
+    std::unique_ptr<Resources> _resources;
 
 public:
 
-    ~MainWindowResources();
+    MainWindowResources(const MainWindowResources& resources) = delete;
+    MainWindowResources(MainWindowResources&& resources) = delete;
+
+    ~MainWindowResources() = default;
 
     static const MainWindowResources *GetInstance() {
-        static MainWindowResources instance;
+        const static MainWindowResources instance;
         return &instance;
     }
 

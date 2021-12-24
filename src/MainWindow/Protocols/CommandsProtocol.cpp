@@ -46,15 +46,16 @@ bool CommandsProtocol::Connect(const QString &address, uint16_t port) {
 
 void CommandsProtocol::SendCommand() {
 
-    if (!_socket.IsOnline())
-        return;
+    TelemetryStruct telemetry{};
 
-    std::cout << "Hello World" << std::endl;
+    if (!_socket.IsOnline()){
+        this->SetTelemetryStruct(telemetry);
+        return;
+    }
 
     CommandsStruct commands = this->_gamepad.GetCommandsStruct();
     _socket.Send((char *) (&commands), CommandsStructLen);
 
-    TelemetryStruct telemetry{};
     _socket.Recv((char *) &telemetry, TelemetryStructLen);
 
     this->SetTelemetryStruct(telemetry);

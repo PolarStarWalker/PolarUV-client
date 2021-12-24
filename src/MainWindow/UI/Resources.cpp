@@ -2,7 +2,7 @@
 
 MainWindowResources::MainWindowResources() {
 
-    this->_resources = new Resources;
+    this->_resources = std::unique_ptr<Resources>(new Resources);
 
     this->_resources->Background = QPixmap("Icons/Background.png");
 
@@ -40,8 +40,4 @@ MainWindowResources::MainWindowResources() {
     this->_resources->RBRTButtonIcon = QPixmap("Icons/RBRTButtonIcon.png");
     this->_resources->BackButtonIcon = QPixmap("Icons/BackButtonIcon.png");
     this->_resources->MenuButtonIcon = QPixmap("Icons/MenuButtonIcon.png");
-}
-
-MainWindowResources::~MainWindowResources() {
-    delete this->_resources;
 }
