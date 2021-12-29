@@ -12,7 +12,7 @@
 #include <minwindef.h>
 #include <windows.h>
 
-#include "../DataStructs/CommandsStruct/CommandsStruct.hpp"
+#include "DataStructs/CommandsStruct/CommandsStruct.hpp"
 
 #define MAGIC_NUMBER_ONE 0x7FFF
 #define MAGIC_NUMBER_TWO 0xFF

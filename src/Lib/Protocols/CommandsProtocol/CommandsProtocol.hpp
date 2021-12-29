@@ -10,7 +10,8 @@
 #include "../Socket/Socket.hpp"
 #include "../BaseProtocol/BaseProtocol.hpp"
 #include "../../Gamepad/Gamepad.hpp"
-#include "../../DataStructs/TelemetryStruct/TelemetryStruct.hpp"
+
+#include "DataStructs/TelemetryStruct/TelemetryStruct.hpp"
 
 class CommandsProtocol final : public QObject, public BaseProtocol {
 

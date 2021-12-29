@@ -50,11 +50,11 @@ endif ()
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-target_include_directories(Client PUBLIC Lib)
+include_directories(Client PUBLIC ./Lib)
 
 add_subdirectory(Lib)
-add_subdirectory(ClientApp)
 add_subdirectory(Resources)
+add_subdirectory(ClientApp)
 
 target_link_libraries(Client ClientApp)
 target_link_libraries(Client Lib)

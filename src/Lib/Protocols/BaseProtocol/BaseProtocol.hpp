@@ -6,7 +6,7 @@
 #include <chrono>
 #include <atomic>
 
-#include "../../Exceptions/Exceptions.hpp"
+#include "Exceptions/Exceptions.hpp"
 
 class BaseProtocol {
 public:

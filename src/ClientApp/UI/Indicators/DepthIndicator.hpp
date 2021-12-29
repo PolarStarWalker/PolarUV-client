@@ -5,8 +5,8 @@
 #include <QPainter>
 #include <QPainterPath>
 
-#include "../../../ClientApp//DataStructs/TelemetryStruct/TelemetryStruct.hpp"
-#include "../../../ClientApp/Protocols/Protocols.hpp"
+#include "DataStructs/TelemetryStruct/TelemetryStruct.hpp"
+#include "Protocols/Protocols.hpp"
 
 class DepthIndicator : public QOpenGLWidget {
 public:

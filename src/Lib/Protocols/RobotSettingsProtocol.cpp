@@ -1,4 +1,4 @@
-#include "./SettingsProtocol/RobotSettingsProtocol.hpp"
+#include "SettingsProtocol/RobotSettingsProtocol.hpp"
 
 void RobotSettingsProtocol::Send(const QString &address, uint16_t port, RobotSettingsDto &&robotSettingsStruct) {
     QTcpSocket _socket;

@@ -1,6 +1,8 @@
 #include "./ClientSettings/ClientSettingsDto.hpp"
 #include "ClientSettingsMessage.pb.h"
 
+using namespace data_structs;
+
 ClientSettingsDto::ClientSettingsDto() {
 
     std::memset(this->ServerIP, 0, sizeof(this->ServerIP));

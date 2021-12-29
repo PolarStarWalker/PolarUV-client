@@ -1,7 +1,7 @@
 #ifndef CLIENT_CONNECTIONEXCEPTION_HPP
 #define CLIENT_CONNECTIONEXCEPTION_HPP
 
-#include "../BaseException/BaseException.hpp"
+#include "Exceptions/BaseException/BaseException.hpp"
 
 namespace Exception {
     class ConnectionException : public BaseException {

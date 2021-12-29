@@ -4,7 +4,6 @@
 #include <QMessageBox>
 #include "functional"
 #include "../MainWindow.hpp"
-
 class ExceptionHandler {
 public:
     ExceptionHandler(MainWindow *object,

@@ -1,7 +1,7 @@
 #ifndef CLIENT_INVALIDOPERATIONEXCEPTION_HPP
 #define CLIENT_INVALIDOPERATIONEXCEPTION_HPP
 
-#include "../BaseException/BaseException.hpp"
+#include "Exceptions/BaseException/BaseException.hpp"
 
 namespace Exception {
     class InvalidOperationException : public BaseException {

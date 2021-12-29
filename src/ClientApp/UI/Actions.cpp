@@ -1,7 +1,8 @@
 #include "../MainWindow.hpp"
 #include "../ui_mainwindow.h"
 #include "../ExceptionHandler/ExceptionHandler.hpp"
-#include "../Exceptions/Exceptions.hpp"
+
+#include "Exceptions/Exceptions.hpp"
 
 
 void MainWindow::RawSwitchVideoStream() {
@@ -173,7 +174,7 @@ void MainWindow::RawReceiveRobotSettings() {
 
 void MainWindow::RawSaveClientSettings() {
 
-    ClientSettingsDto settings;
+    data_structs::ClientSettingsDto settings;
 
     std::string serverIp = ui->RobotIPEdit->text().toStdString();
     std::memcpy(settings.ServerIP, serverIp.c_str(), serverIp.size());
@@ -214,6 +215,8 @@ void MainWindow::RawSaveClientSettings() {
 }
 
 void MainWindow::RawLoadClientSettings() {
+
+    using namespace data_structs;
 
     ClientSettingsDto settings = ClientSettingsDto::Load();
 

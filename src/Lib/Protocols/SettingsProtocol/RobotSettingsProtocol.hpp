@@ -3,7 +3,7 @@
 
 #include <cstring>
 
-#include "../../DataStructs/RobotSettings/RobotSettingsDto.hpp"
+#include "DataStructs/RobotSettings/RobotSettingsDto.hpp"
 #include "../BaseProtocol/BaseProtocol.hpp"
 #include <QTcpSocket>
 

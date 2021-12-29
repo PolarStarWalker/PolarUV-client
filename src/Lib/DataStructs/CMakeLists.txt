@@ -13,9 +13,8 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ClientSettings/ClientSettingsMessage
 
 set(ClientSettings ClientSettingsDto.cpp)
 
-add_library(DataStructs ${PROTO_SRCS} ${PROTO_HDRS} ${ClientSettings} ${ClientSettingsStruct} CommandsStruct.cpp RobotSettingsDto.cpp MotorsStruct.cpp VideoPipelineStruct.cpp)
+add_library(DataStructs ${PROTO_SRCS} ${PROTO_HDRS} ${ClientSettings} CommandsStruct.cpp RobotSettingsDto.cpp MotorsStruct.cpp VideoPipelineStruct.cpp)
 
-#file(COPY ${PROTO_HDRS} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/ProtoHeaders)
 
 target_link_libraries(DataStructs ${REQUIRED_LIBS_QUALIFIED})
 target_link_libraries(DataStructs ${CONAN_LIBS})

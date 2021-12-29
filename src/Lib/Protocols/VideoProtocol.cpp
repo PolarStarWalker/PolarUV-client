@@ -1,7 +1,8 @@
 #include "VideoProtocol/VideoProtocol.hpp"
-#include "../DataStructs/VideoPipelineStruct/VideoPipelineStruct.hpp"
 #include <ctime>
 #include <processenv.h>
+
+#include "DataStructs/VideoPipelineStruct/VideoPipelineStruct.hpp"
 
 constexpr char destination[] = " ! udpsink host=                 port=5000";
 const size_t DestinationSize = std::strlen(destination);
