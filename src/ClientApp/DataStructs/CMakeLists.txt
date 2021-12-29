@@ -9,11 +9,11 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 target_include_directories(Client INTERFACE ${CMAKE_CURRENT_BINARY_DIR})
 
 #compile .proto to c++ code
-protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ClientSettings/ClientSettingsMessage.proto)
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ClientSettings/ClientSettingsMessage.proto RobotSettings/RobotSettingsMessage.proto)
 
 set(ClientSettings ClientSettingsDto.cpp)
 
-add_library(DataStructs ${PROTO_SRCS} ${PROTO_HDRS} ${ClientSettings} ${ClientSettingsStruct} CommandsStruct.cpp RobotSettingsStruct.cpp  MotorsStruct.cpp VideoPipelineStruct.cpp)
+add_library(DataStructs ${PROTO_SRCS} ${PROTO_HDRS} ${ClientSettings} ${ClientSettingsStruct} CommandsStruct.cpp RobotSettingsDto.cpp MotorsStruct.cpp VideoPipelineStruct.cpp)
 
 #file(COPY ${PROTO_HDRS} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/ProtoHeaders)
 

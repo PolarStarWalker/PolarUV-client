@@ -3,18 +3,18 @@
 
 #include <cstring>
 
-#include "../../DataStructs/RobotSettingsStruct/RobotSettingsStruct.hpp"
+#include "../../DataStructs/RobotSettings/RobotSettingsDto.hpp"
 #include "../BaseProtocol/BaseProtocol.hpp"
 #include <QTcpSocket>
 
 class RobotSettingsProtocol : protected BaseProtocol {
 public:
-    void SendAsync(const QString &address, uint16_t port, RobotSettingsStruct &&robotSettingsStruct);
+    void SendAsync(const QString &address, uint16_t port, RobotSettingsDto &&robotSettingsStruct);
 
-    void Send(const QString &address, uint16_t port, RobotSettingsStruct &&robotSettingsStruct);
+    void Send(const QString &address, uint16_t port, RobotSettingsDto &&robotSettingsStruct);
 
     ///NRVO, i choose you
-    RobotSettingsStruct Recv(const QString &address, uint16_t port);
+    RobotSettingsDto Recv(const QString &address, uint16_t port);
 
 private:
     mutable std::shared_mutex _errorStatusMutex;

@@ -62,11 +62,11 @@ void MainWindow::RawSwitchSendingCommands() {
 }
 
 void MainWindow::RawSendRobotSettings() {
-    BaseRobotSettingsStruct baseRobotSettingsStruct{};
+    BaseRobotSettingsDto baseRobotSettingsStruct{};
     baseRobotSettingsStruct.ThrusterNumber = ui->MotorsTable->rowCount();
     baseRobotSettingsStruct.HandFreedom = ui->HandTable->columnCount();
 
-    RobotSettingsStruct robotSettingsStruct(baseRobotSettingsStruct);
+    RobotSettingsDto robotSettingsStruct(baseRobotSettingsStruct);
 
     /// Reading motor coefficients
     float *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();
@@ -125,7 +125,7 @@ void MainWindow::RawSendRobotSettings() {
 
 void MainWindow::RawReceiveRobotSettings() {
 
-    RobotSettingsStruct robotSettingsStruct = RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT);
+    RobotSettingsDto robotSettingsStruct = RobotSettingsProtocol().Recv(ui->RobotIPEdit->text(), SETTINGS_PORT);
 
     /// Writing motors number
     const float *moveCoefficientArray = robotSettingsStruct.ThrusterCoefficientArray();

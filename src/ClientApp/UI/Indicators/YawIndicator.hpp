@@ -5,8 +5,8 @@
 #include <QPainter>
 #include <QPainterPath>
 
-#include "../../../MainWindow/DataStructs/TelemetryStruct/TelemetryStruct.hpp"
-#include "../../../MainWindow/Protocols/Protocols.hpp"
+#include "../../../ClientApp/DataStructs/TelemetryStruct/TelemetryStruct.hpp"
+#include "../../../ClientApp/Protocols/Protocols.hpp"
 
 class YawIndicator : public QOpenGLWidget {
 public:

@@ -5,8 +5,8 @@
 #include <QPainter>
 #include <QPainterPath>
 
-#include "../../../MainWindow/DataStructs/TelemetryStruct/TelemetryStruct.hpp"
-#include "../../../MainWindow/Protocols/Protocols.hpp"
+#include "../../../CLientApp/DataStructs/TelemetryStruct/TelemetryStruct.hpp"
+#include "../../../CLientApp/Protocols/Protocols.hpp"
 
 class PitchIndicator : public QOpenGLWidget {
 public:

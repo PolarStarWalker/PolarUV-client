@@ -1,39 +1,47 @@
-#include "./RobotSettingsStruct/RobotSettingsStruct.hpp"
+#include "./RobotSettings/RobotSettingsDto.hpp"
+#include "./RobotSettingsMessage.pb.h"
 
-RobotSettingsStruct::RobotSettingsStruct() {
-    this->_size = BaseRobotSettingsStructAllocatedSize + 7 * sizeof(float);
+int foo(){
+    RobotSettingsMessage robotSettingsMessage;
+    google::protobuf::RepeatedField<float> bar = robotSettingsMessage.thrusters_coefficient();
+
+    return 0;
+}
+
+RobotSettingsDto::RobotSettingsDto() {
+    this->_size = BaseRobotSettingsDtoAllocatedSize + 7 * sizeof(float);
 
     this->_data = new char[this->_size]{};
 
-    ((BaseRobotSettingsStruct *) this->_data)->MotorsProtocol = DShotMode::DShot150;
-    ((BaseRobotSettingsStruct *) this->_data)->MaxMotorSpeed = 1000;
-    ((BaseRobotSettingsStruct *) this->_data)->ThrusterNumber = 1;
-    ((BaseRobotSettingsStruct *) this->_data)->HandFreedom = 1;
+    ((BaseRobotSettingsDto *) this->_data)->MotorsProtocol = DShotMode::DShot150;
+    ((BaseRobotSettingsDto *) this->_data)->MaxMotorSpeed = 1000;
+    ((BaseRobotSettingsDto *) this->_data)->ThrusterNumber = 1;
+    ((BaseRobotSettingsDto *) this->_data)->HandFreedom = 1;
 
-    this->_thrusterCoefficientArrayPtr = (float *) (this->_data + BaseRobotSettingsStructAllocatedSize);
+    this->_thrusterCoefficientArrayPtr = (float *) (this->_data + BaseRobotSettingsDtoAllocatedSize);
     this->_handCoefficientArrayPtr = this->_thrusterCoefficientArrayPtr + 6;
 }
 
-RobotSettingsStruct::RobotSettingsStruct(const BaseRobotSettingsStruct &robotStatic) {
+RobotSettingsDto::RobotSettingsDto(const BaseRobotSettingsDto &robotStatic) {
     size_t handFreedom = robotStatic.HandFreedom == 0 ? 1 : robotStatic.HandFreedom;
     size_t thrusterNumber = robotStatic.ThrusterNumber == 0 ? 1 : robotStatic.ThrusterNumber;
 
-    this->_size = BaseRobotSettingsStructAllocatedSize +
+    this->_size = BaseRobotSettingsDtoAllocatedSize +
                   thrusterNumber * 6 * sizeof(float) +
                   handFreedom * sizeof(float);
 
     this->_data = new char[this->_size]{};
 
-    ((BaseRobotSettingsStruct *) this->_data)->MotorsProtocol = robotStatic.MotorsProtocol;
-    ((BaseRobotSettingsStruct *) this->_data)->MaxMotorSpeed = robotStatic.MaxMotorSpeed;
-    ((BaseRobotSettingsStruct *) this->_data)->ThrusterNumber = thrusterNumber;
-    ((BaseRobotSettingsStruct *) this->_data)->HandFreedom = handFreedom;
+    ((BaseRobotSettingsDto *) this->_data)->MotorsProtocol = robotStatic.MotorsProtocol;
+    ((BaseRobotSettingsDto *) this->_data)->MaxMotorSpeed = robotStatic.MaxMotorSpeed;
+    ((BaseRobotSettingsDto *) this->_data)->ThrusterNumber = thrusterNumber;
+    ((BaseRobotSettingsDto *) this->_data)->HandFreedom = handFreedom;
 
-    this->_thrusterCoefficientArrayPtr = (float *) (this->_data + BaseRobotSettingsStructAllocatedSize);
+    this->_thrusterCoefficientArrayPtr = (float *) (this->_data + BaseRobotSettingsDtoAllocatedSize);
     this->_handCoefficientArrayPtr = _thrusterCoefficientArrayPtr + robotStatic.ThrusterNumber * 6;
 }
 
-RobotSettingsStruct::RobotSettingsStruct(const RobotSettingsStruct &robotSettingsStruct) {
+RobotSettingsDto::RobotSettingsDto(const RobotSettingsDto &robotSettingsStruct) {
     this->_size = robotSettingsStruct._size;
     this->_data = new char[this->_size];
 
@@ -50,7 +58,7 @@ RobotSettingsStruct::RobotSettingsStruct(const RobotSettingsStruct &robotSetting
     this->_thrusterCoefficientArrayPtr = _thrusterCoefficientArrayPtr + deltaHandCoefficientArray;
 }
 
-RobotSettingsStruct::RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStruct) noexcept {
+RobotSettingsDto::RobotSettingsDto(RobotSettingsDto &&robotSettingsStruct) noexcept {
     this->_size = robotSettingsStruct._size;
     this->_data = robotSettingsStruct._data;
     this->_thrusterCoefficientArrayPtr = robotSettingsStruct._thrusterCoefficientArrayPtr;
@@ -59,11 +67,15 @@ RobotSettingsStruct::RobotSettingsStruct(RobotSettingsStruct &&robotSettingsStru
 }
 
 
-RobotSettingsStruct::~RobotSettingsStruct() {
+RobotSettingsDto::~RobotSettingsDto() {
     delete[] this->_data;
 }
 
-RobotSettingsStruct &RobotSettingsStruct::operator=(const RobotSettingsStruct &robotSettingsStruct) noexcept {
+RobotSettingsDto &RobotSettingsDto::operator=(const RobotSettingsDto &robotSettingsStruct) noexcept {
+    
+    if(this == &robotSettingsStruct)
+        return *this;
+    
     delete[] this->_data;
 
     this->_size = robotSettingsStruct._size;
@@ -84,7 +96,7 @@ RobotSettingsStruct &RobotSettingsStruct::operator=(const RobotSettingsStruct &r
     return *this;
 }
 
-RobotSettingsStruct &RobotSettingsStruct::operator=(RobotSettingsStruct &&robotSettingsStruct) noexcept {
+RobotSettingsDto &RobotSettingsDto::operator=(RobotSettingsDto &&robotSettingsStruct) noexcept {
     delete[] this->_data;
 
     this->_size = robotSettingsStruct._size;
@@ -97,50 +109,50 @@ RobotSettingsStruct &RobotSettingsStruct::operator=(RobotSettingsStruct &&robotS
 }
 
 
-char *RobotSettingsStruct::Begin() {
+char *RobotSettingsDto::Begin() {
     return this->_data;
 }
 
-char *RobotSettingsStruct::End() {
+char *RobotSettingsDto::End() {
     return this->_data + this->_size;
 }
 
-size_t RobotSettingsStruct::Size() {
+size_t RobotSettingsDto::Size() const{
     return this->_size;
 }
 
-float *RobotSettingsStruct::ThrusterCoefficientArray() {
+float *RobotSettingsDto::ThrusterCoefficientArray() {
     return this->_thrusterCoefficientArrayPtr;
 }
 
-float *RobotSettingsStruct::HandCoefficientArray() {
+float *RobotSettingsDto::HandCoefficientArray() {
     return this->_handCoefficientArrayPtr;
 }
 
-uint16_t RobotSettingsStruct::ThrusterNumber() {
-    return ((BaseRobotSettingsStruct *) this->_data)->ThrusterNumber;
+uint16_t RobotSettingsDto::ThrusterNumber() {
+    return ((BaseRobotSettingsDto *) this->_data)->ThrusterNumber;
 }
 
-uint16_t RobotSettingsStruct::HandFreedom() {
-    return ((BaseRobotSettingsStruct *) this->_data)->HandFreedom;
+uint16_t RobotSettingsDto::HandFreedom() {
+    return ((BaseRobotSettingsDto *) this->_data)->HandFreedom;
 }
 
-uint16_t &RobotSettingsStruct::MaxMotorsSpeed() {
-    return ((BaseRobotSettingsStruct *) this->_data)->MaxMotorSpeed;
+uint16_t &RobotSettingsDto::MaxMotorsSpeed() {
+    return ((BaseRobotSettingsDto *) this->_data)->MaxMotorSpeed;
 }
 
-DShotMode &RobotSettingsStruct::MotorsProtocol() {
-    return ((BaseRobotSettingsStruct *) this->_data)->MotorsProtocol;
+DShotMode &RobotSettingsDto::MotorsProtocol() {
+    return ((BaseRobotSettingsDto *) this->_data)->MotorsProtocol;
 }
 
-std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robotSettingStruct) {
+std::ostream &operator<<(std::ostream &ostream, const RobotSettingsDto &robotSettingsDto) {
 
-    ostream << "[RobotSettingsStruct]" << std::endl;
+    ostream << "[RobotSettingsDto]" << std::endl;
 
-    uint16_t thrusterNumber = ((BaseRobotSettingsStruct *) robotSettingStruct._data)->ThrusterNumber;
+    uint16_t thrusterNumber = ((BaseRobotSettingsDto *) robotSettingsDto._data)->ThrusterNumber;
     ostream << "ThrustersNumber: " << thrusterNumber << std::endl;
 
-    float *thrusterCoefficientArray = robotSettingStruct._thrusterCoefficientArrayPtr;
+    float *thrusterCoefficientArray = robotSettingsDto._thrusterCoefficientArrayPtr;
     ostream << "MoveCoefficientMatrix:" << std::endl;
     for (size_t i = 0; i < thrusterNumber; i++) {
         ostream << "[ ";
@@ -150,17 +162,17 @@ std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robot
         ostream << thrusterCoefficientArray[6 * i + 5] << "]" << std::endl;
     }
 
-    uint16_t handFreedom = ((BaseRobotSettingsStruct *) robotSettingStruct._data)->HandFreedom;
+    uint16_t handFreedom = ((BaseRobotSettingsDto *) robotSettingsDto._data)->HandFreedom;
     ostream << "HandFreedom: " << handFreedom << std::endl;
 
-    float *handArray = robotSettingStruct._handCoefficientArrayPtr;
+    float *handArray = robotSettingsDto._handCoefficientArrayPtr;
     ostream << "HandCoefficientArray: [";
     for (size_t i = 0; i < handFreedom - 1; i++) {
         ostream << handArray[i] << ", ";
     }
     ostream << handArray[handFreedom - 1] << "]" << std::endl;
 
-    uint16_t motorsProtocol = ((BaseRobotSettingsStruct *) robotSettingStruct._data)->MotorsProtocol;
+    uint16_t motorsProtocol = ((BaseRobotSettingsDto *) robotSettingsDto._data)->MotorsProtocol;
     ostream << "MotorProtocol: ";
     switch (motorsProtocol) {
         case 1:
@@ -180,7 +192,7 @@ std::ostream &operator<<(std::ostream &ostream, const RobotSettingsStruct &robot
     }
     ostream << std::endl;
 
-    uint16_t maxMotorSpeed = ((BaseRobotSettingsStruct *) robotSettingStruct._data)->MaxMotorSpeed;
+    uint16_t maxMotorSpeed = ((BaseRobotSettingsDto *) robotSettingsDto._data)->MaxMotorSpeed;
     ostream << "MaxMotorSpeed: " << maxMotorSpeed << std::endl;
 
     return ostream;

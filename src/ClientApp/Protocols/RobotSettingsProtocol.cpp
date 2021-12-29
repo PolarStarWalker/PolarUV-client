@@ -1,6 +1,6 @@
 #include "./SettingsProtocol/RobotSettingsProtocol.hpp"
 
-void RobotSettingsProtocol::Send(const QString &address, uint16_t port, RobotSettingsStruct &&robotSettingsStruct) {
+void RobotSettingsProtocol::Send(const QString &address, uint16_t port, RobotSettingsDto &&robotSettingsStruct) {
     QTcpSocket _socket;
     _socket.connectToHost(address, port);
     if (!_socket.waitForConnected(50))
@@ -19,7 +19,7 @@ void RobotSettingsProtocol::Send(const QString &address, uint16_t port, RobotSet
 }
 
 
-void RobotSettingsProtocol::SendAsync(const QString &address, uint16_t port, RobotSettingsStruct &&settingsStruct) {
+void RobotSettingsProtocol::SendAsync(const QString &address, uint16_t port, RobotSettingsDto &&settingsStruct) {
     if (!this->IsThreadActive()) {
         this->_transferThread = std::thread(&RobotSettingsProtocol::Send, this, address, port,
                                             std::move(settingsStruct));
@@ -27,7 +27,7 @@ void RobotSettingsProtocol::SendAsync(const QString &address, uint16_t port, Rob
     }
 }
 
-RobotSettingsStruct RobotSettingsProtocol::Recv(const QString &address, uint16_t port) {
+RobotSettingsDto RobotSettingsProtocol::Recv(const QString &address, uint16_t port) {
     QTcpSocket socket;
     socket.connectToHost(address, port);
     if (!socket.waitForConnected(50))
@@ -38,21 +38,21 @@ RobotSettingsStruct RobotSettingsProtocol::Recv(const QString &address, uint16_t
     if (!socket.waitForBytesWritten(1000))
         throw Exception::ConnectionException("Не удалось отправить данные");
 
-    BaseRobotSettingsStruct baseRobotSettings{};
+    BaseRobotSettingsDto baseRobotSettings{};
 
-    if (socket.bytesAvailable() < BaseRobotSettingsStructActualSize)
+    if (socket.bytesAvailable() < BaseRobotSettingsDtoActualSize)
         if (!socket.waitForReadyRead(500))
             throw Exception::ConnectionException("Не удалось считать данные");
-    socket.read((char *) &baseRobotSettings, BaseRobotSettingsStructActualSize);
+    socket.read((char *) &baseRobotSettings, BaseRobotSettingsDtoActualSize);
 
-    RobotSettingsStruct tmpRobotSettings(baseRobotSettings);
+    RobotSettingsDto tmpRobotSettings(baseRobotSettings);
 
-    if (socket.bytesAvailable() < tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize)
+    if (socket.bytesAvailable() < tmpRobotSettings.Size() - BaseRobotSettingsDtoActualSize)
         if (!socket.waitForReadyRead(1000))
             throw Exception::ConnectionException("Не удалось считать данные");
 
-    socket.read(tmpRobotSettings.Begin() + BaseRobotSettingsStructActualSize,
-                tmpRobotSettings.Size() - BaseRobotSettingsStructActualSize);
+    socket.read(tmpRobotSettings.Begin() + BaseRobotSettingsDtoActualSize,
+                tmpRobotSettings.Size() - BaseRobotSettingsDtoActualSize);
 
     socket.disconnectFromHost();
 

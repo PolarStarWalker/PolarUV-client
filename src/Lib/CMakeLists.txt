@@ -1,7 +1,9 @@
 Project(Lib)
 
-ADD_SUBDIRECTORY(Client)
+add_subdirectory(TcpSession)
 
 add_library(Lib Lib.hpp)
 
-target_link_libraries(Lib STATIC SocketClient)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(Lib TcpSession)

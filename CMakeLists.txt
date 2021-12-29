@@ -11,6 +11,8 @@ else ()
     set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 endif ()
 
+add_compile_options(-fcoroutines)
+
 project(Client)
 
 #путь до gst-launch-1.0.exe

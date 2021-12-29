@@ -6,12 +6,6 @@ else()
     add_executable(Client Startup.cpp Startup.hpp)
 endif()
 
-file(COPY Icons DESTINATION ${CMAKE_BINARY_DIR}/bin)
-file(COPY Pipelines DESTINATION ${CMAKE_BINARY_DIR}/bin)
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin/Media)
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin/Media/Video)
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/bin/Media/Image)
-
 #Qt
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -56,8 +50,16 @@ endif ()
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_subdirectory(MainWindow)
-add_subdirectory(Lib)
+target_include_directories(Client PUBLIC Lib)
 
-target_link_libraries(Client MainWindow)
+add_subdirectory(Lib)
+add_subdirectory(ClientApp)
+add_subdirectory(Resources)
+
+target_link_libraries(Client ClientApp)
+target_link_libraries(Client Lib)
+
 target_link_libraries(Client ${CONAN_LIBS})
+
+
+

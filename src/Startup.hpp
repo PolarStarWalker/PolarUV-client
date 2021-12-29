@@ -6,7 +6,7 @@
 
 #include "processthreadsapi.h"
 
-#include "./MainWindow/MainWindow.hpp"
+#include "./ClientApp/MainWindow.hpp"
 
 
 #endif
