@@ -1,6 +1,6 @@
 #include "./MotorsStruct/MotorsStruct.hpp"
 
-std::ostream &operator<<(std::ostream &ostream, const MotorsStruct &motorsStruct) {
+std::ostream &operator<<(std::ostream &ostream, const data_structs::MotorsStruct &motorsStruct) {
     ostream << "MotorsCommand: ["
             << motorsStruct.PacketArray[0] << ", "
             << motorsStruct.PacketArray[1] << ", "

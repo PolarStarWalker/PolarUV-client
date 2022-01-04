@@ -34,14 +34,10 @@ public:
         this->setAttribute(Qt::WA_TranslucentBackground);
     }
 
-    ~DepthIndicator() override {
-
-    }
+    ~DepthIndicator() override = default;
 
 protected:
-    void initializeGL() override {
-
-    }
+    void initializeGL() override { }
 
     void paintGL() override {
         float depth = this->_commandsProtocol->GetTelemetryStruct().Depth;
@@ -194,4 +190,4 @@ private:
     float _depthRectHeight;
 };
 
-#endif //CLIENT_DEPTHINDICATOR_HPP
+#endif

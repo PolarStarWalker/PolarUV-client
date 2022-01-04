@@ -1,6 +1,8 @@
 #include "SettingsProtocol/RobotSettingsProtocol.hpp"
 
-void RobotSettingsProtocol::Send(const QString &address, uint16_t port, RobotSettingsDto &&robotSettingsStruct) {
+using namespace data_structs;
+
+void RobotSettingsProtocol::Send(const QString &address, uint16_t port, OldRobotSettingsDto &&robotSettingsStruct) {
     QTcpSocket _socket;
     _socket.connectToHost(address, port);
     if (!_socket.waitForConnected(50))
@@ -19,7 +21,7 @@ void RobotSettingsProtocol::Send(const QString &address, uint16_t port, RobotSet
 }
 
 
-void RobotSettingsProtocol::SendAsync(const QString &address, uint16_t port, RobotSettingsDto &&settingsStruct) {
+void RobotSettingsProtocol::SendAsync(const QString &address, uint16_t port, OldRobotSettingsDto &&settingsStruct) {
     if (!this->IsThreadActive()) {
         this->_transferThread = std::thread(&RobotSettingsProtocol::Send, this, address, port,
                                             std::move(settingsStruct));
@@ -27,7 +29,7 @@ void RobotSettingsProtocol::SendAsync(const QString &address, uint16_t port, Rob
     }
 }
 
-RobotSettingsDto RobotSettingsProtocol::Recv(const QString &address, uint16_t port) {
+OldRobotSettingsDto RobotSettingsProtocol::Recv(const QString &address, uint16_t port) {
     QTcpSocket socket;
     socket.connectToHost(address, port);
     if (!socket.waitForConnected(50))
@@ -45,7 +47,7 @@ RobotSettingsDto RobotSettingsProtocol::Recv(const QString &address, uint16_t po
             throw Exception::ConnectionException("Не удалось считать данные");
     socket.read((char *) &baseRobotSettings, BaseRobotSettingsDtoActualSize);
 
-    RobotSettingsDto tmpRobotSettings(baseRobotSettings);
+    OldRobotSettingsDto tmpRobotSettings(baseRobotSettings);
 
     if (socket.bytesAvailable() < tmpRobotSettings.Size() - BaseRobotSettingsDtoActualSize)
         if (!socket.waitForReadyRead(1000))

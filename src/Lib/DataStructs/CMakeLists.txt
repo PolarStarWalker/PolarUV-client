@@ -13,7 +13,7 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ClientSettings/ClientSettingsMessage
 
 set(ClientSettings ClientSettingsDto.cpp)
 
-add_library(DataStructs ${PROTO_SRCS} ${PROTO_HDRS} ${ClientSettings} CommandsStruct.cpp RobotSettingsDto.cpp MotorsStruct.cpp VideoPipelineStruct.cpp)
+add_library(DataStructs ${PROTO_SRCS} ${PROTO_HDRS} ${ClientSettings} CommandsStruct.cpp OldRobotSettingsDto.cpp MotorsStruct.cpp VideoPipelineStruct.cpp)
 
 
 target_link_libraries(DataStructs ${REQUIRED_LIBS_QUALIFIED})

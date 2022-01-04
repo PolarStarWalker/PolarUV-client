@@ -9,6 +9,21 @@ TcpSession *TcpSession::GetInstance() {
     return &instance;
 }
 
+Response TcpSession::Send(const Packet &packet) {
+
+    std::promise<Response* > promise;
+    auto future = promise.get_future();
+
+    Request request(promise, packet);
+
+    {
+        std::lock_guard<std::shared_mutex> guard(_requestsMutex);
+        _requests.push(&request);
+    }
+
+    return *(future.get());
+}
+
 
 void test(){
     //boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address("192.168.1.50"), 2022);

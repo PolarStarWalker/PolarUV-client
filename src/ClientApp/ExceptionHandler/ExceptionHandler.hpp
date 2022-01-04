@@ -2,8 +2,10 @@
 #define CLIENT_EXCEPTIONHANDLER_HPP
 
 #include <QMessageBox>
-#include "functional"
+#include <functional>
+
 #include "../MainWindow.hpp"
+
 class ExceptionHandler {
 public:
     ExceptionHandler(MainWindow *object,

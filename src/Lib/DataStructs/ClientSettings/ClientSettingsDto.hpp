@@ -1,9 +1,6 @@
 #ifndef CLIENT_SETTINGSSTRUCT_HPP
 #define CLIENT_SETTINGSSTRUCT_HPP
 
-#include <fstream>
-#include <cstring>
-#include <QString>
 namespace data_structs {
 
     enum RobotAnalogActions : int8_t {

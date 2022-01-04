@@ -1,6 +1,9 @@
 #include "./ClientSettings/ClientSettingsDto.hpp"
 #include "ClientSettingsMessage.pb.h"
 
+#include <fstream>
+#include <cstring>
+
 using namespace data_structs;
 
 ClientSettingsDto::ClientSettingsDto() {
