@@ -3,11 +3,12 @@
 #include <memory>
 #include "./ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
+MainWindow::MainWindow(QWidget *parent) :
+        QMainWindow(parent),
+        ui(new Ui::MainWindow),
+        _mainWindowResources(MainWindowResources::GetInstance()) {
 
     ui->setupUi(this);
-
-    this->_mainWindowResources = MainWindowResources::GetInstance();
 
     this->_commandsProtocol = std::make_unique<CommandsProtocol>(0, this);
     this->_videoStream = std::make_unique<VideoProtocol>();

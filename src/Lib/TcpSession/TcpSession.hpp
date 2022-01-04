@@ -4,57 +4,80 @@
 #include <queue>
 #include <shared_mutex>
 #include <future>
+#include <string>
 
 #include <boost/asio.hpp>
 
 #include <QObject>
 
-namespace lib {
-    namespace network {
+namespace lib::network {
 
-        struct Response{
-
+    struct Response {
+        enum Code : size_t {
+            Ok,
+            NoContent,
+            BadRequest,
+            ConnectionError
         };
 
-        struct Packet{
+        std::string Data;
+        const Code Code;
 
+        Response(std::string &&data, enum Code code) : Data(std::move(data)), Code(code) {};
+
+        explicit operator bool() const { return Code == Ok || Code == NoContent; }
+    };
+
+    struct Packet {
+
+        enum Type : size_t {
+            R,
+            W,
+            RW
         };
 
-        struct Request{
+        const Type Type;
+        const ssize_t EndpointId;
+        const std::string_view Data;
 
-            Request(std::promise<Response*>& response, const Packet& packet) : Response(&response), Packet(&packet){};
+        Packet(enum Type type, const std::string_view data, ssize_t endpointId) :
+                Type(type),
+                Data(data),
+                EndpointId(endpointId) {}
+    };
 
-            std::promise<Response*>* Response;
+    struct TcpRequest {
 
-            const Packet* Packet;
-        };
+        TcpRequest(std::promise<Response *> &response, const Packet &packet) : Response(&response), Packet(&packet) {};
 
-        const size_t PORT = 2022;
-        const char* IP = "192.168.1.50";
+        std::promise<Response *> *Response;
 
-        const boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address(IP), PORT);
+        const Packet *Packet;
+    };
 
-        class TcpSession {
-        public:
+    const size_t PORT = 2022;
+    const char *IP = "192.168.1.50";
 
-            TcpSession(const TcpSession&) = delete;
-            TcpSession(TcpSession&&) = delete;
+    const boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address(IP), PORT);
 
-            static TcpSession* GetInstance();
+    class TcpSession {
+    public:
 
-            Response Send(const Packet& packet);
+        TcpSession(const TcpSession &) = delete;
+        TcpSession(TcpSession &&) = delete;
 
-        private:
+        static TcpSession &GetInstance();
+        Response Send(const Packet &packet) const;
 
-            std::queue<Request*> _requests;
-            std::shared_mutex _requestsMutex;
+    private:
 
-            TcpSession() = default;
+        mutable std::queue<TcpRequest *> _requests;
+        mutable std::shared_mutex _requestsMutex;
 
-            ~TcpSession() = default;
-        };
+        TcpSession() = default;
+        ~TcpSession() = default;
+    };
 
-    }
 }
 
 #endif

@@ -45,20 +45,20 @@ private:
         QPixmap MenuButtonIcon;
     };
 
-    MainWindowResources();
-
     std::unique_ptr<Resources> _resources;
+
+    MainWindowResources();
+    ~MainWindowResources() = default;
 
 public:
 
     MainWindowResources(const MainWindowResources& resources) = delete;
     MainWindowResources(MainWindowResources&& resources) = delete;
 
-    ~MainWindowResources() = default;
 
-    static const MainWindowResources *GetInstance() {
+    static const MainWindowResources& GetInstance() {
         const static MainWindowResources instance;
-        return &instance;
+        return instance;
     }
 
     inline const QPixmap &GetBackground() const { return this->_resources->Background; }

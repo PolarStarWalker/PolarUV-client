@@ -7,22 +7,21 @@
 #include <QOpenGLWidget>
 
 class RobotSettingsWidget : public QOpenGLWidget {
-    class Data {
-
-    };
-
 
 public:
-    void SendSettings();
+    RobotSettingsWidget();
 
-    void GetSettings();
+    void SendSettings() const;
+
+    void ReceiveSettings();
 
 
 private:
-    std::string Serialize() const;
+    [[nodiscard]] std::string Serialize() const;
 
     void Deserialize(const std::string &data);
 
+    const lib::network::TcpSession& _transmitter;
 };
 
 #endif

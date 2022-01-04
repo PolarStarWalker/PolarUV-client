@@ -4,17 +4,17 @@
 
 using namespace lib::network;
 
-TcpSession *TcpSession::GetInstance() {
+TcpSession &TcpSession::GetInstance() {
     static TcpSession instance;
-    return &instance;
+    return instance;
 }
 
-Response TcpSession::Send(const Packet &packet) {
+Response TcpSession::Send(const Packet &packet) const {
 
     std::promise<Response* > promise;
     auto future = promise.get_future();
 
-    Request request(promise, packet);
+    TcpRequest request(promise, packet);
 
     {
         std::lock_guard<std::shared_mutex> guard(_requestsMutex);

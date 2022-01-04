@@ -146,7 +146,7 @@ private:
     Ui::MainWindow *ui;
 
     /// Singleton
-    const MainWindowResources* _mainWindowResources;
+    const MainWindowResources& _mainWindowResources;
 
     std::unique_ptr<QTimer> _updateTimer;
 
