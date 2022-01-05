@@ -8,9 +8,7 @@ using namespace lib;
 
 
 
-RobotSettingsWidget::RobotSettingsWidget() : _transmitter(network::TcpSession::GetInstance()) {
-
-}
+RobotSettingsWidget::RobotSettingsWidget() : _transmitter(network::TcpSession::GetInstance()) {}
 
 std::string RobotSettingsWidget::Serialize() const {
 
@@ -54,13 +52,12 @@ void RobotSettingsWidget::SendSettings() const {
         case Response::ConnectionError:
             throw Exception::ConnectionException("Не удалось подключиться к роботу");
     }
-
 }
 
 void RobotSettingsWidget::ReceiveSettings() {
     using namespace network;
 
-    Packet packet(Packet::Type::W, "", 0);
+    Packet packet(Packet::Type::R, std::string(), 0);
 
     Response response = _transmitter.Send(packet);
 

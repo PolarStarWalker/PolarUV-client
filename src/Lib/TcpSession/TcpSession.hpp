@@ -48,11 +48,11 @@ namespace lib::network {
 
     struct TcpRequest {
 
-        TcpRequest(std::promise<Response *> &response, const Packet &packet) : Response(&response), Packet(&packet) {};
+        TcpRequest(std::promise<Response *> &response, const Packet &packet) : Response(&response), Packet(packet) {};
 
         std::promise<Response *> *Response;
 
-        const Packet *Packet;
+        const Packet &Packet;
     };
 
     const size_t PORT = 2022;
@@ -71,7 +71,7 @@ namespace lib::network {
 
     private:
 
-        mutable std::queue<TcpRequest *> _requests;
+        mutable std::queue<TcpRequest *> _requests{};
         mutable std::shared_mutex _requestsMutex;
 
         TcpSession() = default;

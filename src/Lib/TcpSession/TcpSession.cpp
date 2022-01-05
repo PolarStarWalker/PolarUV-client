@@ -46,7 +46,7 @@ void test(){
         std::string msg;
         std::getline(std::cin, msg);
 
-        size_t length = socket.write_some(boost::asio::buffer(msg), errorCode);
+        size_t length = boost::asio::write(socket, boost::asio::buffer(msg), boost::asio::transfer_exactly(32), errorCode);
 
         if (errorCode.failed())
             socket.close();
