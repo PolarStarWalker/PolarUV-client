@@ -9,10 +9,11 @@ target_link_libraries(ClientApp ${REQUIRED_LIBS_QUALIFIED})
 
 include_directories(./Widgets)
 
-add_subdirectory(ExceptionHandler)
 add_subdirectory(Widgets)
+add_subdirectory(ExceptionHandler)
 
-target_link_libraries(ClientApp ExceptionHandler)
 target_link_libraries(ClientApp Widgets)
+target_link_libraries(ClientApp ExceptionHandler)
+
 
 target_link_libraries(ClientApp iphlpapi)

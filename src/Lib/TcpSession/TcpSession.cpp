@@ -24,7 +24,6 @@ Response TcpSession::Send(const Packet &packet) const {
     return *(future.get());
 }
 
-
 void test(){
     //boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address("192.168.1.50"), 2022);
 
@@ -34,7 +33,7 @@ void test(){
 
     boost::system::error_code errorCode;
 
-    socket.connect(endpoint, errorCode);
+    socket.connect(ENDPOINT, errorCode);
 
     if (errorCode.failed()) {
         std::cerr << errorCode.value() << " " << errorCode.message() << std::endl;

@@ -1,7 +1,7 @@
 #include "ExceptionHandler.hpp"
 #include <Exceptions/Exceptions.hpp>
 
-ExceptionHandler::ExceptionHandler(const std::function<void()> function,
+ExceptionHandler::ExceptionHandler(const Function& function,
                                    const QString &successTitle,
                                    const QString &successMessage) {
     try {

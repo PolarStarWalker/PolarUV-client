@@ -146,12 +146,12 @@ void MainWindow::SendRobotSettings() {
 }
 
 void MainWindow::SaveClientSettings() {
-    RawSaveClientSettings();
-    QMessageBox::information(this, "Сообщение", "Настройки успешно сохранены");
+    auto method = Function([&]() { this->RawSaveClientSettings(); });
+    ExceptionHandler(method, "Сообщение", "Настройки успешно сохранены");
 }
 
 void MainWindow::LoadClientSettings() {
-    auto method = Function([&](){this->RawLoadClientSettings();});
+    auto method = Function([&]() { this->RawLoadClientSettings(); });
     ExceptionHandler(method, "Успех", "Настройки успешно загружены");
 }
 
@@ -159,7 +159,7 @@ void MainWindow::RefreshGamepads() {
     auto gamepads = Control::GetGamepadsIds();
     ui->GamepadComboBox->clear();
 
-    for (auto&& id: gamepads)
+    for (auto &&id: gamepads)
         ui->GamepadComboBox->addItem(QString::number(id));
 
     // The path to get the selected ID:
@@ -169,7 +169,7 @@ void MainWindow::RefreshGamepads() {
 void MainWindow::RefreshClientIps() {
     auto addresses = GetClientIps();
     ui->ClientIPComboBox->clear();
-    for (auto&& address: addresses)
+    for (auto &&address: addresses)
         ui->ClientIPComboBox->addItem(QString::fromStdString(address));
 
     // The path to get the selected IP:

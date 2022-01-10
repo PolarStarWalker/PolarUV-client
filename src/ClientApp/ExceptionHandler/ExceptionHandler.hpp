@@ -8,7 +8,7 @@ using Function = std::function<void()>;
 
 class ExceptionHandler {
 public:
-    ExceptionHandler(Function function,
+    ExceptionHandler(const Function& function,
                      const QString &successTitle,
                      const QString &successMessage);
 

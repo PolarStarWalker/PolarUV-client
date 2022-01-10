@@ -55,10 +55,10 @@ namespace lib::network {
         const Packet &Packet;
     };
 
-    const size_t PORT = 2022;
-    const char *IP = "192.168.1.50";
 
-    const boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address(IP), PORT);
+    static constexpr size_t PORT = 2022;
+    static constexpr char IP[13] = "192.168.1.50";
+    static const boost::asio::ip::tcp::endpoint ENDPOINT(boost::asio::ip::make_address(IP), PORT);
 
     class TcpSession {
     public:

@@ -8,6 +8,8 @@
 
 #pragma pop_macro("slots")
 
+#include "./Widgets/Widgets.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <windows.h>
@@ -36,7 +38,6 @@
 #include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"
 #include "./Gamepad/Gamepad.hpp"
-
 
 #define COMMANDS_PORT 1999
 #define SETTINGS_PORT 14322
