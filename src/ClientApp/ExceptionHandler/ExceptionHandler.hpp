@@ -4,15 +4,24 @@
 #include <QMessageBox>
 #include <functional>
 
-#include "../MainWindow.hpp"
+using Function = std::function<void()>;
 
 class ExceptionHandler {
 public:
-    ExceptionHandler(MainWindow *object,
-                     std::function<void(MainWindow *object)> function,
+    ExceptionHandler(Function function,
                      const QString &successTitle,
                      const QString &successMessage);
-};
 
+    ///ToDo: доделать универсальный вызыватель функций
+//    template<typename Type, typename Signature>
+//    //requires std::is_function_v<Function>
+//    static void Caller(Type* type, Signature function){
+//
+//        auto method = Signature([type, function]() { type->function(); });
+//        ExceptionHandler(method, nullptr, nullptr);
+//
+//    }
+
+};
 
 #endif

@@ -23,23 +23,23 @@ void MainWindow::SetupButtons() {
 }
 
 void MainWindow::SwitchVideoStream() {
-    std::function<void(MainWindow *)> function = &MainWindow::RawSwitchVideoStream;
-    ExceptionHandler(this, function, nullptr, nullptr);
+    auto method = Function([&]() { this->RawSwitchVideoStream(); });
+    ExceptionHandler(method, nullptr, nullptr);
 }
 
 void MainWindow::SwitchVideoCapture() {
-    std::function<void(MainWindow *)> function = &MainWindow::RawSwitchVideoCapture;
-    ExceptionHandler(this, function, nullptr, nullptr);
+    auto method = Function([&]() { this->RawSwitchVideoCapture(); });
+    ExceptionHandler(method, nullptr, nullptr);
 }
 
 void MainWindow::TakeScreenshot() {
-    std::function<void(MainWindow *)> function = &MainWindow::RawTakeScreenshot;
-    ExceptionHandler(this, function, nullptr, nullptr);
+    auto method = Function([&]() { this->RawTakeScreenshot(); });
+    ExceptionHandler(method, nullptr, nullptr);
 }
 
 void MainWindow::SwitchSendingCommands() {
-    std::function<void(MainWindow *)> function = &MainWindow::RawSwitchSendingCommands;
-    ExceptionHandler(this, function, nullptr, nullptr);
+    auto method = Function([&]() { this->RawSwitchSendingCommands(); });
+    ExceptionHandler(method, nullptr, nullptr);
 }
 
 void MainWindow::SwitchToPage1() {
@@ -136,13 +136,13 @@ void MainWindow::SwitchToPage3() {
 }
 
 void MainWindow::ReceiveRobotSettings() {
-    std::function<void(MainWindow *)> function = &MainWindow::RawReceiveRobotSettings;
-    ExceptionHandler(this, function, "Успех", "Настройки успешно приняты");
+    auto method = Function([&]() { this->RawReceiveRobotSettings(); });
+    ExceptionHandler(method, "Успех", "Настройки успешно приняты");
 }
 
 void MainWindow::SendRobotSettings() {
-    std::function<void(MainWindow *)> function = &MainWindow::RawSendRobotSettings;
-    ExceptionHandler(this, function, "Успех", "Настройки успешно отправлены");
+    auto method = Function([&]() { this->RawSendRobotSettings(); });
+    ExceptionHandler(method, "Успех", "Настройки успешно отправлены");
 }
 
 void MainWindow::SaveClientSettings() {
@@ -151,31 +151,26 @@ void MainWindow::SaveClientSettings() {
 }
 
 void MainWindow::LoadClientSettings() {
-    std::function<void(MainWindow*)> function = &MainWindow::RawLoadClientSettings;
-    ExceptionHandler(this, function, "Успех", "Настройки успешно загружены");
+    auto method = Function([&](){this->RawLoadClientSettings();});
+    ExceptionHandler(method, "Успех", "Настройки успешно загружены");
 }
 
 void MainWindow::RefreshGamepads() {
-    std::list<int> gamepads = Control::GetGamepadsIds();
+    auto gamepads = Control::GetGamepadsIds();
     ui->GamepadComboBox->clear();
-    for (int id : gamepads) {
-        ui->GamepadComboBox->addItem(QString::number(id));
-    }
 
-    std::list<std::string> ips = GetClientIps();
+    for (auto&& id: gamepads)
+        ui->GamepadComboBox->addItem(QString::number(id));
 
     // The path to get the selected ID:
     // int id = ui->GamepadComboBox->itemText(ui->GamepadComboBox->currentIndex()).toInt()
 }
 
 void MainWindow::RefreshClientIps() {
-    std::list<std::string> addresses = GetClientIps();
+    auto addresses = GetClientIps();
     ui->ClientIPComboBox->clear();
-    for (std::string address : addresses) {
+    for (auto&& address: addresses)
         ui->ClientIPComboBox->addItem(QString::fromStdString(address));
-    }
-
-    std::list<std::string> ips = GetClientIps();
 
     // The path to get the selected IP:
     // QString ip = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
@@ -223,6 +218,7 @@ void MainWindow::ReleaseCode() {
             "catchOutErr = CatchOutErr()\n"
             "sys.stdout = catchOutErr\n"
             "sys.stderr = catchOutErr\n";
+
     PyRun_SimpleString(stdOutErr.c_str());
 
     const char *str = qPrintable(ui->CodeEdit->toPlainText());

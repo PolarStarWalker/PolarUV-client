@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "./ui_mainwindow.h"
+#include "./ExceptionHandler/ExceptionHandler.hpp"
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -27,5 +28,5 @@ MainWindow::MainWindow(QWidget *parent) :
     this->SetupAnimations();
     this->SetupShortcuts();
 
-    this->LoadClientSettings();
+    ExceptionHandler([&](){this->RawLoadClientSettings();}, nullptr, nullptr);
 }

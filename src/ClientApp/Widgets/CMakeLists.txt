@@ -2,7 +2,7 @@ project (Widgets)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC OFF)
+set(CMAKE_AUTOUIC ON)
 
 #do some cmake-protobug magic
 find_package(Protobuf REQUIRED)

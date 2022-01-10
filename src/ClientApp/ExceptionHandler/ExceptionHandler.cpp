@@ -1,20 +1,20 @@
 #include "ExceptionHandler.hpp"
+#include <Exceptions/Exceptions.hpp>
 
-ExceptionHandler::ExceptionHandler(MainWindow *object, std::function<void(MainWindow *object)> function,
+ExceptionHandler::ExceptionHandler(const std::function<void()> function,
                                    const QString &successTitle,
                                    const QString &successMessage) {
     try {
-        function(object);
-        if (!(successTitle == nullptr) && !(successMessage == nullptr)) {
-            QMessageBox::about(object, successTitle, successMessage);
-        }
+        function();
     } catch (const Exception::ConnectionException &exception) {
-        QMessageBox::warning(object, exception.GetError().c_str(), exception.GetDetails().c_str());
-
+        QMessageBox::warning(nullptr, exception.GetError().c_str(), exception.GetDetails().c_str());
     } catch (const Exception::InvalidOperationException &invalidOperation) {
-        QMessageBox::information(object, invalidOperation.GetError().c_str(), invalidOperation.GetDetails().c_str());
-
+        QMessageBox::information(nullptr, invalidOperation.GetError().c_str(), invalidOperation.GetDetails().c_str());
     } catch (...) {
-        QMessageBox::critical(object, "Неизвестная ошибка", "Неизвестная ошибка");
+        QMessageBox::critical(nullptr, "Неизвестная ошибка", "Неизвестная ошибка");
     }
+
+    if (successTitle != nullptr && successMessage != nullptr)
+        QMessageBox::about(nullptr, successTitle, successMessage);
+
 }
