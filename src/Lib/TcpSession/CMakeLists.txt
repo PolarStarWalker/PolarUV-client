@@ -10,5 +10,5 @@ target_link_libraries(TcpSession ${CONAN_LIBS})
 target_link_libraries(TcpSession ${REQUIRED_LIBS_QUALIFIED})
 
 if(MINGW)
-    target_link_libraries(Client ws2_32)
+    target_link_libraries(TcpSession ws2_32)
 endif()

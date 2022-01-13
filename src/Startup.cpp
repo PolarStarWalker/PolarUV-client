@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
     surfaceFormat.setSwapBehavior(QSurfaceFormat::SingleBuffer);
     QSurfaceFormat::setDefaultFormat(surfaceFormat);
 
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
 
     MainWindow w;
     w.show();

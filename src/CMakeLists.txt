@@ -61,5 +61,3 @@ target_link_libraries(Client Lib)
 
 target_link_libraries(Client ${CONAN_LIBS})
 
-
-

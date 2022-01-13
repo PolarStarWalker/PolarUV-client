@@ -32,5 +32,5 @@ MainWindow::MainWindow(QWidget *parent) :
     this->SetupAnimations();
     this->SetupShortcuts();
 
-    ExceptionHandler([&](){this->RawLoadClientSettings();}, nullptr, nullptr);
+    ExceptionHandler(nullptr, nullptr, [&]() { this->RawLoadClientSettings(); });
 }

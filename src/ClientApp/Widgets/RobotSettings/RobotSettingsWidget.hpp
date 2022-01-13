@@ -2,7 +2,7 @@
 #define CLIENT_ROBOTSETTINGSWIDGET_HPP
 
 //this must be first include
-//#include <TcpSession/TcpSession.hpp>
+#include <TcpSession/TcpSession.hpp>
 
 #include <QWidget>
 
@@ -19,13 +19,14 @@ public:
     ~RobotSettingsWidget() override;
 
 private:
-    //const lib::network::TcpSession& _transmitter;
 
     Ui::RobotSettingsWidget *ui;
 
-    [[nodiscard]] std::string Serialize() const;
+    [[nodiscard]] std::string Serialize() const noexcept;
 
-    void Deserialize(const std::string &data);
+    void Deserialize(const std::string &data) noexcept;
+
+    const lib::network::TcpSession& _transmitter;
 
 private slots:
     void SendSettings() const;
@@ -41,4 +42,4 @@ private slots:
     void UpdateMaxSpeedSlider(const QString& string);
 };
 
-#endif //CLIENT_ROBOTSETTINGSWIDGET_HPP
+#endif

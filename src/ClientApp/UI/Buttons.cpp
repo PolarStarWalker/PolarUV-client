@@ -23,23 +23,19 @@ void MainWindow::SetupButtons() {
 }
 
 void MainWindow::SwitchVideoStream() {
-    auto method = Function([&]() { this->RawSwitchVideoStream(); });
-    ExceptionHandler(method, nullptr, nullptr);
+    ExceptionHandler(nullptr, nullptr,[&]() { this->RawSwitchVideoStream(); });
 }
 
 void MainWindow::SwitchVideoCapture() {
-    auto method = Function([&]() { this->RawSwitchVideoCapture(); });
-    ExceptionHandler(method, nullptr, nullptr);
+    ExceptionHandler(nullptr, nullptr, [&]() { this->RawSwitchVideoCapture(); });
 }
 
 void MainWindow::TakeScreenshot() {
-    auto method = Function([&]() { this->RawTakeScreenshot(); });
-    ExceptionHandler(method, nullptr, nullptr);
+    ExceptionHandler(nullptr, nullptr, [&]() { this->RawTakeScreenshot(); });
 }
 
 void MainWindow::SwitchSendingCommands() {
-    auto method = Function([&]() { this->RawSwitchSendingCommands(); });
-    ExceptionHandler(method, nullptr, nullptr);
+    ExceptionHandler(nullptr, nullptr, [&]() { this->RawSwitchSendingCommands(); });
 }
 
 void MainWindow::SwitchToPage1() {
@@ -136,23 +132,23 @@ void MainWindow::SwitchToPage3() {
 }
 
 void MainWindow::ReceiveRobotSettings() {
-    auto method = Function([&]() { this->RawReceiveRobotSettings(); });
-    ExceptionHandler(method, "Успех", "Настройки успешно приняты");
+    ExceptionHandler("Успех", "Настройки успешно приняты",
+                     [&]() { this->RawReceiveRobotSettings(); });
 }
 
 void MainWindow::SendRobotSettings() {
-    auto method = Function([&]() { this->RawSendRobotSettings(); });
-    ExceptionHandler(method, "Успех", "Настройки успешно отправлены");
+    ExceptionHandler("Успех", "Настройки успешно отправлены",
+                     [&]() { this->RawSendRobotSettings(); });
 }
 
 void MainWindow::SaveClientSettings() {
-    auto method = Function([&]() { this->RawSaveClientSettings(); });
-    ExceptionHandler(method, "Сообщение", "Настройки успешно сохранены");
+    ExceptionHandler("Сообщение", "Настройки успешно сохранены",
+                     [&]() { this->RawSaveClientSettings(); });
 }
 
 void MainWindow::LoadClientSettings() {
-    auto method = Function([&]() { this->RawLoadClientSettings(); });
-    ExceptionHandler(method, "Успех", "Настройки успешно загружены");
+    ExceptionHandler("Успех", "Настройки успешно загружены",
+                     [&]() { this->RawLoadClientSettings(); });
 }
 
 void MainWindow::RefreshGamepads() {
@@ -167,8 +163,10 @@ void MainWindow::RefreshGamepads() {
 }
 
 void MainWindow::RefreshClientIps() {
+
     auto addresses = GetClientIps();
     ui->ClientIPComboBox->clear();
+
     for (auto &&address: addresses)
         ui->ClientIPComboBox->addItem(QString::fromStdString(address));
 

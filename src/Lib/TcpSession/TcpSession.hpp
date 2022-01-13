@@ -7,7 +7,6 @@
 #include <string>
 
 #include <boost/asio.hpp>
-
 #include <QObject>
 
 namespace lib::network {

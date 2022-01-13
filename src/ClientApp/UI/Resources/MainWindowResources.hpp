@@ -55,76 +55,72 @@ public:
     MainWindowResources(const MainWindowResources& resources) = delete;
     MainWindowResources(MainWindowResources&& resources) = delete;
 
+    static const MainWindowResources& GetInstance();
 
-    static const MainWindowResources& GetInstance() {
-        const static MainWindowResources instance;
-        return instance;
-    }
+    [[nodiscard]] inline const QPixmap &GetBackground() const { return this->_resources->Background; }
 
-    inline const QPixmap &GetBackground() const { return this->_resources->Background; }
-
-    inline const QIcon &GetMainWindowIcon() const { return this->_resources->WindowIcon; }
+    [[nodiscard]] inline const QIcon &GetMainWindowIcon() const { return this->_resources->WindowIcon; }
 
     /// Tabs
 
-    inline const QIcon &GetCameraIcon() const { return this->_resources->CameraIcon; }
+    [[nodiscard]] inline const QIcon &GetCameraIcon() const { return this->_resources->CameraIcon; }
 
-    inline const QIcon &GetSettingsIcon() const { return this->_resources->SettingsIcon; }
+    [[nodiscard]] inline const QIcon &GetSettingsIcon() const { return this->_resources->SettingsIcon; }
 
-    inline const QIcon &GetCodeIcon() const { return this->_resources->CodeIcon; }
+    [[nodiscard]] inline const QIcon &GetCodeIcon() const { return this->_resources->CodeIcon; }
 
     /// Buttons
 
-    inline const QIcon &GetHamburgerIcon() const { return this->_resources->HamburgerIcon; }
+    [[nodiscard]] inline const QIcon &GetHamburgerIcon() const { return this->_resources->HamburgerIcon; }
 
-    inline const QIcon &GetScreenshotIcon() const { return this->_resources->ScreenshotIcon; }
+    [[nodiscard]] inline const QIcon &GetScreenshotIcon() const { return this->_resources->ScreenshotIcon; }
 
-    inline const QIcon &GetWhiteVideoIcon() const { return this->_resources->WhiteVideoIcon; }
+    [[nodiscard]] inline const QIcon &GetWhiteVideoIcon() const { return this->_resources->WhiteVideoIcon; }
 
-    inline const QIcon &GetReloadIcon() const { return this->_resources->ReloadIcon; }
+    [[nodiscard]] inline const QIcon &GetReloadIcon() const { return this->_resources->ReloadIcon; }
 
-    inline const QIcon &GetBugIcon() const { return this->_resources->BugIcon; }
+    [[nodiscard]] inline const QIcon &GetBugIcon() const { return this->_resources->BugIcon; }
 
-    inline const QIcon &GetGreenStartIcon() const { return this->_resources->GreenStartIcon; }
+    [[nodiscard]] inline const QIcon &GetGreenStartIcon() const { return this->_resources->GreenStartIcon; }
 
-    inline const QIcon &GetRedStartIcon() const { return this->_resources->RedStartIcon; }
+    [[nodiscard]] inline const QIcon &GetRedStartIcon() const { return this->_resources->RedStartIcon; }
 
-    inline const QIcon &GetPauseIcon() const { return this->_resources->PauseIcon; }
+    [[nodiscard]] inline const QIcon &GetPauseIcon() const { return this->_resources->PauseIcon; }
 
-    inline const QIcon &GetPlayIcon() const { return this->_resources->PlayIcon; }
+    [[nodiscard]] inline const QIcon &GetPlayIcon() const { return this->_resources->PlayIcon; }
 
     /// Gamepad buttons
-    inline const QPixmap &GetAButtonIcon() const { return this->_resources->AButtonIcon; }
+    [[nodiscard]] inline const QPixmap &GetAButtonIcon() const { return this->_resources->AButtonIcon; }
 
-    inline const QPixmap &GetBButtonIcon() const { return this->_resources->BButtonIcon; }
+    [[nodiscard]] inline const QPixmap &GetBButtonIcon() const { return this->_resources->BButtonIcon; }
 
-    inline const QPixmap &GetXButtonIcon() const { return this->_resources->XButtonIcon; }
+    [[nodiscard]] inline const QPixmap &GetXButtonIcon() const { return this->_resources->XButtonIcon; }
 
-    inline const QPixmap &GetYButtonIcon() const { return this->_resources->YButtonIcon; }
+    [[nodiscard]] inline const QPixmap &GetYButtonIcon() const { return this->_resources->YButtonIcon; }
 
-    inline const QPixmap &GetDPadHorizontalIcon() const { return this->_resources->DPadHorizontalIcon; }
+    [[nodiscard]] inline const QPixmap &GetDPadHorizontalIcon() const { return this->_resources->DPadHorizontalIcon; }
 
-    inline const QPixmap &GetDPadVerticalIcon() const { return this->_resources->DPadVerticalIcon; }
+    [[nodiscard]] inline const QPixmap &GetDPadVerticalIcon() const { return this->_resources->DPadVerticalIcon; }
 
-    inline const QPixmap &GetLSHorizontalIcon() const { return this->_resources->LSHorizontalIcon; }
+    [[nodiscard]] inline const QPixmap &GetLSHorizontalIcon() const { return this->_resources->LSHorizontalIcon; }
 
-    inline const QPixmap &GetLSVerticalIcon() const { return this->_resources->LSVerticalIcon; }
+    [[nodiscard]] inline const QPixmap &GetLSVerticalIcon() const { return this->_resources->LSVerticalIcon; }
 
-    inline const QPixmap &GetLSPressIcon() const { return this->_resources->LSPressIcon; }
+    [[nodiscard]] inline const QPixmap &GetLSPressIcon() const { return this->_resources->LSPressIcon; }
 
-    inline const QPixmap &GetRSHorizontalIcon() const { return this->_resources->RSHorizontalIcon; }
+    [[nodiscard]] inline const QPixmap &GetRSHorizontalIcon() const { return this->_resources->RSHorizontalIcon; }
 
-    inline const QPixmap &GetRSVerticalIcon() const { return this->_resources->RSVerticalIcon; }
+    [[nodiscard]] inline const QPixmap &GetRSVerticalIcon() const { return this->_resources->RSVerticalIcon; }
 
-    inline const QPixmap &GetRSPressIcon() const { return this->_resources->RSPressIcon; }
+    [[nodiscard]] inline const QPixmap &GetRSPressIcon() const { return this->_resources->RSPressIcon; }
 
-    inline const QPixmap &GetLBLTButtonIcon() const { return this->_resources->LBLTButtonIcon; }
+    [[nodiscard]] inline const QPixmap &GetLBLTButtonIcon() const { return this->_resources->LBLTButtonIcon; }
 
-    inline const QPixmap &GetRBRTButtonIcon() const { return this->_resources->RBRTButtonIcon; }
+    [[nodiscard]] inline const QPixmap &GetRBRTButtonIcon() const { return this->_resources->RBRTButtonIcon; }
 
-    inline const QPixmap &GetBackButtonIcon() const { return this->_resources->BackButtonIcon; }
+    [[nodiscard]] inline const QPixmap &GetBackButtonIcon() const { return this->_resources->BackButtonIcon; }
 
-    inline const QPixmap &GetMenuButtonIcon() const { return this->_resources->MenuButtonIcon; }
+    [[nodiscard]] inline const QPixmap &GetMenuButtonIcon() const { return this->_resources->MenuButtonIcon; }
 };
 
 #endif

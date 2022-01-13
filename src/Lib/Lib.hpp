@@ -6,6 +6,7 @@
 #include "./Protocols/Protocols.hpp"
 #include "./Exceptions/Exceptions.hpp"
 #include "./Gamepad/Gamepad.hpp"
+#include "./Coroutines/All.hpp"
 
 void dummy();
 

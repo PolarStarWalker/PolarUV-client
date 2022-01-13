@@ -2,7 +2,14 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="Pi (d7eba367-8df8-4e75-8492-1989ae86ba9a)">
+      <paths name="Jetson (a09973b7-67f2-4068-8bdc-98e270bba01e)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Pi-clang (d7eba367-8df8-4e75-8492-1989ae86ba9a)">
         <serverdata>
           <mappings>
             <mapping deploy="/tmp/tmp.Z8LimX6mtG" local="$PROJECT_DIR$" />

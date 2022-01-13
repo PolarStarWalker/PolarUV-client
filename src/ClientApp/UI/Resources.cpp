@@ -41,3 +41,8 @@ MainWindowResources::MainWindowResources() {
     this->_resources->BackButtonIcon = QPixmap("Icons/BackButtonIcon.png");
     this->_resources->MenuButtonIcon = QPixmap("Icons/MenuButtonIcon.png");
 }
+
+const MainWindowResources &MainWindowResources::GetInstance()  {
+    const static MainWindowResources instance;
+    return instance;
+}

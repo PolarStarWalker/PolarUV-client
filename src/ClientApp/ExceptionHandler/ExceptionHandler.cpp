@@ -1,11 +1,14 @@
 #include "ExceptionHandler.hpp"
 #include <Exceptions/Exceptions.hpp>
 
-ExceptionHandler::ExceptionHandler(const Function& function,
-                                   const QString &successTitle,
-                                   const QString &successMessage) {
+void ExceptionHandler(const QString &successTitle, const QString &successMessage,
+                                   const Function &function) {
     try {
         function();
+
+        if (successTitle != nullptr && successMessage != nullptr)
+            QMessageBox::about(nullptr, successTitle, successMessage);
+
     } catch (const Exception::ConnectionException &exception) {
         QMessageBox::warning(nullptr, exception.GetError().c_str(), exception.GetDetails().c_str());
     } catch (const Exception::InvalidOperationException &invalidOperation) {
@@ -14,7 +17,5 @@ ExceptionHandler::ExceptionHandler(const Function& function,
         QMessageBox::critical(nullptr, "Неизвестная ошибка", "Неизвестная ошибка");
     }
 
-    if (successTitle != nullptr && successMessage != nullptr)
-        QMessageBox::about(nullptr, successTitle, successMessage);
 
 }

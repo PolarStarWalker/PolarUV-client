@@ -6,11 +6,7 @@
 
 using Function = std::function<void()>;
 
-class ExceptionHandler {
-public:
-    ExceptionHandler(const Function& function,
-                     const QString &successTitle,
-                     const QString &successMessage);
+void ExceptionHandler(const QString &successTitle, const QString &successMessage, const Function &function);
 
     ///ToDo: доделать универсальный вызыватель функций
 //    template<typename Type, typename Signature>
@@ -22,6 +18,5 @@ public:
 //
 //    }
 
-};
 
 #endif
