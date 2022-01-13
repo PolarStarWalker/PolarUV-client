@@ -223,6 +223,11 @@ void MainWindow::MoveWidgets() {
     x = ui->MotorsSettingsWidget->x() + ui->MotorsSettingsWidget->width() + offset;
     ui->HandSettingsWidget->move(x, y);
 
+    /// Moving the RobotSettings widget
+    x = (ui->tab->width() - this->_robotSettingWidget->width()) / 2;
+    y = (ui->tab->height() - this->_robotSettingWidget->height()) / 2;
+    this->_robotSettingWidget->move(x, y);
+
     /// Moving the KeyAssignments widget
     offset = 35; // Horizontal distance between widgets
     x = (ui->SettingsStackedWidget->width() - (ui->KeyAssignmentsWidget->width()

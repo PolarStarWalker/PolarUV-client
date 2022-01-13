@@ -19,9 +19,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this->_updateTimer.get(), SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
     this->_updateTimer->start(1000 / 60);
 
+    /// Создание виджетов индикаторов
     this->_pitchIndicator = std::make_unique<PitchIndicator>(ui->MainTab, this->_commandsProtocol.get());
     this->_yawIndicator = std::make_unique<YawIndicator>(ui->MainTab, this->_commandsProtocol.get());
     this->_depthIndicator = std::make_unique<DepthIndicator>(ui->MainTab, this->_commandsProtocol.get());
+
+    /// Создание виджета настроек робота
+    this->_robotSettingWidget = std::make_unique<RobotSettingsWidget>(ui->tab);
 
     this->SetupRendering();
     this->SetupButtons();

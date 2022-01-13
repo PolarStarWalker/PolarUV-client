@@ -8,7 +8,7 @@
 
 #pragma pop_macro("slots")
 
-#include "./Widgets/Widgets.hpp"
+#include "./Widgets/widgets.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -89,7 +89,8 @@ protected:
 
 private
     slots:
-            void MoveWidgets();
+
+    void MoveWidgets();
 
     void UpdateWidgets();
 
@@ -157,6 +158,8 @@ private:
     std::unique_ptr<PitchIndicator> _pitchIndicator;
     std::unique_ptr<YawIndicator> _yawIndicator;
     std::unique_ptr<DepthIndicator> _depthIndicator;
+
+    std::unique_ptr<RobotSettingsWidget> _robotSettingWidget;
 
     bool _isVideoFrame = false;       // For UpdateWidgets() function
     bool _isGreen = false;            // in order not to draw the same

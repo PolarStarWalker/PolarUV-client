@@ -6822,6 +6822,11 @@ border-style:solid;</string>
      <zorder>ProgressBarFrame</zorder>
      <zorder>ProgressBar</zorder>
     </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>TEST</string>
+     </attribute>
+    </widget>
    </widget>
    <zorder>TabWidget</zorder>
    <zorder>CommandsProtocolButton</zorder>
