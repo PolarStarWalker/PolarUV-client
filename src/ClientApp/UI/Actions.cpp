@@ -1,7 +1,5 @@
 #include "../MainWindow.hpp"
 #include "../ui_mainwindow.h"
-#include "../ExceptionHandler/ExceptionHandler.hpp"
-
 #include "Exceptions/Exceptions.hpp"
 
 

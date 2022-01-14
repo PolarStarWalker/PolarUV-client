@@ -1,6 +1,6 @@
+#include <Exceptions/Exceptions.hpp>
 #include "../MainWindow.hpp"
 #include "../ui_mainwindow.h"
-#include "../ExceptionHandler/ExceptionHandler.hpp"
 
 void MainWindow::SetupButtons() {
     this->connect(ui->VideoStreamButton, SIGNAL(clicked(bool)), SLOT(SwitchVideoStream()));
