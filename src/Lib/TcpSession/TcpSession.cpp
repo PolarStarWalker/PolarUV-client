@@ -4,6 +4,8 @@
 
 using namespace lib::network;
 
+TcpSession::TcpSession(QObject *parent) : QObject(parent) {}
+
 TcpSession &TcpSession::GetInstance() {
     static TcpSession instance;
     return instance;
@@ -11,20 +13,72 @@ TcpSession &TcpSession::GetInstance() {
 
 Response TcpSession::Send(const Packet &packet) const {
 
-    std::promise<Response* > promise;
+    if(!_status) return {"", Response::ConnectionError};
+
+    std::promise<Response *> promise;
     auto future = promise.get_future();
 
     TcpRequest request(promise, packet);
 
-    {
-        std::lock_guard<std::shared_mutex> guard(_requestsMutex);
-        _requests.push(&request);
-    }
+    AddToQueue(request);
 
     return *(future.get());
 }
 
-void test(){
+Response TcpSession::Send(Packet &&packet) const {
+     return Send(packet);
+}
+
+void TcpSession::Start() {
+
+    using namespace boost::asio;
+    using ErrorCode = boost::system::error_code;
+
+    io_context ioContext;
+    ip::tcp::socket socket(ioContext);
+
+    for (;;) {
+
+        for (;;) {
+            ErrorCode errorCode;
+            socket.connect(ENDPOINT, errorCode);
+
+            if (!errorCode.failed()) break;
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        }
+
+        while (socket.is_open()) {
+
+            std::unique_lock guard(_requestsMutex);
+
+            _queueIsNotEmpty.wait(guard, [&]() noexcept {return _requests.empty();});
+
+            TcpRequest request = *_requests.front();
+            _requests.pop();
+
+            ErrorCode errorCode;
+            size_t length = boost::asio::write(socket,
+                                               buffer(request.Packet.Data),
+                                               transfer_exactly(request.Packet.Data.size()),
+                                               errorCode);
+
+            if (errorCode.failed() || !length) {
+                socket.close();
+                _status.store(false);
+            }
+
+        }
+    }
+}
+
+void TcpSession::AddToQueue(const TcpRequest& request) const {
+    std::lock_guard guard(_requestsMutex);
+    _requests.push(&request);
+    _queueIsNotEmpty.notify_one();
+}
+
+void test() {
     //boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address("192.168.1.50"), 2022);
 
     boost::asio::io_context ioContext;
@@ -45,7 +99,10 @@ void test(){
         std::string msg;
         std::getline(std::cin, msg);
 
-        size_t length = boost::asio::write(socket, boost::asio::buffer(msg), boost::asio::transfer_exactly(32), errorCode);
+        size_t length = boost::asio::write(socket,
+                                           boost::asio::buffer(msg),
+                                           boost::asio::transfer_exactly(32),
+                                           errorCode);
 
         if (errorCode.failed())
             socket.close();

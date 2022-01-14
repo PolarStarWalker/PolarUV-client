@@ -8,7 +8,7 @@
 
 #pragma pop_macro("slots")
 
-#include "./Widgets/widgets.hpp"
+#include "./Widgets/Widgets.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -149,6 +149,8 @@ private:
 
     /// Singleton
     const MainWindowResources& _mainWindowResources;
+    std::unique_ptr<QThread> _networkThread;
+    lib::network::TcpSession& _network;
 
     std::unique_ptr<QTimer> _updateTimer;
 

@@ -1,8 +1,7 @@
 #include "ExceptionHandler.hpp"
 #include <Exceptions/Exceptions.hpp>
 
-void ExceptionHandler(const QString &successTitle, const QString &successMessage,
-                                   const Function &function) {
+void ExceptionHandler(const QString &successTitle, const QString &successMessage,  const Function &function) {
     try {
         function();
 
@@ -16,6 +15,4 @@ void ExceptionHandler(const QString &successTitle, const QString &successMessage
     } catch (...) {
         QMessageBox::critical(nullptr, "Неизвестная ошибка", "Неизвестная ошибка");
     }
-
-
 }

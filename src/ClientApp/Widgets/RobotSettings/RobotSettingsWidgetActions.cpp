@@ -8,40 +8,19 @@ void RobotSettingsWidget::SendSettings() const {
 
     std::string message = Serialize();
 
-    Packet packet(Packet::Type::W, message, 0);
+    Response response = _transmitter.Send(Packet(Packet::TypeEnum::W, message, 0));
 
-    Response response = _transmitter.Send(packet);
-
-    switch (response.Code) {
-        case Response::Ok:
-            throw Exception::InvalidOperationException("Неправильный код возврата");
-        case Response::NoContent:
-            return;
-        case Response::BadRequest:
-            throw Exception::InvalidOperationException("Возникла ошибка на сервере");
-        case Response::ConnectionError:
-            throw Exception::ConnectionException("Не удалось подключиться к роботу");
-    }
+    StatusCodeCheck<Packet::TypeEnum::W>(response.Code);
 }
 
 void RobotSettingsWidget::ReceiveSettings() {
     using namespace lib::network;
 
-    Packet packet(Packet::Type::R, std::string(), 0);
+    Packet packet(Packet::TypeEnum::R, std::string(), 0);
 
     Response response = _transmitter.Send(packet);
 
-    switch(response.Code){
-        case Response::Ok:
-            Deserialize(response.Data);
-            return;
-        case Response::NoContent:
-            throw Exception::InvalidOperationException("Нет данных");
-        case Response::BadRequest:
-            throw Exception::InvalidOperationException("Возникла ошибка на сервере");
-        case Response::ConnectionError:
-            throw Exception::ConnectionException("Не удалось подключиться к роботу");
-    }
+    StatusCodeCheck<Packet::TypeEnum::R>(response.Code, [&](){ Deserialize(response.Data);});
 }
 
 void RobotSettingsWidget::Deserialize(const std::string &data) noexcept {

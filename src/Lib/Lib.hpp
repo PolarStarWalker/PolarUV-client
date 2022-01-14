@@ -7,6 +7,7 @@
 #include "./Exceptions/Exceptions.hpp"
 #include "./Gamepad/Gamepad.hpp"
 #include "./Coroutines/All.hpp"
+#include "./Singleton.hpp"
 
 void dummy();
 

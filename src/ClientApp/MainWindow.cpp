@@ -2,30 +2,39 @@
 
 #include <memory>
 #include "./ui_mainwindow.h"
-#include "./ExceptionHandler/ExceptionHandler.hpp"
+#include <Exceptions/ExceptionHandler.hpp>
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
-        _mainWindowResources(MainWindowResources::GetInstance()) {
+
+        _networkThread(std::make_unique<QThread>()),
+
+        //signletones
+        _mainWindowResources(MainWindowResources::GetInstance()),
+        _network(lib::network::TcpSession::GetInstance()),
+
+        //Protocols
+        _commandsProtocol(std::make_unique<CommandsProtocol>(0, this)),
+        _videoStream(std::make_unique<VideoProtocol>()),
+        _updateTimer(std::make_unique<QTimer>(this)),
+
+        /// Создание виджетов индикаторов
+        _pitchIndicator(std::make_unique<PitchIndicator>(ui->MainTab, _commandsProtocol.get())),
+        _yawIndicator(std::make_unique<YawIndicator>(ui->MainTab, _commandsProtocol.get())),
+        _depthIndicator(std::make_unique<DepthIndicator>(ui->MainTab, this->_commandsProtocol.get())){
+
 
     ui->setupUi(this);
 
-    this->_commandsProtocol = std::make_unique<CommandsProtocol>(0, this);
-    this->_videoStream = std::make_unique<VideoProtocol>();
+    /// Создание виджета настроек робота
+    _robotSettingWidget = std::make_unique<RobotSettingsWidget>(ui->tab);
 
-    this->_updateTimer = std::make_unique<QTimer>(this);
+    _network.moveToThread(_networkThread.get());
+    _networkThread->start();
 
     connect(this->_updateTimer.get(), SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
     this->_updateTimer->start(1000 / 60);
-
-    /// Создание виджетов индикаторов
-    this->_pitchIndicator = std::make_unique<PitchIndicator>(ui->MainTab, this->_commandsProtocol.get());
-    this->_yawIndicator = std::make_unique<YawIndicator>(ui->MainTab, this->_commandsProtocol.get());
-    this->_depthIndicator = std::make_unique<DepthIndicator>(ui->MainTab, this->_commandsProtocol.get());
-
-    /// Создание виджета настроек робота
-    this->_robotSettingWidget = std::make_unique<RobotSettingsWidget>(ui->tab);
 
     this->SetupRendering();
     this->SetupButtons();
