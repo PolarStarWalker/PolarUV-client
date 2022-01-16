@@ -10,8 +10,7 @@
 
 class YawIndicator : public QOpenGLWidget {
 public:
-    explicit YawIndicator(QWidget *parent, CommandsProtocol *commandsProtocol) : QOpenGLWidget(parent) {
-        this->_commandsProtocol = commandsProtocol;
+    explicit YawIndicator(QWidget *parent, const CommandsProtocol &commandsProtocol) : QOpenGLWidget(parent), _commandsProtocol(commandsProtocol) {
 
         this->_lineWidth = 4;
         this->_outlineWidth = 1;
@@ -46,7 +45,7 @@ protected:
     }
 
     void paintGL() override {
-        float yawAngle = this->_commandsProtocol->GetTelemetryStruct().Rotation[TelemetryStruct::Z];
+        float yawAngle = this->_commandsProtocol.GetTelemetryStruct().Rotation[TelemetryStruct::Z];
 
         int32_t textOffsetX;
         if (yawAngle < 10) textOffsetX = 9;
@@ -248,7 +247,7 @@ protected:
     }
 
 private:
-    CommandsProtocol *_commandsProtocol;
+    const CommandsProtocol &_commandsProtocol;
 
     int32_t _lineWidth;
     int32_t _outlineWidth;

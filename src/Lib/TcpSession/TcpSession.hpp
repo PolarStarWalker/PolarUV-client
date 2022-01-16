@@ -12,10 +12,6 @@
 
 namespace lib::network {
 
-    static constexpr size_t PORT = 2022;
-    static constexpr char IP[13] = "192.168.1.50";
-    static const boost::asio::ip::tcp::endpoint ENDPOINT(boost::asio::ip::make_address(IP), PORT);
-
     class TcpSession final : public QObject {
     Q_OBJECT
     public:
@@ -31,22 +27,23 @@ namespace lib::network {
 
         inline bool IsOnline() { return _status; }
 
-    public slots:
-
-        [[noreturn]] void Start();
-
     private:
+        void Start();
 
         mutable std::queue<const TcpRequest *> _requests{};
         mutable std::mutex _requestsMutex;
         mutable std::condition_variable _queueIsNotEmpty;
         mutable std::atomic<bool> _status{};
+        std::atomic<bool> _isDone{};
 
-        void AddToQueue(const TcpRequest &request) const;
+        std::thread _thread;
+
+        void AddTaskToQueue(const TcpRequest &request) const;
+        const TcpRequest &GetTask();
 
         explicit TcpSession(QObject *parent = nullptr);
 
-        ~TcpSession() final = default;
+        ~TcpSession() final;
 
     };
 

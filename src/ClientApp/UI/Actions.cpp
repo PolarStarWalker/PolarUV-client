@@ -282,7 +282,7 @@ std::list<std::string> GetClientIps() {
             continue;
         }
 
-        ips.push_back(std::string(adapterInfo->IpAddressList.IpAddress.String));
+        ips.emplace_back(std::string(adapterInfo->IpAddressList.IpAddress.String));
         adapterInfo = adapterInfo->Next;
     }
 

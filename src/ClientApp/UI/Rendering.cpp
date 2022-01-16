@@ -3,47 +3,47 @@
 
 void MainWindow::SetupRendering() {
     /// Setting the application icon
-    setWindowIcon(this->_mainWindowResources.GetMainWindowIcon());
+    setWindowIcon(this->_mainWindowResources.MainWindowIcon);
 
     /// Setting the tab icons
-    ui->TabWidget->setTabIcon(0, _mainWindowResources.GetCameraIcon());
-    ui->TabWidget->setTabIcon(1, _mainWindowResources.GetSettingsIcon());
-    ui->TabWidget->setTabIcon(2, _mainWindowResources.GetCodeIcon());
+    ui->TabWidget->setTabIcon(0, _mainWindowResources.CameraIcon);
+    ui->TabWidget->setTabIcon(1, _mainWindowResources.SettingsIcon);
+    ui->TabWidget->setTabIcon(2, _mainWindowResources.CodeIcon);
 
     /// Setting the button icons
-    ui->CommandsProtocolButton->setIcon(_mainWindowResources.GetRedStartIcon());
-    ui->ShowTabBarButton->setIcon(_mainWindowResources.GetHamburgerIcon());
-    ui->HideTabBarButton->setIcon(_mainWindowResources.GetHamburgerIcon());
-    ui->VideoStreamButton->setIcon(_mainWindowResources.GetPlayIcon());
-    ui->ScreenshotButton->setIcon(_mainWindowResources.GetScreenshotIcon());
-    ui->VideoCaptureButton->setIcon(_mainWindowResources.GetWhiteVideoIcon());
-    ui->RefreshClientIPsButton->setIcon(_mainWindowResources.GetReloadIcon());
-    ui->RefreshGamepadsButton->setIcon(_mainWindowResources.GetReloadIcon());
-    ui->ReleaseCodeButton->setIcon(_mainWindowResources.GetPlayIcon());
-    ui->DebugCodeButton->setIcon(_mainWindowResources.GetBugIcon());
+    ui->CommandsProtocolButton->setIcon(_mainWindowResources.RedStartIcon);
+    ui->ShowTabBarButton->setIcon(_mainWindowResources.HamburgerIcon);
+    ui->HideTabBarButton->setIcon(_mainWindowResources.HamburgerIcon);
+    ui->VideoStreamButton->setIcon(_mainWindowResources.PlayIcon);
+    ui->ScreenshotButton->setIcon(_mainWindowResources.ScreenshotIcon);
+    ui->VideoCaptureButton->setIcon(_mainWindowResources.WhiteVideoIcon);
+    ui->RefreshClientIPsButton->setIcon(_mainWindowResources.ReloadIcon);
+    ui->RefreshGamepadsButton->setIcon(_mainWindowResources.ReloadIcon);
+    ui->ReleaseCodeButton->setIcon(_mainWindowResources.PlayIcon);
+    ui->DebugCodeButton->setIcon(_mainWindowResources.BugIcon);
 
     /// Setting the gamepad button icons
-    ui->AButtonLabel->setPixmap(_mainWindowResources.GetAButtonIcon());
-    ui->BButtonLabel->setPixmap(_mainWindowResources.GetBButtonIcon());
-    ui->XButtonLabel->setPixmap(_mainWindowResources.GetXButtonIcon());
-    ui->YButtonLabel->setPixmap(_mainWindowResources.GetYButtonIcon());
-    ui->DPadHorizontalLabel->setPixmap(_mainWindowResources.GetDPadHorizontalIcon());
-    ui->DPadVerticalLabel->setPixmap(_mainWindowResources.GetDPadVerticalIcon());
-    ui->LSHorizontalLabel->setPixmap(_mainWindowResources.GetLSHorizontalIcon());
-    ui->LSVerticalLabel->setPixmap(_mainWindowResources.GetLSVerticalIcon());
-    ui->LSPressLabel->setPixmap(_mainWindowResources.GetLSPressIcon());
-    ui->RSHorizontalLabel->setPixmap(_mainWindowResources.GetRSHorizontalIcon());
-    ui->RSVerticalLabel->setPixmap(_mainWindowResources.GetRSVerticalIcon());
-    ui->RSPressLabel->setPixmap(_mainWindowResources.GetRSPressIcon());
-    ui->LBLTButtonLabel->setPixmap(_mainWindowResources.GetLBLTButtonIcon());
-    ui->RBRTButtonLabel->setPixmap(_mainWindowResources.GetRBRTButtonIcon());
-    ui->BackButtonLabel->setPixmap(_mainWindowResources.GetBackButtonIcon());
-    ui->MenuButtonLabel->setPixmap(_mainWindowResources.GetMenuButtonIcon());
+    ui->AButtonLabel->setPixmap(_mainWindowResources.AButtonIcon);
+    ui->BButtonLabel->setPixmap(_mainWindowResources.BButtonIcon);
+    ui->XButtonLabel->setPixmap(_mainWindowResources.XButtonIcon);
+    ui->YButtonLabel->setPixmap(_mainWindowResources.YButtonIcon);
+    ui->DPadHorizontalLabel->setPixmap(_mainWindowResources.DPadHorizontalIcon);
+    ui->DPadVerticalLabel->setPixmap(_mainWindowResources.DPadVerticalIcon);
+    ui->LSHorizontalLabel->setPixmap(_mainWindowResources.LSHorizontalIcon);
+    ui->LSVerticalLabel->setPixmap(_mainWindowResources.LSVerticalIcon);
+    ui->LSPressLabel->setPixmap(_mainWindowResources.LSPressIcon);
+    ui->RSHorizontalLabel->setPixmap(_mainWindowResources.RSHorizontalIcon);
+    ui->RSVerticalLabel->setPixmap(_mainWindowResources.RSVerticalIcon);
+    ui->RSPressLabel->setPixmap(_mainWindowResources.RSPressIcon);
+    ui->LBLTButtonLabel->setPixmap(_mainWindowResources.LBLTButtonIcon);
+    ui->RBRTButtonLabel->setPixmap(_mainWindowResources.RBRTButtonIcon);
+    ui->BackButtonLabel->setPixmap(_mainWindowResources.BackButtonIcon);
+    ui->MenuButtonLabel->setPixmap(_mainWindowResources.MenuButtonIcon);
 
     /// Setting the background
     QPixmap pixmap(10, 10);
     pixmap.fill(QColor::fromRgb(40, 40, 40));
-    ui->CameraLabel->setPixmap(_mainWindowResources.GetBackground());
+    ui->CameraLabel->setPixmap(_mainWindowResources.Background);
     ui->SettingsTabBackgroundLabel->setPixmap(pixmap);
     ui->CodeTabBackgroundLabel->setPixmap(pixmap);
 
@@ -291,25 +291,25 @@ void MainWindow::UpdateWidgets() {
         }
         this->_isVideoFrame = true;
     } else if (!this->_videoStream->IsStreamOnline() && _isVideoFrame) {
-        ui->CameraLabel->setPixmap(_mainWindowResources.GetBackground());
+        ui->CameraLabel->setPixmap(_mainWindowResources.Background);
         this->_isVideoFrame = false;
     }
 
     /// Selecting the color of the CommandsProtocol button
     if (this->_commandsProtocol->IsStreamOnline() && !this->_isGreen) {
-        ui->CommandsProtocolButton->setIcon(_mainWindowResources.GetGreenStartIcon());
+        ui->CommandsProtocolButton->setIcon(_mainWindowResources.GreenStartIcon);
         this->_isGreen = true;
     } else if (!this->_commandsProtocol->IsStreamOnline() && this->_isGreen) {
-        ui->CommandsProtocolButton->setIcon(_mainWindowResources.GetRedStartIcon());
+        ui->CommandsProtocolButton->setIcon(_mainWindowResources.RedStartIcon);
         this->_isGreen = false;
     }
 
     /// Selecting the color of the VideoStream button
     if (_videoStream->IsStreamOnline() && !this->_isPause) {
-        ui->VideoStreamButton->setIcon(_mainWindowResources.GetPauseIcon());
+        ui->VideoStreamButton->setIcon(_mainWindowResources.PauseIcon);
         this->_isPause = true;
     } else if (!_videoStream->IsStreamOnline() && this->_isPause) {
-        ui->VideoStreamButton->setIcon(_mainWindowResources.GetPlayIcon());
+        ui->VideoStreamButton->setIcon(_mainWindowResources.PlayIcon);
         this->_isPause = false;
     }
 

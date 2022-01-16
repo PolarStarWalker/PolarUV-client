@@ -10,41 +10,38 @@
 #include "Protocols/Protocols.hpp"
 
 
-class PitchIndicator : public QOpenGLWidget {
+class PitchIndicator final : public QOpenGLWidget {
 public:
-    explicit PitchIndicator(QWidget *parent, CommandsProtocol *commandsProtocol) : QOpenGLWidget(parent) {
-        this->_commandsProtocol = commandsProtocol;
+    PitchIndicator(QWidget *parent, const CommandsProtocol &commandsProtocol) :
+    QOpenGLWidget(parent),
+    _commandsProtocol(commandsProtocol) {
 
-        this->_lineWidth = 4;
-        this->_outlineWidth = 1;
-        this->_fontSize = 16;
-        this->_textOffsetY = 2;
-        this->_borderOffsetY1 = 5;
-        this->_borderOffsetY2 = 20;
-        this->_borderOffsetX1 = 5;
-        this->_borderOffsetX2 = 20;
-        this->_edgeOffset = 2;
-        this->_horizontalLineLength = 60;
-        this->_depthRectWidth = 80;
-        this->_depthRectHeight = 40;
+        _lineWidth = 4;
+        _outlineWidth = 1;
+        _fontSize = 16;
+        _textOffsetY = 2;
+        _borderOffsetY1 = 5;
+        _borderOffsetY2 = 20;
+        _borderOffsetX1 = 5;
+        _borderOffsetX2 = 20;
+        _edgeOffset = 2;
+        _horizontalLineLength = 60;
+        _depthRectWidth = 80;
+        _depthRectHeight = 40;
 
-        this->resize(130, 640);
+        resize(130, 640);
 
-        this->setAttribute(Qt::WA_AlwaysStackOnTop);
-        this->setAttribute(Qt::WA_TranslucentBackground);
+        setAttribute(Qt::WA_AlwaysStackOnTop);
+        setAttribute(Qt::WA_TranslucentBackground);
     }
 
-    ~PitchIndicator() override {
-
-    }
+    ~PitchIndicator() final = default;
 
 protected:
-    void initializeGL() override {
+    void initializeGL() final {  }
 
-    }
-
-    void paintGL() override {
-        float pitchAngle = this->_commandsProtocol->GetTelemetryStruct().Rotation[TelemetryStruct::Y];
+    void paintGL() final {
+        float pitchAngle = _commandsProtocol.GetTelemetryStruct().Rotation[TelemetryStruct::Y];
 
         QFont font("Times", (int32_t) _fontSize);
         font.setBold(true);
@@ -53,7 +50,7 @@ protected:
         painter.setRenderHints(QPainter::Antialiasing);
         painter.save();
 
-        int32_t y = (int32_t) pitchAngle;
+        auto y = (int32_t) pitchAngle;
         if (y < 0) y = 0;
         else if ((0 <= y) && (y < 90)) y = y * 3;             // Смотрит вперед, верхняя полусфера
         else if ((90 <= y) && (y < 270)) y = (y - 180) * 3;   // Смотрит назад
@@ -187,7 +184,7 @@ protected:
     }
 
 private:
-    CommandsProtocol *_commandsProtocol;
+    const CommandsProtocol &_commandsProtocol;
 
     float _lineWidth;
     float _outlineWidth;

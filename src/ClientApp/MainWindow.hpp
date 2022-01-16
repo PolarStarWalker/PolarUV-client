@@ -148,8 +148,7 @@ private:
     Ui::MainWindow *ui;
 
     /// Singleton
-    const MainWindowResources& _mainWindowResources;
-    std::unique_ptr<QThread> _networkThread;
+    const MainWindowResources::Resources& _mainWindowResources;
     lib::network::TcpSession& _network;
 
     std::unique_ptr<QTimer> _updateTimer;

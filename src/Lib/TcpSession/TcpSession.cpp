@@ -4,7 +4,17 @@
 
 using namespace lib::network;
 
-TcpSession::TcpSession(QObject *parent) : QObject(parent) {}
+TcpSession::TcpSession(QObject *parent) :
+        QObject(parent) {
+    _thread = std::thread(&TcpSession::Start, this);
+    _thread.detach();
+}
+
+TcpSession::~TcpSession() noexcept {
+    //poison pill
+    auto future  = Send(Packet(Packet::TypeEnum::W, "", -1));
+    _thread.join();
+}
 
 TcpSession &TcpSession::GetInstance() {
     static TcpSession instance;
@@ -13,20 +23,20 @@ TcpSession &TcpSession::GetInstance() {
 
 Response TcpSession::Send(const Packet &packet) const {
 
-    if(!_status) return {"", Response::ConnectionError};
+    if (!_status) return {"", Response::ConnectionError};
 
     std::promise<Response *> promise;
     auto future = promise.get_future();
 
     TcpRequest request(promise, packet);
 
-    AddToQueue(request);
+    AddTaskToQueue(request);
 
     return *(future.get());
 }
 
 Response TcpSession::Send(Packet &&packet) const {
-     return Send(packet);
+    return Send(packet);
 }
 
 void TcpSession::Start() {
@@ -37,27 +47,38 @@ void TcpSession::Start() {
     io_context ioContext;
     ip::tcp::socket socket(ioContext);
 
-    for (;;) {
+    size_t PORT = 2022;
+    std::string_view IP = "192.168.1.50";
+    ip::tcp::endpoint ENDPOINT(boost::asio::ip::make_address(IP), PORT);
 
+    while (!_isDone) {
+
+        ///Connect
         for (;;) {
+
+            std::clog << "start listening" << std::endl;
+
             ErrorCode errorCode;
             socket.connect(ENDPOINT, errorCode);
 
             if (!errorCode.failed()) break;
 
-            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
 
+        ///main cycle
         while (socket.is_open()) {
 
-            std::unique_lock guard(_requestsMutex);
+            auto &request = GetTask();
 
-            _queueIsNotEmpty.wait(guard, [&]() noexcept {return _requests.empty();});
-
-            TcpRequest request = *_requests.front();
-            _requests.pop();
+            if (request.Packet.EndpointId == -1) {
+                socket.close();
+                _isDone.store(true);
+            }
 
             ErrorCode errorCode;
+
+            ///some transfer logic
             size_t length = boost::asio::write(socket,
                                                buffer(request.Packet.Data),
                                                transfer_exactly(request.Packet.Data.size()),
@@ -66,48 +87,25 @@ void TcpSession::Start() {
             if (errorCode.failed() || !length) {
                 socket.close();
                 _status.store(false);
+                break;
             }
-
         }
     }
 }
 
-void TcpSession::AddToQueue(const TcpRequest& request) const {
+void TcpSession::AddTaskToQueue(const TcpRequest &request) const {
     std::lock_guard guard(_requestsMutex);
     _requests.push(&request);
     _queueIsNotEmpty.notify_one();
 }
 
-void test() {
-    //boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address("192.168.1.50"), 2022);
+const TcpRequest &TcpSession::GetTask() {
+    std::unique_lock guard(_requestsMutex);
 
-    boost::asio::io_context ioContext;
+    _queueIsNotEmpty.wait(guard, [&]() noexcept { return _requests.empty(); });
 
-    boost::asio::ip::tcp::socket socket(ioContext);
+    auto &request = *_requests.front();
+    _requests.pop();
 
-    boost::system::error_code errorCode;
-
-    socket.connect(ENDPOINT, errorCode);
-
-    if (errorCode.failed()) {
-        std::cerr << errorCode.value() << " " << errorCode.message() << std::endl;
-        return;
-    }
-
-    while (socket.is_open()) {
-
-        std::string msg;
-        std::getline(std::cin, msg);
-
-        size_t length = boost::asio::write(socket,
-                                           boost::asio::buffer(msg),
-                                           boost::asio::transfer_exactly(32),
-                                           errorCode);
-
-        if (errorCode.failed())
-            socket.close();
-
-        if (!length)
-            socket.close();
-    }
+    return request;
 }

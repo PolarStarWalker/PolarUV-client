@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16)
 set(CMAKE_CXX_STANDARD 20)
 #link C/C++ libraries statically
 set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
-set(CMAKE_CXX_FLAGS "-fcoroutines")
+set(CMAKE_CXX_FLAGS "-fcoroutines -flto")
 
 set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CMAKE_COMMAND} -E time")

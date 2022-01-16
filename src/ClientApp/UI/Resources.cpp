@@ -1,7 +1,6 @@
 #include "./Resources/MainWindowResources.hpp"
 
 MainWindowResources::MainWindowResources() {
-
     this->_resources = std::make_unique<Resources>();
 
     this->_resources->Background = QPixmap("Icons/Background.png");
@@ -21,7 +20,7 @@ MainWindowResources::MainWindowResources() {
     this->_resources->RedStartIcon = QIcon("Icons/RedStartIcon.png");
     this->_resources->PauseIcon = QIcon("Icons/PauseIcon.png");
     this->_resources->PlayIcon = QIcon("Icons/PlayIcon.png");
-    this->_resources->WindowIcon = QIcon("Icons/WindowIcon.png");
+    this->_resources->MainWindowIcon = QIcon("Icons/MainWindowIcon.png");
 
     /// Gamepad buttons
     this->_resources->AButtonIcon = QPixmap("Icons/AButtonIcon.png");
@@ -42,46 +41,7 @@ MainWindowResources::MainWindowResources() {
     this->_resources->MenuButtonIcon = QPixmap("Icons/MenuButtonIcon.png");
 }
 
-const MainWindowResources &MainWindowResources::GetInstance()  {
+const MainWindowResources::Resources &MainWindowResources::GetInstance()  {
     const static MainWindowResources instance;
-    return instance;
-}
-
-NewMainWindowResources::NewMainWindowResources() {
-    Background = QPixmap("Icons/Background.png");
-
-    /// Tabs
-    CameraIcon = QIcon("Icons/CameraIcon.png");
-    SettingsIcon = QIcon("Icons/SettingsIcon.png");
-    CodeIcon = QIcon("Icons/CodeIcon.png");
-
-    /// Buttons
-    HamburgerIcon = QIcon("Icons/HamburgerIcon.png");
-    ScreenshotIcon = QIcon("Icons/ScreenshotIcon.png");
-    WhiteVideoIcon = QIcon("Icons/WhiteVideoIcon.png");
-    ReloadIcon = QIcon("Icons/ReloadIcon.png");
-    BugIcon = QIcon("Icons/BugIcon.png");
-    GreenStartIcon = QIcon("Icons/GreenStartIcon.png");
-    RedStartIcon = QIcon("Icons/RedStartIcon.png");
-    PauseIcon = QIcon("Icons/PauseIcon.png");
-    PlayIcon = QIcon("Icons/PlayIcon.png");
-    WindowIcon = QIcon("Icons/WindowIcon.png");
-
-    /// Gamepad buttons
-    AButtonIcon = QPixmap("Icons/AButtonIcon.png");
-    BButtonIcon = QPixmap("Icons/BButtonIcon.png");
-    XButtonIcon = QPixmap("Icons/XButtonIcon.png");
-    YButtonIcon = QPixmap("Icons/YButtonIcon.png");
-    DPadHorizontalIcon = QPixmap("Icons/DPadHorizontalIcon.png");
-    DPadVerticalIcon = QPixmap("Icons/DPadVerticalIcon.png");
-    LSHorizontalIcon = QPixmap("Icons/LSHorizontalIcon.png");
-    LSVerticalIcon = QPixmap("Icons/LSVerticalIcon.png");
-    LSPressIcon = QPixmap("Icons/LSPressIcon.png");
-    RSHorizontalIcon = QPixmap("Icons/RSHorizontalIcon.png");
-    RSVerticalIcon = QPixmap("Icons/RSVerticalIcon.png");
-    RSPressIcon = QPixmap("Icons/RSPressIcon.png");
-    LBLTButtonIcon = QPixmap("Icons/LBLTButtonIcon.png");
-    RBRTButtonIcon = QPixmap("Icons/RBRTButtonIcon.png");
-    BackButtonIcon = QPixmap("Icons/BackButtonIcon.png");
-    MenuButtonIcon = QPixmap("Icons/MenuButtonIcon.png");
+    return *(instance._resources);
 }

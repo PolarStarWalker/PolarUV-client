@@ -44,6 +44,9 @@ namespace lib::network {
 
         TcpRequest(std::promise<Response *> &response, const Packet &packet) : Response(&response), Packet(packet) {};
 
+        TcpRequest(TcpRequest&&) = delete;
+        TcpRequest(const TcpRequest&) = delete;
+
         std::promise<Response *> *Response;
 
         const Packet &Packet;

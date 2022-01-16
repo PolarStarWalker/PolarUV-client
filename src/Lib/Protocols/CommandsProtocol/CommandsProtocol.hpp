@@ -32,7 +32,7 @@ public:
 
     inline bool GetError() const { return _errorStatus; }
 
-    inline TelemetryStruct GetTelemetryStruct() {
+    inline TelemetryStruct GetTelemetryStruct() const {
 
         this->_telemetryMutex.lock_shared();
         TelemetryStruct telemetry = this->_telemetry;

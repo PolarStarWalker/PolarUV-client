@@ -10,8 +10,7 @@
 
 class DepthIndicator : public QOpenGLWidget {
 public:
-    explicit DepthIndicator(QWidget *parent, CommandsProtocol *commandsProtocol) : QOpenGLWidget(parent) {
-        this->_commandsProtocol = commandsProtocol;
+    explicit DepthIndicator(QWidget *parent, const CommandsProtocol &commandsProtocol) : QOpenGLWidget(parent), _commandsProtocol(commandsProtocol) {
 
         this->_valueRange = 10;
 
@@ -40,7 +39,7 @@ protected:
     void initializeGL() override { }
 
     void paintGL() override {
-        float depth = this->_commandsProtocol->GetTelemetryStruct().Depth;
+        float depth = this->_commandsProtocol.GetTelemetryStruct().Depth;
 
         // this->valueRange = ...
 
@@ -172,7 +171,7 @@ protected:
     }
 
 private:
-    CommandsProtocol *_commandsProtocol;
+    const CommandsProtocol &_commandsProtocol;
 
     float _valueRange;
 

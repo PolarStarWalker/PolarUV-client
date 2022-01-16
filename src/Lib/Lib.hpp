@@ -8,7 +8,14 @@
 #include "./Gamepad/Gamepad.hpp"
 #include "./Coroutines/All.hpp"
 #include "./Singleton.hpp"
+#include "./Logger/Logger.hpp"
 
-void dummy();
+
+
+namespace lib {
+    static void Setup() {
+        logger::Setup();
+    }
+}
 
 #endif
