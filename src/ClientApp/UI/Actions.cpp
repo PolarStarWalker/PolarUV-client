@@ -289,3 +289,18 @@ std::list<std::string> GetClientIps() {
     delete[] deleteAdapter;
     return ips;
 }
+
+bool MainWindow::eventFilter(QObject *object, QEvent *event) {
+    if (event->type() == QEvent::Resize) {
+        MainWindow::resizeEvent((QResizeEvent*)event);
+    }
+    if (event->type() == QEvent::Show ||
+        event->type() == QEvent::Resize ||
+        event->type() == QEvent::WindowStateChange) {
+
+        this->MoveWidgets();
+
+        emit SizeChanged(ui->TabWidget->currentWidget()->size());
+    }
+    return false;
+}

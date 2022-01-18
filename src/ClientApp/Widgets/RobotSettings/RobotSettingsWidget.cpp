@@ -1,6 +1,5 @@
 #include "RobotSettingsWidget.hpp"
-#include "./ui_RobotSettingsWidget.h"
-
+#include "ui_RobotSettingsWidget.h"
 
 RobotSettingsWidget::RobotSettingsWidget(QWidget *parent) :
         QWidget(parent),
@@ -100,5 +99,9 @@ void RobotSettingsWidget::UpdateMaxSpeedSlider(const QString &string) {
     ui->MaxSpeedSlider->setValue(string.toInt());
 }
 
-
+void RobotSettingsWidget::UpdateGeometry(QSize newParentSize) {
+    int x = (newParentSize.width() - this->width()) / 2;
+    int y = (newParentSize.height() - this->height()) / 2;
+    this->move(x,y);
+}
 

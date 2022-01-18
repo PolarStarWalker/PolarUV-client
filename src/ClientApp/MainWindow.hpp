@@ -1,14 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#pragma push_macro("slots")
-#undef slots
-
-#include <Python.h>
-
-#pragma pop_macro("slots")
-
-#include "./Widgets/Widgets.hpp"
+#include "./Widgets/widgets.hpp"
 
 #include <iostream>
 #include <fstream>
@@ -28,6 +21,8 @@
 #include <QNetworkReply>
 #include <QTimer>
 #include <QGridLayout>
+#include <QResizeEvent>
+#include <QWindowStateChangeEvent>
 
 #include "./UI/Resources/MainWindowResources.hpp"
 
@@ -63,6 +58,7 @@ protected:
     void SetupShortcuts();
 
     void PaintRollIndicator(float rollAngle, float sizeMultiplier); // Angle in degrees
+
     void PaintPitchIndicator(float pitchAngle, float sizeMultiplier);
 
     void PaintYawIndicator(float yawAngle, float sizeMultiplier);
@@ -87,8 +83,10 @@ protected:
 
     void RawLoadClientSettings();
 
-private
-    slots:
+signals:
+    void SizeChanged(QSize newSize);
+
+private slots:
 
     void MoveWidgets();
 
@@ -124,10 +122,6 @@ private
 
     void ShowTabBar();
 
-    void ReleaseCode();
-
-    void DebugCode();
-
     void UpdateMotorsTable(int value);
 
     void UpdateHandTable(int value);
@@ -145,6 +139,8 @@ private
     void shortcutB();
 
 private:
+    bool eventFilter(QObject *object, QEvent *event) override;
+
     Ui::MainWindow *ui;
 
     /// Singleton
@@ -160,18 +156,21 @@ private:
     std::unique_ptr<YawIndicator> _yawIndicator;
     std::unique_ptr<DepthIndicator> _depthIndicator;
 
-    std::unique_ptr<RobotSettingsWidget> _robotSettingWidget;
+    std::unique_ptr<RobotSettingsWidget> _robotSettingsWidget;
+    std::unique_ptr<ClientSettingsWidget> _clientSettingsWidget;
+    std::unique_ptr<PythonEnvironmentWidget> _pythonEnvironmentWidget;
 
-    bool _isVideoFrame = false;       // For UpdateWidgets() function
-    bool _isGreen = false;            // in order not to draw the same
-    bool _isPause = false;            // images or text
-    int32_t _oldEulerX = -1;          //
-    int32_t _oldEulerY = -1;          //
-    int32_t _oldEulerZ = -1;          //
-    float _oldDepth = -1;             //
-    float _oldVoltage = -1;           //
-    QPixmap _oldVideoFrame{};         //
-    int8_t _oldCalibrationArray[4]{}; //
+    /// ToDo: shushkov.d переделать
+    bool _isVideoFrame = false;
+    bool _isGreen = false;
+    bool _isPause = false;
+    int32_t _oldEulerX = -1;
+    int32_t _oldEulerY = -1;
+    int32_t _oldEulerZ = -1;
+    float _oldDepth = -1;
+    float _oldVoltage = -1;
+    QPixmap _oldVideoFrame{};
+    int8_t _oldCalibrationArray[4]{};
 
     int32_t _pitchY = 0;
 

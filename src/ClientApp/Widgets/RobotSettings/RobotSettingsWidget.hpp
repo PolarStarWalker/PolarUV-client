@@ -28,6 +28,9 @@ private:
 
     const lib::network::TcpSession& _transmitter;
 
+public slots:
+    void UpdateGeometry(QSize newParentSize);
+
 private slots:
     void SendSettings() const;
 

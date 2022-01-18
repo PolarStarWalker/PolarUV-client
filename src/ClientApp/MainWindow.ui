@@ -872,6 +872,9 @@
     <property name="mouseTracking">
      <bool>false</bool>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
     <property name="tabPosition">
      <enum>QTabWidget::West</enum>
     </property>
@@ -6383,7 +6386,7 @@ border-style:solid;</string>
        <rect>
         <x>411</x>
         <y>20</y>
-        <width>600</width>
+        <width>590</width>
         <height>60</height>
        </rect>
       </property>
@@ -6392,7 +6395,7 @@ border-style:solid;</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>600</width>
+         <width>590</width>
          <height>60</height>
         </rect>
        </property>
@@ -6416,7 +6419,7 @@ border-style:solid;</string>
       <widget class="QPushButton" name="SettingsPage1Button">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>15</x>
          <y>15</y>
          <width>180</width>
          <height>30</height>
@@ -6454,7 +6457,7 @@ border-style:solid;</string>
       <widget class="QPushButton" name="SettingsPage2Button">
        <property name="geometry">
         <rect>
-         <x>210</x>
+         <x>205</x>
          <y>15</y>
          <width>180</width>
          <height>30</height>
@@ -6492,7 +6495,7 @@ border-style:solid;</string>
       <widget class="QPushButton" name="SettingsPage3Button">
        <property name="geometry">
         <rect>
-         <x>400</x>
+         <x>395</x>
          <y>15</y>
          <width>180</width>
          <height>30</height>
@@ -6532,299 +6535,22 @@ border-style:solid;</string>
      <zorder>SettingsStackedWidget</zorder>
      <zorder>SettingsPageSelectorWidget</zorder>
     </widget>
-    <widget class="QWidget" name="CodeTab">
+    <widget class="QWidget" name="PythonTab">
      <attribute name="title">
       <string/>
      </attribute>
      <attribute name="toolTip">
       <string>Программа АНПА</string>
      </attribute>
-     <widget class="QTextEdit" name="CodeEdit">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>70</y>
-        <width>1179</width>
-        <height>436</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Courier New</family>
-        <pointsize>14</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-      <property name="midLineWidth">
-       <number>0</number>
-      </property>
-      <property name="acceptRichText">
-       <bool>false</bool>
-      </property>
-      <property name="placeholderText">
-       <string>print(&quot;Hello, World!&quot;)</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="CodeTabBackgroundLabel">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>1319</width>
-        <height>786</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::RichText</enum>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="CodeEditLabel">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>21</y>
-        <width>290</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Arial</family>
-        <pointsize>14</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="mouseTracking">
-       <bool>false</bool>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-top-left-radius:10px;
-border-top-right-radius:10px;
-border-bottom-width:0px;
-border-style:solid;</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="text">
-       <string>Редактор кода АНПА</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="ReleaseCodeButton">
-      <property name="geometry">
-       <rect>
-        <x>1210</x>
-        <y>720</y>
-        <width>40</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="DebugCodeButton">
-      <property name="geometry">
-       <rect>
-        <x>1165</x>
-        <y>720</y>
-        <width>40</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="OutputEdit">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>516</y>
-        <width>1179</width>
-        <height>200</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Courier New</family>
-        <pointsize>14</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-      <property name="midLineWidth">
-       <number>0</number>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="acceptRichText">
-       <bool>false</bool>
-      </property>
-      <property name="placeholderText">
-       <string>Hello, World!</string>
-      </property>
-     </widget>
-     <widget class="QProgressBar" name="ProgressBar">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>1000</x>
-        <y>730</y>
-        <width>150</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:0px;
-border-color :rgb(100,100,100);
-border-style:solid;</string>
-      </property>
-      <property name="value">
-       <number>0</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="invertedAppearance">
-       <bool>false</bool>
-      </property>
-      <property name="format">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QFrame" name="ProgressBarFrame">
-      <property name="geometry">
-       <rect>
-        <x>990</x>
-        <y>720</y>
-        <width>170</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-     </widget>
-     <zorder>CodeTabBackgroundLabel</zorder>
-     <zorder>ReleaseCodeButton</zorder>
-     <zorder>DebugCodeButton</zorder>
-     <zorder>CodeEdit</zorder>
-     <zorder>CodeEditLabel</zorder>
-     <zorder>OutputEdit</zorder>
-     <zorder>ProgressBarFrame</zorder>
-     <zorder>ProgressBar</zorder>
     </widget>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="TestTab1">
      <attribute name="title">
-      <string>TEST</string>
+      <string>TEST1</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="TestTab2">
+     <attribute name="title">
+      <string>TEST2</string>
      </attribute>
     </widget>
    </widget>

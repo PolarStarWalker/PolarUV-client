@@ -19,8 +19,6 @@ void MainWindow::SetupRendering() {
     ui->VideoCaptureButton->setIcon(_mainWindowResources.WhiteVideoIcon);
     ui->RefreshClientIPsButton->setIcon(_mainWindowResources.ReloadIcon);
     ui->RefreshGamepadsButton->setIcon(_mainWindowResources.ReloadIcon);
-    ui->ReleaseCodeButton->setIcon(_mainWindowResources.PlayIcon);
-    ui->DebugCodeButton->setIcon(_mainWindowResources.BugIcon);
 
     /// Setting the gamepad button icons
     ui->AButtonLabel->setPixmap(_mainWindowResources.AButtonIcon);
@@ -45,7 +43,6 @@ void MainWindow::SetupRendering() {
     pixmap.fill(QColor::fromRgb(40, 40, 40));
     ui->CameraLabel->setPixmap(_mainWindowResources.Background);
     ui->SettingsTabBackgroundLabel->setPixmap(pixmap);
-    ui->CodeTabBackgroundLabel->setPixmap(pixmap);
 
     /// Setting a transparent background for some buttons
     ui->ShowTabBarButton->setStyleSheet("background-color: transparent");
@@ -98,14 +95,6 @@ void MainWindow::MoveWidgets() {
 
     /// Changing the size of the backgrounds
     ui->SettingsTabBackgroundLabel->setGeometry(ui->SettingsTab->geometry());
-    ui->CodeTabBackgroundLabel->setGeometry(ui->CodeTab->geometry());
-
-    /// Changing the size of the CodeEdit
-    ui->CodeEdit->setFixedWidth(ui->CodeTab->width() - 140);
-    ui->CodeEdit->setFixedHeight(ui->CodeTab->height() - ui->OutputEdit->height() - 140 - 10);
-
-    /// Changing the size of the OutputEdit
-    ui->OutputEdit->setFixedWidth(ui->CodeTab->width() - 140);
 
     /// Moving the CommandsProtocol button
     int offset = 0; // Distance from the bottom edge of window
@@ -183,29 +172,6 @@ void MainWindow::MoveWidgets() {
     x = ui->MainTab->width() - ui->FPSLabel->width();
     ui->FPSLabel->move(x, 0);
 
-    /// Moving the ReleaseCode button
-    offset = 10; // Vertical distance from the OutputEdit
-    x = ui->OutputEdit->x() + ui->OutputEdit->width() - ui->ReleaseCodeButton->width();
-    y = ui->OutputEdit->y() + ui->OutputEdit->height() + offset;
-    ui->ReleaseCodeButton->move(x, y);
-
-    /// Moving the DebugCode button
-    offset = 10; // Horizontal distance from the ReleaseCode button
-    x = ui->ReleaseCodeButton->x() - ui->DebugCodeButton->width() - offset;
-    y = ui->ReleaseCodeButton->y();
-    ui->DebugCodeButton->move(x, y);
-
-    /// Moving the ProgressBar frame
-    offset = 10; // Horizontal distance from the DebugCode button
-    x = ui->DebugCodeButton->x() - ui->ProgressBarFrame->width() - offset;
-    y = ui->DebugCodeButton->y();
-    ui->ProgressBarFrame->move(x, y);
-
-    /// Moving the ProgressBar
-    x = ui->ProgressBarFrame->x() + ui->ProgressBarFrame->width() / 2 - ui->ProgressBar->width() / 2;
-    y = ui->ProgressBarFrame->y() + ui->ProgressBarFrame->height() / 2 - ui->ProgressBar->height() / 2;
-    ui->ProgressBar->move(x, y);
-
     /// Moving the SettingsPageSelector widget
     offset = 20; // Vertical distance from the top edge of window
     x = (ui->SettingsTab->width() / 2) - (ui->SettingsPageSelectorWidget->width() / 2);
@@ -223,11 +189,6 @@ void MainWindow::MoveWidgets() {
     x = ui->MotorsSettingsWidget->x() + ui->MotorsSettingsWidget->width() + offset;
     ui->HandSettingsWidget->move(x, y);
 
-    /// Moving the RobotSettings widget
-    x = (ui->tab->width() - this->_robotSettingWidget->width()) / 2;
-    y = (ui->tab->height() - this->_robotSettingWidget->height()) / 2;
-    this->_robotSettingWidget->move(x, y);
-
     /// Moving the KeyAssignments widget
     offset = 35; // Horizontal distance between widgets
     x = (ui->SettingsStackedWidget->width() - (ui->KeyAssignmentsWidget->width()
@@ -243,10 +204,6 @@ void MainWindow::MoveWidgets() {
     x = (ui->SettingsStackedWidget->width() - ui->UISettingsWidget->width()) / 2;
     y = (ui->SettingsStackedWidget->height() - ui->UISettingsWidget->height()) / 2;
     ui->UISettingsWidget->move(x, y);
-
-    /// Moving the OutputEdit
-    offset = 10; // Vertical distance from the CodeEdit
-    ui->OutputEdit->move(ui->OutputEdit->x(), ui->CodeEdit->y() + ui->CodeEdit->height() + offset);
 
     /// Moving the MotorsSettings label
     x = ui->MotorsSettingsWidget->x() + ui->MotorsSettingsWidget->width() / 2 - ui->MotorsSettingsLabel->width() / 2;
@@ -272,16 +229,11 @@ void MainWindow::MoveWidgets() {
     x = ui->UISettingsWidget->x() + ui->UISettingsWidget->width() / 2 - ui->UISettingsLabel->width() / 2;
     y = ui->UISettingsWidget->y() - ui->UISettingsLabel->height() / 2;
     ui->UISettingsLabel->move(x, y);
-
-    /// Moving the CodeEdit Label
-    x = ui->CodeEdit->x() + ui->CodeEdit->width() / 2 - ui->CodeEditLabel->width() / 2;
-    y = ui->CodeEditLabel->y();
-    ui->CodeEditLabel->move(x, y);
 }
 
 void MainWindow::UpdateWidgets() {
 
-    this->MoveWidgets();
+    //this->MoveWidgets();
 
     /// Painting a video frame or placeholder image
     if (this->_videoStream->IsStreamOnline()) {

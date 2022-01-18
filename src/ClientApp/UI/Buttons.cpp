@@ -18,8 +18,6 @@ void MainWindow::SetupButtons() {
     this->connect(ui->RefreshClientIPsButton, SIGNAL(clicked(bool)), SLOT(RefreshClientIps()));
     this->connect(ui->ShowTabBarButton, SIGNAL(clicked(bool)), SLOT(ShowTabBar()));
     this->connect(ui->HideTabBarButton, SIGNAL(clicked(bool)), SLOT(HideTabBar()));
-    this->connect(ui->DebugCodeButton, SIGNAL(clicked(bool)), SLOT(DebugCode()));
-    this->connect(ui->ReleaseCodeButton, SIGNAL(clicked(bool)), SLOT(ReleaseCode()));
 }
 
 void MainWindow::SwitchVideoStream() {
@@ -197,65 +195,4 @@ void MainWindow::HideTabBar() {
 
     /// Showing ShowTabBar button
     ui->ShowTabBarButton->show();
-}
-
-void MainWindow::ReleaseCode() {
-    Py_Initialize();
-
-    ui->ProgressBar->setValue(25);
-
-    PyObject *pyModule = PyImport_AddModule("__main__");
-
-    std::string stdOutErr =
-            "import sys\n"
-            "class CatchOutErr:\n"
-            "\tdef __init__(self):\n"
-            "\t\tself.value = ''\n"
-            "\tdef write(self, txt):\n"
-            "\t\tself.value += txt\n"
-            "catchOutErr = CatchOutErr()\n"
-            "sys.stdout = catchOutErr\n"
-            "sys.stderr = catchOutErr\n";
-
-    PyRun_SimpleString(stdOutErr.c_str());
-
-    const char *str = qPrintable(ui->CodeEdit->toPlainText());
-    PyRun_SimpleString(str);
-
-    ui->ProgressBar->setValue(50);
-
-    PyObject *pyCatcher = PyObject_GetAttrString(pyModule, "catchOutErr");
-
-    PyErr_Print();
-
-    PyObject *pyOutput = PyObject_GetAttrString(pyCatcher, "value");
-
-    ui->ProgressBar->setValue(75);
-
-    PyObject *temp_bytes = PyUnicode_AsEncodedString(pyOutput, "UTF-8", "strict");
-    std::string output = PyBytes_AS_STRING(temp_bytes);
-    if (!output.empty()) {
-        ui->OutputEdit->setText(output.c_str());
-    }
-
-    ui->ProgressBar->setValue(100);
-
-    Py_Finalize();
-
-    ui->ProgressBar->setValue(0);
-}
-
-void MainWindow::DebugCode() {
-    Py_Initialize();
-
-    ui->ProgressBar->setValue(25);
-
-    const char *str = qPrintable(ui->CodeEdit->toPlainText());
-    PyRun_SimpleString(str);
-
-    ui->ProgressBar->setValue(100);
-
-    Py_Finalize();
-
-    ui->ProgressBar->setValue(0);
 }
