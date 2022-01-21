@@ -5,7 +5,6 @@
 #include <functional>
 
 using Function = std::function<void()>;
-
 void ExceptionHandler(const QString &successTitle, const QString &successMessage, const Function &function);
 
     ///ToDo: доделать универсальный вызыватель функций

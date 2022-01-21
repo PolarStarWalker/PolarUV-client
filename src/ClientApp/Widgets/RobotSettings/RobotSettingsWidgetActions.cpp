@@ -8,32 +8,32 @@ void RobotSettingsWidget::SendSettings() const {
 
     std::string message = Serialize();
 
-    Response response = _transmitter.Send(Packet(Packet::TypeEnum::W, message, 0));
+    Response response = _transmitter.Send(message, Request::TypeEnum::W, 0);
 
-    StatusCodeCheck<Packet::TypeEnum::W>(response.Code);
+    StatusCodeCheck<Request::TypeEnum::W>(response.Header.Code);
+
+    QMessageBox::about(nullptr, "Успех", "Настройки успешно отправлены");
 }
 
 void RobotSettingsWidget::ReceiveSettings() {
     using namespace lib::network;
 
-    Packet packet(Packet::TypeEnum::R, std::string(), 0);
+    Response response = _transmitter.Send(std::string(), Request::TypeEnum::R, 0);
 
-    Response response = _transmitter.Send(packet);
-
-    StatusCodeCheck<Packet::TypeEnum::R>(response.Code, [&](){ Deserialize(response.Data);});
+    StatusCodeCheck<Request::TypeEnum::R>(response.Header.Code, [&](){ Deserialize(response.Data);});
 }
 
 void RobotSettingsWidget::Deserialize(const std::string &data) noexcept {
 
     RobotSettingsMessage message;
-    message.ParseFromString(data);
+    message.ParseFromArray(data.data(), data.size());
 
     /// Writing number of motor coefficients
     auto& thrusterCoefficient = message.thrusters_coefficient();
-    ui->MotorsNumberSpinBox->setValue(thrusterCoefficient.size());
+    ui->MotorsNumberSpinBox->setValue(thrusterCoefficient.size()/6);
 
     /// Writing motor coefficients
-    for (int i = 0; i < thrusterCoefficient.size(); i++) {
+    for (int i = 0; i < thrusterCoefficient.size()/6; i++) {
         for (int j = 0; j < 6; j++) {
             QString itemText = QString::number(thrusterCoefficient[i * 6 + j]);
             ui->MotorsTable->setItem(i, j, new QTableWidgetItem(itemText));
@@ -84,7 +84,7 @@ std::string RobotSettingsWidget::Serialize() const noexcept {
             double value = ui->MotorsTable->item(i, j)->text().toFloat(&isConverted);
 
             if (!isConverted)
-                throw Exception::InvalidOperationException(
+                throw lib::exceptions::InvalidOperationException(
                         "Матрица коэффициентов двигателей\n содержит некорректный символ");
 
             message.add_thrusters_coefficient(value);
@@ -96,8 +96,8 @@ std::string RobotSettingsWidget::Serialize() const noexcept {
 
         double value = ui->HandTable->item(0, j)->text().toFloat(&isConverted);
 
-        if (!isConverted)
-            throw Exception::InvalidOperationException(
+        if (!isConverted )
+            throw lib::exceptions::InvalidOperationException(
                     "Матрица коэффициентов манипулятора\n содержит некорректный символ");
 
         message.add_hand_coefficient(value);

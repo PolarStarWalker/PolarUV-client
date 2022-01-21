@@ -2,6 +2,7 @@
 #define CLIENT_LOGGER_HPP
 
 #include <ostream>
+#include <fstream>
 
 namespace lib::logger {
 
@@ -41,7 +42,7 @@ namespace lib::logger {
 #if DEBUG
         std::clog.rdbuf(std::cout.rdbuf());
 #else
-        std::fstream output("log.txt", std::ios_base::out | std::ios_base::trunc);
+        static std::fstream output("log.txt", std::ios_base::out | std::ios_base::trunc);
         std::clog.rdbuf(output.rdbuf());
 #endif
     }

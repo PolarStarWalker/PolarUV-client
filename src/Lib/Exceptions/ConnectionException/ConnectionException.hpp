@@ -3,10 +3,10 @@
 
 #include "Exceptions/BaseException/BaseException.hpp"
 
-namespace Exception {
+namespace lib::exceptions {
     class ConnectionException : public BaseException {
     public:
-        explicit ConnectionException(std::string &&details) : BaseException("Ошибка подключения", std::move(details), warning) {}
+        explicit ConnectionException(std::string_view details) : BaseException("Ошибка подключения", details, warning) {}
     };
 }
 

@@ -3,6 +3,7 @@
     lz4/1.9.3 #maybe for compression in future
     boost/1.77.0 #for asio and more stuff
     xsimd/8.0.3 #for crossplatform simd instructions
+#    cpython/3.10.0 #for python for programming
 #    qt/6.0.1
 #    qt/5.15.2
 #    opencv/4.5.0@starwalker/stable
@@ -12,8 +13,13 @@
     boost:asio_no_deprecated = True
     boost:system_no_deprecated = True
     boost:filesystem_no_deprecated = True
-    #boost:without_fiber = True
     boost:extra_b2_flags = "-defines=BOOST_DISABLE_THREADS"
+
+#Maybe bug of recipe I guess
+    cpython:with_gdbm = False
+    #for performance (maybe)
+    cpython:optimizations = True
+    cpython:lto = True
 
     qt:shared = False
     qt:with_sqlite3 = False

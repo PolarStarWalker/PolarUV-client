@@ -9,6 +9,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="Pi-25-gcc (7df3c253-492c-4416-a195-a4f528474168)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="Pi-clang (d7eba367-8df8-4e75-8492-1989ae86ba9a)">
         <serverdata>
           <mappings>
@@ -22,7 +29,7 @@
           </excludedPaths>
         </serverdata>
       </paths>
-      <paths name="Robot (7df3c253-492c-4416-a195-a4f528474168)">
+      <paths name="Pi-gcc (6a6a7df7-6acb-4001-9105-8c2b8077a7b4)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

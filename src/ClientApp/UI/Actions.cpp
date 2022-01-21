@@ -7,7 +7,7 @@ void MainWindow::RawSwitchVideoStream() {
     if (ui->RobotIPEdit->text() == "..." ||
         ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex()) == "") {
 
-        throw Exception::InvalidOperationException("Невозможно начать трансляцию:\n"
+        throw lib::exceptions::InvalidOperationException("Невозможно начать трансляцию:\n"
                                                    "не указан IP-адрес ТНПА или клиента\n"
                                                    "(Настройки -  ТНПА - Подключение)");
     }
@@ -23,7 +23,7 @@ void MainWindow::RawSwitchVideoStream() {
 
 void MainWindow::RawSwitchVideoCapture() {
     if (!_videoStream->IsStreamOnline()) {
-        throw Exception::InvalidOperationException("Невозможно записать видео:\n"
+        throw lib::exceptions::InvalidOperationException("Невозможно записать видео:\n"
                                                    "трансляция не включена");
     }
 
@@ -38,7 +38,7 @@ void MainWindow::RawSwitchVideoCapture() {
 
 void MainWindow::RawTakeScreenshot() {
     if (!_videoStream->IsStreamOnline()) {
-        throw Exception::InvalidOperationException("Невозможно сделать снимок:\n"
+        throw lib::exceptions::InvalidOperationException("Невозможно сделать снимок:\n"
                                                    "трансляция не включена");
     }
 
@@ -48,7 +48,7 @@ void MainWindow::RawTakeScreenshot() {
 void MainWindow::RawSwitchSendingCommands() {
 
     if (ui->RobotIPEdit->text() == "...")
-        throw Exception::InvalidOperationException("Невозможно начать отправку команд:\n"
+        throw lib::exceptions::InvalidOperationException("Невозможно начать отправку команд:\n"
                                                    "не указан IP-адрес ТНПА\n"
                                                    "(Настройки клиента - Подключение)");
 
@@ -78,7 +78,7 @@ void MainWindow::RawSendRobotSettings() {
             if (isConverted) {
                 moveCoefficientArray[i * 6 + j] = value;
             } else {
-                throw Exception::InvalidOperationException("Матрица коэффициентов двигателей\n"
+                throw lib::exceptions::InvalidOperationException("Матрица коэффициентов двигателей\n"
                                                            "содержит некорректный символ");
             }
         }
@@ -92,7 +92,7 @@ void MainWindow::RawSendRobotSettings() {
         if (isConverted) {
             handCoefficientArray[j] = value;
         } else {
-            throw Exception::InvalidOperationException("Матрица коэффициентов манипулятора\n"
+            throw lib::exceptions::InvalidOperationException("Матрица коэффициентов манипулятора\n"
                                                        "содержит некорректный символ");
         }
     }

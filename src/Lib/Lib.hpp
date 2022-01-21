@@ -11,10 +11,11 @@
 #include "./Logger/Logger.hpp"
 
 
-
 namespace lib {
     static void Setup() {
         logger::Setup();
+        auto& startNetwork = network::TcpSession::GetInstance();
+
     }
 }
 

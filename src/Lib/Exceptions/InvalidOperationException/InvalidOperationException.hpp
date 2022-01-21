@@ -3,10 +3,10 @@
 
 #include "Exceptions/BaseException/BaseException.hpp"
 
-namespace Exception {
+namespace lib::exceptions {
     class InvalidOperationException : public BaseException {
     public:
-        explicit InvalidOperationException(std::string &&details) : BaseException("Неправильная операция", std::move(details), information) {}
+        explicit InvalidOperationException(std::string_view details) : BaseException("Неправильная операция", details, information) {}
     };
 }
 

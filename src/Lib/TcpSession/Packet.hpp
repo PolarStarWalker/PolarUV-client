@@ -11,18 +11,38 @@ namespace lib::network {
             Ok,
             NoContent,
             BadRequest,
-            ConnectionError
+            ConnectionError,
+            BufferOverflow,
         };
 
+        struct HeaderType {
+            CodeEnum Code{};
+            ssize_t EndpointId{};
+            size_t Length{};
+
+            HeaderType(CodeEnum code, ssize_t endpoint, size_t length) :
+                    Code(code),
+                    EndpointId(endpoint),
+                    Length(length) {}
+
+            HeaderType() = default;
+        };
+
+        Response(std::string &&data, enum CodeEnum code, ssize_t endpointId) :
+                Data(std::move(data)),
+                Header(code, endpointId, Data.length()) {};
+
+        Response(Response &&response) noexcept:
+                Data(std::move(response.Data)),
+                Header(response.Header) {}
+
+        explicit operator bool() const { return Header.Code == Ok || Header.Code == NoContent; }
+
         std::string Data;
-        const CodeEnum Code;
-
-        Response(std::string &&data, enum CodeEnum code) : Data(std::move(data)), Code(code) {};
-
-        explicit operator bool() const { return Code == Ok || Code == NoContent; }
+        const HeaderType Header;
     };
 
-    struct Packet {
+    struct Request {
 
         enum class TypeEnum : size_t {
             R,
@@ -30,26 +50,24 @@ namespace lib::network {
             RW
         };
 
-        const TypeEnum Type;
-        const ssize_t EndpointId;
-        const std::string_view Data;
+        struct HeaderType {
+            TypeEnum Type;
+            ssize_t EndpointId;
+            size_t Length;
+        };
 
-        Packet(enum TypeEnum type, const std::string_view data, ssize_t endpointId) :
-                Type(type),
+        Request(std::string_view data, TypeEnum type, ssize_t endpointId, std::promise<Response> &response) :
+                Header({type, endpointId, type == TypeEnum::R ? 0 : (data.size())}),
                 Data(data),
-                EndpointId(endpointId) {}
-    };
+                Response(response) {};
 
-    struct TcpRequest {
+        Request(Request &&) = delete;
 
-        TcpRequest(std::promise<Response *> &response, const Packet &packet) : Response(&response), Packet(packet) {};
+        Request(const Request &) = delete;
 
-        TcpRequest(TcpRequest&&) = delete;
-        TcpRequest(const TcpRequest&) = delete;
-
-        std::promise<Response *> *Response;
-
-        const Packet &Packet;
+        std::promise<Response> &Response;
+        const std::string_view Data;
+        const HeaderType Header;
     };
 }
 #endif

@@ -4,6 +4,13 @@
 #include "./ui_mainwindow.h"
 #include <Exceptions/ExceptionHandler.hpp>
 
+
+void foo(int a, int b){
+    std::clog << a + b<<std::endl;
+    throw lib::exceptions::InvalidOperationException("");
+}
+
+
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
