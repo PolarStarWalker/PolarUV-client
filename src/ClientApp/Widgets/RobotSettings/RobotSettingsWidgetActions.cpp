@@ -3,12 +3,12 @@
 #include "./RobotSettingsMessage.pb.h"
 #include "./ui_RobotSettingsWidget.h"
 
-void RobotSettingsWidget::SendSettings() const {
+void RobotSettingsWidget::SendSettings() {
     using namespace lib::network;
 
     std::string message = Serialize();
 
-    Response response = _transmitter.Send(message, Request::TypeEnum::W, 0);
+    Response response = _transmitter.SendRequest(message, Request::TypeEnum::W, 0);
 
     StatusCodeCheck<Request::TypeEnum::W>(response.Header.Code);
 
@@ -18,7 +18,7 @@ void RobotSettingsWidget::SendSettings() const {
 void RobotSettingsWidget::ReceiveSettings() {
     using namespace lib::network;
 
-    Response response = _transmitter.Send(std::string(), Request::TypeEnum::R, 0);
+    Response response = _transmitter.SendRequest(std::string(), Request::TypeEnum::R, 0);
 
     StatusCodeCheck<Request::TypeEnum::R>(response.Header.Code, [&](){ Deserialize(response.Data);});
 }

@@ -203,15 +203,14 @@ void VideoProtocol::StartAsync(const QString &robotAddress, const QString &clien
 }
 
 void VideoProtocol::TakeScreenshot() {
-    this->SetScreenshotState(true);
+    SetScreenshotState(true);
 }
 
 
 QPixmap VideoProtocol::GetPixmap() {
-    _qPixmapMutex.lock_shared();
+    std::shared_lock lock(_qPixmapMutex);
     QPixmap pixmap = _pixmap;
-    _qPixmapMutex.unlock_shared();
-
+    _pixmap =  QPixmap();
     return pixmap;
 }
 

@@ -1,5 +1,5 @@
 [requires]
-    protobuf/3.17.1 #for data transfer
+    protobuf/3.19.2 #for data transfer
     lz4/1.9.3 #maybe for compression in future
     boost/1.77.0 #for asio and more stuff
     xsimd/8.0.3 #for crossplatform simd instructions
@@ -15,7 +15,7 @@
     boost:filesystem_no_deprecated = True
     boost:extra_b2_flags = "-defines=BOOST_DISABLE_THREADS"
 
-#Maybe bug of recipe I guess
+    #Maybe bug of recipe I guess
     cpython:with_gdbm = False
     #for performance (maybe)
     cpython:optimizations = True

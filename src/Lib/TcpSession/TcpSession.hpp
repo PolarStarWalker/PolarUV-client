@@ -8,6 +8,8 @@
 #include <QObject>
 
 #include <Exceptions/Exceptions.hpp>
+#include "Singleton.hpp"
+#include "ThreadSafeQueue/ThreadSafeQueue.hpp"
 #include "Packet.hpp"
 
 namespace lib::network {
@@ -16,30 +18,26 @@ namespace lib::network {
     Q_OBJECT
     public:
 
+        constexpr static const size_t PORT = 2022;
+
         TcpSession(const TcpSession &) = delete;
 
         TcpSession(TcpSession &&) = delete;
 
         static TcpSession &GetInstance();
 
-        Response Send(std::string_view data, Request::TypeEnum, ssize_t endpointId) const;
+        Response SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId);
 
         inline bool IsOnline() { return _status; }
 
-    private:
+    protected:
         void Start();
 
-        mutable std::queue<Request *> _requests{};
-        mutable std::mutex _requestsMutex;
-        mutable std::condition_variable _queueIsNotEmpty;
+        Queue<Request> _request{};
         mutable std::atomic<bool> _status{};
         std::atomic<bool> _isDone{};
 
         std::thread _thread;
-
-        void AddTaskToQueue(Request &request) const;
-
-        Request &GetTask();
 
         explicit TcpSession(QObject *parent = nullptr);
 

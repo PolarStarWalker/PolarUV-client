@@ -13,7 +13,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Debug")
     add_definitions(-DDEBUG)
     set(CMAKE_CXX_FLAGS_DEBUG "-g")
 else ()
-    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 endif ()
 
 

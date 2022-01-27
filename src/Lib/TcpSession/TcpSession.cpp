@@ -6,54 +6,37 @@ using namespace lib::network;
 
 using Socket = boost::asio::ip::tcp::socket;
 using ErrorCode = boost::system::error_code;
+using IOContext = boost::asio::io_context;
+using Endpoint = boost::asio::ip::tcp::endpoint;
 
-TcpSession::TcpSession(QObject *parent) :
-        QObject(parent) {
-    _thread = std::thread(&TcpSession::Start, this);
-    _thread.detach();
-}
-
-TcpSession::~TcpSession() noexcept {
-    //poison pill
-    auto future = Send("", Request::TypeEnum::W, -1);
-}
-
-TcpSession &TcpSession::GetInstance() {
-    static TcpSession instance;
-    return instance;
-}
-
-Response TcpSession::Send(std::string_view data, Request::TypeEnum type, ssize_t endpointId) const {
+constexpr size_t PORT = TcpSession::PORT;
+constexpr size_t REQUEST_HEADER_SIZE = sizeof(Request::HeaderType);
+constexpr size_t RESPONSE_HEADER_SIZE = sizeof(Response::HeaderType);
 
 
-    std::clog << "SendingData" << std::endl;
-    ///ToDo очень ленивое решение, нужно лучше
-    if (!_status) {
-        std::clog << "[CONNECTION IS INACTIVE]" << std::endl;
-        return {std::string(), Response::ConnectionError, -1};
-    }
-    std::promise<Response> promise;
-    auto future = promise.get_future();
+inline ErrorCode TryConnect(const std::string_view& IP, Socket& socket){
 
-    Request request(data, type, endpointId, promise);
+    Endpoint endpoint(boost::asio::ip::make_address(IP), PORT);
 
-    AddTaskToQueue(request);
+    std::clog << "[TRY CONNECT]" << std::endl;
 
-    return future.get();
+    ErrorCode errorCode;
+    socket.connect(endpoint, errorCode);
+
+    return errorCode;
 }
 
 inline std::pair<int, ErrorCode> SendData(Socket &socket, const Request &request) {
     using namespace boost::asio;
-    constexpr size_t HeaderSize = sizeof(Request::HeaderType);
 
     ErrorCode errorCode;
 
-    std::cout << "\n[HEADER SIZE]  " << HeaderSize << std::endl;
+    std::cout << "\n[HEADER SIZE]  " << REQUEST_HEADER_SIZE << std::endl;
 
     ///SendHeader
     size_t length = write(socket,
-                          buffer(&request.Header, HeaderSize),
-                          transfer_exactly(HeaderSize),
+                          buffer(&request.Header, REQUEST_HEADER_SIZE),
+                          transfer_exactly(REQUEST_HEADER_SIZE),
                           errorCode);
 
     std::clog << "[REQUEST TYPE]: " << (size_t) request.Header.Type
@@ -78,13 +61,12 @@ inline std::pair<int, ErrorCode> SendData(Socket &socket, const Request &request
 
 inline Response ReadData(Socket &socket) {
     using namespace boost::asio;
-    constexpr size_t HeaderSize = sizeof(Response::HeaderType);
 
     Response::HeaderType header;
 
     size_t length = read(socket,
-                         buffer(&header, HeaderSize),
-                         transfer_exactly(HeaderSize));
+                         buffer(&header, RESPONSE_HEADER_SIZE),
+                         transfer_exactly(RESPONSE_HEADER_SIZE));
 
     std::string data(header.Length, 0);
 
@@ -96,26 +78,20 @@ inline Response ReadData(Socket &socket) {
     return {std::move(data), header.Code, header.EndpointId};
 }
 
+/*************************TcpSession member functions********************************/
 void TcpSession::Start() {
-    using namespace boost::asio;
-    constexpr size_t HeaderSize = sizeof(Request::HeaderType);
 
-    io_context ioContext;
-    ip::tcp::socket socket(ioContext);
+    IOContext ioContext;
+    Socket socket(ioContext);
 
-    constexpr size_t PORT = 2022;
     std::string_view IP = "192.168.1.25";
-    ip::tcp::endpoint ENDPOINT(boost::asio::ip::make_address(IP), PORT);
 
     while (!_isDone) {
 
         ///Connect
         while (!_isDone) {
 
-            std::clog << "[TRY CONNECT]" << std::endl;
-
-            ErrorCode errorCode;
-            socket.connect(ENDPOINT, errorCode);
+            auto errorCode = TryConnect(IP, socket);
 
             if (!errorCode.failed()) {
                 _status.store(true);
@@ -132,7 +108,7 @@ void TcpSession::Start() {
 
             ///ToDo пофиксить блокирующую очередь
             /// когда мы зависним на таске, а связь разорвётся, то застопорившись здесь мы не узнаем об этом
-            auto &request = GetTask();
+            auto &request = _request.GetTask();
 
             if (request.Header.EndpointId == -1) {
                 socket.close();
@@ -141,10 +117,10 @@ void TcpSession::Start() {
 
             auto[length, errorCode] = SendData(socket, request);
 
-            if (errorCode.failed() || length != request.Data.size() + HeaderSize) {
+            if (errorCode.failed() || length != request.Data.size() + REQUEST_HEADER_SIZE) {
                 socket.close();
                 _status.store(false);
-                request.Response.set_value(Response("", Response::ConnectionError, -1));
+                request.Response.set_value(Response("Проблемы с соединением", Response::ConnectionError, -1));
                 break;
             }
 
@@ -155,19 +131,37 @@ void TcpSession::Start() {
     }
 }
 
-void TcpSession::AddTaskToQueue(Request &request) const {
-    std::lock_guard guard(_requestsMutex);
-    _requests.push(&request);
-    _queueIsNotEmpty.notify_one();
+TcpSession::TcpSession(QObject *parent) :
+        QObject(parent) {
+    _thread = std::thread(&TcpSession::Start, this);
 }
 
-Request &TcpSession::GetTask() {
-    std::unique_lock guard(_requestsMutex);
+TcpSession::~TcpSession() noexcept {
+    //poison pill
+    auto future = SendRequest("", Request::TypeEnum::W, -1);
+}
 
-    _queueIsNotEmpty.wait(guard, [&]() noexcept { return !_requests.empty(); });
+TcpSession &TcpSession::GetInstance() {
+    static TcpSession instance;
+    return instance;
+}
 
-    auto &request = *_requests.front();
-    _requests.pop();
+Response TcpSession::SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId) {
 
-    return request;
+    if(endpointId < 1)
+        return {std::string("Неправильный адрес"), Response::ConnectionError, endpointId};
+
+    std::clog << "[SENDING DATA]" << std::endl;
+    ///ToDo очень ленивое решение, нужно лучше
+    if (!_status)
+        return {"Соединение не установлено", Response::ConnectionError, -1};
+
+    std::promise<Response> promise;
+    auto future = promise.get_future();
+
+    Request request(data, type, endpointId, promise);
+
+    _request.AddToQueue(request);
+
+    return future.get();
 }

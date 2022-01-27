@@ -26,13 +26,13 @@ private:
 
     void Deserialize(const std::string &data) noexcept;
 
-    const lib::network::TcpSession& _transmitter;
+    lib::network::TcpSession& _transmitter;
 
 public slots:
     void UpdateGeometry(QSize newParentSize);
 
 private slots:
-    void SendSettings() const;
+    void SendSettings();
 
     void ReceiveSettings();
 
