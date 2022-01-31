@@ -11,8 +11,8 @@ ClientSettingsDto::ClientSettingsDto() {
     std::memset(this->ServerIP, 0, sizeof(this->ServerIP));
     this->GamepadID = -1;
 
-    this->dPadXAction = RotateHand;
-    this->dPadYAction = GrabHand;
+    this->DPadXAction = RotateHand;
+    this->DPadYAction = GrabHand;
 
     this->LeftStickXAction = MoveY;
     this->LeftStickYAction = MoveZ;
@@ -55,8 +55,8 @@ void ClientSettingsDto::Save() const {
     message.set_server_ip(ServerIP);
     message.set_gamepad_id(GamepadID);
 
-    message.set_dpad_x_action((AnalogActions) dPadXAction);
-    message.set_dpad_y_action((AnalogActions) dPadYAction);
+    message.set_dpad_x_action((AnalogActions) DPadXAction);
+    message.set_dpad_y_action((AnalogActions) DPadYAction);
 
     message.set_left_stick_x_action((AnalogActions) LeftStickXAction);
     message.set_left_stick_y_action((AnalogActions) LeftStickYAction);
@@ -99,8 +99,8 @@ ClientSettingsDto ClientSettingsDto::Load() {
     std::memcpy(settings.ServerIP, message.server_ip().c_str(), sizeof(ServerIP));
     settings.GamepadID = message.gamepad_id();
 
-    settings.dPadXAction = message.dpad_x_action();
-    settings.dPadYAction = message.dpad_y_action();
+    settings.DPadXAction = message.dpad_x_action();
+    settings.DPadYAction = message.dpad_y_action();
 
     settings.LeftStickXAction = message.left_stick_x_action();
     settings.LeftStickYAction = message.left_stick_y_action();

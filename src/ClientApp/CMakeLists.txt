@@ -4,7 +4,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-add_library(ClientApp MainWindow.cpp MainWindow.hpp UI/Shortcuts.cpp UI/Buttons.cpp UI/Rendering.cpp UI/Actions.cpp UI/Resources.cpp UI/Indicators.cpp UI/Animations.cpp)
+add_library(ClientApp MainWindow.cpp MainWindow.hpp UI/Slots.cpp UI/Rendering.cpp UI/Resources.cpp UI/Indicators.cpp)
 target_link_libraries(ClientApp ${REQUIRED_LIBS_QUALIFIED})
 
 include_directories(./Widgets)

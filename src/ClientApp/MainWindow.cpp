@@ -6,52 +6,51 @@
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
-        ui(new Ui::MainWindow),
-
-        //signletones
-        _mainWindowResources(MainWindowResources::GetInstance()),
-        _network(lib::network::TcpSession::GetInstance()) {
+        ui(new Ui::MainWindow) {
 
     ui->setupUi(this);
 
-    /// Установка фильтра событий
-    this->installEventFilter(this);
+    /// Установка иконок
+    ui->Page1Button->setIcon(QIcon("Icons/CameraIcon.png"));
+    ui->Page2Button->setIcon(QIcon("Icons/SettingsIcon.png"));
+    ui->Page3Button->setIcon(QIcon("Icons/CodeIcon.png"));
+    ui->Page4Button->setIcon(QIcon("Icons/BugIcon.png"));
+    ui->SideBarButton->setIcon(QIcon("Icons/HamburgerIcon.png"));
 
-    ///Protocols
-    _commandsProtocol = std::make_unique<CommandsProtocol>(0, this);
-    _videoStream = std::make_unique<VideoProtocol>();
+//    /// Создание виджетов индикаторов
+//    _pitchIndicator = std::make_unique<PitchIndicator>(ui->MainTab, *_commandsProtocol);
+//    _yawIndicator = std::make_unique<YawIndicator>(ui->MainTab, *_commandsProtocol);
+//    _depthIndicator = std::make_unique<DepthIndicator>(ui->MainTab, *_commandsProtocol);
 
-    /// Создание виджетов индикаторов
-    _pitchIndicator = std::make_unique<PitchIndicator>(ui->MainTab, *_commandsProtocol);
-    _yawIndicator = std::make_unique<YawIndicator>(ui->MainTab, *_commandsProtocol);
-    _depthIndicator = std::make_unique<DepthIndicator>(ui->MainTab, *_commandsProtocol);
+    /// Создание виджета авторизации
+    autorizationWidget_ = std::make_unique<AutorizationWidget>(this);
+    ui->AutorizationPage->layout()->addWidget(autorizationWidget_.get());
+
+    /// Создание виджета камеры/телеметрии
+    displayWidget_ = std::make_unique<DisplayWidget>(this);
+    ui->Page1->layout()->addWidget(displayWidget_.get());
 
     /// Создание виджета настроек робота
-    _robotSettingsWidget = std::make_unique<RobotSettingsWidget>(ui->TestTab1);
-    connect(this, SIGNAL(SizeChanged(QSize)),
-            this->_robotSettingsWidget.get(),SLOT(UpdateGeometry(QSize)));
+    robotSettingsWidget_ = std::make_unique<RobotSettingsWidget>();
+    ui->Page2_1->layout()->addWidget(robotSettingsWidget_.get());
 
     /// Создание виджета настроек клиента
-    _clientSettingsWidget = std::make_unique<ClientSettingsWidget>(ui->TestTab2);
-    connect(this, SIGNAL(SizeChanged(QSize)),
-            this->_clientSettingsWidget.get(),SLOT(UpdateGeometry(QSize)));
+    // ToDo: а где
+
+    /// Создание виджета настроек управления
+    controlSettingsWidget_ = std::make_unique<ClientSettingsWidget>();
+    ui->Page2_3->layout()->addWidget(controlSettingsWidget_.get());
 
     /// Создание виджета Python-среды
-    _pythonEnvironmentWidget = std::make_unique<PythonEnvironmentWidget>(ui->PythonTab);
-    connect(this, SIGNAL(SizeChanged(QSize)),
-            this->_pythonEnvironmentWidget.get(),SLOT(UpdateGeometry(QSize)));
+    pythonIDEWidget_ = std::make_unique<PythonEnvironmentWidget>();
+    ui->Page3->layout()->addWidget(pythonIDEWidget_.get());
+    // ToDo: решить судьбу виджета (возможно убрать)
+    ui->Page3Button->hide();
 
-    this->resize(this->width(),this->height());
+//    /// Создание таймера отрисовки
+//    _updateTimer = std::make_unique<QTimer>(this);
+//    connect(this->_updateTimer.get(), SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
+//    this->_updateTimer->start(1000 / 60);
 
-    /// Создание таймера отрисовки
-    _updateTimer = std::make_unique<QTimer>(this);
-    connect(this->_updateTimer.get(), SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
-    this->_updateTimer->start(1000 / 60);
-
-    this->SetupRendering();
-    this->SetupButtons();
-    this->SetupAnimations();
-    this->SetupShortcuts();
-
-    ExceptionHandler(nullptr, nullptr, [&]() { this->RawLoadClientSettings(); });
+    SetupSlots();
 }

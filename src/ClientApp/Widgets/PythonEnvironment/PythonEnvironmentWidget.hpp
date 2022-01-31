@@ -24,8 +24,7 @@ public:
 private:
     Ui::PythonEnvironmentWidget *ui;
 
-public slots:
-    void UpdateGeometry(QSize newParentSize);
+private slots:
     void ReleaseCode();
     void DebugCode();
 };

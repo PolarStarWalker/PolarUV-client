@@ -80,32 +80,3 @@ void PythonEnvironmentWidget::DebugCode() {
 
     ui->ProgressBar->setValue(0);
 }
-
-
-void PythonEnvironmentWidget::UpdateGeometry(QSize newParentSize) {
-    int x = 70;
-    int y = 20;
-    int width = newParentSize.width() - 2 * x;
-    int height = newParentSize.height() - 2 * y;
-    this->setGeometry(x,y,width,height);
-
-    int offset = 10; // Расстояние между элементами виджета
-    int outputHeight = 200; // Высота окна вывода
-
-    ui->ReleaseCodeButton->move(this->width() - ui->ReleaseCodeButton->width(),
-                                this->height() - ui->ReleaseCodeButton->height());
-    ui->DebugCodeButton->move(ui->ReleaseCodeButton->x() - ui->DebugCodeButton->width() - offset,
-                              ui->ReleaseCodeButton->y());
-    ui->ProgressBarFrame->move(ui->DebugCodeButton->x() - ui->ProgressBarFrame->width() - offset,
-                               ui->DebugCodeButton->y());
-    ui->ProgressBar->move(ui->ProgressBarFrame->x() + ui->ProgressBarFrame->width()/2 - ui->ProgressBar->width()/2,
-                          ui->ProgressBarFrame->y() + ui->ProgressBarFrame->height()/2 - ui->ProgressBar->height()/2);
-    ui->OutputEdit->setGeometry(0,
-                                ui->ProgressBarFrame->y() - offset - outputHeight,
-                                this->width(),
-                                outputHeight);
-    ui->CodeEdit->setFixedSize(this->width(),
-                               ui->OutputEdit->y() - offset - ui->CodeEdit->y());
-    ui->CodeEditLabel->move((ui->CodeEdit->width() - ui->CodeEditLabel->width()) / 2,
-                            ui->CodeEditLabel->y());
-}

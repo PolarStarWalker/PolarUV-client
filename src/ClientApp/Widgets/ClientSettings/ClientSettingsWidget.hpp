@@ -2,6 +2,7 @@
 #define CLIENT_CLIENTSETTINGSWIDGET_HPP
 
 #include <QWidget>
+#include <QSettings>
 
 
 QT_BEGIN_NAMESPACE
@@ -19,18 +20,30 @@ public:
 private:
     Ui::ClientSettingsWidget *ui;
 
-public slots:
-    void UpdateGeometry(QSize newParentSize);
+    std::unique_ptr<QSettings> settings_;
 
 private slots:
-//    void SaveClientSettings();
-//
-//    void LoadClientSettings();
-//
-//    void RefreshGamepads();
-//
-//    void RefreshClientIps();
+
+    void LoadSettings();
+    void SaveSettings();
 };
 
+enum AnalogActions : int8_t {
+    NoAnalogAction = 0,
+    MoveX = 1,
+    MoveY = 2,
+    MoveZ = 3,
+    RotateX = 4,
+    RotateY = 5,
+    RotateZ = 6,
+    GrabHand = 7,
+    RotateHand = 8,
+};
+
+enum DiscreteActions : int8_t {
+    NoDiscreteAction = 0,
+    TurnOn = 1,
+    TurnOff = 2
+};
 
 #endif //CLIENT_CLIENTSETTINGSWIDGET_HPP

@@ -33,8 +33,8 @@ namespace data_structs {
         int32_t GamepadID;
         char ServerIP[16];
 
-        int8_t dPadXAction;
-        int8_t dPadYAction;
+        int8_t DPadXAction;
+        int8_t DPadYAction;
         int8_t LeftStickXAction;
         int8_t LeftStickYAction;
         int8_t RightStickXAction;

@@ -18,6 +18,9 @@ public:
 
     ~RobotSettingsWidget() override;
 
+    void SetRobotIP(const QString& ip) {this->RobotIP = ip;};
+    void SetClientIP(const QString& ip) {this->ClientIP = ip;};
+
 private:
 
     Ui::RobotSettingsWidget *ui;
@@ -28,8 +31,8 @@ private:
 
     lib::network::TcpSession& _transmitter;
 
-public slots:
-    void UpdateGeometry(QSize newParentSize);
+    QString RobotIP{};
+    QString ClientIP{};
 
 private slots:
     void SendSettings();

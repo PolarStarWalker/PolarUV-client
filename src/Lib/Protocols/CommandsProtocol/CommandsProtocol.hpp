@@ -43,9 +43,9 @@ public:
 
     bool IsStreamOnline() const final { return _socket.IsOnline(); }
 
-public
-    slots:
-            void SendCommand();
+public slots:
+
+    void SendCommand();
 
 private:
     TelemetryStruct _telemetry;

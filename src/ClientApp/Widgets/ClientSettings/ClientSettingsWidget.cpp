@@ -1,58 +1,82 @@
 #include "ClientSettingsWidget.hpp"
 #include "ui_ClientSettingsWidget.h"
 
-#include "./DataStructs/DataStructs.hpp"
-#include "./Protocols/Protocols.hpp"
-#include "./Gamepad/Gamepad.hpp"
-#include <Exceptions/Exceptions.hpp>
-
-#include <iostream>
-
 
 ClientSettingsWidget::ClientSettingsWidget(QWidget *parent) :
         QWidget(parent), ui(new Ui::ClientSettingsWidget) {
+
     ui->setupUi(this);
+
+    settings_ = std::make_unique<QSettings>("NARFU", "PolarROVClient");
+    LoadSettings();
+
+    connect(ui->LoadClientSettingsButton, SIGNAL(clicked(bool)), SLOT(LoadSettings()));
+    connect(ui->SaveClientSettingsButton, SIGNAL(clicked(bool)), SLOT(SaveSettings()));
 }
 
 ClientSettingsWidget::~ClientSettingsWidget() {
     delete ui;
 }
 
-//void ClientSettingsWidget::SaveClientSettings() {
-//    auto method = Function([&]() { this->RawSaveClientSettings(); });
-//    ExceptionHandler(method, "Сообщение", "Настройки успешно сохранены");
-//}
-//
-//void ClientSettingsWidget::LoadClientSettings() {
-//    auto method = Function([&]() { this->RawLoadClientSettings(); });
-//    ExceptionHandler(method, "Успех", "Настройки успешно загружены");
-//}
-//
-//void ClientSettingsWidget::RefreshGamepads() {
-//    auto gamepads = Control::GetGamepadsIds();
-//    ui->GamepadComboBox->clear();
-//
-//    for (auto &&id: gamepads)
-//        ui->GamepadComboBox->addItem(QString::number(id));
-//
-//    // The path to get the selected ID:
-//    // int id = ui->GamepadComboBox->itemText(ui->GamepadComboBox->currentIndex()).toInt()
-//}
-//
-//void ClientSettingsWidget::RefreshClientIps() {
-//    auto addresses = GetClientIps();
-//    ui->ClientIPComboBox->clear();
-//    for (auto &&address: addresses)
-//        ui->ClientIPComboBox->addItem(QString::fromStdString(address));
-//
-//    // The path to get the selected IP:
-//    // QString ip = ui->ClientIPComboBox->itemText(ui->ClientIPComboBox->currentIndex());
-//
-//}
+void ClientSettingsWidget::LoadSettings() {
+    if (!settings_->value("DPadXAction").isNull()) {
+        // Analog actions
+        ui->DPadXComboBox->setCurrentIndex(settings_->value("DPadXAction").toInt());
+        ui->DPadYComboBox->setCurrentIndex(settings_->value("DPadYAction").toInt());
+        ui->LeftStickXComboBox->setCurrentIndex(settings_->value("LeftStickXAction").toInt());
+        ui->LeftStickYComboBox->setCurrentIndex(settings_->value("LeftStickYAction").toInt());
+        ui->RightStickXComboBox->setCurrentIndex(settings_->value("RightStickXAction").toInt());
+        ui->RightStickYComboBox->setCurrentIndex(settings_->value("RightStickYAction").toInt());
+        ui->LeftShoulderComboBox->setCurrentIndex(settings_->value("LeftShoulderAction").toInt());
+        ui->RightShoulderComboBox->setCurrentIndex(settings_->value("RightShoulderAction").toInt());
+        // Discrete actions
+        ui->LeftStickPressComboBox->setCurrentIndex(settings_->value("LeftStickPressAction").toInt());
+        ui->RightStickPressComboBox->setCurrentIndex(settings_->value("RightStickPressAction").toInt());
+        ui->RectangleComboBox->setCurrentIndex(settings_->value("SquareAction").toInt());
+        ui->TriangleComboBox->setCurrentIndex(settings_->value("TriangleAction").toInt());
+        ui->CircleComboBox->setCurrentIndex(settings_->value("CircleAction").toInt());
+        ui->CrossComboBox->setCurrentIndex(settings_->value("CrossAction").toInt());
+        ui->StartComboBox->setCurrentIndex(settings_->value("StartAction").toInt());
+        ui->BackComboBox->setCurrentIndex(settings_->value("BackAction").toInt());
+        // Booleans
+        ui->DPadXCheckBox->setChecked(settings_->value("DPadXInverted").toBool());
+        ui->DPadYCheckBox->setChecked(settings_->value("DPadYInverted").toBool());
+        ui->LeftStickXCheckBox->setChecked(settings_->value("LeftStickXInverted").toBool());
+        ui->LeftStickYCheckBox->setChecked(settings_->value("LeftStickYInverted").toBool());
+        ui->RightStickXCheckBox->setChecked(settings_->value("RightStickXInverted").toBool());
+        ui->RightStickYCheckBox->setChecked(settings_->value("RightStickYInverted").toBool());
+        ui->LeftShoulderCheckBox->setChecked(settings_->value("LeftShoulderInverted").toBool());
+        ui->RightShoulderCheckBox->setChecked(settings_->value("RightShoulderInverted").toBool());
+    }
+}
 
-void ClientSettingsWidget::UpdateGeometry(QSize newParentSize) {
-    int x = (newParentSize.width() - this->width()) / 2;
-    int y = (newParentSize.height() - this->height()) / 2;
-    this->move(x,y);
+void ClientSettingsWidget::SaveSettings() {
+    // Analog actions
+    settings_->setValue("DPadXAction",ui->DPadXComboBox->currentIndex());
+    settings_->setValue("DPadYAction",ui->DPadYComboBox->currentIndex());
+    settings_->setValue("LeftStickXAction", ui->LeftStickXComboBox->currentIndex());
+    settings_->setValue("LeftStickYAction", ui->LeftStickYComboBox->currentIndex());
+    settings_->setValue("RightStickXAction", ui->RightStickXComboBox->currentIndex());
+    settings_->setValue("RightStickYAction", ui->RightStickYComboBox->currentIndex());
+    settings_->setValue("LeftShoulderAction", ui->LeftShoulderComboBox->currentIndex());
+    settings_->setValue("RightShoulderAction", ui->RightShoulderComboBox->currentIndex());
+    // Discrete actions
+    settings_->setValue("LeftStickPressAction", ui->LeftStickPressComboBox->currentIndex());
+    settings_->setValue("RightStickPressAction", ui->RightStickPressComboBox->currentIndex());
+    settings_->setValue("SquareAction", ui->RectangleComboBox->currentIndex());
+    settings_->setValue("TriangleAction", ui->TriangleComboBox->currentText());
+    settings_->setValue("CircleAction", ui->CircleComboBox->currentIndex());
+    settings_->setValue("CrossAction", ui->CrossComboBox->currentIndex());
+    settings_->setValue("StartAction", ui->StartComboBox->currentIndex());
+    settings_->setValue("BackAction", ui->BackComboBox->currentIndex());
+    // Booleans
+    settings_->setValue("DPadXInverted", ui->DPadXCheckBox->isChecked());
+    settings_->setValue("DPadYInverted", ui->DPadYCheckBox->isChecked());
+    settings_->setValue("LeftStickXInverted", ui->LeftStickXCheckBox->isChecked());
+    settings_->setValue("LeftStickYInverted", ui->LeftStickYCheckBox->isChecked());
+    settings_->setValue("RightStickXInverted", ui->RightStickXCheckBox->isChecked());
+    settings_->setValue("RightStickYInverted", ui->RightStickYCheckBox->isChecked());
+    settings_->setValue("LeftShoulderInverted", ui->LeftShoulderCheckBox->isChecked());
+    settings_->setValue("RightShoulderInverted", ui->RightShoulderCheckBox->isChecked());
 }
 

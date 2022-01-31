@@ -3,13 +3,6 @@
 
 #include "./Widgets/widgets.hpp"
 
-#include <iostream>
-#include <fstream>
-#include <windows.h>
-#include <thread>
-#include <chrono>
-#include <iphlpapi.h>
-
 #include <QOpenGLWidget>
 #include <QMainWindow>
 #include <QMessageBox>
@@ -22,20 +15,7 @@
 #include <QTimer>
 #include <QGridLayout>
 #include <QResizeEvent>
-#include <QWindowStateChangeEvent>
 
-#include "./UI/Resources/MainWindowResources.hpp"
-
-#include "./UI/Indicators/PitchIndicator.hpp"
-#include "./UI/Indicators/YawIndicator.hpp"
-#include "./UI/Indicators/DepthIndicator.hpp"
-
-#include "./DataStructs/DataStructs.hpp"
-#include "./Protocols/Protocols.hpp"
-#include "./Gamepad/Gamepad.hpp"
-
-#define COMMANDS_PORT 1999
-#define SETTINGS_PORT 14322
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -51,11 +31,7 @@ protected:
 
     void SetupRendering();
 
-    void SetupButtons();
-
-    void SetupAnimations();
-
-    void SetupShortcuts();
+    void SetupSlots();
 
     void PaintRollIndicator(float rollAngle, float sizeMultiplier); // Angle in degrees
 
@@ -83,107 +59,61 @@ protected:
 
     void RawLoadClientSettings();
 
-signals:
-    void SizeChanged(QSize newSize);
+public slots:
+
+    void Launch(const QString& robotIP, const QString& clientIP, int gamepadID);
+
+    void LaunchDebug();
+
+    void ShowSideBar();
 
 private slots:
 
-    void MoveWidgets();
-
-    void UpdateWidgets();
-
-    void SwitchSendingCommands();
-
-    void SwitchVideoStream();
-
-    void TakeScreenshot();
-
-    void SwitchVideoCapture();
-
     void SwitchToPage1();
-
     void SwitchToPage2();
-
+    void SwitchToPage2_1();
+    void SwitchToPage2_2();
+    void SwitchToPage2_3();
     void SwitchToPage3();
+    void SwitchToPage4();
 
-    void ReceiveRobotSettings();
+    void SwitchSideBarButton(int currentIndex);
 
-    void SendRobotSettings();
-
-    void LoadClientSettings();
-
-    void SaveClientSettings();
-
-    void RefreshGamepads();
-
-    void RefreshClientIps();
-
-    void HideTabBar();
-
-    void ShowTabBar();
-
-    void UpdateMotorsTable(int value);
-
-    void UpdateHandTable(int value);
-
-    void UpdateMaxSpeedSlider(const QString &string);
-
-    void UpdateMaxSpeedEdit(int value);
-
-    void shortcutEsc();
-
-    void shortcutTab();
-
-    void shortcutF11();
-
-    void shortcutB();
+    void HideSideBar();
 
 private:
-    bool eventFilter(QObject *object, QEvent *event) override;
 
     Ui::MainWindow *ui;
 
-    /// Singleton
-    const MainWindowResources::Resources& _mainWindowResources;
-    lib::network::TcpSession& _network;
+//    std::unique_ptr<QTimer> _updateTimer;
 
-    std::unique_ptr<QTimer> _updateTimer;
+//    std::unique_ptr<PitchIndicator> _pitchIndicator;
+//    std::unique_ptr<YawIndicator> _yawIndicator;
+//    std::unique_ptr<DepthIndicator> _depthIndicator;
 
-    std::unique_ptr<VideoProtocol> _videoStream;
-    std::unique_ptr<CommandsProtocol> _commandsProtocol;
-
-    std::unique_ptr<PitchIndicator> _pitchIndicator;
-    std::unique_ptr<YawIndicator> _yawIndicator;
-    std::unique_ptr<DepthIndicator> _depthIndicator;
-
-    std::unique_ptr<RobotSettingsWidget> _robotSettingsWidget;
-    std::unique_ptr<ClientSettingsWidget> _clientSettingsWidget;
-    std::unique_ptr<PythonEnvironmentWidget> _pythonEnvironmentWidget;
+    std::unique_ptr<AutorizationWidget> autorizationWidget_;
+    std::unique_ptr<DisplayWidget> displayWidget_;
+    std::unique_ptr<RobotSettingsWidget> robotSettingsWidget_;
+    std::unique_ptr<ClientSettingsWidget> controlSettingsWidget_;
+    std::unique_ptr<PythonEnvironmentWidget> pythonIDEWidget_;
 
     /// ToDo: shushkov.d переделать
-    bool _isVideoFrame = false;
-    bool _isGreen = false;
-    bool _isPause = false;
-    int32_t _oldEulerX = -1;
-    int32_t _oldEulerY = -1;
-    int32_t _oldEulerZ = -1;
-    float _oldDepth = -1;
-    float _oldVoltage = -1;
-    QPixmap _oldVideoFrame{};
-    int8_t _oldCalibrationArray[4]{};
-
-    int32_t _pitchY = 0;
-
-    std::chrono::time_point<std::chrono::system_clock> _oldTime{};
-    uint8_t _fps = 0;
-
-    QShortcut *_keyEsc = nullptr;
-    QShortcut *_keyTab = nullptr;
-    QShortcut *_keyF11 = nullptr;
-    QShortcut *_keyB = nullptr;
+//    bool _isVideoFrame = false;
+//    bool _isGreen = false;
+//    bool _isPause = false;
+//    int32_t _oldEulerX = -1;
+//    int32_t _oldEulerY = -1;
+//    int32_t _oldEulerZ = -1;
+//    float _oldDepth = -1;
+//    float _oldVoltage = -1;
+//    QPixmap _oldVideoFrame{};
+//    int8_t _oldCalibrationArray[4]{};
+//
+//    int32_t _pitchY = 0;
+//
+//    std::chrono::time_point<std::chrono::system_clock> _oldTime{};
+//    uint8_t _fps = 0;
 };
-
-std::list<std::string> GetClientIps();
 
 #endif
 

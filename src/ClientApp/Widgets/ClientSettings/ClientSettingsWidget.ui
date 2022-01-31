@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1205</width>
-    <height>645</height>
+    <width>1106</width>
+    <height>569</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,2974 +16,116 @@
   <property name="styleSheet">
    <string notr="true">background: transparent;</string>
   </property>
-  <widget class="QLabel" name="KeyAssignmentsLabel">
-   <property name="geometry">
-    <rect>
-     <x>275</x>
-     <y>0</y>
-     <width>260</width>
-     <height>50</height>
-    </rect>
+  <layout class="QGridLayout" name="gridLayout_4">
+   <property name="leftMargin">
+    <number>15</number>
    </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-     <kerning>true</kerning>
-    </font>
+   <property name="topMargin">
+    <number>15</number>
    </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
+   <property name="rightMargin">
+    <number>15</number>
    </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
+   <property name="bottomMargin">
+    <number>15</number>
    </property>
-   <property name="styleSheet">
-    <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
+   <property name="horizontalSpacing">
+    <number>15</number>
    </property>
-   <property name="locale">
-    <locale language="Russian" country="Russia"/>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Panel</enum>
-   </property>
-   <property name="text">
-    <string>Назначение кнопок</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="ConnectionSettingsLabel">
-   <property name="geometry">
-    <rect>
-     <x>890</x>
-     <y>0</y>
-     <width>260</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(45,45,45);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:10px;
-border-style:solid;</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Panel</enum>
-   </property>
-   <property name="text">
-    <string>Подключение</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="RobotIPLabel">
-   <property name="geometry">
-    <rect>
-     <x>855</x>
-     <y>60</y>
-     <width>131</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;</string>
-   </property>
-   <property name="text">
-    <string>IP ТНПА</string>
-   </property>
-  </widget>
-  <widget class="QFrame" name="ClientSettingsWidgetFrame">
-   <property name="geometry">
-    <rect>
-     <x>835</x>
-     <y>230</y>
-     <width>370</width>
-     <height>145</height>
-    </rect>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:rgb(45,45,45);
-    border-width:1px;
-    border-color :rgb(100,100,100);
-    border-radius:10px;
-    border-style:solid;</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Panel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Plain</enum>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="RefreshGamepadsButton">
-   <property name="geometry">
-    <rect>
-     <x>1155</x>
-     <y>145</y>
-     <width>30</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <stylestrategy>PreferDefault</stylestrategy>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="cursor">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::RightToLeft</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(55,55,55);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:5px;
-border-style:solid;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>20</width>
-     <height>20</height>
-    </size>
-   </property>
-   <property name="autoDefault">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="ClientIPLabel">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>855</x>
-     <y>100</y>
-     <width>131</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;</string>
-   </property>
-   <property name="text">
-    <string>IP клиента</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="RobotIPEdit">
-   <property name="geometry">
-    <rect>
-     <x>995</x>
-     <y>65</y>
-     <width>150</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLineEdit {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-	background: rgb(55,55,55);
-	selection-background-color: black;
-    border: 1px solid rgb(100,100,100);
-    border-radius: 5px;
-}</string>
-   </property>
-   <property name="inputMask">
-    <string>000.000.000.000</string>
-   </property>
-   <property name="text">
-    <string>...</string>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="LoadClientSettingsButton">
-   <property name="geometry">
-    <rect>
-     <x>855</x>
-     <y>250</y>
-     <width>330</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(55,55,55);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:5px;
-border-style:solid;</string>
-   </property>
-   <property name="text">
-    <string>Восстановить настройки</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="RefreshClientIPsButton">
-   <property name="geometry">
-    <rect>
-     <x>1155</x>
-     <y>105</y>
-     <width>30</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <stylestrategy>PreferDefault</stylestrategy>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="cursor">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="layoutDirection">
-    <enum>Qt::RightToLeft</enum>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(55,55,55);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:5px;
-border-style:solid;</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>20</width>
-     <height>20</height>
-    </size>
-   </property>
-   <property name="autoDefault">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="GamepadIDLabel">
-   <property name="geometry">
-    <rect>
-     <x>855</x>
-     <y>140</y>
-     <width>131</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;</string>
-   </property>
-   <property name="text">
-    <string>ID геймпада</string>
-   </property>
-  </widget>
-  <widget class="QFrame" name="ConnectionSettingsFrame">
-   <property name="geometry">
-    <rect>
-     <x>835</x>
-     <y>25</y>
-     <width>370</width>
-     <height>170</height>
-    </rect>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:rgb(45,45,45);
-    border-width:1px;
-    border-color :rgb(100,100,100);
-    border-radius:10px;
-    border-style:solid;</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Panel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Plain</enum>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="GamepadComboBox">
-   <property name="geometry">
-    <rect>
-     <x>995</x>
-     <y>145</y>
-     <width>151</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="SaveClientSettingsButton">
-   <property name="geometry">
-    <rect>
-     <x>855</x>
-     <y>305</y>
-     <width>330</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color:rgb(255,255,255);
-
-background-color:rgb(55,55,55);
-
-border-width:1px;
-border-color :rgb(100,100,100);
-border-radius:5px;
-border-style:solid;</string>
-   </property>
-   <property name="text">
-    <string>Сохранить настройки</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="ClientIPComboBox">
-   <property name="geometry">
-    <rect>
-     <x>995</x>
-     <y>105</y>
-     <width>151</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="BackButtonLabel">
-   <property name="geometry">
-    <rect>
-     <x>479</x>
-     <y>567</y>
-     <width>46</width>
-     <height>46</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/BackButtonIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="RightStickPressComboBox">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>155</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Включение ТНПА</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Выключение ТНПА</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="RSVerticalLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>278</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/RSVerticalIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="DPadYComboBox">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>575</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>7</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Сжатие манипулятора</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение манипулятора</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QComboBox" name="RightStickYComboBox">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>295</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>1</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Сжатие манипулятора</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение манипулятора</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="RBRTButtonLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>418</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/RBRTButtonIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="RectangleComboBox">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>365</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Включение ТНПА</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Выключение ТНПА</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QComboBox" name="CircleComboBox">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>295</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Включение ТНПА</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Выключение ТНПА</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QComboBox" name="RightStickXComboBox">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>225</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>6</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Сжатие манипулятора</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение манипулятора</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QCheckBox" name="LeftStickXCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>85</y>
-     <width>20</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 5px;
-}
-
-QCheckBox::indicator {
-	background-color: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100);
-	border-radius: 2px;
-    width: 18px;
-    height: 18px;
-}
-
-QCheckBox::indicator:checked {
-    image: url(Icons/CheckBoxIndicator.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>30</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="LeftStickXComboBox">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>85</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>2</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Сжатие манипулятора</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение манипулятора</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QCheckBox" name="DPadXCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>575</y>
-     <width>20</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 5px;
-}
-
-QCheckBox::indicator {
-	background-color: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100);
-	border-radius: 2px;
-    width: 18px;
-    height: 18px;
-}
-
-QCheckBox::indicator:checked {
-    image: url(Icons/CheckBoxIndicator.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>30</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="BackComboBox">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>575</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>2</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Включение ТНПА</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Выключение ТНПА</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="LSPressLabel">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>68</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/LSPressIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="DPadVerticalLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>558</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/DpadVerticalIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QFrame" name="KeyAssignmentsWidgetFrame">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>25</y>
-     <width>800</width>
-     <height>620</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:rgb(45,45,45);
-    border-width:1px;
-    border-color :rgb(100,100,100);
-    border-radius:10px;
-    border-style:solid;</string>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Panel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Plain</enum>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="RightStickYCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>295</y>
-     <width>20</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 5px;
-}
-
-QCheckBox::indicator {
-	background-color: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100);
-	border-radius: 2px;
-    width: 18px;
-    height: 18px;
-}
-
-QCheckBox::indicator:checked {
-    image: url(Icons/CheckBoxIndicator.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>30</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="LeftStickPressComboBox">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>85</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>0</width>
-     <height>0</height>
-    </size>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>10</pointsize>
-     <weight>50</weight>
-     <italic>false</italic>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Включение ТНПА</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Выключение ТНПА</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QComboBox" name="StartComboBox">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>505</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>1</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Включение ТНПА</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Выключение ТНПА</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="YButtonLabel">
-   <property name="geometry">
-    <rect>
-     <x>479</x>
-     <y>427</y>
-     <width>46</width>
-     <height>46</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/YButtonIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="DPadHorizontalLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>488</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/DpadHorizontalIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="LeftStickYCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>155</y>
-     <width>20</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 5px;
-}
-
-QCheckBox::indicator {
-	background-color: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100);
-	border-radius: 2px;
-    width: 18px;
-    height: 18px;
-}
-
-QCheckBox::indicator:checked {
-    image: url(Icons/CheckBoxIndicator.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>30</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="DPadXComboBox">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>505</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>8</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Сжатие манипулятора</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение манипулятора</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QCheckBox" name="RightShoulderCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>435</y>
-     <width>20</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 5px;
-}
-
-QCheckBox::indicator {
-	background-color: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100);
-	border-radius: 2px;
-    width: 18px;
-    height: 18px;
-}
-
-QCheckBox::indicator:checked {
-    image: url(Icons/CheckBoxIndicator.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>30</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="TriangleComboBox">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>435</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Включение ТНПА</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Выключение ТНПА</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QCheckBox" name="LeftShoulderCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>365</y>
-     <width>20</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 5px;
-}
-
-QCheckBox::indicator {
-	background-color: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100);
-	border-radius: 2px;
-    width: 18px;
-    height: 18px;
-}
-
-QCheckBox::indicator:checked {
-    image: url(Icons/CheckBoxIndicator.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>30</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="RSPressLabel">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>138</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/RSPressIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="CrossComboBox">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>225</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>0</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Включение ТНПА</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Выключение ТНПА</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QCheckBox" name="DPadYCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>505</y>
-     <width>20</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 5px;
-}
-
-QCheckBox::indicator {
-	background-color: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100);
-	border-radius: 2px;
-    width: 18px;
-    height: 18px;
-}
-
-QCheckBox::indicator:checked {
-    image: url(Icons/CheckBoxIndicator.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>30</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="InversionLabel">
-   <property name="geometry">
-    <rect>
-     <x>335</x>
-     <y>58</y>
-     <width>91</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>10</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: white;</string>
-   </property>
-   <property name="text">
-    <string>Инверсия</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="LSVerticalLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>138</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/LSVerticalIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="XButtonLabel">
-   <property name="geometry">
-    <rect>
-     <x>479</x>
-     <y>357</y>
-     <width>46</width>
-     <height>46</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/XButtonIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="RightStickXCheckBox">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>225</y>
-     <width>20</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 5px;
-}
-
-QCheckBox::indicator {
-	background-color: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100);
-	border-radius: 2px;
-    width: 18px;
-    height: 18px;
-}
-
-QCheckBox::indicator:checked {
-    image: url(Icons/CheckBoxIndicator.png);
-}</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>30</width>
-     <height>30</height>
-    </size>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="BButtonLabel">
-   <property name="geometry">
-    <rect>
-     <x>479</x>
-     <y>287</y>
-     <width>46</width>
-     <height>46</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/BButtonIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="LeftStickYComboBox">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>155</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>3</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Сжатие манипулятора</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение манипулятора</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QComboBox" name="RightShoulderComboBox">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>435</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
-	color: white;
-    padding: 1px 18px 1px 3px;
-}
-
-QComboBox:editable {
-    background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
-    selection-background-color: rgb(40,40,40);
-}</string>
-   </property>
-   <property name="currentIndex">
+   <property name="verticalSpacing">
     <number>5</number>
    </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
+   <item row="2" column="0">
+    <spacer name="horizontalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Сжатие манипулятора</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение манипулятора</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QComboBox" name="LeftShoulderComboBox">
-   <property name="geometry">
-    <rect>
-     <x>100</x>
-     <y>365</y>
-     <width>230</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QComboBox {
-	font: 10pt &quot;Arial&quot;;
+   <item row="2" column="1">
+    <widget class="QWidget" name="ConnectionSettingsWidget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>261</width>
+       <height>65</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>261</width>
+       <height>65</height>
+      </size>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <property name="horizontalSpacing">
+       <number>5</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="2">
+       <widget class="QComboBox" name="GamepadComboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
 	color: white;
     padding: 1px 18px 1px 3px;
 }
 
 QComboBox:editable {
-    background: rgb(55,55,55);
+    background: rgb(60,60,60);
 	border: 1px solid rgb(100,100,100) ;
     border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 }
 
 QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(55,55,55);
+	background: rgb(60,60,60);
 	border: 1px solid rgb(100,100,100) ;
     border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -2992,7 +134,7 @@ QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдв
 }
 
 QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(55,55,55);
+	background: rgb(60,60,60);
 	border: 1px solid rgb(100,100,100) ;
     border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -3025,273 +167,3667 @@ QComboBox QAbstractItemView {
 	border: 1px solid rgb(100,100,100) ;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
-	background-color: rgb(55,55,55);
+	background-color: rgb(60,60,60);
     selection-background-color: rgb(40,40,40);
 }</string>
-   </property>
-   <property name="currentIndex">
-    <number>4</number>
-   </property>
-   <property name="frame">
-    <bool>true</bool>
-   </property>
-   <item>
-    <property name="text">
-     <string>Нет действия</string>
-    </property>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="GamepadIDLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: white;</string>
+        </property>
+        <property name="text">
+         <string>ID геймпада</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="RefreshGamepadsButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <stylestrategy>PreferDefault</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="toolTip">
+         <string>Обновить</string>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	color: white;
+	background-color:rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius:5px;
+	icon: url(Icons/ReloadIcon.png);
+}
+
+QPushButton:hover:!pressed {
+    background-color: rgb(70,70,70);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
    </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Х</string>
-    </property>
+   <item row="2" column="2">
+    <widget class="QWidget" name="widget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>220</width>
+       <height>65</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>220</width>
+       <height>65</height>
+      </size>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <property name="horizontalSpacing">
+       <number>0</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>5</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="LoadClientSettingsButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>220</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>220</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+color: white;
+background-color:rgb(60,60,60);
+border: 1px solid rgb(100,100,100);
+border-radius:5px;
+}
+
+QPushButton:hover:!pressed {
+    background-color: rgb(70,70,70);
+}</string>
+        </property>
+        <property name="text">
+         <string>Восстановить настройки</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="SaveClientSettingsButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>220</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>220</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+color: white;
+background-color:rgb(60,60,60);
+border: 1px solid rgb(100,100,100);
+border-radius:5px;
+}
+
+QPushButton:hover:!pressed {
+    background-color: rgb(70,70,70);
+}</string>
+        </property>
+        <property name="text">
+         <string>Сохранить настройки</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Y</string>
-    </property>
+   <item row="0" column="0" colspan="3">
+    <widget class="QWidget" name="KeyAssignmentsWidget" native="true">
+     <property name="mouseTracking">
+      <bool>false</bool>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:rgb(50,50,50);
+    border-width:1px;
+    border-color :rgb(100,100,100);
+    border-radius:10px;
+    border-style:solid;</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>10</number>
+      </property>
+      <property name="rightMargin">
+       <number>10</number>
+      </property>
+      <property name="bottomMargin">
+       <number>10</number>
+      </property>
+      <property name="spacing">
+       <number>10</number>
+      </property>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="LeftStickXComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="3">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>10</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="LeftStickYComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>3</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QCheckBox" name="LeftStickXCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Инверсия</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 28px;
+    height: 28px;
+	image: url(Icons/ReverseIcon.png);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(30,140,200);
+	border-color: rgb(38,179,255);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(40,150,210);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="5">
+       <widget class="QComboBox" name="StartComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="LSHorizontalLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/LSHorizontalIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/LSHorizontalIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="4">
+       <widget class="QLabel" name="AButtonLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/AButtonIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/AButtonIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="5">
+       <widget class="QComboBox" name="TriangleComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="7" column="4">
+       <widget class="QLabel" name="MenuButtonLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/MenuButtonIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/MenuButtonIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="5">
+       <widget class="QComboBox" name="BackComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>2</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="6" column="8">
+       <widget class="QComboBox" name="DPadYComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>7</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="5" column="4">
+       <widget class="QLabel" name="XButtonLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/XButtonIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/XButtonIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="5">
+       <widget class="QComboBox" name="CircleComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="8">
+       <widget class="QComboBox" name="LeftShoulderComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>4</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="9">
+       <widget class="QCheckBox" name="LeftShoulderCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Инверсия</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 28px;
+    height: 28px;
+	image: url(Icons/ReverseIcon.png);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(30,140,200);
+	border-color: rgb(38,179,255);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(40,150,210);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="8">
+       <widget class="QComboBox" name="RightShoulderComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>5</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="7">
+       <widget class="QLabel" name="LBLTButtonLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/LBLTButtonIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/LBLTButtonIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="LSPressLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/LSPressIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/LSPressIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="2">
+       <widget class="QCheckBox" name="RightStickYCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Инверсия</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 28px;
+    height: 28px;
+	image: url(Icons/ReverseIcon.png);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(30,140,200);
+	border-color: rgb(38,179,255);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(40,150,210);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="4">
+       <widget class="QLabel" name="BackButtonLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/BackButtonIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/BackButtonIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="7">
+       <widget class="QLabel" name="DPadHorizontalLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/DPadHorizontalIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/DpadHorizontalIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="9">
+       <widget class="QCheckBox" name="DPadXCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Инверсия</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 28px;
+    height: 28px;
+	image: url(Icons/ReverseIcon.png);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(30,140,200);
+	border-color: rgb(38,179,255);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(40,150,210);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="7">
+       <widget class="QLabel" name="RBRTButtonLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/RBRTButtonIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/RBRTButtonIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QCheckBox" name="LeftStickYCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Инверсия</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 28px;
+    height: 28px;
+	image: url(Icons/ReverseIcon.png);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(30,140,200);
+	border-color: rgb(38,179,255);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(40,150,210);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QComboBox" name="RightStickXComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>6</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="6" column="7">
+       <widget class="QLabel" name="DPadVerticalLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/DPadVerticalIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/DpadVerticalIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="RSVerticalLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/RSVerticalIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/RSVerticalIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="8">
+       <widget class="QComboBox" name="DPadXComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>8</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="9">
+       <widget class="QCheckBox" name="RightShoulderCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Инверсия</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 28px;
+    height: 28px;
+	image: url(Icons/ReverseIcon.png);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(30,140,200);
+	border-color: rgb(38,179,255);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(40,150,210);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="9">
+       <widget class="QCheckBox" name="DPadYCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Инверсия</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 28px;
+    height: 28px;
+	image: url(Icons/ReverseIcon.png);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(30,140,200);
+	border-color: rgb(38,179,255);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(40,150,210);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QComboBox" name="RightStickYComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Движение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Х</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Y</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение по оси Z</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Сжатие манипулятора</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Вращение манипулятора</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="8" column="0">
+       <widget class="QLabel" name="RSPressLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/RSPressIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/RSPressIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="2">
+       <widget class="QCheckBox" name="RightStickXCheckBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Инверсия</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100);
+	border-radius: 5px;
+    width: 28px;
+    height: 28px;
+	image: url(Icons/ReverseIcon.png);
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(30,140,200);
+	border-color: rgb(38,179,255);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(40,150,210);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="4">
+       <widget class="QLabel" name="YButtonLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/YButtonIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/YButtonIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="RSHorizontalLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/RSHorizontalIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/RSHorizontalIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="LeftStickPressComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>MS Shell Dlg 2</family>
+          <pointsize>10</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="4">
+       <widget class="QLabel" name="BButtonLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>46</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/BButtonIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/BButtonIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="5">
+       <widget class="QComboBox" name="CrossComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="8" column="1">
+       <widget class="QComboBox" name="RightStickPressComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="LSVerticalLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;
+image: url(Icons/LSVerticalIcon.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Icons/LSVerticalIcon.png</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="5">
+       <widget class="QComboBox" name="RectangleComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="frame">
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text">
+          <string>Нет действия</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Включение ТНПА</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Выключение ТНПА</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="6">
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>10</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
    </item>
-   <item>
-    <property name="text">
-     <string>Движение по оси Z</string>
-    </property>
+   <item row="1" column="1">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
    </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Х</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Y</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение по оси Z</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Сжатие манипулятора</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>Вращение манипулятора</string>
-    </property>
-   </item>
-  </widget>
-  <widget class="QLabel" name="LSHorizontalLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>68</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/LSHorizontalIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="MenuButtonLabel">
-   <property name="geometry">
-    <rect>
-     <x>479</x>
-     <y>497</y>
-     <width>46</width>
-     <height>46</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/MenuButtonIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="LBLTButtonLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>348</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/LBLTButtonIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="AButtonLabel">
-   <property name="geometry">
-    <rect>
-     <x>479</x>
-     <y>217</y>
-     <width>46</width>
-     <height>46</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/AButtonIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="RSHorizontalLabel">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>208</y>
-     <width>64</width>
-     <height>64</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Arial</family>
-     <pointsize>12</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap>../../../Icons/RSHorizontalIcon.png</pixmap>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <zorder>KeyAssignmentsWidgetFrame</zorder>
-  <zorder>ConnectionSettingsFrame</zorder>
-  <zorder>KeyAssignmentsLabel</zorder>
-  <zorder>ConnectionSettingsLabel</zorder>
-  <zorder>RobotIPLabel</zorder>
-  <zorder>ClientSettingsWidgetFrame</zorder>
-  <zorder>RefreshGamepadsButton</zorder>
-  <zorder>ClientIPLabel</zorder>
-  <zorder>RobotIPEdit</zorder>
-  <zorder>LoadClientSettingsButton</zorder>
-  <zorder>RefreshClientIPsButton</zorder>
-  <zorder>GamepadIDLabel</zorder>
-  <zorder>GamepadComboBox</zorder>
-  <zorder>SaveClientSettingsButton</zorder>
-  <zorder>ClientIPComboBox</zorder>
-  <zorder>BackButtonLabel</zorder>
-  <zorder>RightStickPressComboBox</zorder>
-  <zorder>RSVerticalLabel</zorder>
-  <zorder>DPadYComboBox</zorder>
-  <zorder>RightStickYComboBox</zorder>
-  <zorder>RBRTButtonLabel</zorder>
-  <zorder>RectangleComboBox</zorder>
-  <zorder>CircleComboBox</zorder>
-  <zorder>RightStickXComboBox</zorder>
-  <zorder>LeftStickXCheckBox</zorder>
-  <zorder>LeftStickXComboBox</zorder>
-  <zorder>DPadXCheckBox</zorder>
-  <zorder>BackComboBox</zorder>
-  <zorder>LSPressLabel</zorder>
-  <zorder>DPadVerticalLabel</zorder>
-  <zorder>RightStickYCheckBox</zorder>
-  <zorder>LeftStickPressComboBox</zorder>
-  <zorder>StartComboBox</zorder>
-  <zorder>YButtonLabel</zorder>
-  <zorder>DPadHorizontalLabel</zorder>
-  <zorder>LeftStickYCheckBox</zorder>
-  <zorder>DPadXComboBox</zorder>
-  <zorder>RightShoulderCheckBox</zorder>
-  <zorder>TriangleComboBox</zorder>
-  <zorder>LeftShoulderCheckBox</zorder>
-  <zorder>RSPressLabel</zorder>
-  <zorder>CrossComboBox</zorder>
-  <zorder>DPadYCheckBox</zorder>
-  <zorder>InversionLabel</zorder>
-  <zorder>LSVerticalLabel</zorder>
-  <zorder>XButtonLabel</zorder>
-  <zorder>RightStickXCheckBox</zorder>
-  <zorder>BButtonLabel</zorder>
-  <zorder>LeftStickYComboBox</zorder>
-  <zorder>RightShoulderComboBox</zorder>
-  <zorder>LeftShoulderComboBox</zorder>
-  <zorder>LSHorizontalLabel</zorder>
-  <zorder>MenuButtonLabel</zorder>
-  <zorder>LBLTButtonLabel</zorder>
-  <zorder>AButtonLabel</zorder>
-  <zorder>RSHorizontalLabel</zorder>
+  </layout>
  </widget>
  <resources/>
  <connections/>

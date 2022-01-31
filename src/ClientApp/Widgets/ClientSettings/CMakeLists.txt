@@ -1,4 +1,4 @@
-project (ClientSettings)
+project(ClientSettings)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 

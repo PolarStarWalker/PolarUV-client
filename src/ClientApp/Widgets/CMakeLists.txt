@@ -1,15 +1,17 @@
 project (Widgets)
 
+add_subdirectory(Autorization)
 add_subdirectory(RobotSettings)
 add_subdirectory(ClientSettings)
 add_subdirectory(PythonEnvironment)
-add_subdirectory(VideoStream)
+add_subdirectory(Display)
 
 add_library(Widgets Widgets.cpp)
 
+target_link_libraries(Widgets Autorization)
 target_link_libraries(Widgets RobotSettings)
 target_link_libraries(Widgets ClientSettings)
 target_link_libraries(Widgets PythonEnvironment)
-target_link_libraries(Widgets VideoStream)
+target_link_libraries(Widgets Display)
 
 target_link_libraries(Widgets ${REQUIRED_LIBS_QUALIFIED})
