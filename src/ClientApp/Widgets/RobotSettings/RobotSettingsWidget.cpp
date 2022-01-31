@@ -19,7 +19,7 @@ RobotSettingsWidget::RobotSettingsWidget(QWidget *parent) :
     this->connect(ui->MaxSpeedEdit, SIGNAL(textChanged(QString)), SLOT(UpdateMaxSpeedSlider(QString)));
 
     /// Changind default header labels for MotorsTable
-    QStringList labelsList = {"Fx", "Fy", "Fz", "Mx", "My", "Mz"};
+    QStringList labelsList = {"Fx", "Fy", "Fz," "Mx", "My", "Mz"};
     ui->MotorsTable->setHorizontalHeaderLabels(labelsList);
 }
 

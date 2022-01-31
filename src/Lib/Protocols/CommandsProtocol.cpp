@@ -3,7 +3,8 @@
 #include <iostream>
 
 CommandsProtocol::CommandsProtocol(int gamepadId, QObject *parent)
-        : QObject(parent), _gamepad(gamepadId) {
+        : QObject(parent),
+          _gamepad(gamepadId) {
     this->_isOnline = false;
     this->_isThreadActive = false;
     this->_errorStatus = CommandsProtocol::ErrorType::Ok;
@@ -48,13 +49,13 @@ void CommandsProtocol::SendCommand() {
 
     TelemetryStruct telemetry{};
 
-    if (!_socket.IsOnline()){
+    if (!_socket.IsOnline()) {
         this->SetTelemetryStruct(telemetry);
         return;
     }
 
-    CommandsStruct commands = this->_gamepad.GetCommandsStruct();
-    _socket.Send((char *) (&commands), CommandsStructLen);
+    lib::CommandsStruct commands = this->_gamepad.GetCommandsStruct();
+    _socket.Send((char *) (&commands), lib::CommandsStructLen);
 
     _socket.Recv((char *) &telemetry, TelemetryStructLen);
 

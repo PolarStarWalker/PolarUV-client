@@ -44,7 +44,7 @@ namespace Control {
     public:
         explicit Gamepad(int id);
 
-        CommandsStruct GetCommandsStruct() const;
+        lib::CommandsStruct GetCommandsStruct() const;
 
         void SetVibration(uint16_t left, uint16_t right) const;
 

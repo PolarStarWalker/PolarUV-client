@@ -1,31 +1,33 @@
-#include "./CommandsStruct/CommandsStruct.hpp"
+#include "DataStructs/CommandsStruct/CommandsStruct.hpp"
+
+using namespace lib;
 
 std::ostream& operator<<(std::ostream &ostream, const CommandsStruct &commandsStruct) {
     ostream <<"[CommandsStruct]"
             <<std::endl
 
-            << "MoveVector: ["
+            << "MoveDemensions: ["
             << commandsStruct.MoveVector[Fx] << ", "
             << commandsStruct.MoveVector[Fy] << ", "
             << commandsStruct.MoveVector[Fz] << ", "
             << commandsStruct.MoveVector[Mx] << ", "
             << commandsStruct.MoveVector[My] << ", "
-            << commandsStruct.MoveVector[Mz] << "]"
+            << commandsStruct.MoveVector[Mz] << ']'
             << std::endl
 
             << "The Hand: ["
             << commandsStruct.TheHand[0] << ", "
-            << commandsStruct.TheHand[1] << "]"
+            << commandsStruct.TheHand[1] << ", "
             << commandsStruct.TheHand[2] << ", "
-            << commandsStruct.TheHand[3] << "]"
+            << commandsStruct.TheHand[3] << ", "
             << commandsStruct.TheHand[4] << ", "
-            << commandsStruct.TheHand[5] << "]"
+            << commandsStruct.TheHand[5] << ']'
             << std::endl
 
             << "Camera: ["
             << commandsStruct.LowPWM[0] << ", "
-            << commandsStruct.LowPWM[1] << "]"
-            << commandsStruct.LowPWM[2] << "]"
+            << commandsStruct.LowPWM[1] << ", "
+            << commandsStruct.LowPWM[2] << ", "
             << commandsStruct.LowPWM[3] << "]"
             << std::endl
 

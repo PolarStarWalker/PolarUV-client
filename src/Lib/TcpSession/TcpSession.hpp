@@ -37,7 +37,7 @@ namespace lib::network {
         mutable std::atomic<bool> _status{};
         std::atomic<bool> _isDone{};
 
-        std::thread _thread;
+        std::thread thread_;
 
         explicit TcpSession(QObject *parent = nullptr);
 

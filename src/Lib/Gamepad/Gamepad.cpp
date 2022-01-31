@@ -20,18 +20,20 @@ Gamepad::Gamepad(int id) {
     _cameraPosition = 0.15;
 }
 
-CommandsStruct Gamepad::GetCommandsStruct() const {
-    CommandsStruct commands{};
+lib::CommandsStruct Gamepad::GetCommandsStruct() const {
+    using namespace lib;
+
+    lib::CommandsStruct commands{};
 
     int id = GetGamepadId();
 
     XINPUT_STATE state{};
     XInputGetState(id, &state);
 
-    commands.MoveVector[Fx] = GasFunction(((double) state.Gamepad.sThumbRY) / MAGIC_NUMBER_ONE);
-    commands.MoveVector[Fy] = GasFunction(-((double) state.Gamepad.sThumbLX) / MAGIC_NUMBER_ONE);
-    commands.MoveVector[Fz] = GasFunction(((double) state.Gamepad.sThumbLY) / MAGIC_NUMBER_ONE);
-    commands.MoveVector[Mx] =
+    commands.MoveVector[lib::Fx] = GasFunction(((double) state.Gamepad.sThumbRY) / MAGIC_NUMBER_ONE);
+    commands.MoveVector[lib::Fy] = GasFunction(-((double) state.Gamepad.sThumbLX) / MAGIC_NUMBER_ONE);
+    commands.MoveVector[lib::Fz] = GasFunction(((double) state.Gamepad.sThumbLY) / MAGIC_NUMBER_ONE);
+    commands.MoveVector[lib::Mx] =
             GasFunction(((GetAxisDirection(state.Gamepad.wButtons, LeftShoulder)) *
                          ((double) state.Gamepad.bLeftTrigger) / MAGIC_NUMBER_TWO));
 

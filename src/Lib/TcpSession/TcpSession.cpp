@@ -14,7 +14,7 @@ constexpr size_t REQUEST_HEADER_SIZE = sizeof(Request::HeaderType);
 constexpr size_t RESPONSE_HEADER_SIZE = sizeof(Response::HeaderType);
 
 
-inline ErrorCode TryConnect(const std::string_view& IP, Socket& socket){
+inline ErrorCode TryConnect(const std::string_view &IP, Socket &socket) {
 
     Endpoint endpoint(boost::asio::ip::make_address(IP), PORT);
 
@@ -133,12 +133,13 @@ void TcpSession::Start() {
 
 TcpSession::TcpSession(QObject *parent) :
         QObject(parent) {
-    _thread = std::thread(&TcpSession::Start, this);
+    thread_ = std::thread(&TcpSession::Start, this);
 }
 
 TcpSession::~TcpSession() noexcept {
     //poison pill
     auto future = SendRequest("", Request::TypeEnum::W, -1);
+    thread_.detach();
 }
 
 TcpSession &TcpSession::GetInstance() {
@@ -148,7 +149,7 @@ TcpSession &TcpSession::GetInstance() {
 
 Response TcpSession::SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId) {
 
-    if(endpointId < 1)
+    if (endpointId < 1 && !(data == "" && type == Request::TypeEnum::W && endpointId == -1))
         return {std::string("Неправильный адрес"), Response::ConnectionError, endpointId};
 
     std::clog << "[SENDING DATA]" << std::endl;

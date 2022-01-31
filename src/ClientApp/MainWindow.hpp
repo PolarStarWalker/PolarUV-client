@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "./Widgets/widgets.hpp"
+#include "./Widgets/Widgets.hpp"
 
 #include <QOpenGLWidget>
 #include <QMainWindow>

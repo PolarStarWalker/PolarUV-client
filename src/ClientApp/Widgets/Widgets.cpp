@@ -1,4 +1,4 @@
-#include "widgets.hpp"
+#include "Widgets.hpp"
 #include <iostream>
 
 //its for linking library

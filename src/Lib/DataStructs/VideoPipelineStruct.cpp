@@ -1,7 +1,3 @@
-//
-// Created by starwalker on 18.08.2021.
-//
-
 #include "VideoPipelineStruct/VideoPipelineStruct.hpp"
 
 VideoPipelineStruct::VideoPipelineStruct(size_t size) {
