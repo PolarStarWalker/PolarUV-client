@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Page2Button->setIcon(QIcon("Icons/SettingsIcon.png"));
     ui->Page3Button->setIcon(QIcon("Icons/CodeIcon.png"));
     ui->Page4Button->setIcon(QIcon("Icons/BugIcon.png"));
-    ui->SideBarButton->setIcon(QIcon("Icons/HamburgerIcon.png"));
 
 //    /// Создание виджетов индикаторов
 //    _pitchIndicator = std::make_unique<PitchIndicator>(ui->MainTab, *_commandsProtocol);

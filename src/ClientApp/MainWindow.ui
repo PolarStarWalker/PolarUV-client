@@ -618,6 +618,7 @@ background-color: rgb(50,50,50);</string>
 	color: white;
 	border: none;
     background-color: rgba(0,0,0,0);
+	icon: url(Icons/HamburgerIcon);
 }
 QPushButton:hover:!pressed {
     background-color: rgb(70,70,70);
@@ -883,7 +884,7 @@ QToolTip
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="CommandsButton">
+            <widget class="QPushButton" name="BackButton">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                <horstretch>0</horstretch>
@@ -910,8 +911,9 @@ QToolTip
 	color: white;
 	border: none;
     background-color: rgba(0,0,0,0);
+	icon: url(Icons/StartIcon);
 }
-/*
+
 QPushButton:hover:!pressed {
     background-color: rgb(70,70,70);
 }
@@ -922,7 +924,7 @@ QToolTip
 	border: 1px solid rgb(38,179,255);
 	border-radius: 3px;
 }
-*/</string>
+</string>
              </property>
              <property name="text">
               <string/>

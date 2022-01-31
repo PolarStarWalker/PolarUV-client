@@ -3,7 +3,6 @@
 
 #include "./BaseProtocol/BaseProtocol.hpp"
 #include "./CommandsProtocol/CommandsProtocol.hpp"
-#include "./SettingsProtocol/RobotSettingsProtocol.hpp"
 #include "./Socket/Socket.hpp"
 #include "./VideoProtocol/VideoProtocol.hpp"
 

@@ -81,6 +81,8 @@ private slots:
 
     void HideSideBar();
 
+    void Reload();
+
 private:
 
     Ui::MainWindow *ui;

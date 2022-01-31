@@ -3,33 +3,36 @@
 #include "../ui_mainwindow.h"
 
 void MainWindow::SetupSlots() {
-    connect(ui->Page1Button, SIGNAL(clicked(bool)), this, SLOT(SwitchToPage1()));
-    connect(ui->Page2Button, SIGNAL(clicked(bool)), this, SLOT(SwitchToPage2()));
-    connect(ui->Page3Button, SIGNAL(clicked(bool)), this, SLOT(SwitchToPage3()));
-    connect(ui->Page4Button, SIGNAL(clicked(bool)), this, SLOT(SwitchToPage4()));
-    connect(ui->Page2_1Button, SIGNAL(clicked(bool)), this, SLOT(SwitchToPage2_1()));
-    connect(ui->Page2_2Button, SIGNAL(clicked(bool)), this, SLOT(SwitchToPage2_2()));
-    connect(ui->Page2_3Button, SIGNAL(clicked(bool)), this, SLOT(SwitchToPage2_3()));
+    connect(ui->Page1Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage1()));
+    connect(ui->Page2Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2()));
+    connect(ui->Page3Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage3()));
+    connect(ui->Page4Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage4()));
+    connect(ui->Page2_1Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2_1()));
+    connect(ui->Page2_2Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2_2()));
+    connect(ui->Page2_3Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2_3()));
+    connect(ui->PrimaryStackedWidget, SIGNAL(currentChanged(int)), SLOT(SwitchSideBarButton(int)));
+    connect(ui->SideBarButton, SIGNAL(clicked(bool)), SLOT(HideSideBar()));
+    connect(ui->BackButton, SIGNAL(clicked(bool)), SLOT(Reload()));
 
-    connect(ui->PrimaryStackedWidget, SIGNAL(currentChanged(int)),
-            this, SLOT(SwitchSideBarButton(int)));
-
-    connect(ui->SideBarButton, SIGNAL(clicked(bool)), this, SLOT(HideSideBar()));
-    connect(ui->SideBarButton,SIGNAL(clicked(bool)),displayWidget_.get(),SLOT(ShowSideBarButton()));
+    connect(ui->SideBarButton, SIGNAL(clicked(bool)), displayWidget_.get(), SLOT(ShowSideBarButton()));
 }
 
 void MainWindow::SwitchSideBarButton(int currentIndex) {
     if (currentIndex == 0) {
         ui->SideBarButton->show();
-        ui->Spacer1->changeSize(20,30,QSizePolicy::Fixed,QSizePolicy::Fixed);
+        ui->Spacer1->changeSize(20, 30, QSizePolicy::Fixed, QSizePolicy::Fixed);
     } else {
         ui->SideBarButton->hide();
-        ui->Spacer1->changeSize(20,90,QSizePolicy::Fixed,QSizePolicy::Fixed);
+        ui->Spacer1->changeSize(20, 90, QSizePolicy::Fixed, QSizePolicy::Fixed);
     }
 }
 
 void MainWindow::HideSideBar() {
     ui->SideBar->hide();
+}
+
+void MainWindow::Reload() {
+    ui->MainStackedWidget->setCurrentIndex(0);
 }
 
 /// Территория плохого кода. ToDo: shushkov.d исправить
@@ -101,24 +104,9 @@ void MainWindow::SwitchToPage2_3() {
 }
 /// Конец плохого кода
 
-//void MainWindow::ReceiveRobotSettings() {
-//    ExceptionHandler("Успех", "Настройки успешно приняты",
-//                     [&]() { this->RawReceiveRobotSettings(); });
-//}
-//
-//void MainWindow::SendRobotSettings() {
-//    ExceptionHandler("Успех", "Настройки успешно отправлены",
-//                     [&]() { this->RawSendRobotSettings(); });
-//}
-//
-//void MainWindow::LoadClientSettings() {
-//    ExceptionHandler("Успех", "Настройки успешно загружены",
-//                     [&]() { this->RawLoadClientSettings(); });
-//}
-
 /// ----- Публичные слоты ----- ///
 
-void MainWindow::Launch(const QString& robotIP, const QString& clientIP, int gamepadID) {
+void MainWindow::Launch(const QString &robotIP, const QString &clientIP, int gamepadID) {
     ui->MainStackedWidget->setCurrentIndex(1);
 
     displayWidget_->SetRobotIP(robotIP);
