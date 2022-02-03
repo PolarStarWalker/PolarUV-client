@@ -19,17 +19,40 @@ ClientSettingsWidget::~ClientSettingsWidget() {
 }
 
 ControlsSettings ClientSettingsWidget::GetControlsSettings() {
-    std::array<AnalogActions, 8> AnalogArray {
+    std::array<AnalogActions, 8> AnalogArray{
+            ui->LeftStickXCheckBox->isChecked() ?
+            (AnalogActions) -ui->LeftStickXComboBox->currentIndex() :
             (AnalogActions) ui->LeftStickXComboBox->currentIndex(),
+
+            ui->LeftStickYCheckBox->isChecked() ?
+            (AnalogActions) -ui->LeftStickYComboBox->currentIndex() :
             (AnalogActions) ui->LeftStickYComboBox->currentIndex(),
+
+            ui->RightStickXCheckBox->isChecked() ?
+            (AnalogActions) -ui->RightStickXComboBox->currentIndex() :
             (AnalogActions) ui->RightStickXComboBox->currentIndex(),
+
+            ui->RightStickYCheckBox->isChecked() ?
+            (AnalogActions) -ui->RightStickYComboBox->currentIndex() :
             (AnalogActions) ui->RightStickYComboBox->currentIndex(),
+
+            ui->LeftShoulderCheckBox->isChecked() ?
+            (AnalogActions) -ui->LeftShoulderComboBox->currentIndex() :
             (AnalogActions) ui->LeftShoulderComboBox->currentIndex(),
+
+            ui->RightShoulderCheckBox->isChecked() ?
+            (AnalogActions) -ui->RightShoulderComboBox->currentIndex() :
             (AnalogActions) ui->RightShoulderComboBox->currentIndex(),
+
+            ui->DPadXCheckBox->isChecked() ?
+            (AnalogActions) -ui->DPadXComboBox->currentIndex() :
             (AnalogActions) ui->DPadXComboBox->currentIndex(),
+
+            ui->DPadYCheckBox->isChecked() ?
+            (AnalogActions) -ui->DPadYComboBox->currentIndex() :
             (AnalogActions) ui->DPadYComboBox->currentIndex()
     };
-    std::array<DiscreteActions, 8> DiscreteArray {
+    std::array<DiscreteActions, 8> DiscreteArray{
             (DiscreteActions) ui->LeftStickPressComboBox->currentIndex(),
             (DiscreteActions) ui->RightStickPressComboBox->currentIndex(),
             (DiscreteActions) ui->RectangleComboBox->currentIndex(),
@@ -42,7 +65,7 @@ ControlsSettings ClientSettingsWidget::GetControlsSettings() {
     ControlsSettings controlsSettings{};
     controlsSettings.Analog = AnalogArray;
     controlsSettings.Discrete = DiscreteArray;
-    return  controlsSettings;
+    return controlsSettings;
 
     // Использовать примерно так:
     // controlsSettings.Analog[AnalogControls::DPadX];
