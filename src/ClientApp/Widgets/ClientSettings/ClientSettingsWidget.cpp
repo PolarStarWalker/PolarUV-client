@@ -18,6 +18,36 @@ ClientSettingsWidget::~ClientSettingsWidget() {
     delete ui;
 }
 
+ControlsSettings ClientSettingsWidget::GetControlsSettings() {
+    std::array<AnalogActions, 8> AnalogArray {
+            (AnalogActions) ui->LeftStickXComboBox->currentIndex(),
+            (AnalogActions) ui->LeftStickYComboBox->currentIndex(),
+            (AnalogActions) ui->RightStickXComboBox->currentIndex(),
+            (AnalogActions) ui->RightStickYComboBox->currentIndex(),
+            (AnalogActions) ui->LeftShoulderComboBox->currentIndex(),
+            (AnalogActions) ui->RightShoulderComboBox->currentIndex(),
+            (AnalogActions) ui->DPadXComboBox->currentIndex(),
+            (AnalogActions) ui->DPadYComboBox->currentIndex()
+    };
+    std::array<DiscreteActions, 8> DiscreteArray {
+            (DiscreteActions) ui->LeftStickPressComboBox->currentIndex(),
+            (DiscreteActions) ui->RightStickPressComboBox->currentIndex(),
+            (DiscreteActions) ui->RectangleComboBox->currentIndex(),
+            (DiscreteActions) ui->TriangleComboBox->currentIndex(),
+            (DiscreteActions) ui->CircleComboBox->currentIndex(),
+            (DiscreteActions) ui->CrossComboBox->currentIndex(),
+            (DiscreteActions) ui->StartComboBox->currentIndex(),
+            (DiscreteActions) ui->BackComboBox->currentIndex()
+    };
+    ControlsSettings controlsSettings{};
+    controlsSettings.Analog = AnalogArray;
+    controlsSettings.Discrete = DiscreteArray;
+    return  controlsSettings;
+
+    // Использовать примерно так:
+    // controlsSettings.Analog[AnalogControls::DPadX];
+}
+
 void ClientSettingsWidget::LoadSettings() {
     if (!settings_->value("DPadXAction").isNull()) {
         // Analog actions
@@ -52,8 +82,8 @@ void ClientSettingsWidget::LoadSettings() {
 
 void ClientSettingsWidget::SaveSettings() {
     // Analog actions
-    settings_->setValue("DPadXAction",ui->DPadXComboBox->currentIndex());
-    settings_->setValue("DPadYAction",ui->DPadYComboBox->currentIndex());
+    settings_->setValue("DPadXAction", ui->DPadXComboBox->currentIndex());
+    settings_->setValue("DPadYAction", ui->DPadYComboBox->currentIndex());
     settings_->setValue("LeftStickXAction", ui->LeftStickXComboBox->currentIndex());
     settings_->setValue("LeftStickYAction", ui->LeftStickYComboBox->currentIndex());
     settings_->setValue("RightStickXAction", ui->RightStickXComboBox->currentIndex());

@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QSettings>
 
+#include "ControlsSettingsStruct.hpp"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ClientSettingsWidget; }
@@ -17,6 +19,8 @@ public:
 
     ~ClientSettingsWidget() override;
 
+    ControlsSettings GetControlsSettings();
+
 private:
     Ui::ClientSettingsWidget *ui;
 
@@ -25,25 +29,8 @@ private:
 private slots:
 
     void LoadSettings();
+
     void SaveSettings();
-};
-
-enum AnalogActions : int8_t {
-    NoAnalogAction = 0,
-    MoveX = 1,
-    MoveY = 2,
-    MoveZ = 3,
-    RotateX = 4,
-    RotateY = 5,
-    RotateZ = 6,
-    GrabHand = 7,
-    RotateHand = 8,
-};
-
-enum DiscreteActions : int8_t {
-    NoDiscreteAction = 0,
-    TurnOn = 1,
-    TurnOff = 2
 };
 
 #endif //CLIENT_CLIENTSETTINGSWIDGET_HPP
