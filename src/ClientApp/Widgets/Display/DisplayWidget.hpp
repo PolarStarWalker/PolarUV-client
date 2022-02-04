@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMainWindow>
 
+#include "./VideoStream/VideoStream.hpp"
 #include "./Protocols/Protocols.hpp"
 
 #define COMMANDS_PORT 1999
@@ -25,9 +26,11 @@ public:
     void SetGamepadID(int id) {this->GamepadID = id;};
 
 private:
+
+    lib::processing::VideoStream stream_;
+
     Ui::DisplayWidget *ui;
 
-    std::unique_ptr<VideoProtocol> videoProtocol_;
     std::unique_ptr<CommandsProtocol> commandsProtocol_;
 
     QString RobotIP{};
@@ -39,6 +42,9 @@ public slots:
 
     void ShowSideBarButton();
 
+    void StopWidget();
+    void StartWidget();
+
 private slots:
 
     void SwitchVideoStream();
@@ -47,7 +53,8 @@ private slots:
     void SwitchSendingCommands();
 
     void HideSideBarButton();
+
 };
 
 
-#endif //CLIENT_DISPLAYWIDGET_HPP
+#endif

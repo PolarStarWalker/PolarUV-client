@@ -111,6 +111,22 @@ namespace lib::network {
 
         ExceptionHandler(nullptr, nullptr, function);
     }
+
+
+    class Network {
+    public:
+        static Network GetConnection(std::string ip);
+
+        Response SendRequest(Request);
+
+    private:
+        explicit Network(const std::string& ip);
+
+        boost::asio::ip::tcp::socket socket_;
+        boost::asio::io_context ioContext_;
+        bool isOnline_;
+    };
+
 }
 
 #endif

@@ -1,10 +1,16 @@
 #include "CommandsWidget.hpp"
+#include <iostream>
 
-Commands::Commands() : network_(lib::network::TcpSession::GetInstance()){
-
-    connect(&timer_, SIGNAL(timeout()), this, SLOT(SendCommand()));
-
-    timer_.start(1);
+CommandsWidget::CommandsWidget(QWidget *parent) :
+        QWidget(parent),
+        network_(lib::network::TcpSession::GetInstance()) {
+        connect(&timer_, SIGNAL(timeout()), this, SLOT(SendCommands()));
 }
 
-void Commands::SendCommands() {}
+void CommandsWidget::SendCommands() {
+    std::cout << "I'm cuming" << std::endl;
+}
+
+void CommandsWidget::StopWidget() { timer_.stop(); }
+
+void CommandsWidget::StartWidget() { timer_.start(1); }

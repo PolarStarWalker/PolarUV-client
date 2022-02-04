@@ -122,3 +122,11 @@ std::string RobotSettingsWidget::Serialize() const noexcept {
     return message.SerializeAsString();
 }
 
+void RobotSettingsWidget::StartWidget() {
+
+}
+
+void RobotSettingsWidget::StopWidget() {
+
+}
+

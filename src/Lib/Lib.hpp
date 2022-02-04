@@ -9,7 +9,7 @@
 #include "./Coroutines/All.hpp"
 #include "./Singleton.hpp"
 #include "./Logger/Logger.hpp"
-
+#include "./VideoStream/VideoStream.hpp"
 
 namespace lib {
     static void Setup() {

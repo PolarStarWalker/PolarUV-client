@@ -3,7 +3,8 @@
 
 
 PythonEnvironmentWidget::PythonEnvironmentWidget(QWidget *parent) :
-        QWidget(parent), ui(new Ui::PythonEnvironmentWidget) {
+        QWidget(parent),
+        ui(new Ui::PythonEnvironmentWidget) {
     ui->setupUi(this);
 
     connect(ui->DebugCodeButton, SIGNAL(clicked(bool)),this, SLOT(DebugCode()));
@@ -79,4 +80,12 @@ void PythonEnvironmentWidget::DebugCode() {
     Py_Finalize();
 
     ui->ProgressBar->setValue(0);
+}
+
+void PythonEnvironmentWidget::StopWidget() {
+
+}
+
+void PythonEnvironmentWidget::StartWidget() {
+
 }

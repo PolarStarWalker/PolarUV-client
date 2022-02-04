@@ -14,7 +14,7 @@ void MainWindow::SetupSlots() {
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), SLOT(HideSideBar()));
     connect(ui->BackButton, SIGNAL(clicked(bool)), SLOT(Reload()));
 
-    connect(ui->SideBarButton, SIGNAL(clicked(bool)), displayWidget_.get(), SLOT(ShowSideBarButton()));
+    connect(ui->SideBarButton, SIGNAL(clicked(bool)), displayWidget_, SLOT(ShowSideBarButton()));
 }
 
 void MainWindow::SwitchSideBarButton(int currentIndex) {
@@ -124,3 +124,6 @@ void MainWindow::LaunchDebug() {
 void MainWindow::ShowSideBar() {
     ui->SideBar->show();
 }
+
+
+

@@ -1,15 +1,19 @@
 #include "AutorizationWidget.hpp"
 #include "ui_AutorizationWidget.h"
 
+#include <iphlpapi.h>
+
+std::list<std::string> GetIps();
 
 AutorizationWidget::AutorizationWidget(QMainWindow *mainWindow, QWidget *parent) :
-        QWidget(parent), ui(new Ui::AutorizationWidget) {
+        QWidget(parent),
+        ui(new Ui::AutorizationWidget),
+        settings_("NARFU","PolarROVClient"){
 
     ui->setupUi(this);
 
-    settings_ = std::make_unique<QSettings>("NARFU","PolarROVClient");
-    if (!settings_->value("RobotIP").isNull()) {
-        ui->RobotIPEdit->setText(settings_->value("RobotIP").toString());
+    if (!settings_.value("RobotIP").isNull()) {
+        ui->RobotIPEdit->setText(settings_.value("RobotIP").toString());
     }
 
     /// Соединяем собственные слоты
@@ -28,7 +32,39 @@ AutorizationWidget::~AutorizationWidget() {
 }
 
 void AutorizationWidget::RefreshClientIPs() {
+    auto addresses = GetIps();
+
+    ui->ClientIPComboBox->clear();
+
+    for (auto &&address: addresses)
+        ui->ClientIPComboBox->addItem(QString::fromStdString(address));
+}
+
+void AutorizationWidget::RefreshGamepadIDs() {
+    auto gamepads = Control::GetGamepadsIds();
+    ui->GamepadComboBox->clear();
+
+    for (auto &&id: gamepads)
+        ui->GamepadComboBox->addItem(QString::number(id));
+}
+
+void AutorizationWidget::LaunchHandler() {
+
+    emit StartWidget();
+
+    /// ToDo: проверка подключения и передача параметров
+    settings_.setValue("RobotIP",ui->RobotIPEdit->text());
+    emit Launched(ui->RobotIPEdit->text(),
+                  ui->ClientIPComboBox->currentText(),
+                  ui->GamepadComboBox->currentText().toInt());
+
+}
+
+
+std::list<std::string> GetIps(){
+
     std::list<std::string> addresses;
+
     PIP_ADAPTER_INFO adapterInfo = nullptr;
     ULONG ulOutBufLen = 0;
 
@@ -57,25 +93,5 @@ void AutorizationWidget::RefreshClientIPs() {
         delete[] deleteAdapter;
     }
 
-    ui->ClientIPComboBox->clear();
-
-    for (auto &&address: addresses)
-        ui->ClientIPComboBox->addItem(QString::fromStdString(address));
+    return addresses;
 }
-
-void AutorizationWidget::RefreshGamepadIDs() {
-    auto gamepads = Control::GetGamepadsIds();
-    ui->GamepadComboBox->clear();
-
-    for (auto &&id: gamepads)
-        ui->GamepadComboBox->addItem(QString::number(id));
-}
-
-void AutorizationWidget::LaunchHandler() {
-    /// ToDo: проверка подключения и передача параметров
-    settings_->setValue("RobotIP",ui->RobotIPEdit->text());
-    emit Launched(ui->RobotIPEdit->text(),
-                  ui->ClientIPComboBox->currentText(),
-                  ui->GamepadComboBox->currentText().toInt());
-}
-

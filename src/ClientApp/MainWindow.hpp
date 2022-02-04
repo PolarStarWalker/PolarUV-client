@@ -26,8 +26,21 @@ Q_OBJECT
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() final;
 
 protected:
+
+    [[nodiscard]]
+    AutorizationWidget* CreateAuthorizationWidget(QWidget* dst);
+
+
+    template<can_registry Type, typename ... Args>
+    [[nodiscard]]
+    Type* AddWidget(QWidget* dst, Args&& ... args){
+        auto widget = authorizationWidget_->template Registry<Type>(this, args...);
+        dst->layout()->addWidget(widget);
+        return widget;
+    }
 
     void SetupRendering();
 
@@ -93,11 +106,13 @@ private:
 //    std::unique_ptr<YawIndicator> _yawIndicator;
 //    std::unique_ptr<DepthIndicator> _depthIndicator;
 
-    std::unique_ptr<AutorizationWidget> autorizationWidget_;
-    std::unique_ptr<DisplayWidget> displayWidget_;
-    std::unique_ptr<RobotSettingsWidget> robotSettingsWidget_;
-    std::unique_ptr<ClientSettingsWidget> controlSettingsWidget_;
-    std::unique_ptr<PythonEnvironmentWidget> pythonIDEWidget_;
+    ///Первым в объявлении всегда должен быть виджет авторизации, поскольку он последним будет уничтожаться
+    AutorizationWidget* authorizationWidget_;
+    DisplayWidget* displayWidget_;
+    RobotSettingsWidget* robotSettingsWidget_;
+    ClientSettingsWidget* controlSettingsWidget_;
+    PythonEnvironmentWidget* pythonIDEWidget_;
+    CommandsWidget* commandsWidget_;
 
     /// ToDo: shushkov.d переделать
 //    bool _isVideoFrame = false;

@@ -166,3 +166,28 @@ Response TcpSession::SendRequest(std::string_view data, Request::TypeEnum type, 
 
     return future.get();
 }
+
+Network::Network(const std::string& ip) :
+        ioContext_(),
+        socket_(ioContext_),
+        isOnline_(false) {
+
+    ErrorCode errorCode;
+
+    Endpoint endpoint(boost::asio::ip::make_address(ip), PORT);
+    socket_.connect(endpoint, errorCode);
+
+    if(errorCode.failed())
+        isOnline_ = false;
+
+}
+
+Network Network::GetConnection(std::string ip) {
+    return Network(ip);
+}
+
+Response Network::SendRequest(Request) {
+    return Response("", Response::Ok, 0);
+}
+
+

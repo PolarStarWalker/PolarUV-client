@@ -4,6 +4,13 @@
 #include "./ui_mainwindow.h"
 #include <Exceptions/ExceptionHandler.hpp>
 
+template<typename Type, typename ... Args>
+Type *CreateWidget(MainWindow *parent, QWidget *widget, Args &&... args) {
+    Type *newWidget = new Type(parent, args...);
+    widget->layout()->addWidget(newWidget);
+    return newWidget;
+}
+
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow) {
@@ -22,27 +29,25 @@ MainWindow::MainWindow(QWidget *parent) :
 //    _depthIndicator = std::make_unique<DepthIndicator>(ui->MainTab, *_commandsProtocol);
 
     /// Создание виджета авторизации
-    autorizationWidget_ = std::make_unique<AutorizationWidget>(this);
-    ui->AutorizationPage->layout()->addWidget(autorizationWidget_.get());
+     authorizationWidget_ = CreateAuthorizationWidget(ui->AutorizationPage);
 
     /// Создание виджета камеры/телеметрии
-    displayWidget_ = std::make_unique<DisplayWidget>(this);
-    ui->Page1->layout()->addWidget(displayWidget_.get());
+    displayWidget_ = AddWidget<DisplayWidget>(ui->Page1);
 
     /// Создание виджета настроек робота
-    robotSettingsWidget_ = std::make_unique<RobotSettingsWidget>();
-    ui->Page2_1->layout()->addWidget(robotSettingsWidget_.get());
+    robotSettingsWidget_ = AddWidget<RobotSettingsWidget>(ui->Page2_1);
 
     /// Создание виджета настроек клиента
     // ToDo: а где
 
     /// Создание виджета настроек управления
-    controlSettingsWidget_ = std::make_unique<ClientSettingsWidget>();
-    ui->Page2_3->layout()->addWidget(controlSettingsWidget_.get());
+    controlSettingsWidget_ = AddWidget<ClientSettingsWidget>(ui->Page2_3);
 
     /// Создание виджета Python-среды
-    pythonIDEWidget_ = std::make_unique<PythonEnvironmentWidget>();
-    ui->Page3->layout()->addWidget(pythonIDEWidget_.get());
+    pythonIDEWidget_ = AddWidget<PythonEnvironmentWidget>(ui->Page3);
+
+    commandsWidget_ = AddWidget<CommandsWidget>(ui->Page4);
+
     // ToDo: решить судьбу виджета (возможно убрать)
     ui->Page3Button->hide();
 
@@ -52,4 +57,20 @@ MainWindow::MainWindow(QWidget *parent) :
 //    this->_updateTimer->start(1000 / 60);
 
     SetupSlots();
+}
+
+MainWindow::~MainWindow() {
+    delete pythonIDEWidget_;
+    delete controlSettingsWidget_;
+    delete robotSettingsWidget_;
+    delete displayWidget_;
+
+    ///Note: this widget must be delete last
+    delete authorizationWidget_;
+}
+
+AutorizationWidget* MainWindow::CreateAuthorizationWidget(QWidget* dst) {
+    auto widget = new AutorizationWidget(this);
+    dst->layout()->addWidget(widget);
+    return  widget;
 }

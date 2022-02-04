@@ -2,7 +2,7 @@
 #define CLIENT_COMMANDSWIDGET_HPP
 #include <TcpSession/TcpSession.hpp>
 
-#include <QObject>
+#include <QWidget>
 #include <QTimer>
 
 struct CommandsStruct {
@@ -20,13 +20,20 @@ struct CommandsStruct {
     std::array<float, 4> LowPWM{};
 };
 
-class Commands final : public QObject {
+class CommandsWidget final : public QWidget {
 Q_OBJECT
+
+public slots:
+    void StartWidget();
+    void StopWidget();
+
+private slots:
+    void SendCommands();
 
 public:
 
-    Commands();
-    void SendCommands();
+    explicit CommandsWidget(QWidget *parent = nullptr);
+
 
 private:
     lib::network::TcpSession& network_;

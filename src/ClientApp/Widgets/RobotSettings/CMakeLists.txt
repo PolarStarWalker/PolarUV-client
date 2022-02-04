@@ -1,4 +1,4 @@
-project (RobotSettings)
+project(RobotSettings)
 
 #do some cmake-protobug magic
 find_package(Protobuf REQUIRED)

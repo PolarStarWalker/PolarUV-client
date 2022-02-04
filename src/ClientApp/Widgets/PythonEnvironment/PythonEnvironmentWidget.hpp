@@ -21,6 +21,10 @@ public:
 
     ~PythonEnvironmentWidget() override;
 
+public slots:
+    void StartWidget();
+    void StopWidget();
+
 private:
     Ui::PythonEnvironmentWidget *ui;
 

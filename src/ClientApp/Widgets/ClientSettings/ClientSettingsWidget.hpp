@@ -21,6 +21,10 @@ public:
 
     ControlsSettings GetControlsSettings();
 
+public slots:
+    void StartWidget();
+    void StopWidget();
+
 private:
     Ui::ClientSettingsWidget *ui;
 
@@ -33,4 +37,4 @@ private slots:
     void SaveSettings();
 };
 
-#endif //CLIENT_CLIENTSETTINGSWIDGET_HPP
+#endif

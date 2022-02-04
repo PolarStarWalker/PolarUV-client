@@ -62,10 +62,8 @@ ControlsSettings ClientSettingsWidget::GetControlsSettings() {
             (DiscreteActions) ui->StartComboBox->currentIndex(),
             (DiscreteActions) ui->BackComboBox->currentIndex()
     };
-    ControlsSettings controlsSettings{};
-    controlsSettings.Analog = AnalogArray;
-    controlsSettings.Discrete = DiscreteArray;
-    return controlsSettings;
+
+    return {AnalogArray, DiscreteArray};;
 
     // Использовать примерно так:
     // controlsSettings.Analog[AnalogControls::DPadX];
@@ -131,5 +129,13 @@ void ClientSettingsWidget::SaveSettings() {
     settings_->setValue("RightStickYInverted", ui->RightStickYCheckBox->isChecked());
     settings_->setValue("LeftShoulderInverted", ui->LeftShoulderCheckBox->isChecked());
     settings_->setValue("RightShoulderInverted", ui->RightShoulderCheckBox->isChecked());
+}
+
+void ClientSettingsWidget::StartWidget() {
+
+}
+
+void ClientSettingsWidget::StopWidget() {
+
 }
 

@@ -52,8 +52,8 @@ enum DiscreteActions : int8_t {
 };
 
 struct ControlsSettings {
-    std::array<AnalogActions, 8> Analog;
-    std::array<DiscreteActions, 8> Discrete;
+    std::array<AnalogActions, 8> Analog{};
+    std::array<DiscreteActions, 8> Discrete{};
 };
 
-#endif //CLIENT_CONTROLSSETTINGSSTRUCT_HPP
+#endif

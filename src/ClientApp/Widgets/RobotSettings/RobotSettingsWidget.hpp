@@ -21,6 +21,10 @@ public:
     void SetRobotIP(const QString& ip) {this->RobotIP = ip;};
     void SetClientIP(const QString& ip) {this->ClientIP = ip;};
 
+public slots:
+    void StartWidget();
+    void StopWidget();
+    
 private:
 
     Ui::RobotSettingsWidget *ui;
