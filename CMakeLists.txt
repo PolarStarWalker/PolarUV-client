@@ -16,6 +16,9 @@ else ()
     set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 endif ()
 
+if (WIN32)
+    add_definitions(-DWIN32)
+endif (WIN32)
 
 project(Client)
 

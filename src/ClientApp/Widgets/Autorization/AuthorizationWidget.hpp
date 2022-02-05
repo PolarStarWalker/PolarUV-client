@@ -1,5 +1,5 @@
-#ifndef CLIENT_AUTORIZATIONWIDGET_HPP
-#define CLIENT_AUTORIZATIONWIDGET_HPP
+#ifndef CLIENT_AUTHORIZATIONWIDGET_HPP
+#define CLIENT_AUTHORIZATIONWIDGET_HPP
 
 #include <TcpSession/TcpSession.hpp>
 
@@ -7,9 +7,7 @@
 #include <QMainWindow>
 #include <QSettings>
 
-#include <Gamepad/Gamepad.hpp>
-
-#include "./Settings.hpp"
+#include "../Resources.hpp"
 
 template<class Type>
 concept can_registry = requires(Type obj){
@@ -19,24 +17,27 @@ concept can_registry = requires(Type obj){
 
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class AutorizationWidget; }
+namespace Ui { class AuthorizationWidget; }
 QT_END_NAMESPACE
 
-class AutorizationWidget : public QWidget {
+class AuthorizationWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit AutorizationWidget(QMainWindow *mainWindow, QWidget *parent = nullptr);
+    explicit AuthorizationWidget(QMainWindow *mainWindow, QWidget *parent = nullptr);
 
-    ~AutorizationWidget() override;
+    ~AuthorizationWidget() override;
 
     template<can_registry Type, typename ... Args>
+    [[nodiscard]]
     Type* Registry(QMainWindow *parent, Args&& ...args);
 
 private:
-    Ui::AutorizationWidget *ui;
+    Ui::AuthorizationWidget *ui;
 
+    boost::asio::io_context ioContext_;
     QSettings settings_;
+    Resources resources_;
 
 private slots:
 
@@ -55,13 +56,14 @@ signals:
 };
 
 
-
 template<can_registry Type, typename... Args>
-Type *AutorizationWidget::Registry(QMainWindow *parent, Args&& ...args) {
+inline Type *AuthorizationWidget::Registry(QMainWindow *parent, Args&& ...args) {
+    //auto widget = new Type(parent, resources_, args...);
     auto widget = new Type(parent, args...);
     connect(this, SIGNAL(StartWidget()), widget, SLOT(StartWidget()));
     connect(this, SIGNAL(StopWidget()), widget, SLOT(StopWidget()));
+    widget->StopWidget();
     return widget;
 }
 
-#endif //CLIENT_AUTORIZATIONWIDGET_HPP
+#endif

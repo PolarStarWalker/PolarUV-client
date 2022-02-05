@@ -1,4 +1,5 @@
 #include <Exceptions/Exceptions.hpp>
+#include <QMessageBox>
 #include "./RobotSettingsWidget.hpp"
 #include "./RobotSettingsMessage.pb.h"
 #include "./ui_RobotSettingsWidget.h"

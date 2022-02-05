@@ -31,8 +31,7 @@ public:
 protected:
 
     [[nodiscard]]
-    AutorizationWidget* CreateAuthorizationWidget(QWidget* dst);
-
+    AuthorizationWidget* CreateAuthorizationWidget(QWidget* dst);
 
     template<can_registry Type, typename ... Args>
     [[nodiscard]]
@@ -107,7 +106,7 @@ private:
 //    std::unique_ptr<DepthIndicator> _depthIndicator;
 
     ///Первым в объявлении всегда должен быть виджет авторизации, поскольку он последним будет уничтожаться
-    AutorizationWidget* authorizationWidget_;
+    AuthorizationWidget* authorizationWidget_;
     DisplayWidget* displayWidget_;
     RobotSettingsWidget* robotSettingsWidget_;
     ClientSettingsWidget* controlSettingsWidget_;

@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include <Exceptions/Exceptions.hpp>
 using namespace lib::exceptions;
 

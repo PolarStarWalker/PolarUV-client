@@ -32,6 +32,7 @@ void MainWindow::HideSideBar() {
 }
 
 void MainWindow::Reload() {
+    emit authorizationWidget_->StopWidget();
     ui->MainStackedWidget->setCurrentIndex(0);
 }
 

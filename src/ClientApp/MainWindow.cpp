@@ -1,15 +1,5 @@
 #include "MainWindow.hpp"
-
-#include <memory>
 #include "./ui_mainwindow.h"
-#include <Exceptions/ExceptionHandler.hpp>
-
-template<typename Type, typename ... Args>
-Type *CreateWidget(MainWindow *parent, QWidget *widget, Args &&... args) {
-    Type *newWidget = new Type(parent, args...);
-    widget->layout()->addWidget(newWidget);
-    return newWidget;
-}
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
@@ -69,8 +59,8 @@ MainWindow::~MainWindow() {
     delete authorizationWidget_;
 }
 
-AutorizationWidget* MainWindow::CreateAuthorizationWidget(QWidget* dst) {
-    auto widget = new AutorizationWidget(this);
+inline AuthorizationWidget* MainWindow::CreateAuthorizationWidget(QWidget* dst) {
+    auto widget = new AuthorizationWidget(this);
     dst->layout()->addWidget(widget);
     return  widget;
 }

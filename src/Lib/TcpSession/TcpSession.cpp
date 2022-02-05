@@ -133,7 +133,7 @@ void TcpSession::Start() {
 
 TcpSession::TcpSession(QObject *parent) :
         QObject(parent) {
-    thread_ = std::thread(&TcpSession::Start, this);
+    //thread_ = std::thread(&TcpSession::Start, this);
 }
 
 TcpSession::~TcpSession() noexcept {
@@ -167,27 +167,26 @@ Response TcpSession::SendRequest(std::string_view data, Request::TypeEnum type, 
     return future.get();
 }
 
-Network::Network(const std::string& ip) :
-        ioContext_(),
-        socket_(ioContext_),
-        isOnline_(false) {
+Network::Network(IOContext &context) :
+        socket_(context),
+        isOnline_(false) {}
 
+Response Network::SendRequest(Request) {
+    return Response("", Response::Ok, 0);
+}
+
+bool Network::TryConnect(const std::string &ip) {
     ErrorCode errorCode;
 
     Endpoint endpoint(boost::asio::ip::make_address(ip), PORT);
     socket_.connect(endpoint, errorCode);
 
-    if(errorCode.failed())
-        isOnline_ = false;
+    if (errorCode.failed())
+        return false;
 
-}
+    //ToDo: какая-ниубь логика для отдельного потока
 
-Network Network::GetConnection(std::string ip) {
-    return Network(ip);
-}
-
-Response Network::SendRequest(Request) {
-    return Response("", Response::Ok, 0);
+    return true;
 }
 
 

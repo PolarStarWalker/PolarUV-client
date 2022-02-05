@@ -1,7 +1,7 @@
 #ifndef CLIENT_EXCEPTIONHANDLER_HPP
 #define CLIENT_EXCEPTIONHANDLER_HPP
+#include <QString>
 
-#include <QMessageBox>
 #include <functional>
 
 using Function = std::function<void()>;

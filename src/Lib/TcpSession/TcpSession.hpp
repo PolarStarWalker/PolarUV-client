@@ -115,15 +115,20 @@ namespace lib::network {
 
     class Network {
     public:
-        static Network GetConnection(std::string ip);
+        explicit Network(boost::asio::io_context &context);
+
+        bool TryConnect(const std::string& ip);
 
         Response SendRequest(Request);
 
+        [[nodiscard]]
+        inline bool IsOnline() const{
+            return isOnline_;
+        }
+
     private:
-        explicit Network(const std::string& ip);
 
         boost::asio::ip::tcp::socket socket_;
-        boost::asio::io_context ioContext_;
         bool isOnline_;
     };
 
