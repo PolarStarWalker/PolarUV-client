@@ -7,7 +7,7 @@
 #include <QMainWindow>
 #include <QSettings>
 
-#include "../Resources.hpp"
+#include "../WidgetResources.hpp"
 
 template<class Type>
 concept can_registry = requires(Type obj){
@@ -37,7 +37,7 @@ private:
 
     boost::asio::io_context ioContext_;
     QSettings settings_;
-    Resources resources_;
+    WidgetResources resources_;
 
 private slots:
 
@@ -58,8 +58,7 @@ signals:
 
 template<can_registry Type, typename... Args>
 inline Type *AuthorizationWidget::Registry(QMainWindow *parent, Args&& ...args) {
-    //auto widget = new Type(parent, resources_, args...);
-    auto widget = new Type(parent, args...);
+    auto widget = new Type(parent, resources_, args...);
     connect(this, SIGNAL(StartWidget()), widget, SLOT(StartWidget()));
     connect(this, SIGNAL(StopWidget()), widget, SLOT(StopWidget()));
     widget->StopWidget();

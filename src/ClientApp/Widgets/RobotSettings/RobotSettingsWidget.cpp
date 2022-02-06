@@ -1,8 +1,9 @@
 #include "RobotSettingsWidget.hpp"
 #include "ui_RobotSettingsWidget.h"
 
-RobotSettingsWidget::RobotSettingsWidget(QWidget *parent) :
+RobotSettingsWidget::RobotSettingsWidget(QWidget *parent, WidgetResources& resources) :
         QWidget(parent),
+        resources_(resources),
         _transmitter(lib::network::TcpSession::GetInstance()),
         ui(new Ui::RobotSettingsWidget) {
 

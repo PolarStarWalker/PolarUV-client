@@ -13,12 +13,12 @@ inline std::list<std::string> GetIps() {
     std::list<std::string> addresses;
 
     ULONG bufLen = 0;
-    DWORD result = GetAdaptersInfo(nullptr, &bufLen);
+    GetAdaptersInfo(nullptr, &bufLen);
 
     auto adapterInfo = new IP_ADAPTER_INFO[bufLen / sizeof(IP_ADAPTER_INFO)];
-    result = GetAdaptersInfo(adapterInfo, &bufLen);
+    DWORD result = GetAdaptersInfo(adapterInfo, &bufLen);
 
-    if (result == ERROR_SUCCESS) {
+    if (result == NO_ERROR) {
 
         std::string_view nullIp = "0.0.0.0";
 

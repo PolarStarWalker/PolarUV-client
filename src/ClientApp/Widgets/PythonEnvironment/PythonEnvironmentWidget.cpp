@@ -2,9 +2,10 @@
 #include "ui_PythonEnvironmentWidget.h"
 
 
-PythonEnvironmentWidget::PythonEnvironmentWidget(QWidget *parent) :
+PythonEnvironmentWidget::PythonEnvironmentWidget(QWidget *parent, WidgetResources& resources) :
         QWidget(parent),
-        ui(new Ui::PythonEnvironmentWidget) {
+        ui(new Ui::PythonEnvironmentWidget),
+        resources_(resources){
     ui->setupUi(this);
 
     connect(ui->DebugCodeButton, SIGNAL(clicked(bool)),this, SLOT(DebugCode()));

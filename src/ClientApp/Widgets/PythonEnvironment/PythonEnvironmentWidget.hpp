@@ -7,7 +7,7 @@
 #pragma pop_macro("slots")
 
 #include <QWidget>
-
+#include "../WidgetResources.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class PythonEnvironmentWidget; }
@@ -17,7 +17,7 @@ class PythonEnvironmentWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit PythonEnvironmentWidget(QWidget *parent = nullptr);
+    PythonEnvironmentWidget(QWidget *parent, WidgetResources& resources);
 
     ~PythonEnvironmentWidget() override;
 
@@ -27,6 +27,7 @@ public slots:
 
 private:
     Ui::PythonEnvironmentWidget *ui;
+    WidgetResources& resources_;
 
 private slots:
     void ReleaseCode();

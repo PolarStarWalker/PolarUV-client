@@ -1,7 +1,7 @@
-//#include "./Resources/MainWindowResources.hpp"
+//#include "./WidgetResources/MainWindowResources.hpp"
 //
 //MainWindowResources::MainWindowResources() {
-//    this->_resources = std::make_unique<Resources>();
+//    this->_resources = std::make_unique<WidgetResources>();
 //
 //    this->_resources->Background = QPixmap("Icons/Background.png");
 //
@@ -41,7 +41,7 @@
 //    this->_resources->MenuButtonIcon = QPixmap("Icons/MenuButtonIcon.png");
 //}
 //
-//const MainWindowResources::Resources &MainWindowResources::GetInstance()  {
+//const MainWindowResources::WidgetResources &MainWindowResources::GetInstance()  {
 //    const static MainWindowResources instance;
 //    return *(instance._resources);
 //}

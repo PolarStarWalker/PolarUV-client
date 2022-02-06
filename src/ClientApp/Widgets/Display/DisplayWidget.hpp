@@ -1,6 +1,8 @@
 #ifndef CLIENT_DISPLAYWIDGET_HPP
 #define CLIENT_DISPLAYWIDGET_HPP
 
+#include "../WidgetResources.hpp"
+
 #include <QWidget>
 #include <QMainWindow>
 
@@ -17,7 +19,7 @@ class DisplayWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit DisplayWidget(QMainWindow *mainWindow, QWidget *parent = nullptr);
+    DisplayWidget(QMainWindow *mainWindow, WidgetResources& resources);
 
     ~DisplayWidget() override;
 
@@ -28,6 +30,8 @@ public:
 private:
 
     lib::processing::VideoStream stream_;
+
+    WidgetResources& resources_;
 
     Ui::DisplayWidget *ui;
 

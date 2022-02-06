@@ -3,6 +3,7 @@
 
 //this must be first include
 #include <TcpSession/TcpSession.hpp>
+#include "../WidgetResources.hpp"
 
 #include <QWidget>
 
@@ -14,7 +15,7 @@ class RobotSettingsWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit RobotSettingsWidget(QWidget *parent = nullptr);
+    RobotSettingsWidget(QWidget *parent, WidgetResources& resources);
 
     ~RobotSettingsWidget() override;
 
@@ -26,6 +27,8 @@ public slots:
     void StopWidget();
     
 private:
+
+    WidgetResources& resources_;
 
     Ui::RobotSettingsWidget *ui;
 
@@ -39,6 +42,7 @@ private:
     QString ClientIP{};
 
 private slots:
+
     void SendSettings();
 
     void ReceiveSettings();

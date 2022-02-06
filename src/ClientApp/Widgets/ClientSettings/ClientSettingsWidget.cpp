@@ -2,8 +2,10 @@
 #include "ui_ClientSettingsWidget.h"
 
 
-ClientSettingsWidget::ClientSettingsWidget(QWidget *parent) :
-        QWidget(parent), ui(new Ui::ClientSettingsWidget) {
+ClientSettingsWidget::ClientSettingsWidget(QWidget *parent, WidgetResources& resources) :
+        QWidget(parent),
+        resources_(resources),
+        ui(new Ui::ClientSettingsWidget) {
 
     ui->setupUi(this);
 

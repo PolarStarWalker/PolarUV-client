@@ -2,9 +2,10 @@
 #include "ui_DisplayWidget.h"
 
 
-DisplayWidget::DisplayWidget(QMainWindow *mainWindow, QWidget *parent) :
-        QWidget(parent),
+DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources) :
+        QWidget(mainWindow),
         ui(new Ui::DisplayWidget),
+        resources_(resources),
         stream_(){
 
     ui->setupUi(this);

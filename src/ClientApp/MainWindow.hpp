@@ -35,7 +35,7 @@ protected:
 
     template<can_registry Type, typename ... Args>
     [[nodiscard]]
-    Type* AddWidget(QWidget* dst, Args&& ... args){
+    inline Type* AddWidget(QWidget* dst, Args&& ... args){
         auto widget = authorizationWidget_->template Registry<Type>(this, args...);
         dst->layout()->addWidget(widget);
         return widget;

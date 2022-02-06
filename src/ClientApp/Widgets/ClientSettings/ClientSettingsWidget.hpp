@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QSettings>
 
+#include "../WidgetResources.hpp"
 #include "ControlsSettingsStruct.hpp"
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ClientSettingsWidget; }
@@ -15,7 +15,7 @@ class ClientSettingsWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit ClientSettingsWidget(QWidget *parent = nullptr);
+    ClientSettingsWidget(QWidget *parent, WidgetResources& resources);
 
     ~ClientSettingsWidget() override;
 
@@ -26,6 +26,9 @@ public slots:
     void StopWidget();
 
 private:
+
+    WidgetResources& resources_;
+
     Ui::ClientSettingsWidget *ui;
 
     std::unique_ptr<QSettings> settings_;

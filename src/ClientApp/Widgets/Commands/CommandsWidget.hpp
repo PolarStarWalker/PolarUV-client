@@ -1,6 +1,6 @@
 #ifndef CLIENT_COMMANDSWIDGET_HPP
 #define CLIENT_COMMANDSWIDGET_HPP
-#include <TcpSession/TcpSession.hpp>
+#include "../WidgetResources.hpp"
 
 #include <QWidget>
 #include <QTimer>
@@ -32,11 +32,11 @@ private slots:
 
 public:
 
-    explicit CommandsWidget(QWidget *parent = nullptr);
+    CommandsWidget(QWidget *parent, WidgetResources& resources);
 
 
 private:
-    lib::network::TcpSession& network_;
+    WidgetResources& resources_;
     QTimer timer_;
 };
 
