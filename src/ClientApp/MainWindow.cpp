@@ -3,6 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
+        isDebug_(false),
         ui(new Ui::MainWindow) {
 
     ui->setupUi(this);
@@ -12,11 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Page2Button->setIcon(QIcon("Icons/SettingsIcon.png"));
     ui->Page3Button->setIcon(QIcon("Icons/CodeIcon.png"));
     ui->Page4Button->setIcon(QIcon("Icons/BugIcon.png"));
-
-//    /// Создание виджетов индикаторов
-//    _pitchIndicator = std::make_unique<PitchIndicator>(ui->MainTab, *_commandsProtocol);
-//    _yawIndicator = std::make_unique<YawIndicator>(ui->MainTab, *_commandsProtocol);
-//    _depthIndicator = std::make_unique<DepthIndicator>(ui->MainTab, *_commandsProtocol);
 
     /// Создание виджета авторизации
      authorizationWidget_ = CreateAuthorizationWidget(ui->AutorizationPage);
@@ -41,11 +37,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // ToDo: решить судьбу виджета (возможно убрать)
     ui->Page3Button->hide();
 
-//    /// Создание таймера отрисовки
-//    _updateTimer = std::make_unique<QTimer>(this);
-//    connect(this->_updateTimer.get(), SIGNAL(timeout()), this, SLOT(UpdateWidgets()));
-//    this->_updateTimer->start(1000 / 60);
-
     SetupSlots();
 }
 
@@ -57,10 +48,6 @@ MainWindow::~MainWindow() {
 
     ///Note: this widget must be delete last
     delete authorizationWidget_;
-}
 
-inline AuthorizationWidget* MainWindow::CreateAuthorizationWidget(QWidget* dst) {
-    auto widget = new AuthorizationWidget(this);
-    dst->layout()->addWidget(widget);
-    return  widget;
+    delete ui;
 }

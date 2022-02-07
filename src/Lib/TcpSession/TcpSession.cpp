@@ -167,8 +167,10 @@ Response TcpSession::SendRequest(std::string_view data, Request::TypeEnum type, 
     return future.get();
 }
 
-Network::Network(IOContext &context) :
-        socket_(context),
+Network::Network() :
+        ioContext_(),
+        socket_(ioContext_),
+        resolver_(ioContext_),
         isOnline_(false) {}
 
 Response Network::SendRequest(Request) {
@@ -176,12 +178,21 @@ Response Network::SendRequest(Request) {
 }
 
 bool Network::TryConnect(const std::string &ip) {
-    ErrorCode errorCode;
+    using namespace std::chrono_literals;
+    using resolver_type = boost::asio::ip::tcp::resolver::results_type;
+    using endpoint_type = boost::asio::ip::tcp::resolver::endpoint_type;
 
-    Endpoint endpoint(boost::asio::ip::make_address(ip), PORT);
-    socket_.connect(endpoint, errorCode);
+    constexpr auto timeout = 10ms;
 
-    if (errorCode.failed())
+    socket_.close();
+
+    endpoint_type endpoint(boost::asio::ip::make_address(ip), PORT);
+
+    socket_.async_connect(endpoint, [&](const ErrorCode &errorCode){
+        isOnline_ = !errorCode.failed();
+    });
+
+    if (!Wait(timeout))
         return false;
 
     //ToDo: какая-ниубь логика для отдельного потока
@@ -189,4 +200,15 @@ bool Network::TryConnect(const std::string &ip) {
     return true;
 }
 
+bool Network::Wait(std::chrono::steady_clock::duration timeout) {
+    ioContext_.restart();
 
+    ioContext_.run_for(timeout);
+
+    if (ioContext_.stopped())
+        return true;
+
+    socket_.close();
+    ioContext_.run();
+    return false;
+}

@@ -12,8 +12,7 @@ void MainWindow::SetupSlots() {
     connect(ui->Page2_3Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2_3()));
     connect(ui->PrimaryStackedWidget, SIGNAL(currentChanged(int)), SLOT(SwitchSideBarButton(int)));
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), SLOT(HideSideBar()));
-    connect(ui->BackButton, SIGNAL(clicked(bool)), SLOT(Reload()));
-
+    connect(ui->BackButton, SIGNAL(clicked(bool)), SLOT(Pause()));
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), displayWidget_, SLOT(ShowSideBarButton()));
 }
 
@@ -21,18 +20,24 @@ void MainWindow::SwitchSideBarButton(int currentIndex) {
     if (currentIndex == 0) {
         ui->SideBarButton->show();
         ui->Spacer1->changeSize(20, 30, QSizePolicy::Fixed, QSizePolicy::Fixed);
-    } else {
-        ui->SideBarButton->hide();
-        ui->Spacer1->changeSize(20, 90, QSizePolicy::Fixed, QSizePolicy::Fixed);
+        return;
     }
+
+    ui->SideBarButton->hide();
+    ui->Spacer1->changeSize(20, 90, QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
 void MainWindow::HideSideBar() {
     ui->SideBar->hide();
 }
 
-void MainWindow::Reload() {
-    emit authorizationWidget_->StopWidget();
+void MainWindow::Pause() {
+
+    if (!isDebug_) {
+        emit StopWidget();
+        isDebug_ = false;
+    }
+
     ui->MainStackedWidget->setCurrentIndex(0);
 }
 
@@ -107,18 +112,13 @@ void MainWindow::SwitchToPage2_3() {
 
 /// ----- Публичные слоты ----- ///
 
-void MainWindow::Launch(const QString &robotIP, const QString &clientIP, int gamepadID) {
+void MainWindow::Launch() {
     ui->MainStackedWidget->setCurrentIndex(1);
-
-    displayWidget_->SetRobotIP(robotIP);
-    displayWidget_->SetClientIP(clientIP);
-    displayWidget_->SetGamepadID(gamepadID);
-
-    robotSettingsWidget_->SetRobotIP(robotIP);
-    robotSettingsWidget_->SetClientIP(clientIP);
+    emit StartWidget();
 }
 
 void MainWindow::LaunchDebug() {
+    isDebug_ = true;
     ui->MainStackedWidget->setCurrentIndex(1);
 }
 

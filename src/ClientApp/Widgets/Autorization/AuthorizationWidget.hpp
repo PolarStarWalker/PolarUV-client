@@ -10,11 +10,7 @@
 #include "../WidgetResources.hpp"
 
 template<class Type>
-concept can_registry = requires(Type obj){
-    obj.StopWidget();
-    obj.StartWidget();
-} && std::is_convertible_v<Type*, QWidget*>;
-
+concept isWidget = std::is_convertible_v<Type*, QWidget*>;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class AuthorizationWidget; }
@@ -24,13 +20,16 @@ class AuthorizationWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit AuthorizationWidget(QMainWindow *mainWindow, QWidget *parent = nullptr);
+    explicit AuthorizationWidget(QMainWindow *parent);
 
     ~AuthorizationWidget() override;
 
-    template<can_registry Type, typename ... Args>
+    template<isWidget Type, typename ... Args>
     [[nodiscard]]
-    Type* Registry(QMainWindow *parent, Args&& ...args);
+    inline Type *CreateWithResources(QMainWindow *parent, Args&& ...args) {
+        auto widget = new Type(parent, resources_, args...);
+        return widget;
+    }
 
 private:
     Ui::AuthorizationWidget *ui;
@@ -52,17 +51,6 @@ signals:
     void StartWidget();
     void StopWidget();
 
-    void Launched(const QString& robotIP, const QString& clientIP, int gamepadID);
 };
-
-
-template<can_registry Type, typename... Args>
-inline Type *AuthorizationWidget::Registry(QMainWindow *parent, Args&& ...args) {
-    auto widget = new Type(parent, resources_, args...);
-    connect(this, SIGNAL(StartWidget()), widget, SLOT(StartWidget()));
-    connect(this, SIGNAL(StopWidget()), widget, SLOT(StopWidget()));
-    widget->StopWidget();
-    return widget;
-}
 
 #endif

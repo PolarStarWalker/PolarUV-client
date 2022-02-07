@@ -9,12 +9,12 @@
 #include "IPFunction.hpp"
 
 
-AuthorizationWidget::AuthorizationWidget(QMainWindow *mainWindow, QWidget *parent) :
+AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
         QWidget(parent),
         ui(new Ui::AuthorizationWidget),
         settings_("NARFU", "PolarROVClient"),
         ioContext_(),
-        resources_(ioContext_){
+        resources_() {
 
     ui->setupUi(this);
 
@@ -28,8 +28,8 @@ AuthorizationWidget::AuthorizationWidget(QMainWindow *mainWindow, QWidget *paren
     connect(ui->LaunchButton, SIGNAL(clicked(bool)), this, SLOT(LaunchHandler()));
 
     /// Соединяем слоты MainWindow
-    connect(this, SIGNAL(Launched(QString, QString, int)), mainWindow, SLOT(Launch(QString, QString, int)));
-    connect(ui->DebugButton, SIGNAL(clicked(bool)), mainWindow, SLOT(LaunchDebug()));
+    connect(ui->DebugButton, SIGNAL(clicked(bool)), parent, SLOT(LaunchDebug()));
+    connect(this, SIGNAL(StartWidget()), parent, SLOT(Launch()));
 }
 
 AuthorizationWidget::~AuthorizationWidget() {
@@ -57,7 +57,6 @@ void AuthorizationWidget::LaunchHandler() {
 
     auto ip = ui->RobotIPEdit->text().toStdString();
 
-    ///ToDo: почему-то таймаут у socket.connect очень большой
     bool isConnected = resources_.Network.TryConnect(ip);
 
     if (!isConnected) {
@@ -68,8 +67,4 @@ void AuthorizationWidget::LaunchHandler() {
     settings_.setValue("RobotIP", ui->RobotIPEdit->text());
 
     emit StartWidget();
-
-    emit Launched(ui->RobotIPEdit->text(),
-                  ui->ClientIPComboBox->currentText(),
-                  ui->GamepadComboBox->currentText().toInt());
 }

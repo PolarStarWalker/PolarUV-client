@@ -10,12 +10,14 @@
 [[nodiscard]]
 inline std::list<std::string> GetIps() {
 
+    constexpr size_t ipStructSize = sizeof(IP_ADAPTER_INFO);
+
     std::list<std::string> addresses;
 
     ULONG bufLen = 0;
     GetAdaptersInfo(nullptr, &bufLen);
 
-    auto adapterInfo = new IP_ADAPTER_INFO[bufLen / sizeof(IP_ADAPTER_INFO)];
+    auto adapterInfo = new IP_ADAPTER_INFO[bufLen / ipStructSize];
     DWORD result = GetAdaptersInfo(adapterInfo, &bufLen);
 
     if (result == NO_ERROR) {

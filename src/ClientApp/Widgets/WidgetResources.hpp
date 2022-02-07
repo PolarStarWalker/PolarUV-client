@@ -7,11 +7,10 @@
 
 struct WidgetResources {
 
-    explicit WidgetResources(boost::asio::io_context &ioContext) : Network(ioContext) {}
-
-    lib::network::Network Network;
+    lib::network::Network Network{};
     std::string ClientIp{};
     int GamepadId{};
+
 };
 
 
