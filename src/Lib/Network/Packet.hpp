@@ -47,7 +47,7 @@ namespace lib::network {
         enum class TypeEnum : size_t {
             R,
             W,
-            RW
+            WR
         };
 
         struct HeaderType {
@@ -56,16 +56,14 @@ namespace lib::network {
             size_t Length;
         };
 
-        Request(std::string_view data, TypeEnum type, ssize_t endpointId, std::promise<Response> &response) :
+        Request(const std::string_view data, TypeEnum type, ssize_t endpointId) :
                 Header({type, endpointId, type == TypeEnum::R ? 0 : (data.size())}),
-                Data(data),
-                Response(response) {};
+                Data(data){};
 
         Request(Request &&) = delete;
 
         Request(const Request &) = delete;
 
-        std::promise<Response> &Response;
         const std::string_view Data;
         const HeaderType Header;
     };

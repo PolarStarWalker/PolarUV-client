@@ -1,13 +1,11 @@
 #ifndef CLIENT_AUTHORIZATIONWIDGET_HPP
 #define CLIENT_AUTHORIZATIONWIDGET_HPP
 
-#include <TcpSession/TcpSession.hpp>
+#include "../WidgetResources.hpp"
 
 #include <QWidget>
 #include <QMainWindow>
 #include <QSettings>
-
-#include "../WidgetResources.hpp"
 
 template<class Type>
 concept isWidget = std::is_convertible_v<Type*, QWidget*>;

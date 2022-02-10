@@ -9,7 +9,7 @@ void RobotSettingsWidget::SendSettings() {
 
     std::string message = Serialize();
 
-    Response response = _transmitter.SendRequest(message, Request::TypeEnum::W, 0);
+    Response response = resources_.Network.SendRequest(message, Request::TypeEnum::W, 0);
 
     StatusCodeCheck<Request::TypeEnum::W>(response.Header.Code);
 
@@ -19,7 +19,7 @@ void RobotSettingsWidget::SendSettings() {
 void RobotSettingsWidget::ReceiveSettings() {
     using namespace lib::network;
 
-    Response response = _transmitter.SendRequest(std::string(), Request::TypeEnum::R, 0);
+    Response response = resources_.Network.SendRequest(std::string(), Request::TypeEnum::R, 0);
 
     StatusCodeCheck<Request::TypeEnum::R>(response.Header.Code, [&](){ Deserialize(response.Data);});
 }
@@ -82,7 +82,7 @@ std::string RobotSettingsWidget::Serialize() const noexcept {
     for (int i = 0; i < ui->MotorsTable->rowCount(); i++) {
         for (int j = 0; j < ui->MotorsTable->columnCount(); j++) {
             bool isConverted;
-            double value = ui->MotorsTable->item(i, j)->text().toFloat(&isConverted);
+            float value = ui->MotorsTable->item(i, j)->text().toFloat(&isConverted);
 
             if (!isConverted)
                 throw lib::exceptions::InvalidOperationException(
@@ -95,7 +95,7 @@ std::string RobotSettingsWidget::Serialize() const noexcept {
     for (int j = 0; j < ui->HandTable->columnCount(); j++) {
         bool isConverted;
 
-        double value = ui->HandTable->item(0, j)->text().toFloat(&isConverted);
+        float value = ui->HandTable->item(0, j)->text().toFloat(&isConverted);
 
         if (!isConverted )
             throw lib::exceptions::InvalidOperationException(

@@ -1,7 +1,7 @@
 #ifndef CLIENT_LIB_HPP
 #define CLIENT_LIB_HPP
 
-#include "./TcpSession/TcpSession.hpp"
+#include "./Network/Network.hpp"
 #include "./DataStructs/DataStructs.hpp"
 #include "./Protocols/Protocols.hpp"
 #include "./Exceptions/Exceptions.hpp"
@@ -14,8 +14,6 @@
 namespace lib {
     static void Setup() {
         logger::Setup();
-        auto& startNetwork = network::TcpSession::GetInstance();
-
     }
 }
 

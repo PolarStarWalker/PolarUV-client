@@ -2,7 +2,6 @@
 #define CLIENT_ROBOTSETTINGSWIDGET_HPP
 
 //this must be first include
-#include <TcpSession/TcpSession.hpp>
 #include "../WidgetResources.hpp"
 
 #include <QWidget>
@@ -35,8 +34,6 @@ private:
     [[nodiscard]] std::string Serialize() const noexcept;
 
     void Deserialize(const std::string &data) noexcept;
-
-    lib::network::TcpSession& _transmitter;
 
     QString RobotIP{};
     QString ClientIP{};

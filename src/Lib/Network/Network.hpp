@@ -14,35 +14,34 @@
 
 namespace lib::network {
 
-    class TcpSession final : public QObject {
-    Q_OBJECT
+    class Network {
     public:
+        static constexpr std::chrono::milliseconds TIMEOUT = std::chrono::milliseconds(10) ;
+        static constexpr size_t PORT = 2022;
 
-        constexpr static const size_t PORT = 2022;
+        explicit Network();
 
-        TcpSession(const TcpSession &) = delete;
-
-        TcpSession(TcpSession &&) = delete;
-
-        static TcpSession &GetInstance();
+        bool TryConnect(const std::string &ip);
 
         Response SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId);
 
-        inline bool IsOnline() { return _status; }
+        [[nodiscard]]
+        inline bool IsOnline() const {
+            return isOnline_;
+        }
 
-    protected:
-        void Start();
+    private:
 
-        Queue<Request> _request{};
-        mutable std::atomic<bool> _status{};
-        std::atomic<bool> _isDone{};
+        Response TransferData(const Request &request);
 
-        std::thread thread_;
+        Response ReadData();
 
-        explicit TcpSession(QObject *parent = nullptr);
+        bool RunFor(std::chrono::steady_clock::duration timeout);
 
-        ~TcpSession() final;
-
+        std::mutex requestsMutex_;
+        boost::asio::io_context ioContext_;
+        boost::asio::ip::tcp::socket socket_;
+        bool isOnline_;
     };
 
     template<lib::network::Request::TypeEnum RequestCode>
@@ -113,28 +112,7 @@ namespace lib::network {
     }
 
 
-    class Network {
-    public:
-        explicit Network();
 
-        bool TryConnect(const std::string &ip);
-
-        Response SendRequest(Request);
-
-        [[nodiscard]]
-        inline bool IsOnline() const {
-            return isOnline_;
-        }
-
-    private:
-
-        bool Wait(std::chrono::steady_clock::duration);
-
-        boost::asio::io_context ioContext_;
-        boost::asio::ip::tcp::socket socket_;
-        boost::asio::ip::tcp::resolver resolver_;
-        bool isOnline_;
-    };
 
 }
 
