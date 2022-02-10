@@ -12,6 +12,11 @@ DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources
 
     commandsProtocol_ = std::make_unique<CommandsProtocol>(0, this);
 
+    placeholderPixmap_ = QPixmap("Icons/Background.png");
+    updateTimer_ = std::make_unique<QTimer>();
+    updateTimer_->start(1000/60);
+    connect(updateTimer_.get(), SIGNAL(timeout()), this, SLOT(UpdateBackgroundImage()));
+
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), this, SLOT(HideSideBarButton()));
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), mainWindow, SLOT(ShowSideBar()));
 

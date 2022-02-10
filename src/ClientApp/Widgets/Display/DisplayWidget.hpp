@@ -35,7 +35,13 @@ private:
 
     Ui::DisplayWidget *ui;
 
+    std::unique_ptr<QTimer> updateTimer_;
+
     std::unique_ptr<CommandsProtocol> commandsProtocol_;
+
+    QPixmap placeholderPixmap_;
+    QPixmap pixmap_;
+    QPalette palette_;
 
     QString RobotIP{};
     QString ClientIP{};
@@ -43,6 +49,8 @@ private:
     int GamepadID{};
 
 public slots:
+
+    void UpdateBackgroundImage();
 
     void ShowSideBarButton();
 

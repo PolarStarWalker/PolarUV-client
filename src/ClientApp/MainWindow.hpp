@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "./Widgets/Widgets.hpp"
+#include "./Widgets/widgets.hpp"
 
 #include <QMainWindow>
 #include <QMessageBox>
