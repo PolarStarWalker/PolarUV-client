@@ -14,6 +14,7 @@ namespace lib::processing {
     public:
 
         VideoStream();
+        ~VideoStream();
 
         void RestartClient();
 
@@ -32,7 +33,6 @@ namespace lib::processing {
         }
 
     private:
-        [[noreturn]]
         void StartClient();
 
         std::thread thread_;
@@ -43,6 +43,7 @@ namespace lib::processing {
 
         std::atomic<bool> isOnline_;
         std::atomic<bool> isListen_;
+        std::atomic<bool> isDone_;
 
         void SetQImage(const cv::Mat &frame);
     };

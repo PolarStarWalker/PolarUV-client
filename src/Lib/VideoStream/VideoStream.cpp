@@ -44,12 +44,13 @@ VideoStream::VideoStream() :
         capture_(),
         qImage_(),
         isListen_(false),
-        isOnline_(false) {
+        isOnline_(false),
+        isDone_(false){
     thread_ = std::thread(&VideoStream::StartClient, this);
 }
 
 void VideoStream::StartClient() {
-    for (;;) {
+    while (!isDone_.load()) {
 
         std::string pipeline;
 
@@ -99,7 +100,9 @@ inline void VideoStream::SetQImage(const cv::Mat &frame) {
     qImage_ = std::move(image);
 }
 
-void VideoStream::RestartClient() {}
+void VideoStream::RestartClient() {
+    capture_.release();
+}
 
 std::string VideoStream::GetStartMessage(const std::string &clientIp) {
 
@@ -111,7 +114,7 @@ std::string VideoStream::GetStartMessage(const std::string &clientIp) {
 
     pipeline.append(destination);
 
-    std::memcpy(pipeline.end().base() + DestinationIpPosition, clientIp.c_str(), clientIp.size());
+    std::memcpy(pipeline.end().base() - destination.size() + DestinationIpPosition, clientIp.c_str(), clientIp.size());
 
     VideoStreamMessage message;
     message.set_action(VideoStreamMessage::START);
@@ -128,4 +131,8 @@ std::string VideoStream::GetStopMessage() {
     return message.SerializeAsString();
 }
 
-
+VideoStream::~VideoStream() {
+    isDone_.store(true);
+    capture_.release();
+    thread_.join();
+}

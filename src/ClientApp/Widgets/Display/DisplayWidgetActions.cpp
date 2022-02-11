@@ -4,10 +4,13 @@
 
 void DisplayWidget::UpdateBackgroundImage() {
     if (stream_.IsOnline()) {
-        pixmap_.convertFromImage(stream_.GetQImage());
+        auto img = stream_.GetQImage();
+        if (!img.isNull())
+            pixmap_.convertFromImage(img);
     } else {
         pixmap_ = placeholderPixmap_.scaled(this->size(), Qt::IgnoreAspectRatio);
     }
+
     palette_.setBrush(QPalette::Window, pixmap_);
     this->setAutoFillBackground(true);
     this->setPalette(palette_);
@@ -18,6 +21,7 @@ void DisplayWidget::SwitchVideoStream() {
 
     if (stream_.IsOnline()) {
         message = stream_.GetStopMessage();
+        stream_.RestartClient();
     } else {
         message = stream_.GetStartMessage(resources_.ClientIp);
     }
