@@ -23,8 +23,6 @@ public:
 
     ~DisplayWidget() override;
 
-    void SetRobotIP(const QString& ip) {this->RobotIP = ip;};
-    void SetClientIP(const QString& ip) {this->ClientIP = ip;};
     void SetGamepadID(int id) {this->GamepadID = id;};
 
 private:
@@ -42,9 +40,6 @@ private:
     QPixmap placeholderPixmap_;
     QPixmap pixmap_;
     QPalette palette_;
-
-    QString RobotIP{};
-    QString ClientIP{};
 
     int GamepadID{};
 

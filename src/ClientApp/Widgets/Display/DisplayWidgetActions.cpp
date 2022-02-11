@@ -19,10 +19,10 @@ void DisplayWidget::SwitchVideoStream() {
     if (stream_.IsOnline()) {
         message = stream_.GetStopMessage();
     } else {
-        message = stream_.GetStartMessage(ClientIP);
+        message = stream_.GetStartMessage(resources_.ClientIp);
     }
 
-    ///ToDo: отправка данных
+    resources_.Network.SendRequest(message, lib::network::Request::TypeEnum::W, 2);
 }
 
 void DisplayWidget::SwitchVideoCapture() {
@@ -33,9 +33,4 @@ void DisplayWidget::TakeScreenshot() {
 }
 
 void DisplayWidget::SwitchSendingCommands() {
-    if (!commandsProtocol_->IsStreamOnline()) {
-        commandsProtocol_->Connect(RobotIP, COMMANDS_PORT);
-        return;
-    }
-    commandsProtocol_->Stop();
 }

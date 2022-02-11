@@ -18,9 +18,6 @@ public:
 
     ~RobotSettingsWidget() override;
 
-    void SetRobotIP(const QString& ip) {this->RobotIP = ip;};
-    void SetClientIP(const QString& ip) {this->ClientIP = ip;};
-
 public slots:
     void StartWidget();
     void StopWidget();
@@ -34,9 +31,6 @@ private:
     [[nodiscard]] std::string Serialize() const noexcept;
 
     void Deserialize(const std::string &data) noexcept;
-
-    QString RobotIP{};
-    QString ClientIP{};
 
 private slots:
 

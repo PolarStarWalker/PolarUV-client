@@ -17,7 +17,7 @@ namespace lib::processing {
 
         void RestartClient();
 
-        static std::string GetStartMessage(const QString& ip);
+        static std::string GetStartMessage(const std::string &clientIp);
         static std::string GetStopMessage();
 
         QImage GetQImage() {

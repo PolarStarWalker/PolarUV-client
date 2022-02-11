@@ -78,10 +78,10 @@ Response Network::TransferData(const Request &request) {
             return;
         }
 
-        data.reserve(responseHeader.Length);
+        data = std::string(responseHeader.Length, 0);
 
         async_read(socket_,
-                   buffer(data.data(), data.size()),
+                   buffer(data),
                    transfer_exactly(data.size()),
                    readDataCallback);
     };
@@ -117,7 +117,7 @@ Response Network::TransferData(const Request &request) {
                 transfer_exactly(REQUEST_HEADER_SIZE),
                 sendHeaderCallback);
 
-    if (RunFor(1ms))
+    if (!RunFor(100ms))
         setErrorData(data, responseHeader, request.Header.EndpointId);
 
     return {std::move(data), responseHeader.Code, responseHeader.EndpointId};

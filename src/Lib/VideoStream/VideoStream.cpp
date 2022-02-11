@@ -101,7 +101,7 @@ inline void VideoStream::SetQImage(const cv::Mat &frame) {
 
 void VideoStream::RestartClient() {}
 
-std::string VideoStream::GetStartMessage(const QString &ip) {
+std::string VideoStream::GetStartMessage(const std::string &clientIp) {
 
     std::string pipeline;
     {
@@ -111,7 +111,6 @@ std::string VideoStream::GetStartMessage(const QString &ip) {
 
     pipeline.append(destination);
 
-    std::string clientIp = ip.toStdString();
     std::memcpy(pipeline.end().base() + DestinationIpPosition, clientIp.c_str(), clientIp.size());
 
     VideoStreamMessage message;

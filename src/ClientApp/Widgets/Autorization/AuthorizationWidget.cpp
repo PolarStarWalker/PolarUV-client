@@ -66,5 +66,7 @@ void AuthorizationWidget::LaunchHandler() {
 
     settings_.setValue("RobotIP", ui->RobotIPEdit->text());
 
+    resources_.ClientIp = ui->ClientIPComboBox->currentData().toString().toStdString();
+
     emit StartWidget();
 }
