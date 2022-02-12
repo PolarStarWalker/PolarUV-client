@@ -5,8 +5,10 @@
 void DisplayWidget::UpdateBackgroundImage() {
     if (stream_.IsOnline()) {
         auto img = stream_.GetQImage();
-        if (!img.isNull())
+        if (!img.isNull()) {
             pixmap_.convertFromImage(img);
+            pixmap_ = pixmap_.scaled(this->size(), Qt::IgnoreAspectRatio);
+        }
     } else {
         pixmap_ = placeholderPixmap_.scaled(this->size(), Qt::IgnoreAspectRatio);
     }

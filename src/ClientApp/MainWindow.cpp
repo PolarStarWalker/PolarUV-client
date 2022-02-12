@@ -8,7 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    /// Установка иконок
+    /// Установка иконки приложения
+    setWindowIcon(QIcon("Icons/WindowIcon.png"));
+
+    /// Установка иконок страниц
     ui->Page1Button->setIcon(QIcon("Icons/CameraIcon.png"));
     ui->Page2Button->setIcon(QIcon("Icons/SettingsIcon.png"));
     ui->Page3Button->setIcon(QIcon("Icons/CodeIcon.png"));

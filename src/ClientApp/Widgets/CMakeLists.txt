@@ -1,6 +1,6 @@
 project (Widgets)
 
-add_subdirectory(Autorization)
+add_subdirectory(Authorization)
 add_subdirectory(RobotSettings)
 add_subdirectory(ClientSettings)
 add_subdirectory(PythonEnvironment)
@@ -9,7 +9,7 @@ add_subdirectory(Commands)
 
 add_library(Widgets Widgets.hpp Widgets.cpp )
 
-target_link_libraries(Widgets Autorization)
+target_link_libraries(Widgets Authorization)
 target_link_libraries(Widgets RobotSettings)
 target_link_libraries(Widgets ClientSettings)
 target_link_libraries(Widgets PythonEnvironment)

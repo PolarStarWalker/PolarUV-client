@@ -71,3 +71,4 @@ void AuthorizationWidget::LaunchHandler() {
 
     emit StartWidget();
 }
+
