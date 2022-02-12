@@ -132,7 +132,8 @@ std::string VideoStream::GetStopMessage() {
 }
 
 VideoStream::~VideoStream() {
+    //ToDo: фикс закрытия
     isDone_.store(true);
     capture_.release();
-    thread_.join();
+    thread_.detach();
 }
