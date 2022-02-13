@@ -1,6 +1,12 @@
 #ifndef CLIENT_DISPLAYWIDGET_HPP
 #define CLIENT_DISPLAYWIDGET_HPP
 
+/// Без этой штуки происходит какой-то конфликт заголовочных файлов
+#define WIN32_LEAN_AND_MEAN
+
+#include "../../UI/Indicators/DepthIndicator.hpp"
+#include "../../UI/Indicators/PitchIndicator.hpp"
+#include "../../UI/Indicators/YawIndicator.hpp"
 #include "../WidgetResources.hpp"
 
 #include <QWidget>
@@ -29,6 +35,10 @@ private:
 
     lib::processing::VideoStream stream_;
 
+    std::unique_ptr<DepthIndicator> depthIndicator_;
+    std::unique_ptr<PitchIndicator> pitchIndicator_;
+    std::unique_ptr<YawIndicator> yawIndicator_;
+
     WidgetResources& resources_;
 
     Ui::DisplayWidget *ui;
@@ -42,6 +52,10 @@ private:
     QPalette palette_;
 
     int GamepadID{};
+    
+    // Переменные для оптимизации отрисовки
+    QRect geometry_;
+    bool isPlaceholder = true;
 
 public slots:
 

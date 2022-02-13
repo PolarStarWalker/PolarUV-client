@@ -5,16 +5,10 @@
 #include <QPainter>
 #include <QPainterPath>
 
-#include "DataStructs/TelemetryStruct/TelemetryStruct.hpp"
-
-#include "Protocols/Protocols.hpp"
-
 
 class PitchIndicator final : public QOpenGLWidget {
 public:
-    PitchIndicator(QWidget *parent, const CommandsProtocol &commandsProtocol) :
-    QOpenGLWidget(parent),
-    _commandsProtocol(commandsProtocol) {
+    explicit PitchIndicator(QWidget *parent) : QOpenGLWidget(parent) {
 
         _lineWidth = 4;
         _outlineWidth = 1;
@@ -41,7 +35,7 @@ protected:
     void initializeGL() final {  }
 
     void paintGL() final {
-        float pitchAngle = _commandsProtocol.GetTelemetryStruct().Rotation[TelemetryStruct::Y];
+        float pitchAngle = 0.0f;
 
         QFont font("Times", (int32_t) _fontSize);
         font.setBold(true);
@@ -184,8 +178,6 @@ protected:
     }
 
 private:
-    const CommandsProtocol &_commandsProtocol;
-
     float _lineWidth;
     float _outlineWidth;
     float _fontSize;

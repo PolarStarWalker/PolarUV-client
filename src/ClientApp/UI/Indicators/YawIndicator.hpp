@@ -5,12 +5,10 @@
 #include <QPainter>
 #include <QPainterPath>
 
-#include "DataStructs/TelemetryStruct/TelemetryStruct.hpp"
-#include "Protocols/Protocols.hpp"
 
 class YawIndicator : public QOpenGLWidget {
 public:
-    explicit YawIndicator(QWidget *parent, const CommandsProtocol &commandsProtocol) : QOpenGLWidget(parent), _commandsProtocol(commandsProtocol) {
+    explicit YawIndicator(QWidget *parent) : QOpenGLWidget(parent) {
 
         this->_lineWidth = 4;
         this->_outlineWidth = 1;
@@ -41,11 +39,7 @@ public:
 
 protected:
     void initializeGL() override {
-
-    }
-
-    void paintGL() override {
-        float yawAngle = this->_commandsProtocol.GetTelemetryStruct().Rotation[TelemetryStruct::Z];
+        float yawAngle = 0.0f;
 
         int32_t textOffsetX;
         if (yawAngle < 10) textOffsetX = 9;
@@ -242,13 +236,13 @@ protected:
         painter.drawPath(patchPath);
     }
 
+    void paintGL() override {}
+
     void resizeGL(int w, int h) override {
 
     }
 
 private:
-    const CommandsProtocol &_commandsProtocol;
-
     int32_t _lineWidth;
     int32_t _outlineWidth;
     int32_t _fontSize;

@@ -37,9 +37,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     commandsWidget_ = AddWidget<CommandsWidget>(ui->Page4);
 
-    // ToDo: решить судьбу виджета (возможно убрать)
-    ui->Page3Button->hide();
-
     SetupSlots();
 }
 

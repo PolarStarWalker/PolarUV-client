@@ -5,12 +5,10 @@
 #include <QPainter>
 #include <QPainterPath>
 
-#include "DataStructs/TelemetryStruct/TelemetryStruct.hpp"
-#include "Protocols/Protocols.hpp"
 
 class DepthIndicator : public QOpenGLWidget {
 public:
-    explicit DepthIndicator(QWidget *parent, const CommandsProtocol &commandsProtocol) : QOpenGLWidget(parent), _commandsProtocol(commandsProtocol) {
+    explicit DepthIndicator(QWidget *parent) : QOpenGLWidget(parent) {
 
         this->_valueRange = 10;
 
@@ -39,7 +37,7 @@ protected:
     void initializeGL() override { }
 
     void paintGL() override {
-        float depth = this->_commandsProtocol.GetTelemetryStruct().Depth;
+        float depth = 0.0f;
 
         // this->valueRange = ...
 
@@ -171,8 +169,6 @@ protected:
     }
 
 private:
-    const CommandsProtocol &_commandsProtocol;
-
     float _valueRange;
 
     float _lineWidth;
