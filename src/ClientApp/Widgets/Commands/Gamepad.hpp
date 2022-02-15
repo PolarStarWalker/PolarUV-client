@@ -1,6 +1,8 @@
 #ifndef CLIENT_GAMEPAD_HPP
 #define CLIENT_GAMEPAD_HPP
 
+#include "CommandsWidget.hpp"
+
 #include <memory>
 #include <cstring>
 #include <cmath>
@@ -11,8 +13,6 @@
 #include <xinput.h>
 #include <minwindef.h>
 #include <windows.h>
-
-#include "DataStructs/CommandsStruct/CommandsStruct.hpp"
 
 #define MAGIC_NUMBER_ONE 0x7FFF
 #define MAGIC_NUMBER_TWO 0xFF
@@ -44,7 +44,7 @@ namespace Control {
     public:
         explicit Gamepad(int id);
 
-        lib::CommandsStruct GetCommandsStruct() const;
+        //lib::CommandsStruct GetCommandsStruct() const;
 
         void SetVibration(uint16_t left, uint16_t right) const;
 

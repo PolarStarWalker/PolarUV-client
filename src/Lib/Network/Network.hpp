@@ -16,7 +16,8 @@ namespace lib::network {
 
     class Network {
     public:
-        static constexpr std::chrono::milliseconds TIMEOUT = std::chrono::milliseconds(10) ;
+        static constexpr std::chrono::milliseconds CONNECTION_TIMEOUT = std::chrono::milliseconds(100) ;
+        static constexpr std::chrono::milliseconds TRANSFER_TIMEOUT = std::chrono::milliseconds(20) ;
         static constexpr size_t PORT = 2022;
 
         explicit Network();
@@ -25,23 +26,15 @@ namespace lib::network {
 
         Response SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId);
 
-        [[nodiscard]]
-        inline bool IsOnline() const {
-            return isOnline_;
-        }
-
     private:
 
         Response TransferData(const Request &request);
-
-        Response ReadData();
 
         bool RunFor(std::chrono::steady_clock::duration timeout);
 
         std::mutex requestsMutex_;
         boost::asio::io_context ioContext_;
         boost::asio::ip::tcp::socket socket_;
-        bool isOnline_;
     };
 
     template<lib::network::Request::TypeEnum RequestCode>
