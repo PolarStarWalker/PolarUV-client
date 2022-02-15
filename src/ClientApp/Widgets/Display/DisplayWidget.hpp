@@ -7,9 +7,9 @@
 #include <QMainWindow>
 
 #include "./VideoStream/VideoStream.hpp"
-
-
-#define COMMANDS_PORT 1999
+#include "../../UI/Indicators/DepthIndicator.hpp"
+#include "../../UI/Indicators/PitchIndicator.hpp"
+#include "../../UI/Indicators/YawIndicator.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class DisplayWidget; }
