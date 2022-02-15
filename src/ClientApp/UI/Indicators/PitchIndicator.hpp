@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QPainterPath>
 
-
 class PitchIndicator final : public QOpenGLWidget {
 public:
     explicit PitchIndicator(QWidget *parent) : QOpenGLWidget(parent) {

@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QPainterPath>
 
-
 class DepthIndicator : public QOpenGLWidget {
 public:
     explicit DepthIndicator(QWidget *parent) : QOpenGLWidget(parent) {
@@ -34,10 +33,10 @@ public:
     ~DepthIndicator() override = default;
 
 protected:
-    void initializeGL() override { }
+    void initializeGL() override {}
 
     void paintGL() override {
-        float depth = 0.0f;
+        float depth = 0;
 
         // this->valueRange = ...
 
@@ -55,41 +54,24 @@ protected:
         else y = ((float) this->height() / 2 - 270) + (540 * depth / _valueRange);
         QPainterPath markerPath;
         QVector<QPointF> markerPolygon = {
-                QPointF(_borderOffsetX1 + 30,
-                        y),
-                QPointF(_borderOffsetX1 + 30 + 10,
-                        y - _depthRectHeight / 2),
-                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth + _lineWidth,
-                        y - _depthRectHeight / 2),
-                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth + _lineWidth,
-                        y),
-                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth,
-                        y),
-                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth,
-                        y - _depthRectHeight / 2 + _lineWidth),
-                QPointF(_borderOffsetX1 + 30 + 10 + _edgeOffset,
-                        y - _depthRectHeight / 2 + _lineWidth),
-                QPointF(_borderOffsetX1 + 30 + _lineWidth,
-                        y),
-                QPointF(_borderOffsetX1 + 30 + 10 + _edgeOffset,
-                        y + _depthRectHeight / 2 - _lineWidth),
-                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth,
-                        y + _depthRectHeight / 2 - _lineWidth),
-                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth,
-                        y),
-                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth + _lineWidth,
-                        y),
-                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth + _lineWidth,
-                        y + _depthRectHeight / 2),
-                QPointF(_borderOffsetX1 + 30 + 10,
-                        y + _depthRectHeight / 2),
-                QPointF(_borderOffsetX1 + 30,
-                        y)
+                QPointF(_borderOffsetX1 + 30, y),
+                QPointF(_borderOffsetX1 + 30 + 10, y - _depthRectHeight / 2),
+                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth + _lineWidth, y - _depthRectHeight / 2),
+                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth + _lineWidth, y),
+                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth, y),
+                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth, y - _depthRectHeight / 2 + _lineWidth),
+                QPointF(_borderOffsetX1 + 30 + 10 + _edgeOffset, y - _depthRectHeight / 2 + _lineWidth),
+                QPointF(_borderOffsetX1 + 30 + _lineWidth, y),
+                QPointF(_borderOffsetX1 + 30 + 10 + _edgeOffset, y + _depthRectHeight / 2 - _lineWidth),
+                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth, y + _depthRectHeight / 2 - _lineWidth),
+                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth, y),
+                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth + _lineWidth, y),
+                QPointF(_borderOffsetX1 + 30 + 10 + _depthRectWidth + _lineWidth, y + _depthRectHeight / 2),
+                QPointF(_borderOffsetX1 + 30 + 10, y + _depthRectHeight / 2),
+                QPointF(_borderOffsetX1 + 30, y)
         };
         markerPath.addPolygon(QPolygonF(markerPolygon));
-        markerPath.addText(_borderOffsetX1 + 30 + 10 - 1,
-                           y + _fontSize / 2 + _textOffsetY,
-                           font,
+        markerPath.addText(_borderOffsetX1 + 30 + 10 - 1, y + _fontSize / 2 + _textOffsetY, font,
                            QString("%1м").arg(depth, 0, 'f', 2));
         painter.setPen(QPen(Qt::black, _outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
         painter.setBrush(Qt::white);
@@ -97,10 +79,7 @@ protected:
 
         /// Painting the patch to marker frame
         QPainterPath patchPath;
-        patchPath.addRect(_borderOffsetX1 + 30 + 10 + _depthRectWidth + 1,
-                           y - 1,
-                           _lineWidth - 2,
-                           _lineWidth);
+        patchPath.addRect(_borderOffsetX1 + 30 + 10 + _depthRectWidth + 1, y - 1, _lineWidth - 2, _lineWidth);
         painter.setPen(QPen(Qt::white, _outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
         painter.setBrush(Qt::white);
         painter.drawPath(patchPath);
@@ -110,14 +89,9 @@ protected:
         int32_t j = 0;
         QPainterPath scalePath;
         for (int32_t i = -270; i <= 270; i += 108) {
-            scalePath.addRect(_borderOffsetX1,
-                              (float) i - _lineWidth / 2,
-                              25,
-                              _lineWidth);
+            scalePath.addRect(_borderOffsetX1, (float) i - _lineWidth / 2, 25, _lineWidth);
             if (abs((this->height() / 2 + i) - (int32_t) y) >= 45) { // if the marker is far enough
-                scalePath.addText(_borderOffsetX1 + 25 + 10,
-                                  (float) i + _fontSize / 2,
-                                  font,
+                scalePath.addText(_borderOffsetX1 + 25 + 10, (float) i + _fontSize / 2, font,
                                   QString::number(j) + QString("м"));
             }
             j = j + (int32_t) (_valueRange / 5);

@@ -1,6 +1,7 @@
 #ifndef CLIENT_LOGGER_HPP
 #define CLIENT_LOGGER_HPP
 
+#include <iostream>
 #include <ostream>
 #include <fstream>
 

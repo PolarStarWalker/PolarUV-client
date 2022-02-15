@@ -12,7 +12,6 @@ DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources
 
     geometry_ = geometry();
 
-    commandsProtocol_ = std::make_unique<CommandsProtocol>(0, this);
 
     //yawIndicator_ = std::make_unique<YawIndicator>(ui->CentralWidget);
 

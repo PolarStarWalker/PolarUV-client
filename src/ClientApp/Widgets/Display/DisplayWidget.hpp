@@ -1,19 +1,13 @@
 #ifndef CLIENT_DISPLAYWIDGET_HPP
 #define CLIENT_DISPLAYWIDGET_HPP
 
-/// Без этой штуки происходит какой-то конфликт заголовочных файлов
-#define WIN32_LEAN_AND_MEAN
-
-#include "../../UI/Indicators/DepthIndicator.hpp"
-#include "../../UI/Indicators/PitchIndicator.hpp"
-#include "../../UI/Indicators/YawIndicator.hpp"
 #include "../WidgetResources.hpp"
-
 #include <QWidget>
+#include <QTimer>
 #include <QMainWindow>
 
 #include "./VideoStream/VideoStream.hpp"
-#include "./Protocols/Protocols.hpp"
+
 
 #define COMMANDS_PORT 1999
 
@@ -45,14 +39,12 @@ private:
 
     std::unique_ptr<QTimer> updateTimer_;
 
-    std::unique_ptr<CommandsProtocol> commandsProtocol_;
-
     QPixmap placeholderPixmap_;
     QPixmap pixmap_;
     QPalette palette_;
 
     int GamepadID{};
-    
+
     // Переменные для оптимизации отрисовки
     QRect geometry_;
     bool isPlaceholder = true;

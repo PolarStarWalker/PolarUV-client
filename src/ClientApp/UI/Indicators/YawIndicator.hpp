@@ -5,7 +5,6 @@
 #include <QPainter>
 #include <QPainterPath>
 
-
 class YawIndicator : public QOpenGLWidget {
 public:
     explicit YawIndicator(QWidget *parent) : QOpenGLWidget(parent) {
@@ -39,7 +38,8 @@ public:
 
 protected:
     void initializeGL() override {
-        float yawAngle = 0.0f;
+
+        float yawAngle = 0;
 
         int32_t textOffsetX;
         if (yawAngle < 10) textOffsetX = 9;

@@ -1,10 +1,9 @@
+#include "../Commands/Gamepad.hpp"
 
 #include <QMessageBox>
 
 #include "AuthorizationWidget.hpp"
 #include "ui_AuthorizationWidget.h"
-
-#include <Gamepad/Gamepad.hpp>
 
 #include "IPFunction.hpp"
 
