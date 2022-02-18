@@ -138,9 +138,7 @@ protected:
         painter.drawPath(framePath);
     }
 
-    void resizeGL(int w, int h) override {
-
-    }
+    void resizeGL(int w, int h) override {}
 
 private:
     float _valueRange;

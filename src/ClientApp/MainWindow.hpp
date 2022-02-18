@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "./Widgets/widgets.hpp"
+#include "./Widgets/Widgets.hpp"
 
 #include <QMainWindow>
 #include <QMessageBox>
@@ -12,7 +12,7 @@
 #include <QResizeEvent>
 
 template<class Type>
-concept canRegistry = requires(Type obj){
+concept CanRegistry = requires(Type obj){
     obj.StopWidget();
     obj.StartWidget();
 } && std::is_convertible_v<Type *, QWidget *>;
@@ -38,10 +38,10 @@ protected:
         return widget;
     }
 
-    template<canRegistry Type, typename ... Args>
+    template<CanRegistry Type, typename ... Args>
     [[nodiscard]]
     inline Type *AddWidget(QWidget *dst, Args &&... args) {
-        auto widget = authorizationWidget_->template CreateWithResources<Type>(this, args...);
+        auto widget = authorizationWidget_->template CreateWithResources<Type>(this, std::forward(args)...);
 
         dst->layout()->addWidget(widget);
 
@@ -103,6 +103,7 @@ private:
     ClientSettingsWidget *controlSettingsWidget_;
     PythonEnvironmentWidget *pythonIDEWidget_;
     CommandsWidget *commandsWidget_;
+    SensorsWidget *sensorsWidget_;
 
     bool isDebug_;
 };

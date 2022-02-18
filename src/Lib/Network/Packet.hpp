@@ -40,6 +40,14 @@ namespace lib::network {
 
         std::string Data;
         const HeaderType Header;
+
+        template<typename Type>
+        Type *DataAs() {
+            if (sizeof(Type) != Data.size())
+                return nullptr;
+
+            return (Type *) *(Data.begin());
+        }
     };
 
     struct Request {
@@ -58,7 +66,7 @@ namespace lib::network {
 
         Request(const std::string_view data, TypeEnum type, ssize_t endpointId) :
                 Header({type, endpointId, type == TypeEnum::R ? 0 : (data.size())}),
-                Data(data){};
+                Data(data) {};
 
         Request(Request &&) = delete;
 

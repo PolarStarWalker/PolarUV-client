@@ -16,6 +16,7 @@ namespace lib::network {
 
     class Network {
     public:
+
         static constexpr std::chrono::milliseconds CONNECTION_TIMEOUT = std::chrono::milliseconds(100) ;
         static constexpr std::chrono::milliseconds TRANSFER_TIMEOUT = std::chrono::milliseconds(20) ;
         static constexpr size_t PORT = 2022;
@@ -24,10 +25,7 @@ namespace lib::network {
 
         bool TryConnect(const std::string &ip);
 
-        Response SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId);
-
     private:
-
         Response TransferData(const Request &request);
 
         bool RunFor(std::chrono::steady_clock::duration timeout);
@@ -35,7 +33,46 @@ namespace lib::network {
         std::mutex requestsMutex_;
         boost::asio::io_context ioContext_;
         boost::asio::ip::tcp::socket socket_;
+
+    public:
+
+        Response SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId);
+
+        ///For non-containers objects
+        template<typename Type>
+        Response SendRequest(const Type& obj, Request::TypeEnum type, ssize_t endpointId){
+            return SendRequest(std::string_view((char*) &obj, sizeof(obj)), type, endpointId);
+        }
+
+        ///For containers objects
+        template<typename Type>
+        Response SendRequest(const Type* obj, size_t size, Request::TypeEnum type, ssize_t endpointId){
+            return SendRequest(std::string_view((char*) obj, size), type, endpointId);
+        }
+
+        ///For std::vector
+        template<typename Type>
+        Response SendRequest(const std::vector<Type>& data, Request::TypeEnum type, ssize_t endpointId){
+            return SendRequest(std::string_view((char*) data.data(), data.size()), type, endpointId);
+        }
+
+        ///For std::strings
+        Response SendRequest(const std::string& data, Request::TypeEnum type, ssize_t endpointId){
+            return SendRequest(std::string_view(data), type, endpointId);
+        }
+
+
+    public:
+
+        template <lib::network::Request::TypeEnum RequestCode>
+        requires (RequestCode == Request::TypeEnum::W)
+        void CheckStatusCode(){
+
+        }
+
     };
+
+
 
     template<lib::network::Request::TypeEnum RequestCode>
     requires (RequestCode == Request::TypeEnum::W)

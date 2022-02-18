@@ -27,8 +27,8 @@ Response Network::SendRequest(std::string_view data, Request::TypeEnum type, ssi
 
     TimePoint end = std::chrono::steady_clock::now();
     std::cout << "Request Time = "
-              << std::chrono::duration_cast<std::chrono::milliseconds>(end - requestBegin).count()
-              << "[ms]" << std::endl;
+              << std::chrono::duration_cast<std::chrono::microseconds>(end - requestBegin).count()
+              << "[us]" << std::endl;
 
     return response;
 }

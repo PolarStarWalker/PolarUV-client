@@ -124,7 +124,8 @@ std::string RobotSettingsWidget::Serialize() const noexcept {
 }
 
 void RobotSettingsWidget::StartWidget() {
-
+    ///ToDo: почему то если запускать .exe файл, то из-за этого всё ломается, я хз
+//    ReceiveSettings();
 }
 
 void RobotSettingsWidget::StopWidget() {

@@ -15,37 +15,25 @@ struct CommandsStruct {
         Mz = 5
     };
 
+    enum StabilizationType : int8_t {
+        None = 0,
+        Rotation = 1,
+        Absolute = 2
+    };
+
     std::array<float, 6> Move{};
     std::array<float, 6> Hand{};
     std::array<float, 4> LowPWM{};
-};
 
-struct Telemetry {
-
-    enum Position {
-        X = 0,
-        Y = 1,
-        Z = 2,
-        W = 3
-    };
-
-    std::array<float, 4> Rotation{};
-
-    std::array<float, 3> Acceleration{};
-
-    float Depth = 0.0f;
-
-    float Pressure = 0.0f;
-
-    float BatteryVoltage = 0.0f;
-
-    std::array<int8_t, 4> MotionCalibration {};
-
-    bool Euler = true;
+    StabilizationType Stabilization = None;
 };
 
 class CommandsWidget final : public QWidget {
 Q_OBJECT
+
+public:
+
+    CommandsWidget(QWidget *parent, WidgetResources& resources);
 
 public slots:
     void StartWidget();
@@ -54,12 +42,7 @@ public slots:
 private slots:
     void SendCommands();
 
-public:
-
-    CommandsWidget(QWidget *parent, WidgetResources& resources);
-
 private:
-    Telemetry telemetry_;
     WidgetResources& resources_;
     QTimer timer_;
 };

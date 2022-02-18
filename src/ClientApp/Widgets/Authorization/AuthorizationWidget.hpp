@@ -25,7 +25,7 @@ public:
     template<isWidget Type, typename ... Args>
     [[nodiscard]]
     inline Type *CreateWithResources(QMainWindow *parent, Args&& ...args) {
-        auto widget = new Type(parent, resources_, args...);
+        auto widget = new Type(parent, resources_, std::forward(args)...);
         return widget;
     }
 

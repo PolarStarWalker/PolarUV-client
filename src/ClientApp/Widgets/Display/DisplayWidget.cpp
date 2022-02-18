@@ -12,8 +12,7 @@ DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources
 
     geometry_ = geometry();
 
-
-    //yawIndicator_ = std::make_unique<YawIndicator>(ui->CentralWidget);
+    ///yawIndicator_ = std::make_unique<YawIndicator>(ui->CentralWidget);
 
     placeholderPixmap_ = QPixmap("Icons/Background.png");
     updateTimer_ = std::make_unique<QTimer>();

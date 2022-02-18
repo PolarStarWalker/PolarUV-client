@@ -7,6 +7,7 @@
 #include "./ClientSettings/ClientSettingsWidget.hpp"
 #include "./PythonEnvironment/PythonEnvironmentWidget.hpp"
 #include "./Commands/CommandsWidget.hpp"
+#include "./Sensors/SensorsWidget.hpp"
 
 void dummy();
 

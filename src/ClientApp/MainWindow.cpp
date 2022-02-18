@@ -35,7 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
     /// Создание виджета Python-среды
     pythonIDEWidget_ = AddWidget<PythonEnvironmentWidget>(ui->Page3);
 
-    commandsWidget_ = AddWidget<CommandsWidget>(ui->Page4);
+    ///Создание виджета
+    //commandsWidget_ = AddWidget<CommandsWidget>(ui->Page4);
+    ///Создание виджета датчиков
+    sensorsWidget_ = AddWidget<SensorsWidget>(ui->Page4);
 
     SetupSlots();
 }
@@ -45,6 +48,7 @@ MainWindow::~MainWindow() {
     delete controlSettingsWidget_;
     delete robotSettingsWidget_;
     delete displayWidget_;
+    delete sensorsWidget_;
 
     ///Note: this widget must be delete last
     delete authorizationWidget_;

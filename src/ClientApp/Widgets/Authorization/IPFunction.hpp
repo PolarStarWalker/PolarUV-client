@@ -40,9 +40,38 @@ inline std::list<std::string> GetIps() {
     return addresses;
 }
 
-///ToDo: make for unix like system
 #elif UNIX
 
+#include <sys/types.h>
+#include <ifaddrs.h>
+
+std::list<std::string> GetIps(){
+
+    char host[NI_MAXHOST];
+
+    std::list<std::string> addresses;
+
+    struct ifaddrs* rawAddresses = nullptr;
+    getifaddrs(&rawAddresses);
+
+    for(auto node = rawAddresses; node!= nullptr; node = node->ifa_next){
+
+        if (node->ifa_addr == nullptr)
+            continue;
+
+        auto family = node->ifa_addr->sa_family;
+
+        ///if ipv4 addr
+        if (family == AF_INET) {
+            auto address = (struct sockaddr_in *) (node->ifa_addr);
+            addresses.emplace_back(inet_ntoa(address->sin_addr));
+        }
+    }
+
+    freeifaddrs(rawAddresses);
+
+    return addresses;
+}
 #endif
 
 
