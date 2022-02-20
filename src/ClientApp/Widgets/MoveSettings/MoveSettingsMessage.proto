@@ -2,7 +2,7 @@ syntax = "proto2";
 
 option optimize_for = LITE_RUNTIME;
 
-message RobotSettingsMessage{
+message MoveSettingsMessage{
 
   enum DShotMode {
     DSHOT150 = 1;

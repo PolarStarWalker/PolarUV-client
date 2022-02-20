@@ -1,5 +1,5 @@
-#ifndef CLIENT_ROBOTSETTINGSWIDGET_HPP
-#define CLIENT_ROBOTSETTINGSWIDGET_HPP
+#ifndef CLIENT_MOVESETTINGSWIDGET_HPP
+#define CLIENT_MOVESETTINGSWIDGET_HPP
 
 //this must be first include
 #include "../WidgetResources.hpp"
@@ -7,16 +7,16 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class RobotSettingsWidget; }
+namespace Ui { class MoveSettingsWidget; }
 QT_END_NAMESPACE
 
-class RobotSettingsWidget : public QWidget {
+class MoveSettingsWidget : public QWidget {
 Q_OBJECT
 
 public:
-    RobotSettingsWidget(QWidget *parent, WidgetResources& resources);
+    MoveSettingsWidget(QWidget *parent, WidgetResources& resources);
 
-    ~RobotSettingsWidget() override;
+    ~MoveSettingsWidget() override;
 
 public slots:
     void StartWidget();
@@ -26,7 +26,7 @@ private:
 
     WidgetResources& resources_;
 
-    Ui::RobotSettingsWidget *ui;
+    Ui::MoveSettingsWidget *ui;
 
     [[nodiscard]] std::string Serialize() const noexcept;
 

@@ -1,10 +1,10 @@
 #include <Exceptions/Exceptions.hpp>
 #include <QMessageBox>
-#include "./RobotSettingsWidget.hpp"
-#include "./RobotSettingsMessage.pb.h"
-#include "./ui_RobotSettingsWidget.h"
+#include "./MoveSettingsWidget.hpp"
+#include "./MoveSettingsMessage.pb.h"
+#include "./ui_MoveSettingsWidget.h"
 
-void RobotSettingsWidget::SendSettings() {
+void MoveSettingsWidget::SendSettings() {
     using namespace lib::network;
 
     std::string message = Serialize();
@@ -16,7 +16,7 @@ void RobotSettingsWidget::SendSettings() {
     QMessageBox::about(nullptr, "Успех", "Настройки успешно отправлены");
 }
 
-void RobotSettingsWidget::ReceiveSettings() {
+void MoveSettingsWidget::ReceiveSettings() {
     using namespace lib::network;
 
     Response response = resources_.Network.SendRequest(std::string(), Request::TypeEnum::R, 0);
@@ -24,9 +24,9 @@ void RobotSettingsWidget::ReceiveSettings() {
     StatusCodeCheck<Request::TypeEnum::R>(response.Header.Code, [&](){ Deserialize(response.Data);});
 }
 
-void RobotSettingsWidget::Deserialize(const std::string &data) noexcept {
+void MoveSettingsWidget::Deserialize(const std::string &data) noexcept {
 
-    RobotSettingsMessage message;
+    MoveSettingsMessage message;
     message.ParseFromArray(data.data(), data.size());
 
     /// Writing number of motor coefficients
@@ -56,25 +56,25 @@ void RobotSettingsWidget::Deserialize(const std::string &data) noexcept {
 
     /// Writing motors protocol
     switch (message.motors_protocol()) {
-        case RobotSettingsMessage::DSHOT150:
+        case MoveSettingsMessage::DSHOT150:
             ui->MotorsProtocolComboBox->setCurrentIndex(0);
             break;
-        case RobotSettingsMessage::DSHOT300:
+        case MoveSettingsMessage::DSHOT300:
             ui->MotorsProtocolComboBox->setCurrentIndex(1);
             break;
-        case RobotSettingsMessage::DSHOT600:
+        case MoveSettingsMessage::DSHOT600:
             ui->MotorsProtocolComboBox->setCurrentIndex(2);
             break;
-        case RobotSettingsMessage::DSHOT1200:
+        case MoveSettingsMessage::DSHOT1200:
             ui->MotorsProtocolComboBox->setCurrentIndex(3);
             break;
     }
 
 }
 
-std::string RobotSettingsWidget::Serialize() const noexcept {
+std::string MoveSettingsWidget::Serialize() const noexcept {
 
-    RobotSettingsMessage message;
+    MoveSettingsMessage message;
 
     /// Reading max motor speed
     message.set_maximum_motor_speed((int16_t) ui->MaxSpeedEdit->text().toInt());
@@ -107,28 +107,28 @@ std::string RobotSettingsWidget::Serialize() const noexcept {
     /// Reading motors protocol
     switch (ui->MotorsProtocolComboBox->currentIndex()) {
         case 0:
-            message.set_motors_protocol(RobotSettingsMessage::DSHOT150);
+            message.set_motors_protocol(MoveSettingsMessage::DSHOT150);
             break;
         case 1:
-            message.set_motors_protocol(RobotSettingsMessage::DSHOT300);
+            message.set_motors_protocol(MoveSettingsMessage::DSHOT300);
             break;
         case 2:
-            message.set_motors_protocol(RobotSettingsMessage::DSHOT600);
+            message.set_motors_protocol(MoveSettingsMessage::DSHOT600);
             break;
         case 3:
-            message.set_motors_protocol(RobotSettingsMessage::DSHOT1200);
+            message.set_motors_protocol(MoveSettingsMessage::DSHOT1200);
             break;
     }
 
     return message.SerializeAsString();
 }
 
-void RobotSettingsWidget::StartWidget() {
+void MoveSettingsWidget::StartWidget() {
     ///ToDo: почему то если запускать .exe файл, то из-за этого всё ломается, я хз
 //    ReceiveSettings();
 }
 
-void RobotSettingsWidget::StopWidget() {
+void MoveSettingsWidget::StopWidget() {
 
 }
 

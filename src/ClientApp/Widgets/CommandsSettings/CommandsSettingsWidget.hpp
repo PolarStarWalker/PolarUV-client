@@ -1,23 +1,23 @@
-#ifndef CLIENT_CLIENTSETTINGSWIDGET_HPP
-#define CLIENT_CLIENTSETTINGSWIDGET_HPP
+#ifndef CLIENT_COMMANSSETTINGSWIDGET_HPP
+#define CLIENT_COMMANSSETTINGSWIDGET_HPP
 
 #include <QWidget>
 #include <QSettings>
 
 #include "../WidgetResources.hpp"
-#include "ControlsSettingsStruct.hpp"
+#include "CommandsSettingsStruct.hpp"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class ClientSettingsWidget; }
+namespace Ui { class CommandsSettingsWidget; }
 QT_END_NAMESPACE
 
-class ClientSettingsWidget : public QWidget {
+class CommandsSettingsWidget : public QWidget {
 Q_OBJECT
 
 public:
-    ClientSettingsWidget(QWidget *parent, WidgetResources& resources);
+    CommandsSettingsWidget(QWidget *parent, WidgetResources& resources);
 
-    ~ClientSettingsWidget() override;
+    ~CommandsSettingsWidget() override;
 
     ControlsSettings GetControlsSettings();
 
@@ -29,7 +29,7 @@ private:
 
     WidgetResources& resources_;
 
-    Ui::ClientSettingsWidget *ui;
+    Ui::CommandsSettingsWidget *ui;
 
     std::unique_ptr<QSettings> settings_;
 

@@ -1,10 +1,10 @@
-#include "RobotSettingsWidget.hpp"
-#include "ui_RobotSettingsWidget.h"
+#include "MoveSettingsWidget.hpp"
+#include "ui_MoveSettingsWidget.h"
 
-RobotSettingsWidget::RobotSettingsWidget(QWidget *parent, WidgetResources& resources) :
+MoveSettingsWidget::MoveSettingsWidget(QWidget *parent, WidgetResources& resources) :
         QWidget(parent),
         resources_(resources),
-        ui(new Ui::RobotSettingsWidget) {
+        ui(new Ui::MoveSettingsWidget) {
 
     ui->setupUi(this);
 
@@ -18,16 +18,16 @@ RobotSettingsWidget::RobotSettingsWidget(QWidget *parent, WidgetResources& resou
     this->connect(ui->MaxSpeedSlider, SIGNAL(valueChanged(int)), SLOT(UpdateMaxSpeedEdit(int)));
     this->connect(ui->MaxSpeedEdit, SIGNAL(textChanged(QString)), SLOT(UpdateMaxSpeedSlider(QString)));
 
-    /// Changind default header labels for MotorsTable
+    /// Changing default header labels for MotorsTable
     QStringList labelsList = {"Fx", "Fy", "Fz", "Mx", "My", "Mz"};
     ui->MotorsTable->setHorizontalHeaderLabels(labelsList);
 }
 
-RobotSettingsWidget::~RobotSettingsWidget() {
+MoveSettingsWidget::~MoveSettingsWidget() {
     delete ui;
 }
 
-void RobotSettingsWidget::UpdateMotorsTable(int value) {
+void MoveSettingsWidget::UpdateMotorsTable(int value) {
     /// Changing the height of the table
     ui->MotorsTable->setMinimumHeight((value + 1) * 25 + 2);
     ui->MotorsTable->setMaximumHeight((value + 1) * 25 + 2);
@@ -46,7 +46,7 @@ void RobotSettingsWidget::UpdateMotorsTable(int value) {
     }
 }
 
-void RobotSettingsWidget::UpdateHandTable(int value) {
+void MoveSettingsWidget::UpdateHandTable(int value) {
     /// Changing the width of the table
     ui->HandTable->setMinimumWidth(value * 50 + 1);
     ui->HandTable->setMaximumWidth(value * 50 + 1);
@@ -63,10 +63,10 @@ void RobotSettingsWidget::UpdateHandTable(int value) {
     }
 }
 
-void RobotSettingsWidget::UpdateMaxSpeedEdit(int value) {
+void MoveSettingsWidget::UpdateMaxSpeedEdit(int value) {
     ui->MaxSpeedEdit->setText(QString::number(value));
 }
 
-void RobotSettingsWidget::UpdateMaxSpeedSlider(const QString &string) {
+void MoveSettingsWidget::UpdateMaxSpeedSlider(const QString &string) {
     ui->MaxSpeedSlider->setValue(string.toInt());
 }

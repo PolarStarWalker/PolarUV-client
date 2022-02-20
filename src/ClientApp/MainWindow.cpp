@@ -17,27 +17,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Page3Button->setIcon(QIcon("Icons/CodeIcon.png"));
     ui->Page4Button->setIcon(QIcon("Icons/BugIcon.png"));
 
-    /// Создание виджета авторизации
-     authorizationWidget_ = CreateAuthorizationWidget(ui->AutorizationPage);
-
-    /// Создание виджета камеры/телеметрии
+    /// Создание виджетов
+    authorizationWidget_ = CreateAuthorizationWidget(ui->AutorizationPage);
     displayWidget_ = AddWidget<DisplayWidget>(ui->Page1);
-
-    /// Создание виджета настроек робота
-    robotSettingsWidget_ = AddWidget<RobotSettingsWidget>(ui->Page2_1);
-
-    /// Создание виджета настроек клиента
-    // ToDo: а где
-
-    /// Создание виджета настроек управления
-    controlSettingsWidget_ = AddWidget<ClientSettingsWidget>(ui->Page2_3);
-
-    /// Создание виджета Python-среды
+    moveSettingsWidget_ = AddWidget<MoveSettingsWidget>(ui->P2_1_Widget_1);
+    sensorsSettingsWidget_ = AddWidget<SensorsSettingsWidget>(ui->P2_1_Widget_2);
+    commandsSettingsWidget_ = AddWidget<CommandsSettingsWidget>(ui->Page2_3);
     pythonIDEWidget_ = AddWidget<PythonEnvironmentWidget>(ui->Page3);
-
-    ///Создание виджета
     //commandsWidget_ = AddWidget<CommandsWidget>(ui->Page4);
-    ///Создание виджета датчиков
     sensorsWidget_ = AddWidget<SensorsWidget>(ui->Page4);
 
     SetupSlots();
@@ -45,8 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow() {
     delete pythonIDEWidget_;
-    delete controlSettingsWidget_;
-    delete robotSettingsWidget_;
+    delete commandsSettingsWidget_;
+    delete moveSettingsWidget_;
     delete displayWidget_;
     delete sensorsWidget_;
 

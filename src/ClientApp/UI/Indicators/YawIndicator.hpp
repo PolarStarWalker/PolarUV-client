@@ -4,6 +4,9 @@
 #include <QOpenGLWidget>
 #include <QPainter>
 #include <QPainterPath>
+#include <iostream>
+
+#define BIG_NUMBER 16777215
 
 class YawIndicator : public QOpenGLWidget {
 public:
@@ -26,8 +29,6 @@ public:
         this->_step = 15;
         this->_distance = 60;
 
-        this->resize(640, 110);
-
         this->setAttribute(Qt::WA_AlwaysStackOnTop);
         this->setAttribute(Qt::WA_TranslucentBackground);
     }
@@ -39,7 +40,21 @@ public:
 protected:
     void initializeGL() override {
 
-        float yawAngle = 0;
+    }
+
+    void paintGL() override {
+        float yawAngle = 0.0f;
+
+        /// Определяем основной размер - сторону квадрата
+        float mainSize_;
+        /// ToDo: сделать лучше
+        if (this->parentWidget()->height() <= this->parentWidget()->width()) {
+            mainSize_ = (float) this->parentWidget()->height();
+            this->setMaximumSize((int) mainSize_, BIG_NUMBER);
+        } else {
+            mainSize_ = (float) this->parentWidget()->width();
+            this->setMaximumSize(BIG_NUMBER, (int) mainSize_);
+        }
 
         int32_t textOffsetX;
         if (yawAngle < 10) textOffsetX = 9;
@@ -53,10 +68,10 @@ protected:
         painter.setRenderHints(QPainter::Antialiasing);
         painter.save();
 
-        /// Painting angle
+        /// Рисуем текущий угол ToDO: остановился тут
         QPainterPath anglePath;
-        anglePath.addText((float) this->width() / 2 - (float) textOffsetX,
-                          (float) this->height() - _valueRectHeight - 5 + (float) (_valueRectHeight + _fontSize) / 2 +
+        anglePath.addText(mainSize_ / 2 - (float) textOffsetX,
+                          mainSize_ - _valueRectHeight - 5 + (float) (_valueRectHeight + _fontSize) / 2 +
                           _textOffsetY,
                           font,
                           QString::number((int32_t) yawAngle));
@@ -68,10 +83,10 @@ protected:
         QPainterPath centerValuePath;
         int32_t valueOffset = ((int32_t) yawAngle) % _step;
         int32_t scaleOffset = (valueOffset * (_valueRectWidth + _distance)) / _step;
-        painter.translate((float) this->width() / 2 - (float) scaleOffset, 0);
+        painter.translate((float) mainSize_ / 2 - (float) scaleOffset, 0);
         int32_t centerValue = ((int32_t) yawAngle) - valueOffset;
         centerValuePath.addText(-textOffsetX,
-                                (float) (this->height() - _borderOffsetY2 + _fontSize) / 2 + _textOffsetY,
+                                (float) (mainSize_ - _borderOffsetY2 + _fontSize) / 2 + _textOffsetY,
                                 font,
                                 QString::number(centerValue));
         painter.setPen(QPen(Qt::black, _outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin));
@@ -79,7 +94,7 @@ protected:
         painter.drawPath(centerValuePath);
 
         /// Painting left values
-        int32_t currentX = (this->width() / 2) - scaleOffset;
+        int32_t currentX = (mainSize_ / 2) - scaleOffset;
         int8_t translationNumber = 1;
         while (currentX >= ((_valueRectWidth + _distance))) {
             painter.translate(-(_valueRectWidth + _distance), 0);
@@ -95,7 +110,7 @@ protected:
             // Creating path
             QPainterPath valuePath;
             valuePath.addText(-valueOffsetX,
-                              (float) (this->height() - _borderOffsetY2 + _fontSize) / 2 + _textOffsetY,
+                              (float) (mainSize_ - _borderOffsetY2 + _fontSize) / 2 + _textOffsetY,
                               font,
                               QString::number(value));
             // Painting
@@ -115,7 +130,7 @@ protected:
         translationNumber = 1;
 
         /// Painting right values
-        while (currentX <= (this->width() - ((_valueRectWidth + _distance)))) {
+        while (currentX <= (mainSize_ - ((_valueRectWidth + _distance)))) {
             painter.translate(_valueRectWidth + _distance, 0);
             // Checking value
             int32_t value = (((int32_t) yawAngle) - valueOffset) + (_step * translationNumber);
@@ -130,7 +145,7 @@ protected:
             // Creating path
             QPainterPath valuePath;
             valuePath.addText(-valueOffsetX,
-                              (float) (this->height() - _borderOffsetY2 + _fontSize) / 2 + _textOffsetY,
+                              (float) (mainSize_ - _borderOffsetY2 + _fontSize) / 2 + _textOffsetY,
                               font,
                               QString::number(value));
             // Painting
@@ -152,34 +167,34 @@ protected:
                 QPointF(_borderOffsetX1,
                         0),
                 QPointF(_borderOffsetX1,
-                        this->height() - _borderOffsetY2),
+                        mainSize_ - _borderOffsetY2),
                 QPointF(_borderOffsetX2,
-                        this->height() - _borderOffsetY1),
-                QPointF(this->width() - _borderOffsetX2,
-                        this->height() - _borderOffsetY1),
-                QPointF(this->width() - _borderOffsetX1,
-                        this->height() - _borderOffsetY2),
-                QPointF(this->width() - _borderOffsetX1,
+                        mainSize_ - _borderOffsetY1),
+                QPointF(mainSize_ - _borderOffsetX2,
+                        mainSize_ - _borderOffsetY1),
+                QPointF(mainSize_ - _borderOffsetX1,
+                        mainSize_ - _borderOffsetY2),
+                QPointF(mainSize_ - _borderOffsetX1,
                         0),
                 // Inner contour
-                QPointF(this->width() - _borderOffsetX1 - _lineWidth,
+                QPointF(mainSize_ - _borderOffsetX1 - _lineWidth,
                         0),
-                QPointF(this->width() - _borderOffsetX1 - _lineWidth,
-                        this->height() - _borderOffsetY2 - _edgeOffset),
-                QPointF(this->width() - _borderOffsetX2 - _edgeOffset,
-                        this->height() - _borderOffsetY1 - _lineWidth),
-                QPointF((float) (this->width() + _lineWidth) / 2,
-                        this->height() - _borderOffsetY1 - _lineWidth),
-                QPointF((float) (this->width() + _lineWidth) / 2,
-                        this->height() - _borderOffsetY1 - _lineWidth - _centerLineHeight),
-                QPointF((float) (this->width() - _lineWidth) / 2,
-                        this->height() - _borderOffsetY1 - _lineWidth - _centerLineHeight),
-                QPointF((float) (this->width() - _lineWidth) / 2,
-                        this->height() - _borderOffsetY1 - _lineWidth),
+                QPointF(mainSize_ - _borderOffsetX1 - _lineWidth,
+                        mainSize_ - _borderOffsetY2 - _edgeOffset),
+                QPointF(mainSize_ - _borderOffsetX2 - _edgeOffset,
+                        mainSize_ - _borderOffsetY1 - _lineWidth),
+                QPointF((float) (mainSize_ + _lineWidth) / 2,
+                        mainSize_ - _borderOffsetY1 - _lineWidth),
+                QPointF((float) (mainSize_ + _lineWidth) / 2,
+                        mainSize_ - _borderOffsetY1 - _lineWidth - _centerLineHeight),
+                QPointF((float) (mainSize_ - _lineWidth) / 2,
+                        mainSize_ - _borderOffsetY1 - _lineWidth - _centerLineHeight),
+                QPointF((float) (mainSize_ - _lineWidth) / 2,
+                        mainSize_ - _borderOffsetY1 - _lineWidth),
                 QPointF(_borderOffsetX2 + _edgeOffset,
-                        this->height() - _borderOffsetY1 - _lineWidth),
+                        mainSize_ - _borderOffsetY1 - _lineWidth),
                 QPointF(_borderOffsetX1 + _lineWidth,
-                        this->height() - _borderOffsetY2 - _edgeOffset),
+                        mainSize_ - _borderOffsetY2 - _edgeOffset),
                 QPointF(_borderOffsetX1 + _lineWidth, 0),
         };
         framesPath.addPolygon(QPolygonF(framePolygon));
@@ -190,34 +205,34 @@ protected:
                 // 5   1|6   2
                 //
                 // 4         3
-                QPointF((float) this->width() / 2,
-                        this->height() - _angleRectHeight - 5),
-                QPointF((float) (this->width() + _angleRectWidth) / 2,
-                        this->height() - _angleRectHeight - 5),
-                QPointF((float) (this->width() + _angleRectWidth) / 2,
-                        this->height() - 5),
-                QPointF((float) (this->width() - _angleRectWidth) / 2,
-                        this->height() - 5),
-                QPointF((float) (this->width() - _angleRectWidth) / 2,
-                        this->height() - _angleRectHeight - 5),
-                QPointF((float) this->width() / 2,
-                        this->height() - _angleRectHeight - 5),
+                QPointF((float) mainSize_ / 2,
+                        mainSize_ - _angleRectHeight - 5),
+                QPointF((float) (mainSize_ + _angleRectWidth) / 2,
+                        mainSize_ - _angleRectHeight - 5),
+                QPointF((float) (mainSize_ + _angleRectWidth) / 2,
+                        mainSize_ - 5),
+                QPointF((float) (mainSize_ - _angleRectWidth) / 2,
+                        mainSize_ - 5),
+                QPointF((float) (mainSize_ - _angleRectWidth) / 2,
+                        mainSize_ - _angleRectHeight - 5),
+                QPointF((float) mainSize_ / 2,
+                        mainSize_ - _angleRectHeight - 5),
                 // Outer contour
                 // 2   1|6   5
                 //
                 // 3         4
-                QPointF((float) this->width() / 2,
-                        this->height() - _angleRectHeight - 5 - _lineWidth),
-                QPointF((float) (this->width() - _angleRectWidth) / 2 - _lineWidth,
-                        this->height() - _angleRectHeight - 5 - _lineWidth),
-                QPointF((float) (this->width() - _angleRectWidth) / 2 - _lineWidth,
-                        this->height() - 5 + _lineWidth),
-                QPointF((float) (this->width() + _angleRectWidth) / 2 + _lineWidth,
-                        this->height() - 5 + _lineWidth),
-                QPointF((float) (this->width() + _angleRectWidth) / 2 + _lineWidth,
-                        this->height() - _angleRectHeight - 5 - _lineWidth),
-                QPointF((float) this->width() / 2,
-                        this->height() - _angleRectHeight - 5 - _lineWidth),
+                QPointF((float) mainSize_ / 2,
+                        mainSize_ - _angleRectHeight - 5 - _lineWidth),
+                QPointF((float) (mainSize_ - _angleRectWidth) / 2 - _lineWidth,
+                        mainSize_ - _angleRectHeight - 5 - _lineWidth),
+                QPointF((float) (mainSize_ - _angleRectWidth) / 2 - _lineWidth,
+                        mainSize_ - 5 + _lineWidth),
+                QPointF((float) (mainSize_ + _angleRectWidth) / 2 + _lineWidth,
+                        mainSize_ - 5 + _lineWidth),
+                QPointF((float) (mainSize_ + _angleRectWidth) / 2 + _lineWidth,
+                        mainSize_ - _angleRectHeight - 5 - _lineWidth),
+                QPointF((float) mainSize_ / 2,
+                        mainSize_ - _angleRectHeight - 5 - _lineWidth),
         };
         framesPath.addPolygon(angleFramePolygon);
         painter.setPen(QPen(Qt::black, _outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
@@ -226,8 +241,8 @@ protected:
 
         /// Painting the patch to angle frame (hiding polygon outline)
         QPainterPath patchPath;
-        patchPath.addRect((float) (this->width() - _lineWidth) / 2,
-                          this->height() - _angleRectHeight - 5 - _lineWidth + _outlineWidth,
+        patchPath.addRect((float) (mainSize_ - _lineWidth) / 2,
+                          mainSize_ - _angleRectHeight - 5 - _lineWidth + _outlineWidth,
                           _lineWidth,
                           _lineWidth - (_outlineWidth * 2));
 
@@ -235,8 +250,6 @@ protected:
         painter.setBrush(Qt::white);
         painter.drawPath(patchPath);
     }
-
-    void paintGL() override {}
 
     void resizeGL(int w, int h) override {
 

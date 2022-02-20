@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "./Widgets/Widgets.hpp"
+#include "./Widgets/widgets.hpp"
 
 #include <QMainWindow>
 #include <QMessageBox>
@@ -99,8 +99,9 @@ private:
     ///Первым в объявлении всегда должен быть виджет авторизации, поскольку он последним будет уничтожаться
     AuthorizationWidget *authorizationWidget_;
     DisplayWidget *displayWidget_;
-    RobotSettingsWidget *robotSettingsWidget_;
-    ClientSettingsWidget *controlSettingsWidget_;
+    MoveSettingsWidget *moveSettingsWidget_;
+    SensorsSettingsWidget *sensorsSettingsWidget_;
+    CommandsSettingsWidget *controlSettingsWidget_;
     PythonEnvironmentWidget *pythonIDEWidget_;
     CommandsWidget *commandsWidget_;
     SensorsWidget *sensorsWidget_;

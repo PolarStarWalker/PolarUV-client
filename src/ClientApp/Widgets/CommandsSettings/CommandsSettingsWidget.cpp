@@ -1,11 +1,11 @@
-#include "ClientSettingsWidget.hpp"
-#include "ui_ClientSettingsWidget.h"
+#include "CommandsSettingsWidget.hpp"
+#include "ui_CommandsSettingsWidget.h"
 
 
-ClientSettingsWidget::ClientSettingsWidget(QWidget *parent, WidgetResources& resources) :
+CommandsSettingsWidget::CommandsSettingsWidget(QWidget *parent, WidgetResources& resources) :
         QWidget(parent),
         resources_(resources),
-        ui(new Ui::ClientSettingsWidget) {
+        ui(new Ui::CommandsSettingsWidget) {
 
     ui->setupUi(this);
 
@@ -16,11 +16,11 @@ ClientSettingsWidget::ClientSettingsWidget(QWidget *parent, WidgetResources& res
     connect(ui->SaveClientSettingsButton, SIGNAL(clicked(bool)), SLOT(SaveSettings()));
 }
 
-ClientSettingsWidget::~ClientSettingsWidget() {
+CommandsSettingsWidget::~CommandsSettingsWidget() {
     delete ui;
 }
 
-ControlsSettings ClientSettingsWidget::GetControlsSettings() {
+ControlsSettings CommandsSettingsWidget::GetControlsSettings() {
     std::array<AnalogActions, 8> AnalogArray{
             ui->LeftStickXCheckBox->isChecked() ?
             (AnalogActions) -ui->LeftStickXComboBox->currentIndex() :
@@ -71,7 +71,7 @@ ControlsSettings ClientSettingsWidget::GetControlsSettings() {
     // controlsSettings.Analog[AnalogControls::DPadX];
 }
 
-void ClientSettingsWidget::LoadSettings() {
+void CommandsSettingsWidget::LoadSettings() {
     if (!settings_->value("DPadXAction").isNull()) {
         // Analog actions
         ui->DPadXComboBox->setCurrentIndex(settings_->value("DPadXAction").toInt());
@@ -103,7 +103,7 @@ void ClientSettingsWidget::LoadSettings() {
     }
 }
 
-void ClientSettingsWidget::SaveSettings() {
+void CommandsSettingsWidget::SaveSettings() {
     // Analog actions
     settings_->setValue("DPadXAction", ui->DPadXComboBox->currentIndex());
     settings_->setValue("DPadYAction", ui->DPadYComboBox->currentIndex());
@@ -133,11 +133,11 @@ void ClientSettingsWidget::SaveSettings() {
     settings_->setValue("RightShoulderInverted", ui->RightShoulderCheckBox->isChecked());
 }
 
-void ClientSettingsWidget::StartWidget() {
+void CommandsSettingsWidget::StartWidget() {
 
 }
 
-void ClientSettingsWidget::StopWidget() {
+void CommandsSettingsWidget::StopWidget() {
 
 }
 
