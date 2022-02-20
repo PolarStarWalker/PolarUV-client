@@ -101,7 +101,7 @@ private:
     DisplayWidget *displayWidget_;
     MoveSettingsWidget *moveSettingsWidget_;
     SensorsSettingsWidget *sensorsSettingsWidget_;
-    CommandsSettingsWidget *controlSettingsWidget_;
+    CommandsSettingsWidget *commandsSettingsWidget_;
     PythonEnvironmentWidget *pythonIDEWidget_;
     CommandsWidget *commandsWidget_;
     SensorsWidget *sensorsWidget_;
