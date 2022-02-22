@@ -18,23 +18,28 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Page4Button->setIcon(QIcon("Icons/BugIcon.png"));
 
     /// Создание виджетов
-    authorizationWidget_ = CreateAuthorizationWidget(ui->AutorizationPage);
+    authorizationWidget_ = CreateAuthorizationWidget(ui->AuthorizationPage);
     displayWidget_ = AddWidget<DisplayWidget>(ui->Page1);
-    moveSettingsWidget_ = AddWidget<MoveSettingsWidget>(ui->P2_1_Widget_1);
-    sensorsSettingsWidget_ = AddWidget<SensorsSettingsWidget>(ui->P2_1_Widget_2);
-    commandsSettingsWidget_ = AddWidget<CommandsSettingsWidget>(ui->Page2_3);
-    pythonIDEWidget_ = AddWidget<PythonEnvironmentWidget>(ui->Page3);
+    moveSettingsWidget_ = AddWidget<MoveSettingsWidget>(ui->P2_1Widget);
+    commandsSettingsWidget_ = AddWidget<CommandsSettingsWidget>(ui->P2_2Widget);
+    sensorsSettingsWidget_ = AddWidget<SensorsSettingsWidget>(ui->P2_3Widget);
+    //pythonIDEWidget_ = AddWidget<PythonEnvironmentWidget>(ui->Page3);
     //commandsWidget_ = AddWidget<CommandsWidget>(ui->Page4);
-    sensorsWidget_ = AddWidget<SensorsWidget>(ui->Page4);
+    //sensorsWidget_ = AddWidget<SensorsWidget>(ui->Page4);
+
+    /// Прячем пустые вкладки ToDo: заполнить вкладки
+    ui->Page3Button->hide();
+    ui->Page4Button->hide();
 
     SetupSlots();
 }
 
 MainWindow::~MainWindow() {
-    delete pythonIDEWidget_;
-    delete commandsSettingsWidget_;
-    delete moveSettingsWidget_;
     delete displayWidget_;
+    delete moveSettingsWidget_;
+    delete commandsSettingsWidget_;
+    delete sensorsSettingsWidget_;
+    delete pythonIDEWidget_;
     delete sensorsWidget_;
 
     ///Note: this widget must be delete last
