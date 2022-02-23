@@ -28,12 +28,12 @@ struct CommandsStruct {
     StabilizationType Stabilization = None;
 };
 
-class CommandsWidget final : public QWidget {
+class CommandsWidget final : public QObject {
 Q_OBJECT
 
 public:
 
-    CommandsWidget(QWidget *parent, WidgetResources& resources);
+    CommandsWidget(QObject *parent, WidgetResources& resources);
 
 public slots:
     void StartWidget();

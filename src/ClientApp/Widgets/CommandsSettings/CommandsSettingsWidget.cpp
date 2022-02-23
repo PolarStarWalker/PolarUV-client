@@ -2,9 +2,8 @@
 #include "ui_CommandsSettingsWidget.h"
 
 
-CommandsSettingsWidget::CommandsSettingsWidget(QWidget *parent, WidgetResources& resources) :
+CommandsSettingsWidget::CommandsSettingsWidget(QWidget *parent) :
         QWidget(parent),
-        resources_(resources),
         ui(new Ui::CommandsSettingsWidget) {
 
     ui->setupUi(this);
@@ -132,12 +131,3 @@ void CommandsSettingsWidget::SaveSettings() {
     settings_->setValue("LeftShoulderInverted", ui->LeftShoulderCheckBox->isChecked());
     settings_->setValue("RightShoulderInverted", ui->RightShoulderCheckBox->isChecked());
 }
-
-void CommandsSettingsWidget::StartWidget() {
-
-}
-
-void CommandsSettingsWidget::StopWidget() {
-
-}
-

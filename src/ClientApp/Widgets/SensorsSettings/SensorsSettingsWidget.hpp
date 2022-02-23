@@ -14,13 +14,9 @@ class SensorsSettingsWidget : public QWidget {
 Q_OBJECT
 
 public:
-    explicit SensorsSettingsWidget(QWidget *parent, WidgetResources& resources);
+    explicit SensorsSettingsWidget(QWidget *parent);
 
     ~SensorsSettingsWidget() override;
-
-public slots:
-    void StartWidget();
-    void StopWidget();
 
 private:
     Ui::SensorsSettingsWidget *ui;

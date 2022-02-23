@@ -3,7 +3,7 @@
 
 #include "../WidgetResources.hpp"
 
-#include <QWidget>
+#include <QObject>
 #include <QTimer>
 
 struct SensorsStruct {
@@ -30,7 +30,7 @@ struct SensorsStruct {
     bool Euler = true;
 };
 
-class SensorsWidget final : public QWidget{
+class SensorsWidget final : public QObject{
 
     constexpr static int FPS = 60;
     constexpr static auto TIMEOUT_ms = std::chrono::milliseconds( 1000 / FPS);
@@ -38,7 +38,7 @@ class SensorsWidget final : public QWidget{
     Q_OBJECT
 
 public:
-    SensorsWidget(QWidget* parent, WidgetResources& resources);
+    SensorsWidget(QObject* parent, WidgetResources& resources);
 
 public slots:
     void StartWidget();

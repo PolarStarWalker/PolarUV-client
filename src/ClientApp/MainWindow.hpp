@@ -12,10 +12,16 @@
 #include <QResizeEvent>
 
 template<class Type>
-concept CanRegistry = requires(Type obj){
+concept CanRegistryWidget = requires(Type obj){
     obj.StopWidget();
     obj.StartWidget();
 } && std::is_convertible_v<Type *, QWidget *>;
+
+template<class Type>
+concept CanRegistryObject = requires(Type obj){
+    obj.StopWidget();
+    obj.StartWidget();
+} && std::is_convertible_v<Type *, QObject *>;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,12 +44,33 @@ protected:
         return widget;
     }
 
-    template<CanRegistry Type, typename ... Args>
+    template<CanRegistryWidget Type, typename ... Args>
     [[nodiscard]]
-    inline Type *AddWidget(QWidget *dst, Args &&... args) {
+    inline Type *CreateWidgetWithResources(QWidget *dst, Args &&... args) {
         auto widget = authorizationWidget_->template CreateWithResources<Type>(this, std::forward(args)...);
 
         dst->layout()->addWidget(widget);
+
+        connect(this, SIGNAL(StartWidget()), widget, SLOT(StartWidget()));
+        connect(this, SIGNAL(StopWidget()), widget, SLOT(StopWidget()));
+
+        widget->StopWidget();
+
+        return widget;
+    }
+
+    template<typename Type, typename ... Args>
+    [[nodiscard]]
+    inline Type* CreateWidget(QWidget* dst, Args&& ... args){
+        auto widget = new Type(this);
+        dst->layout()->addWidget(widget);
+        return widget;
+    }
+
+    template<CanRegistryObject Type, typename ... Args>
+    [[nodiscard]]
+    inline Type *CreateObjectWithResources(Args &&... args) {
+        auto widget = authorizationWidget_->template CreateWithResources<Type>(this, std::forward(args)...);
 
         connect(this, SIGNAL(StartWidget()), widget, SLOT(StartWidget()));
         connect(this, SIGNAL(StopWidget()), widget, SLOT(StopWidget()));
@@ -103,8 +130,8 @@ private:
     SensorsSettingsWidget *sensorsSettingsWidget_;
     CommandsSettingsWidget *commandsSettingsWidget_;
     PythonEnvironmentWidget *pythonIDEWidget_;
-    CommandsWidget *commandsWidget_;
-    SensorsWidget *sensorsWidget_;
+    CommandsWidget *commandsObject_;
+    SensorsWidget *sensorsObject_;
 
     bool isDebug_;
 };

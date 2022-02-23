@@ -8,7 +8,7 @@
 #include <QSettings>
 
 template<class Type>
-concept isWidget = std::is_convertible_v<Type*, QWidget*>;
+concept isWidget = std::is_convertible_v<Type*, QObject*>;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class AuthorizationWidget; }

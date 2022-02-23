@@ -15,19 +15,13 @@ class CommandsSettingsWidget : public QWidget {
 Q_OBJECT
 
 public:
-    CommandsSettingsWidget(QWidget *parent, WidgetResources& resources);
+    CommandsSettingsWidget(QWidget *parent);
 
     ~CommandsSettingsWidget() override;
 
     ControlsSettings GetControlsSettings();
 
-public slots:
-    void StartWidget();
-    void StopWidget();
-
 private:
-
-    WidgetResources& resources_;
 
     Ui::CommandsSettingsWidget *ui;
 

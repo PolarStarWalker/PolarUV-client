@@ -1,8 +1,8 @@
 #include "SensorsWidget.hpp"
 #include <iostream>
 
-SensorsWidget::SensorsWidget(QWidget *parent, WidgetResources &resources) :
-        QWidget(parent),
+SensorsWidget::SensorsWidget(QObject *parent, WidgetResources &resources) :
+        QObject(parent),
         resources_(resources),
         timer_(){
     connect(&timer_, SIGNAL(timeout()), this, SLOT(ReceiveTelemetry()));

@@ -1,7 +1,7 @@
 #include "Gamepad.hpp"
 
-CommandsWidget::CommandsWidget(QWidget *parent, WidgetResources &resources) :
-        QWidget(parent),
+CommandsWidget::CommandsWidget(QObject *parent, WidgetResources &resources) :
+        QObject(parent),
         resources_(resources) {
     connect(&timer_, SIGNAL(timeout()), this, SLOT(SendCommands()));
 }
