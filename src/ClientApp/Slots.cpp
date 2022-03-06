@@ -1,6 +1,6 @@
-#include <Exceptions/Exceptions.hpp>
-#include "../MainWindow.hpp"
-#include "../ui_mainwindow.h"
+#include "Exceptions/Exceptions.hpp"
+#include "MainWindow.hpp"
+#include "../../cmake-build-debug-msys-gcc/src/ClientApp/ClientApp_autogen/ui_mainwindow.h"
 
 void MainWindow::SetupSlots() {
     connect(ui->Page1Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage1()));

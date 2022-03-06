@@ -46,6 +46,7 @@ public slots:
 
 private slots:
     void ReceiveTelemetry();
+    void PaintTelemetryFrame();
 
 public:
     inline SensorsStruct GetSensorsStruct(){
@@ -56,6 +57,9 @@ public:
 private:
     void SetSensorsStruct(const SensorsStruct& sensors);
 
+    static void PaintYawIndicator(QPainter &painter, int width, int height, float yawAngle);
+    static void PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle);
+    static void PaintDepthIndicator(QPainter &painter, int width, int height, float depth, int valueRange);
 
 private:
     std::shared_mutex sensorsMutex_;

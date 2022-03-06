@@ -7,9 +7,6 @@
 #include <QMainWindow>
 
 #include "./VideoStream/VideoStream.hpp"
-#include "../../UI/Indicators/DepthIndicator.hpp"
-#include "../../UI/Indicators/PitchIndicator.hpp"
-#include "../../UI/Indicators/YawIndicator.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class DisplayWidget; }
@@ -29,17 +26,13 @@ private:
 
     lib::processing::VideoStream stream_;
 
-    std::unique_ptr<DepthIndicator> depthIndicator_;
-    std::unique_ptr<PitchIndicator> pitchIndicator_;
-    std::unique_ptr<YawIndicator> yawIndicator_;
-
     WidgetResources& resources_;
 
     Ui::DisplayWidget *ui;
 
     std::unique_ptr<QTimer> updateTimer_;
 
-    QPixmap placeholderPixmap_;
+    QImage placeholderImage_;
     QPixmap pixmap_;
     QPalette palette_;
 

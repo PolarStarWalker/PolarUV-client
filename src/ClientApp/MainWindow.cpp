@@ -38,7 +38,7 @@ MainWindow::~MainWindow() {
     delete moveSettingsWidget_;
     delete commandsSettingsWidget_;
     delete sensorsSettingsWidget_;
-    delete pythonIDEWidget_;
+    //delete pythonIDEWidget_;
     delete sensorsObject_;
 
     ///Note: this widget must be delete last

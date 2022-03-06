@@ -11,7 +11,7 @@ find_package(Protobuf REQUIRED)
 
 #add_library(Sensors ${PROTO_SRCS} ${PROTO_HDRS} SensorsWidget.hpp SensorsWidget.cpp)
 
-add_library(Sensors SensorsWidget.hpp SensorsWidget.cpp)
+add_library(Sensors SensorsWidget.hpp SensorsWidget.cpp PaintYawIndicator.cpp PaintCentralIndicator.cpp PaintDepthIndicator.cpp)
 
 
 target_link_libraries(Sensors ${REQUIRED_LIBS_QUALIFIED})

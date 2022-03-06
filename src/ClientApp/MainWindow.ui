@@ -904,7 +904,7 @@ QToolTip
               </size>
              </property>
              <property name="toolTip">
-              <string/>
+              <string>Выйти</string>
              </property>
              <property name="styleSheet">
               <string notr="true">QPushButton {
