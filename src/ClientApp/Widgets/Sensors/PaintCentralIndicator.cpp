@@ -34,8 +34,6 @@ void SensorsWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
     QFont font("Times", (int) fontSize);
     font.setBold(true);
 
-    //QPainter painter(this);
-    //painter.setRenderHints(QPainter::Antialiasing);
     painter.save();
     painter.translate((float) width / 2, (float) height / 2);
     painter.rotate(-rollAngle);

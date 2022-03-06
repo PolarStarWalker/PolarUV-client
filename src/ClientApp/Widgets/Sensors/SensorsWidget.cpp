@@ -11,6 +11,7 @@ SensorsWidget::SensorsWidget(QObject *parent, WidgetResources &resources) :
     connect(&timer_, SIGNAL(timeout()), this, SLOT(ReceiveTelemetry()));
     connect(&timer_, SIGNAL(timeout()), this, SLOT(PaintTelemetryFrame()));
 
+    PaintTelemetryFrame();
 }
 
 void SensorsWidget::SetSensorsStruct(const SensorsStruct &sensors) {
@@ -39,7 +40,6 @@ void SensorsWidget::ReceiveTelemetry() {
 }
 
 void SensorsWidget::PaintTelemetryFrame() {
-    std::cout << "Нарисовал кадр телеметрии!" << std::endl;
     QPainter painter(&resources_.TelemetryFrame);
     painter.setRenderHints(QPainter::Antialiasing);
 

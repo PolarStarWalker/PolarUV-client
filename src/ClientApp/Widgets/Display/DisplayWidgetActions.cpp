@@ -11,8 +11,11 @@ void DisplayWidget::UpdateBackgroundImage() {
     if (stream_.IsOnline()) {
         auto image = stream_.GetQImage();
         if (!image.isNull()) {
-            /// Рисуем кадр телеметрии поверх кадра видео
+            /// Настраиваем рисователя
             QPainter painter(&image);
+            painter.setRenderHints(QPainter::Antialiasing);
+
+            /// Рисуем кадр телеметрии поверх кадра видео
             painter.drawImage(0,0,resources_.TelemetryFrame);
 
             /// Масштабируем кадр под размер окна
@@ -27,9 +30,14 @@ void DisplayWidget::UpdateBackgroundImage() {
         }
     /// Если нужно вывести картинку
     } else /*if (!isPlaceholder)*/ {
-        /// Рисуем кадр телеметрии поверх картинки
+        /// Копируем картинку в отдельный объект
         QImage image(placeholderImage_);
+
+        /// Настраиваем рисователя
         QPainter painter(&image);
+        painter.setRenderHints(QPainter::Antialiasing);
+
+        /// Рисуем кадр телеметрии поверх картинки
         painter.drawImage(0,0,resources_.TelemetryFrame);
 
         /// Масштабируем кадр под размер окна

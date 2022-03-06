@@ -23,8 +23,6 @@ void SensorsWidget::PaintDepthIndicator(QPainter &painter, int width, int height
     QFont font("Times", (int) fontSize);
     font.setBold(true);
 
-    //QPainter painter(this);
-    //painter.setRenderHints(QPainter::Antialiasing);
     painter.save();
 
     /// Counting indicator borders

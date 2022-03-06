@@ -34,13 +34,11 @@ void SensorsWidget::PaintYawIndicator(QPainter &painter, int width, int height, 
     QFont font("Times", (int) fontSize);
     font.setBold(true);
 
-    //QPainter painter(this);
-    //painter.setRenderHints(QPainter::Antialiasing);
     painter.save();
 
     /// Painting angle
     QPainterPath anglePath;
-    anglePath.addText((float) height / 2 - textOffsetX,
+    anglePath.addText((float) width / 2 - textOffsetX,
                       yawHeight - valueRectHeight - 5 + (valueRectHeight + fontSize) / 2 + textOffsetY,
                       font,
                       QString::number((int) yawAngle));
