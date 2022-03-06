@@ -1,7 +1,8 @@
 #ifndef CLIENT_GAMEPAD_HPP
 #define CLIENT_GAMEPAD_HPP
 
-#include "CommandsWidget.hpp"
+#include "CommandsStruct.hpp"
+#include "GamepadSettingsStruct.hpp"
 
 #include <memory>
 #include <cstring>
@@ -9,15 +10,16 @@
 #include <list>
 #include <shared_mutex>
 #include <atomic>
+#include <vector>
 
 #include <xinput.h>
 #include <minwindef.h>
 #include <windows.h>
 
-#define MAGIC_NUMBER_ONE 0x7FFF
-#define MAGIC_NUMBER_TWO 0xFF
+constexpr uint16_t STICK_AXES_TO_FLOAT = 0x7FFF;
+constexpr uint16_t SHOULDERS_TO_FLOAT = 0x00FF;
 
-namespace Control {
+namespace control {
 
     enum ButtonMask : DWORD {
         DPadUp = XINPUT_GAMEPAD_DPAD_UP,
@@ -44,27 +46,28 @@ namespace Control {
     public:
         explicit Gamepad(int id);
 
-        //lib::CommandsStruct GetCommandsStruct() const;
-
         void SetVibration(uint16_t left, uint16_t right) const;
 
-        void UpdateGamepadId(size_t id);
+        void UpdateGamepadId(int id);
 
-        int GetGamepadId() const;
+        CommandsStruct GetCommands(const GamepadSettingsStruct& settings) const;
 
     private:
-        std::atomic<int> _id;
+        std::atomic<int> id_;
         mutable float _cameraPosition;
     };
 
-    inline std::list<int> GetGamepadsIds() {
-        std::list<int> ids;
+    inline std::vector<int> GetGamepadsIds() {
+        std::vector<int> ids;
+        ids.reserve(XUSER_MAX_COUNT);
+
         XINPUT_STATE state{};
         for (int i = 0; i < XUSER_MAX_COUNT; i++) {
             DWORD gamepadState = XInputGetState(i, &state);
-            if (gamepadState == ERROR_SUCCESS)
+            if (gamepadState == NO_ERROR)
                 ids.push_back(i);
         }
+
         return ids;
     };
 }

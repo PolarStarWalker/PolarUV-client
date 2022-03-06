@@ -1,10 +1,13 @@
-#include "CommandsSettingsWidget.hpp"
-#include "ui_CommandsSettingsWidget.h"
+#include "GamepadSettingsWidget.hpp"
+#include "ui_GamepadSettingsWidget.h"
 
+#include <iostream>
 
-CommandsSettingsWidget::CommandsSettingsWidget(QWidget *parent) :
+CommandsSettingsWidget::CommandsSettingsWidget(QWidget *parent, WidgetResources &resources) :
         QWidget(parent),
-        ui(new Ui::CommandsSettingsWidget) {
+        ui(new Ui::GamepadSettingsWidget),
+        resources_(resources),
+        gamepad_(0) {
 
     ui->setupUi(this);
 
@@ -13,61 +16,62 @@ CommandsSettingsWidget::CommandsSettingsWidget(QWidget *parent) :
 
     connect(ui->LoadClientSettingsButton, SIGNAL(clicked(bool)), SLOT(LoadSettings()));
     connect(ui->SaveClientSettingsButton, SIGNAL(clicked(bool)), SLOT(SaveSettings()));
+    connect(&timer_, SIGNAL(timeout()), this, SLOT(SendCommand()));
 }
 
 CommandsSettingsWidget::~CommandsSettingsWidget() {
     delete ui;
 }
 
-ControlsSettings CommandsSettingsWidget::GetControlsSettings() {
-    std::array<AnalogActions, 8> AnalogArray{
-            ui->LeftStickXCheckBox->isChecked() ?
-            (AnalogActions) -ui->LeftStickXComboBox->currentIndex() :
-            (AnalogActions) ui->LeftStickXComboBox->currentIndex(),
+GamepadSettingsStruct CommandsSettingsWidget::GetGamepadSettings() {
 
-            ui->LeftStickYCheckBox->isChecked() ?
-            (AnalogActions) -ui->LeftStickYComboBox->currentIndex() :
-            (AnalogActions) ui->LeftStickYComboBox->currentIndex(),
+    using DiscreteActionsEnum = GamepadSettingsStruct::DiscreteActionEnum;
+    using AnalogActionsEnum = GamepadSettingsStruct::AnalogActionEnum;
 
-            ui->RightStickXCheckBox->isChecked() ?
-            (AnalogActions) -ui->RightStickXComboBox->currentIndex() :
-            (AnalogActions) ui->RightStickXComboBox->currentIndex(),
+    using DiscreteAxisEnum = GamepadSettingsStruct::DiscreteAxisEnum;
+    using AnalogAxisEnum = GamepadSettingsStruct::AnalogAxisEnum;
 
-            ui->RightStickYCheckBox->isChecked() ?
-            (AnalogActions) -ui->RightStickYComboBox->currentIndex() :
-            (AnalogActions) ui->RightStickYComboBox->currentIndex(),
+    using DiscreteSettings = GamepadSettingsStruct::DiscreteSettings_t;
+    using AnalogSettings = GamepadSettingsStruct::AnalogSettings_t;
 
-            ui->LeftShoulderCheckBox->isChecked() ?
-            (AnalogActions) -ui->LeftShoulderComboBox->currentIndex() :
-            (AnalogActions) ui->LeftShoulderComboBox->currentIndex(),
+    //ToDo: shuskov.d сделать наполнение структуры раскладки
+    DiscreteSettings DiscreteActions;
+//    DiscreteActions[DiscreteAxisEnum::LeftStick] = (DiscreteActionsEnum) ui->LeftStickPressComboBox->currentIndex();
+//    DiscreteActions[DiscreteAxisEnum::RightStick] = (DiscreteActionsEnum) ui->RightStickPressComboBox->currentIndex();
+//    DiscreteActions[DiscreteAxisEnum::Square] = (DiscreteActionsEnum) ui->RectangleComboBox->currentIndex();
+//    DiscreteActions[DiscreteAxisEnum::Triangle] = (DiscreteActionsEnum) ui->TriangleComboBox->currentIndex();
+//    DiscreteActions[DiscreteAxisEnum::Circle] = (DiscreteActionsEnum) ui->CircleComboBox->currentIndex();
+//    DiscreteActions[DiscreteAxisEnum::Cross] = (DiscreteActionsEnum) ui->CrossComboBox->currentIndex();
+//    DiscreteActions[DiscreteAxisEnum::Start] = (DiscreteActionsEnum) ui->StartComboBox->currentIndex();
+//    DiscreteActions[DiscreteAxisEnum::Back] = (DiscreteActionsEnum) ui->BackComboBox->currentIndex();
 
-            ui->RightShoulderCheckBox->isChecked() ?
-            (AnalogActions) -ui->RightShoulderComboBox->currentIndex() :
-            (AnalogActions) ui->RightShoulderComboBox->currentIndex(),
+    AnalogSettings AnalogActions;
+    //у аналогового массива значение это структура AnalogAxisEnum + (bool) IsInverted
+//    AnalogActions[AnalogAxisEnum::LeftStickX] =
+//            convert(ui->LeftStickXCheckBox->isChecked(), ui->LeftStickXComboBox->currentIndex());
+//
+//    AnalogActions[AnalogAxisEnum::LeftStickY] =
+//            convert(ui->LeftStickYCheckBox->isChecked(), ui->LeftStickYComboBox->currentIndex());
+//
+//    AnalogActions[AnalogAxisEnum::RightStickX] =
+//            convert(ui->RightStickXCheckBox->isChecked(), ui->RightStickXComboBox->currentIndex());
+//
+//    AnalogActions[AnalogAxisEnum::RightStickY] =
+//            convert(ui->RightStickYCheckBox->isChecked(), ui->RightStickYComboBox->currentIndex());
+//
+//    AnalogActions[AnalogAxisEnum::LeftShoulder] =
+//            convert(ui->LeftShoulderCheckBox->isChecked(), ui->LeftShoulderComboBox->currentIndex());
+//
+//    AnalogActions[AnalogAxisEnum::RightShoulder] =
+//            convert(ui->RightShoulderCheckBox->isChecked(), ui->RightShoulderComboBox->currentIndex());
+//
+//    AnalogActions[AnalogAxisEnum::DPadX] =
+//            convert(ui->DPadXCheckBox->isChecked(), ui->DPadXComboBox->currentIndex());
+//
+//    AnalogActions[AnalogAxisEnum::DPadY] =
+//            convert(ui->DPadYCheckBox->isChecked(), ui->DPadYComboBox->currentIndex());
 
-            ui->DPadXCheckBox->isChecked() ?
-            (AnalogActions) -ui->DPadXComboBox->currentIndex() :
-            (AnalogActions) ui->DPadXComboBox->currentIndex(),
-
-            ui->DPadYCheckBox->isChecked() ?
-            (AnalogActions) -ui->DPadYComboBox->currentIndex() :
-            (AnalogActions) ui->DPadYComboBox->currentIndex()
-    };
-    std::array<DiscreteActions, 8> DiscreteArray{
-            (DiscreteActions) ui->LeftStickPressComboBox->currentIndex(),
-            (DiscreteActions) ui->RightStickPressComboBox->currentIndex(),
-            (DiscreteActions) ui->RectangleComboBox->currentIndex(),
-            (DiscreteActions) ui->TriangleComboBox->currentIndex(),
-            (DiscreteActions) ui->CircleComboBox->currentIndex(),
-            (DiscreteActions) ui->CrossComboBox->currentIndex(),
-            (DiscreteActions) ui->StartComboBox->currentIndex(),
-            (DiscreteActions) ui->BackComboBox->currentIndex()
-    };
-
-    return {AnalogArray, DiscreteArray};;
-
-    // Использовать примерно так:
-    // controlsSettings.Analog[AnalogControls::DPadX];
+    return {AnalogActions, DiscreteActions};
 }
 
 void CommandsSettingsWidget::LoadSettings() {
@@ -130,4 +134,48 @@ void CommandsSettingsWidget::SaveSettings() {
     settings_->setValue("RightStickYInverted", ui->RightStickYCheckBox->isChecked());
     settings_->setValue("LeftShoulderInverted", ui->LeftShoulderCheckBox->isChecked());
     settings_->setValue("RightShoulderInverted", ui->RightShoulderCheckBox->isChecked());
+}
+
+void CommandsSettingsWidget::StartWidget() {
+    timer_.start(TIMEOUT_ms);
+}
+
+void CommandsSettingsWidget::StopWidget() {
+    timer_.stop();
+}
+
+void CommandsSettingsWidget::SendCommand() {
+
+    gamepad_.UpdateGamepadId(resources_.GamepadId);
+
+    auto gamepadSettings = GetGamepadSettings();
+
+    //ToDo: motov.s убрать
+    /*test*/
+//    using AnalogActionEnum = GamepadSettingsStruct::AnalogActionEnum;
+//    using AnalogAxisEnum = GamepadSettingsStruct::AnalogAxisEnum;
+//    using AnalogAxis = GamepadSettingsStruct::AnalogAxis;
+//
+//    GamepadSettingsStruct::AnalogSettings_t analogSettings;
+//
+//    analogSettings[AnalogActionEnum::MoveX] = AnalogAxis{AnalogAxisEnum::LeftStickX, false};
+//
+//    GamepadSettingsStruct gamepadSettings{analogSettings};
+    /*test*/
+
+    auto commands = gamepad_.GetCommands(gamepadSettings);
+
+    using MoveEnum = CommandsStruct::MoveEnum;
+
+    std::cout << "Fx: " << commands.Move[MoveEnum::Fx] << ' '
+              << "Fy: " << commands.Move[MoveEnum::Fy] << ' '
+              << "Fz: " << commands.Move[MoveEnum::Fz] << ' '
+              << "Mx: " << commands.Move[MoveEnum::Mx] << ' '
+              << "My: " << commands.Move[MoveEnum::My] << ' '
+              << "Mz: " << commands.Move[MoveEnum::Mz] << ' '
+              << std::endl;
+
+
+
+    //auto response = resources_.Network.SendRequest(commands, lib::network::Request::TypeEnum::W, 3);
 }

@@ -7,6 +7,7 @@
 #include "./Singleton.hpp"
 #include "./Logger/Logger.hpp"
 #include "./VideoStream/VideoStream.hpp"
+#include "./DataStructs/DataStructs.hpp"
 
 namespace lib {
     static void Setup() {

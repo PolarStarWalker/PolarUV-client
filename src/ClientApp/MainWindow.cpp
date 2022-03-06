@@ -21,10 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     authorizationWidget_ = CreateAuthorizationWidget(ui->AuthorizationPage);
     displayWidget_ = CreateWidgetWithResources<DisplayWidget>(ui->Page1);
     moveSettingsWidget_ = CreateWidgetWithResources<MoveSettingsWidget>(ui->P2_1Widget);
-    commandsSettingsWidget_ = CreateWidget<CommandsSettingsWidget>(ui->P2_2Widget);
+    commandsSettingsWidget_ = CreateWidgetWithResources<CommandsSettingsWidget>(ui->P2_2Widget);
     sensorsSettingsWidget_ = CreateWidget<SensorsSettingsWidget>(ui->P2_3Widget);
     //pythonIDEWidget_ = CreateWidgetWithResources<PythonEnvironmentWidget>(ui->Page3);
-    commandsObject_ = CreateObjectWithResources<CommandsWidget>();
     sensorsObject_ = CreateObjectWithResources<SensorsWidget>();
 
     /// Прячем пустые вкладки ToDo: заполнить вкладки

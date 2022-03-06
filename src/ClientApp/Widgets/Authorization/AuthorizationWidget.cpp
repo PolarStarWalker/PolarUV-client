@@ -1,12 +1,12 @@
-#include "../Commands/Gamepad.hpp"
+#include "AuthorizationWidget.hpp"
+
+#include "../Input/Gamepad.hpp"
 
 #include <QMessageBox>
 
-#include "AuthorizationWidget.hpp"
 #include "ui_AuthorizationWidget.h"
 
 #include "IPFunction.hpp"
-
 
 AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
         QWidget(parent),
@@ -45,7 +45,7 @@ void AuthorizationWidget::RefreshClientIPs() {
 }
 
 void AuthorizationWidget::RefreshGamepadIDs() {
-    auto gamepads = Control::GetGamepadsIds();
+    auto gamepads = control::GetGamepadsIds();
     ui->GamepadComboBox->clear();
 
     for (auto &&id: gamepads)

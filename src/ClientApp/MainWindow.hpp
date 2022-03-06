@@ -130,7 +130,6 @@ private:
     SensorsSettingsWidget *sensorsSettingsWidget_;
     CommandsSettingsWidget *commandsSettingsWidget_;
     PythonEnvironmentWidget *pythonIDEWidget_;
-    CommandsWidget *commandsObject_;
     SensorsWidget *sensorsObject_;
 
     bool isDebug_;
