@@ -36,40 +36,17 @@ GamepadSettingsStruct CommandsSettingsWidget::GetGamepadSettings() {
 
     //ToDo: shuskov.d сделать наполнение структуры раскладки
     DiscreteSettings DiscreteActions;
-//    DiscreteActions[DiscreteAxisEnum::LeftStick] = (DiscreteActionsEnum) ui->LeftStickPressComboBox->currentIndex();
-//    DiscreteActions[DiscreteAxisEnum::RightStick] = (DiscreteActionsEnum) ui->RightStickPressComboBox->currentIndex();
-//    DiscreteActions[DiscreteAxisEnum::Square] = (DiscreteActionsEnum) ui->RectangleComboBox->currentIndex();
-//    DiscreteActions[DiscreteAxisEnum::Triangle] = (DiscreteActionsEnum) ui->TriangleComboBox->currentIndex();
-//    DiscreteActions[DiscreteAxisEnum::Circle] = (DiscreteActionsEnum) ui->CircleComboBox->currentIndex();
-//    DiscreteActions[DiscreteAxisEnum::Cross] = (DiscreteActionsEnum) ui->CrossComboBox->currentIndex();
-//    DiscreteActions[DiscreteAxisEnum::Start] = (DiscreteActionsEnum) ui->StartComboBox->currentIndex();
-//    DiscreteActions[DiscreteAxisEnum::Back] = (DiscreteActionsEnum) ui->BackComboBox->currentIndex();
 
     AnalogSettings AnalogActions;
-    //у аналогового массива значение это структура AnalogAxisEnum + (bool) IsInverted
-//    AnalogActions[AnalogAxisEnum::LeftStickX] =
-//            convert(ui->LeftStickXCheckBox->isChecked(), ui->LeftStickXComboBox->currentIndex());
-//
-//    AnalogActions[AnalogAxisEnum::LeftStickY] =
-//            convert(ui->LeftStickYCheckBox->isChecked(), ui->LeftStickYComboBox->currentIndex());
-//
-//    AnalogActions[AnalogAxisEnum::RightStickX] =
-//            convert(ui->RightStickXCheckBox->isChecked(), ui->RightStickXComboBox->currentIndex());
-//
-//    AnalogActions[AnalogAxisEnum::RightStickY] =
-//            convert(ui->RightStickYCheckBox->isChecked(), ui->RightStickYComboBox->currentIndex());
-//
-//    AnalogActions[AnalogAxisEnum::LeftShoulder] =
-//            convert(ui->LeftShoulderCheckBox->isChecked(), ui->LeftShoulderComboBox->currentIndex());
-//
-//    AnalogActions[AnalogAxisEnum::RightShoulder] =
-//            convert(ui->RightShoulderCheckBox->isChecked(), ui->RightShoulderComboBox->currentIndex());
-//
-//    AnalogActions[AnalogAxisEnum::DPadX] =
-//            convert(ui->DPadXCheckBox->isChecked(), ui->DPadXComboBox->currentIndex());
-//
-//    AnalogActions[AnalogAxisEnum::DPadY] =
-//            convert(ui->DPadYCheckBox->isChecked(), ui->DPadYComboBox->currentIndex());
+    AnalogActions[AnalogActionsEnum::MoveX] = {AnalogAxisEnum::RightStickY, false};
+    AnalogActions[AnalogActionsEnum::MoveY] = {AnalogAxisEnum::LeftStickX, false};
+    AnalogActions[AnalogActionsEnum::MoveZ] = {AnalogAxisEnum::LeftStickY, false};
+    AnalogActions[AnalogActionsEnum::RotateX] = {AnalogAxisEnum::LeftTrigger, false};
+    AnalogActions[AnalogActionsEnum::RotateY] = {AnalogAxisEnum::RightTrigger, false};
+    AnalogActions[AnalogActionsEnum::RotateZ] = {AnalogAxisEnum::RightStickX, false};
+
+    AnalogActions[AnalogActionsEnum::Hand1] = {AnalogAxisEnum::DPadY, false};
+    AnalogActions[AnalogActionsEnum::Hand2] = {AnalogAxisEnum::DPadX, false};
 
     return {AnalogActions, DiscreteActions};
 }
@@ -150,32 +127,28 @@ void CommandsSettingsWidget::SendCommand() {
 
     auto gamepadSettings = GetGamepadSettings();
 
-    //ToDo: motov.s убрать
-    /*test*/
-//    using AnalogActionEnum = GamepadSettingsStruct::AnalogActionEnum;
-//    using AnalogAxisEnum = GamepadSettingsStruct::AnalogAxisEnum;
-//    using AnalogAxis = GamepadSettingsStruct::AnalogAxis;
-//
-//    GamepadSettingsStruct::AnalogSettings_t analogSettings;
-//
-//    analogSettings[AnalogActionEnum::MoveX] = AnalogAxis{AnalogAxisEnum::LeftStickX, false};
-//
-//    GamepadSettingsStruct gamepadSettings{analogSettings};
-    /*test*/
-
     auto commands = gamepad_.GetCommands(gamepadSettings);
 
-    using MoveEnum = CommandsStruct::MoveEnum;
+//    using MoveEnum = CommandsStruct::MoveEnum;
+//    using HandEnum = CommandsStruct::HandEnum;
+//
+//    std::cout << "Fx: " << commands.Move[MoveEnum::Fx] << ' '
+//              << "Fy: " << commands.Move[MoveEnum::Fy] << ' '
+//              << "Fz: " << commands.Move[MoveEnum::Fz] << ' '
+//              << "Mx: " << commands.Move[MoveEnum::Mx] << ' '
+//              << "My: " << commands.Move[MoveEnum::My] << ' '
+//              << "Mz: " << commands.Move[MoveEnum::Mz] << ' '
+//              << std::endl;
+//
+//    std::cout << "Hand1: " << commands.Hand[HandEnum::Hand1] << ' '
+//              << "Hand2: " << commands.Hand[HandEnum::Hand2] << ' '
+//              << "Hand3: " << commands.Hand[HandEnum::Hand3] << ' '
+//              << "Hand4: " << commands.Hand[HandEnum::Hand4] << ' '
+//              << "Hand5: " << commands.Hand[HandEnum::Hand5] << ' '
+//              << "Hand6: " << commands.Hand[HandEnum::Hand6] << ' '
+//              << std::endl;
+//
+//    std::cout << std::endl;
 
-    std::cout << "Fx: " << commands.Move[MoveEnum::Fx] << ' '
-              << "Fy: " << commands.Move[MoveEnum::Fy] << ' '
-              << "Fz: " << commands.Move[MoveEnum::Fz] << ' '
-              << "Mx: " << commands.Move[MoveEnum::Mx] << ' '
-              << "My: " << commands.Move[MoveEnum::My] << ' '
-              << "Mz: " << commands.Move[MoveEnum::Mz] << ' '
-              << std::endl;
-
-
-
-    //auto response = resources_.Network.SendRequest(commands, lib::network::Request::TypeEnum::W, 3);
+    auto response = resources_.Network.SendRequest(commands, lib::network::Request::TypeEnum::W, 3);
 }

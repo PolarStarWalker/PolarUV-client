@@ -1,6 +1,7 @@
 #ifndef CLIENT_STATICMAP_HPP
 #define CLIENT_STATICMAP_HPP
 
+#include <array>
 #include <cstddef>
 #include <type_traits>
 #include <utility>

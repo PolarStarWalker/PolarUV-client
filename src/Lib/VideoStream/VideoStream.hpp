@@ -1,13 +1,14 @@
 #ifndef CLIENT_VIDEOSTREAM_HPP
 #define CLIENT_VIDEOSTREAM_HPP
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/videoio/videoio.hpp>
-#include <opencv2/highgui/highgui.hpp>
-
 #include <shared_mutex>
 #include <thread>
 #include <QImage>
+#include <opencv2/videoio.hpp>
+
+namespace cv{
+    class Mat;
+}
 
 namespace lib::processing {
     class VideoStream {
@@ -36,9 +37,8 @@ namespace lib::processing {
         void StartClient();
 
         std::thread thread_;
-
-        std::shared_mutex qImageMutex_;
         cv::VideoCapture capture_;
+        std::shared_mutex qImageMutex_;
         QImage qImage_;
 
         std::atomic<bool> isOnline_;

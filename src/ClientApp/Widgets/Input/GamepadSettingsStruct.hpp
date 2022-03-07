@@ -11,8 +11,8 @@ public:
         LeftStickY,
         RightStickX,
         RightStickY,
-        LeftShoulder,
-        RightShoulder,
+        LeftTrigger,
+        RightTrigger,
         DPadX,
         DPadY,
         NoButton

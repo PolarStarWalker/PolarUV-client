@@ -17,8 +17,14 @@ namespace lib::network {
     class Network {
     public:
 
-        static constexpr std::chrono::milliseconds CONNECTION_TIMEOUT = std::chrono::milliseconds(100) ;
-        static constexpr std::chrono::milliseconds TRANSFER_TIMEOUT = std::chrono::milliseconds(20) ;
+        static constexpr std::chrono::milliseconds CONNECTION_TIMEOUT = std::chrono::milliseconds(100);
+
+        static constexpr std::chrono::milliseconds TRANSFER_TIMEOUT =
+#ifdef DEBUG
+         std::chrono::milliseconds(200);
+#else
+        std::chrono::milliseconds(20);
+#endif
         static constexpr size_t PORT = 2022;
 
         explicit Network();

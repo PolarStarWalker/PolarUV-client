@@ -33,7 +33,7 @@ void SensorsWidget::ReceiveTelemetry() {
 
     auto sensors = response.DataAs<SensorsStruct>();
 
-    if (sensors != nullptr) {
+    if (sensors) {
         sensors_ = *sensors;
         std::cout << sensors_.Rotation[SensorsStruct::X] << std::endl;
     }

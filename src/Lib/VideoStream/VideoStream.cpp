@@ -1,3 +1,7 @@
+#include <opencv2/core/core.hpp>
+#include <opencv2/videoio/videoio.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
 #include "VideoStream.hpp"
 #include <fstream>
 #include <VideoStreamMessage.pb.h>

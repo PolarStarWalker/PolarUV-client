@@ -62,7 +62,7 @@ protected:
     template<typename Type, typename ... Args>
     [[nodiscard]]
     inline Type* CreateWidget(QWidget* dst, Args&& ... args){
-        auto widget = new Type(this);
+        auto widget = new Type(this, std::forward(args)...);
         dst->layout()->addWidget(widget);
         return widget;
     }

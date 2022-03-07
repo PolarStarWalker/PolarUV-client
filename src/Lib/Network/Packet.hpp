@@ -46,7 +46,7 @@ namespace lib::network {
             if (sizeof(Type) != Data.size())
                 return nullptr;
 
-            return (Type *) *(Data.begin());
+            return reinterpret_cast<Type*>(&Data[0]);
         }
     };
 
