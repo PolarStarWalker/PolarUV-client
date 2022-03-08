@@ -2,69 +2,42 @@
 #include "ui_DisplayWidget.h"
 
 #include <QPainter>
+#include <QOpenGLPaintDevice>
 
 #include <iostream>
 
 
 void DisplayWidget::UpdateBackgroundImage() {
-    /// Если нужно вывести кадр видео
+
+    /// Выбираем задний фон в зависимости от статуса стрима
+    QImage backgroundImage;
     if (stream_.IsOnline()) {
-        auto image = stream_.GetQImage();
-        if (!image.isNull()) {
-            /// Настраиваем рисователя
-            QPainter painter(&image);
-            painter.setRenderHints(QPainter::Antialiasing);
-
-            /// Рисуем кадр телеметрии поверх кадра видео
-            painter.drawImage(0,0,resources_.TelemetryFrame);
-
-            /// Масштабируем кадр под размер окна
-            pixmap_.convertFromImage(image);
-            pixmap_ = pixmap_.scaled(this->size(), Qt::IgnoreAspectRatio);
-
-            /// Выводим кадр
-            palette_.setBrush(QPalette::Window, pixmap_);
-            this->setAutoFillBackground(true);
-            this->setPalette(palette_);
-            isPlaceholder = false;
+        auto videoFrame = stream_.GetQImage();
+        if (!videoFrame.isNull()) {
+            backgroundImage = QImage(videoFrame);
         }
-    /// Если нужно вывести картинку
-    } else /*if (!isPlaceholder)*/ {
-        /// Копируем картинку в отдельный объект
-        QImage image(placeholderImage_);
-
-        /// Настраиваем рисователя
-        QPainter painter(&image);
-        painter.setRenderHints(QPainter::Antialiasing);
-
-        /// Рисуем кадр телеметрии поверх картинки
-        painter.drawImage(0,0,resources_.TelemetryFrame);
-
-        /// Масштабируем кадр под размер окна
-        pixmap_.convertFromImage(image);
-        pixmap_ = pixmap_.scaled(this->size(), Qt::IgnoreAspectRatio);
-
-        /// Выводим кадр
-        palette_.setBrush(QPalette::Window, pixmap_);
-        this->setAutoFillBackground(true);
-        this->setPalette(palette_);
-        isPlaceholder = true;
+    } else {
+        backgroundImage = QImage(placeholderImage_);
     }
-    /// Если нужно поменять размер картинки ToDo: разобраться
-//    else {
-//        std::cout << 3 << std::endl;
-//        QRect currentGeometry = geometry();
-//        if (geometry_ != currentGeometry) {
-//            geometry_ = currentGeometry;
-//
-//            pixmap_.convertFromImage(placeholderImage_);
-//            pixmap_ = pixmap_.scaled(this->size(), Qt::IgnoreAspectRatio);
-//
-//            palette_.setBrush(QPalette::Window, pixmap_);
-//            this->setAutoFillBackground(true);
-//            this->setPalette(palette_);
-//        }
-//    }
+
+    resources_.displayFBO->bind();
+
+    painter_.begin(&paintDevice_);
+    painter_.setRenderHints(QPainter::Antialiasing);
+    painter_.drawImage(0, 0, backgroundImage);                      /// Рисуем задний фон
+    painter_.drawImage(0, 0, resources_.telemetryFBO->toImage());   /// Рисуем телеметрию
+    painter_.end();
+
+    resources_.displayFBO->release();
+
+    /// Масштабируем кадр под размер окна
+    pixmap_.convertFromImage(resources_.displayFBO->toImage());
+    pixmap_ = pixmap_.scaled(this->size(), Qt::IgnoreAspectRatio);
+
+    /// Выводим кадр
+    palette_.setBrush(QPalette::Window, pixmap_);
+    this->setAutoFillBackground(true);
+    this->setPalette(palette_);
 }
 
 void DisplayWidget::SwitchVideoStream() {

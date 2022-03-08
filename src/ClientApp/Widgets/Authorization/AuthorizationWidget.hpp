@@ -6,6 +6,8 @@
 #include <QWidget>
 #include <QMainWindow>
 #include <QSettings>
+#include <QWindow>
+#include <QOpenGLContext>
 
 template<class Type>
 concept isWidget = std::is_convertible_v<Type*, QObject*>;
@@ -35,6 +37,10 @@ private:
     boost::asio::io_context ioContext_;
     QSettings settings_;
     WidgetResources resources_;
+
+    QWindow renderWindow_;
+    QOpenGLContext openGLContext_;
+    QOpenGLFramebufferObjectFormat fboFormat_;
 
 private slots:
 

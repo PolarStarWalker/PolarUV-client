@@ -1,8 +1,12 @@
 #ifndef CLIENT_DISPLAYWIDGET_HPP
 #define CLIENT_DISPLAYWIDGET_HPP
 
+#define WIN32_LEAN_AND_MEAN
+
 #include "../WidgetResources.hpp"
 #include <QWidget>
+#include <QPainter>
+#include <QOpenGLPaintDevice>
 #include <QTimer>
 #include <QMainWindow>
 
@@ -16,31 +20,30 @@ class DisplayWidget : public QWidget {
 Q_OBJECT
 
 public:
-    DisplayWidget(QMainWindow *mainWindow, WidgetResources& resources);
+    DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources);
 
     ~DisplayWidget() override;
 
-    void SetGamepadID(int id) {this->GamepadID = id;};
+    void SetGamepadID(int id) { this->GamepadID = id; };
 
 private:
 
     lib::processing::VideoStream stream_;
 
-    WidgetResources& resources_;
+    WidgetResources &resources_;
 
     Ui::DisplayWidget *ui;
 
     std::unique_ptr<QTimer> updateTimer_;
+
+    QOpenGLPaintDevice paintDevice_ = QOpenGLPaintDevice(1920, 1080);
+    QPainter painter_;
 
     QImage placeholderImage_;
     QPixmap pixmap_;
     QPalette palette_;
 
     int GamepadID{};
-
-    // Переменные для оптимизации отрисовки
-    QRect geometry_;
-    bool isPlaceholder = true;
 
 public slots:
 
@@ -49,13 +52,17 @@ public slots:
     void ShowSideBarButton();
 
     void StopWidget();
+
     void StartWidget();
 
 private slots:
 
     void SwitchVideoStream();
+
     void SwitchVideoCapture();
+
     void TakeScreenshot();
+
     void SwitchSendingCommands();
 
     void HideSideBarButton();

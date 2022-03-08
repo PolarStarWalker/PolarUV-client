@@ -10,8 +10,6 @@ DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources
 
     ui->setupUi(this);
 
-    geometry_ = geometry();
-
     placeholderImage_ = QImage("Icons/Background.png");
     updateTimer_ = std::make_unique<QTimer>();
     updateTimer_->start(1000 / 60);

@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QOpenGLFramebufferObject>
 
 struct SensorsStruct {
 
@@ -56,6 +57,8 @@ public:
     }
 private:
     void SetSensorsStruct(const SensorsStruct& sensors);
+
+    static QOpenGLFramebufferObjectFormat CreateFBOFormat();
 
     static void PaintYawIndicator(QPainter &painter, int width, int height, float yawAngle);
     static void PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle);
