@@ -2,7 +2,6 @@
 #include "ui_DisplayWidget.h"
 
 #include <QPainter>
-#include <QOpenGLPaintDevice>
 
 #include <iostream>
 

@@ -45,10 +45,10 @@ void SensorsWidget::ReceiveTelemetry() {
 void SensorsWidget::PaintTelemetryFrame() {
     resources_.telemetryFBO->bind();
 
-    glClear(GL_COLOR_BUFFER_BIT);
-
     painter_.begin(&paintDevice_);
     painter_.setRenderHints(QPainter::Antialiasing);
+
+    painter_.eraseRect(0,0,paintDevice_.width(),paintDevice_.height());
 
     PaintYawIndicator(painter_,
                       paintDevice_.width(),
