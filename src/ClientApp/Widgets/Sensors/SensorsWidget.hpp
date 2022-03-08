@@ -5,6 +5,8 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QOpenGLPaintDevice>
+#include <QPainter>
 #include <QOpenGLFramebufferObject>
 
 struct SensorsStruct {
@@ -58,8 +60,6 @@ public:
 private:
     void SetSensorsStruct(const SensorsStruct& sensors);
 
-    static QOpenGLFramebufferObjectFormat CreateFBOFormat();
-
     static void PaintYawIndicator(QPainter &painter, int width, int height, float yawAngle);
     static void PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle);
     static void PaintDepthIndicator(QPainter &painter, int width, int height, float depth, int valueRange);
@@ -69,6 +69,9 @@ private:
     SensorsStruct sensors_;
     WidgetResources& resources_;
     QTimer timer_;
+
+    QOpenGLPaintDevice paintDevice_ = QOpenGLPaintDevice(1920,1080);
+    QPainter painter_;
 };
 
 #endif
