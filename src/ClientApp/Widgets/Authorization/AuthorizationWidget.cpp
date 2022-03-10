@@ -2,7 +2,6 @@
 #include "ui_AuthorizationWidget.h"
 
 #include <QWindow>
-#include <QOpenGLContext>
 #include <QMessageBox>
 
 #include "../Input/Gamepad.hpp"
@@ -23,17 +22,17 @@ AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
     }
 
     /// Создаем в ресурсах два OpenGL-буфера для кадров
-    renderWindow_.setSurfaceType(QWindow::OpenGLSurface);
-    renderWindow_.create();
-
-    openGLContext_.create();
-    openGLContext_.makeCurrent(&renderWindow_);
-
-    fboFormat_.setSamples(16);
-    fboFormat_.setAttachment(QOpenGLFramebufferObject::CombinedDepthStencil);
-
-    resources_.telemetryFBO = new QOpenGLFramebufferObject(1920, 1080, fboFormat_);
-    resources_.displayFBO = new QOpenGLFramebufferObject(1920, 1080, fboFormat_);
+//    renderWindow_.setSurfaceType(QWindow::OpenGLSurface);
+//    renderWindow_.create();
+//
+//    openGLContext_.create();
+//    openGLContext_.makeCurrent(&renderWindow_);
+//
+//    fboFormat_.setSamples(16);
+//    fboFormat_.setAttachment(QOpenGLFramebufferObject::CombinedDepthStencil);
+//
+//    resources_.telemetryFBO = new QOpenGLFramebufferObject(1920, 1080, fboFormat_);
+//    resources_.displayFBO = new QOpenGLFramebufferObject(1920, 1080, fboFormat_);
 
     /// Соединяем собственные слоты
     connect(ui->RefreshClientIPsButton, SIGNAL(clicked(bool)), this, SLOT(RefreshClientIPs()));

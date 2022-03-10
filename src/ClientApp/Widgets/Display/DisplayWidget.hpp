@@ -4,7 +4,7 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include "../WidgetResources.hpp"
-#include <QWidget>
+#include <QOpenGLWidget>
 #include <QPainter>
 #include <QOpenGLPaintDevice>
 #include <QTimer>
@@ -16,7 +16,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class DisplayWidget; }
 QT_END_NAMESPACE
 
-class DisplayWidget : public QWidget {
+class DisplayWidget : public QOpenGLWidget {
 Q_OBJECT
 
 public:
@@ -25,6 +25,19 @@ public:
     ~DisplayWidget() override;
 
     void SetGamepadID(int id) { this->GamepadID = id; };
+
+private:
+    void initializeGL() override;
+
+    void paintGL() override;
+
+    void resizeGL(int w, int h) override;
+
+    static void PaintYawIndicator(QPainter &painter, int width, int height, float yawAngle);
+
+    static void PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle);
+
+    static void PaintDepthIndicator(QPainter &painter, int width, int height, float depth, int valueRange);
 
 private:
 
@@ -36,18 +49,13 @@ private:
 
     std::unique_ptr<QTimer> updateTimer_;
 
-    QOpenGLPaintDevice paintDevice_ = QOpenGLPaintDevice(1920, 1080);
     QPainter painter_;
 
     QImage placeholderImage_;
-    QPixmap pixmap_;
-    QPalette palette_;
 
     int GamepadID{};
 
 public slots:
-
-    void UpdateBackgroundImage();
 
     void ShowSideBarButton();
 

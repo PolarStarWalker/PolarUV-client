@@ -1,24 +1,24 @@
-#include "SensorsWidget.hpp"
+#include "DisplayWidget.hpp"
 
 #include <QPainter>
 #include <QPainterPath>
 
 
-void SensorsWidget::PaintDepthIndicator(QPainter &painter, int width, int height, float depth, int valueRange) {
+void DisplayWidget::PaintDepthIndicator(QPainter &painter, int width, int height, float depth, int valueRange) {
 
-    float lineWidth = 4.0f;
-    float outlineWidth = 1.0f;
-    float fontSize = 16.0f;
-    float textOffsetY = 2.0f;
-    float edgeOffset = 2.0f;
+    constexpr const float lineWidth = 4.0f;
+    constexpr const float outlineWidth = 1.0f;
+    constexpr const float fontSize = 16.0f;
+    constexpr const float textOffsetY = 2.0f;
+    constexpr const float edgeOffset = 2.0f;
 
-    float depthHeight = 640.0f;
-    float offsetFromCenter = 378.0f;
-    float depthBorderOffsetY2 = 20.0f;
-    float depthBorderOffsetX2 = 20.0f;
-    float horizontalLineLength = 60.0f;
-    float depthRectWidth = 110.0f;
-    float depthRectHeight = 40.0f;
+    constexpr const float depthHeight = 640.0f;
+    constexpr const float offsetFromCenter = 378.0f;
+    constexpr const float depthBorderOffsetY2 = 20.0f;
+    constexpr const float depthBorderOffsetX2 = 20.0f;
+    constexpr const float horizontalLineLength = 60.0f;
+    constexpr const float depthRectWidth = 110.0f;
+    constexpr const float depthRectHeight = 40.0f;
 
     QFont font("Times", (int) fontSize);
     font.setBold(true);

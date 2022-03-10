@@ -1,30 +1,30 @@
-#include "SensorsWidget.hpp"
+#include "DisplayWidget.hpp"
 
 #include <QPainter>
 #include <QPainterPath>
 
 
-void SensorsWidget::PaintYawIndicator(QPainter &painter, int width, int height, float yawAngle) {
+void DisplayWidget::PaintYawIndicator(QPainter &painter, int width, int height, float yawAngle) {
 
-    float lineWidth = 4.0f;
-    float outlineWidth = 1.0f;
-    float fontSize = 16.0f;
-    float textOffsetY = 2.0f;
-    float edgeOffset = 2.0f;
+    constexpr const float lineWidth = 4.0f;
+    constexpr const float outlineWidth = 1.0f;
+    constexpr const float fontSize = 16.0f;
+    constexpr const float textOffsetY = 2.0f;
+    constexpr const float edgeOffset = 2.0f;
 
-    float yawWidth = 800.0f;
-    float yawHeight = 100.0f;
-    float centerLineHeight = 10.0f;
-    float yawBorderOffsetX1 = 0.0f;
-    float yawBorderOffsetX2 = 20.0f;
-    float yawBorderOffsetY1 = 45.0f;
-    float yawBorderOffsetY2 = 65.0f;
-    float angleRectWidth = 80.0f;
-    float angleRectHeight = 30.0f;
-    float valueRectWidth = 60.0f;
-    float valueRectHeight = 30.0f;
-    float step = 15.0f;
-    float distance = 60.0f;
+    constexpr const float yawWidth = 800.0f;
+    constexpr const float yawHeight = 100.0f;
+    constexpr const float centerLineHeight = 10.0f;
+    constexpr const float yawBorderOffsetX1 = 0.0f;
+    constexpr const float yawBorderOffsetX2 = 20.0f;
+    constexpr const float yawBorderOffsetY1 = 45.0f;
+    constexpr const float yawBorderOffsetY2 = 65.0f;
+    constexpr const float angleRectWidth = 80.0f;
+    constexpr const float angleRectHeight = 30.0f;
+    constexpr const float valueRectWidth = 60.0f;
+    constexpr const float valueRectHeight = 30.0f;
+    constexpr const float step = 15.0f;
+    constexpr const float distance = 60.0f;
 
     float textOffsetX;
     if (yawAngle < 10.0f) textOffsetX = 9.0f;

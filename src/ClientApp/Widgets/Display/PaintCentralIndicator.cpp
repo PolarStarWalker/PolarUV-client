@@ -1,28 +1,28 @@
-#include "SensorsWidget.hpp"
+#include "DisplayWidget.hpp"
 
 #include <QPainter>
 #include <QPainterPath>
 
 
-void SensorsWidget::PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle) {
+void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle) {
 
-    float lineWidth = 4.0f;
-    float outlineWidth = 1.0f;
-    float fontSize = 16.0f;
-    float textOffsetY = 2.0f;
-    float edgeOffset = 2.0f;
+    constexpr const float lineWidth = 4.0f;
+    constexpr const float outlineWidth = 1.0f;
+    constexpr const float fontSize = 16.0f;
+    constexpr const float textOffsetY = 2.0f;
+    constexpr const float edgeOffset = 2.0f;
 
-    float offsetFromCenter = 378.0f;
-    float centralHeight = 640.0f;
-    float horizonLineLength = 320.0f;
-    float divisionLineLength1 = 160.0f;
-    float divisionLineLength2 = 80.0f;
-    float circleRadius = 10.0f;
-    float centralBorderOffsetY2 = 20.0f;
-    float centralBorderOffsetX2 = 20.0f;
-    float horizontalLineLength = 60.0f;
-    float rectWidth = 110.0f;
-    float rectHeight = 40.0f;
+    constexpr const float offsetFromCenter = 378.0f;
+    constexpr const float centralHeight = 640.0f;
+    constexpr const float horizonLineLength = 320.0f;
+    constexpr const float divisionLineLength1 = 160.0f;
+    constexpr const float divisionLineLength2 = 80.0f;
+    constexpr const float circleRadius = 10.0f;
+    constexpr const float centralBorderOffsetY2 = 20.0f;
+    constexpr const float centralBorderOffsetX2 = 20.0f;
+    constexpr const float horizontalLineLength = 60.0f;
+    constexpr const float rectWidth = 110.0f;
+    constexpr const float rectHeight = 40.0f;
 
     float y = pitchAngle;
     if (y < 0) y = 0;

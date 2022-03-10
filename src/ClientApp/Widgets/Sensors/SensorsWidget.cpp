@@ -2,9 +2,6 @@
 #include <iostream>
 
 #include <QWindow>
-#include <QSurfaceFormat>
-#include <QOpenGLContext>
-#include <QOpenGLFramebufferObject>
 
 SensorsWidget::SensorsWidget(QObject *parent, WidgetResources &resources) :
         QObject(parent),
@@ -12,9 +9,6 @@ SensorsWidget::SensorsWidget(QObject *parent, WidgetResources &resources) :
         timer_(){
 
     connect(&timer_, SIGNAL(timeout()), this, SLOT(ReceiveTelemetry()));
-    connect(&timer_, SIGNAL(timeout()), this, SLOT(PaintTelemetryFrame()));
-
-    PaintTelemetryFrame();
 }
 
 void SensorsWidget::SetSensorsStruct(const SensorsStruct &sensors) {
@@ -38,36 +32,7 @@ void SensorsWidget::ReceiveTelemetry() {
 
     if (sensors) {
         sensors_ = *sensors;
+        resources_.Sensors = *sensors;
         std::cout << sensors_.Rotation[SensorsStruct::X] << std::endl;
     }
-}
-
-void SensorsWidget::PaintTelemetryFrame() {
-    resources_.telemetryFBO->bind();
-
-    painter_.begin(&paintDevice_);
-    painter_.setRenderHints(QPainter::Antialiasing);
-
-    painter_.eraseRect(0,0,paintDevice_.width(),paintDevice_.height());
-
-    PaintYawIndicator(painter_,
-                      paintDevice_.width(),
-                      paintDevice_.height(),
-                      sensors_.Rotation[SensorsStruct::Z]);
-
-    PaintCentralIndicator(painter_,
-                          paintDevice_.width(),
-                          paintDevice_.height(),
-                          sensors_.Rotation[SensorsStruct::X],
-                          sensors_.Rotation[SensorsStruct::Y]);
-
-    PaintDepthIndicator(painter_,
-                        paintDevice_.width(),
-                        paintDevice_.height(),
-                        sensors_.Depth,
-                        10);
-
-    painter_.end();
-
-    resources_.telemetryFBO->release();
 }
