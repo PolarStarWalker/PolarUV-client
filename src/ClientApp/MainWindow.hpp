@@ -111,6 +111,10 @@ private slots:
 
     void HideSideBar();
 
+    void SwitchWindowMode();
+
+    void SetWindowedMode();
+
     void Pause();
 
 signals:
@@ -133,6 +137,9 @@ private:
     SensorsWidget *sensorsObject_;
 
     bool isDebug_;
+
+    QShortcut *keyF11;
+    QShortcut *keyEsc;
 };
 
 #endif

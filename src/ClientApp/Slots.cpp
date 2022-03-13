@@ -14,6 +14,19 @@ void MainWindow::SetupSlots() {
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), SLOT(HideSideBar()));
     connect(ui->BackButton, SIGNAL(clicked(bool)), SLOT(Pause()));
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), displayWidget_, SLOT(ShowSideBarButton()));
+
+    keyF11 = new QShortcut(Qt::Key_F11,this,SLOT(SwitchWindowMode()));
+    keyEsc = new QShortcut(Qt::Key_Escape,this,SLOT(SetWindowedMode()));
+}
+
+void MainWindow::Pause() {
+
+    if (!isDebug_) {
+        emit StopWidget();
+        isDebug_ = false;
+    }
+
+    ui->MainStackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::SwitchSideBarButton(int currentIndex) {
@@ -31,14 +44,15 @@ void MainWindow::HideSideBar() {
     ui->SideBar->hide();
 }
 
-void MainWindow::Pause() {
+void MainWindow::SwitchWindowMode() {
+    if (this->windowState() == Qt::WindowNoState)
+        this->setWindowState(Qt::WindowFullScreen);
+    else if (this->windowState() == Qt::WindowFullScreen)
+        this->setWindowState(Qt::WindowNoState);
+}
 
-    if (!isDebug_) {
-        emit StopWidget();
-        isDebug_ = false;
-    }
-
-    ui->MainStackedWidget->setCurrentIndex(0);
+void MainWindow::SetWindowedMode() {
+    this->setWindowState(Qt::WindowNoState);
 }
 
 /// Территория плохого кода. ToDo: shushkov.d исправить
