@@ -55,7 +55,7 @@ void DisplayWidget::PaintYawIndicator(QPainter &painter, int width, int height, 
     centerValuePath.addText(-textOffsetX,
                             (yawHeight - yawBorderOffsetY2 + fontSize) / 2 + textOffsetY,
                             font,
-                            QString::number(centerValue));
+                            QString::number((int) centerValue));
     painter.setPen(QPen(Qt::black, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin));
     painter.setBrush(Qt::white);
     painter.drawPath(centerValuePath);

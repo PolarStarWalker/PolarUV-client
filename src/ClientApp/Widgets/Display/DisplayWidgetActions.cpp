@@ -51,7 +51,7 @@ void DisplayWidget::paintGL() {
         image = QImage(placeholderImage_);
     }
 
-    image = image.scaled(this->width(),this->height());
+    image = image.scaled(this->width(), this->height());
 
     painter_.begin(this);
 
@@ -68,6 +68,12 @@ void DisplayWidget::paintGL() {
 
     PaintDepthIndicator(painter_, this->width(), this->height(),
                         resources_.Sensors.Depth, 10);
+
+    painter_.drawImage(this->width() / 2 - 400 - 60, 0, image,
+                       this->width() / 2 - 400 - 60, 0, 60, 30);
+
+    painter_.drawImage(this->width() / 2 + 400, 0, image,
+                       this->width() / 2 + 400, 0, 60, 30);
 
     painter_.end();
 
