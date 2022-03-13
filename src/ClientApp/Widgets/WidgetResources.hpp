@@ -19,7 +19,7 @@ struct SensorsStruct {
         W = 3
     };
 
-    std::array<float, 4> Rotation{20, 20, 20, 20};
+    std::array<float, 4> Rotation{};
 
     std::array<float, 3> Acceleration{};
 
