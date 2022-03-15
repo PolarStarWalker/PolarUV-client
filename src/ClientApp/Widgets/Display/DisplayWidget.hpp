@@ -51,7 +51,7 @@ private:
 
     QImage placeholderImage_;
 
-    QImage frame_;
+    QImage videoFrame_;
 
 public slots:
 

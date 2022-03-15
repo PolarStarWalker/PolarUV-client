@@ -40,22 +40,25 @@ void DisplayWidget::resizeGL(int w, int h) {
 
 void DisplayWidget::paintGL() {
 
+    QImage currentFrame;
+
     if (stream_.IsOnline()) {
         auto videoFrame = stream_.GetQImage();
-        if (!videoFrame.isNull()) {
-            frame_ = videoFrame;
-        }
-    } else {
-        frame_ = QImage(placeholderImage_);
-    }
 
-    frame_ = frame_.scaled(this->width(), this->height());
+        if (!videoFrame.isNull()) {
+            videoFrame_ = std::move(videoFrame);
+        }
+
+        currentFrame = videoFrame_.scaled(this->width(), this->height());
+    } else {
+        currentFrame = placeholderImage_.scaled(this->width(), this->height());
+    }
 
     painter_.begin(this);
 
     painter_.setRenderHint(QPainter::Antialiasing);
 
-    painter_.drawImage(0, 0, frame_);
+    painter_.drawImage(0, 0, currentFrame);
 
     PaintYawIndicator(painter_, this->width(), this->height(),
                       resources_.Sensors.Rotation[SensorsStruct::Z]);
@@ -67,10 +70,10 @@ void DisplayWidget::paintGL() {
     PaintDepthIndicator(painter_, this->width(), this->height(),
                         resources_.Sensors.Depth, 10);
 
-    painter_.drawImage(this->width() / 2 - 400 - 60, 0, frame_,
+    painter_.drawImage(this->width() / 2 - 400 - 60, 0, currentFrame,
                        this->width() / 2 - 400 - 60, 0, 60, 30);
 
-    painter_.drawImage(this->width() / 2 + 400, 0, frame_,
+    painter_.drawImage(this->width() / 2 + 400, 0, currentFrame,
                        this->width() / 2 + 400, 0, 60, 30);
 
     painter_.end();
