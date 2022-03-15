@@ -24,8 +24,6 @@ public:
 
     ~DisplayWidget() override;
 
-    void SetGamepadID(int id) { this->GamepadID = id; };
-
 private:
     void initializeGL() override;
 
@@ -53,7 +51,7 @@ private:
 
     QImage placeholderImage_;
 
-    int GamepadID{};
+    QImage frame_;
 
 public slots:
 

@@ -17,7 +17,7 @@ QT_END_NAMESPACE
 
 class CommandsSettingsWidget : public QWidget {
 Q_OBJECT
-    constexpr static auto TIMEOUT_ms = std::chrono::milliseconds( 1);
+    constexpr static auto TIMEOUT_ms = std::chrono::milliseconds(15);
 public:
     CommandsSettingsWidget(QWidget *parent, WidgetResources &resources);
 
