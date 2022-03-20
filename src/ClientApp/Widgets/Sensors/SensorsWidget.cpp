@@ -33,6 +33,5 @@ void SensorsWidget::ReceiveTelemetry() {
     if (sensors) {
         sensors_ = *sensors;
         resources_.Sensors = *sensors;
-        std::cout << sensors_.Rotation[SensorsStruct::X] << std::endl;
     }
 }

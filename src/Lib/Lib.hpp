@@ -8,6 +8,7 @@
 #include "./Logger/Logger.hpp"
 #include "./VideoStream/VideoStream.hpp"
 #include "./DataStructs/DataStructs.hpp"
+#include "./Drawer/Drawer.hpp"
 
 namespace lib {
     static void Setup() {

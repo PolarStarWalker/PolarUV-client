@@ -35,9 +35,9 @@ GamepadSettingsStruct CommandsSettingsWidget::GetGamepadSettings() {
     using AnalogSettings = GamepadSettingsStruct::AnalogSettings_t;
 
     //ToDo: shuskov.d сделать наполнение структуры раскладки
-    DiscreteSettings DiscreteActions;
+    DiscreteSettings DiscreteActions{};
 
-    AnalogSettings AnalogActions;
+    AnalogSettings AnalogActions{};
     AnalogActions[AnalogActionsEnum::MoveX] = {AnalogAxisEnum::RightStickY, false};
     AnalogActions[AnalogActionsEnum::MoveY] = {AnalogAxisEnum::LeftStickX, false};
     AnalogActions[AnalogActionsEnum::MoveZ] = {AnalogAxisEnum::LeftStickY, false};

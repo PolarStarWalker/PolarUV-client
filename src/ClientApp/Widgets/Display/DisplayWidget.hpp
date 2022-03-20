@@ -5,10 +5,10 @@
 
 #include "../WidgetResources.hpp"
 #include <QOpenGLWidget>
-#include <QPainter>
 #include <QOpenGLPaintDevice>
 #include <QTimer>
 #include <QMainWindow>
+#include <Drawer/Drawer.hpp>
 
 #include "./VideoStream/VideoStream.hpp"
 
@@ -49,7 +49,7 @@ private:
 
     std::unique_ptr<QTimer> updateTimer_;
 
-    QPainter painter_;
+    lib::Painter drawer_;
 
     QImage placeholderImage_;
 

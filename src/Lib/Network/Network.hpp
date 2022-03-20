@@ -19,7 +19,7 @@ namespace lib::network {
 
         static constexpr std::chrono::milliseconds CONNECTION_TIMEOUT = std::chrono::milliseconds(100);
 
-        static constexpr std::chrono::milliseconds TRANSFER_TIMEOUT =
+        static constexpr auto TRANSFER_TIMEOUT =
 #ifdef DEBUG
          std::chrono::milliseconds(200);
 #else

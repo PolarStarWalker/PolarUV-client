@@ -40,6 +40,9 @@ void DisplayWidget::resizeGL(int w, int h) {
 
 void DisplayWidget::paintGL() {
 
+    const auto &sensors = resources_.Sensors;
+    const auto &isIndicatorEnabled = resources_.SensorsSettings.IndicatorsEnabled;
+
     QImage currentFrame;
 
     if (stream_.IsOnline()) {
@@ -54,34 +57,19 @@ void DisplayWidget::paintGL() {
         currentFrame = placeholderImage_.scaled(this->width(), this->height());
     }
 
-    painter_.begin(this);
+    drawer_.Begin(this)
+            .SetRenderHint(QPainter::Antialiasing)
+            .SetResolution(width(), height())
+            .DrawImage(0, 0, currentFrame);
 
-    painter_.setRenderHint(QPainter::Antialiasing);
-
-    painter_.drawImage(0, 0, currentFrame);
-
-    if (resources_.SensorsSettings.IndicatorsEnabled) {
-        PaintYawIndicator(painter_, this->width(), this->height(),
-                          resources_.Sensors.Rotation[SensorsStruct::Z]);
-
-        PaintCentralIndicator(painter_, this->width(), this->height(),
-                              resources_.Sensors.Rotation[SensorsStruct::X],
-                              resources_.Sensors.Rotation[SensorsStruct::Y]);
-
-        PaintDepthIndicator(painter_, this->width(), this->height(),
-                            resources_.Sensors.Depth - resources_.SensorsSettings.DepthOffset,
-                            resources_.SensorsSettings.MaxDepth);
-
-        PaintTextInfo(painter_, this->width(), this->height(),
-                      resources_.Sensors.MotionCalibration);
-
-        painter_.drawImage(this->width() / 2 - 400 - 60, 0, currentFrame,
-                           this->width() / 2 - 400 - 60, 0, 60, 30);
-
-        painter_.drawImage(this->width() / 2 + 400, 0, currentFrame,
-                           this->width() / 2 + 400, 0, 60, 30);
+    if (isIndicatorEnabled) {
+        drawer_.Draw(PaintYawIndicator, sensors.Rotation[SensorsStruct::Z])
+                .Draw(PaintCentralIndicator, sensors.Rotation[SensorsStruct::X], sensors.Rotation[SensorsStruct::Y])
+                .Draw(PaintDepthIndicator, sensors.Depth, 10)
+                .Draw(PaintTextInfo, sensors.MotionCalibration);
     }
 
-    painter_.end();
-
+    drawer_.DrawImage(width() / 2 - 400 - 60, 0, currentFrame, width() / 2 - 400 - 60, 0, 60, 30)
+            .DrawImage(width() / 2 + 400, 0, currentFrame, width() / 2 + 400, 0, 60, 30)
+            .End();
 }

@@ -11,12 +11,11 @@ inline XINPUT_STATE GetGamepadState(int id) {
     return state;
 }
 
-inline float GasFunction(double X) {
-    if (X > 0) {
-        return 0.278112 * X + 0.06916 * X * X + 0.648397 * X * X * X;
-    } else {
-        return 0.278112 * X - 0.06916 * X * X + 0.648397 * X * X * X;
-    }
+inline double GasFunction(double X) {
+    if (X > 0)
+        return 0.398522 * X -0.22634 * X * X + 0.819158 * X * X * X;
+
+    return 0.398522 * X + 0.22634 * X * X + 0.819158 * X * X * X;
 }
 
 Gamepad::Gamepad(int id) {
@@ -42,33 +41,33 @@ void Gamepad::UpdateGamepadId(int id) {
 
 float GetAnalogValueByAxis(const XINPUT_STATE &state, GamepadSettingsStruct::AnalogAxis axis) {
 
-    float value;
+    double value;
 
     //TODO REFACTOR ME PLS
     switch (axis.Axis) {
         case GamepadSettingsStruct::AnalogAxisEnum::LeftStickX: {
-            value = ((float) state.Gamepad.sThumbLX) / STICK_AXES_TO_FLOAT;
+            value = ((double) state.Gamepad.sThumbLX) / STICK_AXES_TO_FLOAT;
             break;
         }
         case GamepadSettingsStruct::AnalogAxisEnum::LeftStickY: {
-            value = ((float) state.Gamepad.sThumbLY) / STICK_AXES_TO_FLOAT;
+            value = ((double) state.Gamepad.sThumbLY) / STICK_AXES_TO_FLOAT;
             break;
         }
         case GamepadSettingsStruct::AnalogAxisEnum::RightStickX: {
-            value = ((float) state.Gamepad.sThumbRX) / STICK_AXES_TO_FLOAT;
+            value = ((double) state.Gamepad.sThumbRX) / STICK_AXES_TO_FLOAT;
             break;
         }
         case GamepadSettingsStruct::AnalogAxisEnum::RightStickY: {
-            value = ((float) state.Gamepad.sThumbRY) / STICK_AXES_TO_FLOAT;
+            value = ((double) state.Gamepad.sThumbRY) / STICK_AXES_TO_FLOAT;
             break;
         }
         case GamepadSettingsStruct::AnalogAxisEnum::LeftTrigger: {
-            value = ((float) state.Gamepad.bLeftTrigger) / SHOULDERS_TO_FLOAT;
+            value = ((double) state.Gamepad.bLeftTrigger) / SHOULDERS_TO_FLOAT;
             value = state.Gamepad.wButtons & LeftShoulder ? -value : value;
             break;
         }
         case GamepadSettingsStruct::AnalogAxisEnum::RightTrigger: {
-            value = ((float) state.Gamepad.bRightTrigger) / SHOULDERS_TO_FLOAT;
+            value = ((double) state.Gamepad.bRightTrigger) / SHOULDERS_TO_FLOAT;
             value = state.Gamepad.wButtons & RightShoulder ? -value : value;
             break;
         }
@@ -86,7 +85,7 @@ float GetAnalogValueByAxis(const XINPUT_STATE &state, GamepadSettingsStruct::Ana
                 value = -1;
             break;
         }
-        case GamepadSettingsStruct::AnalogAxisEnum::NoButton:{
+        case GamepadSettingsStruct::AnalogAxisEnum::NoButton: {
             value = 0;
             break;
         }
@@ -95,7 +94,7 @@ float GetAnalogValueByAxis(const XINPUT_STATE &state, GamepadSettingsStruct::Ana
         }
     }
 
-    return axis.IsInverted ? -value : value;
+    return GasFunction(axis.IsInverted ? -value : value);
 }
 
 
