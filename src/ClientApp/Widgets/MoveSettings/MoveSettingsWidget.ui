@@ -1063,10 +1063,10 @@ QSlider::sub-page:horizontal {
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="tickPosition">
-         <enum>QSlider::TicksAbove</enum>
+         <enum>QSlider::NoTicks</enum>
         </property>
         <property name="tickInterval">
-         <number>100</number>
+         <number>0</number>
         </property>
        </widget>
       </item>

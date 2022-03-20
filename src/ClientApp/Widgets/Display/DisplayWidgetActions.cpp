@@ -60,21 +60,27 @@ void DisplayWidget::paintGL() {
 
     painter_.drawImage(0, 0, currentFrame);
 
-    PaintYawIndicator(painter_, this->width(), this->height(),
-                      resources_.Sensors.Rotation[SensorsStruct::Z]);
+    if (resources_.SensorsSettings.IndicatorsEnabled) {
+        PaintYawIndicator(painter_, this->width(), this->height(),
+                          resources_.Sensors.Rotation[SensorsStruct::Z]);
 
-    PaintCentralIndicator(painter_, this->width(), this->height(),
-                          resources_.Sensors.Rotation[SensorsStruct::X],
-                          resources_.Sensors.Rotation[SensorsStruct::Y]);
+        PaintCentralIndicator(painter_, this->width(), this->height(),
+                              resources_.Sensors.Rotation[SensorsStruct::X],
+                              resources_.Sensors.Rotation[SensorsStruct::Y]);
 
-    PaintDepthIndicator(painter_, this->width(), this->height(),
-                        resources_.Sensors.Depth, 10);
+        PaintDepthIndicator(painter_, this->width(), this->height(),
+                            resources_.Sensors.Depth - resources_.SensorsSettings.DepthOffset,
+                            resources_.SensorsSettings.MaxDepth);
 
-    painter_.drawImage(this->width() / 2 - 400 - 60, 0, currentFrame,
-                       this->width() / 2 - 400 - 60, 0, 60, 30);
+        PaintTextInfo(painter_, this->width(), this->height(),
+                      resources_.Sensors.MotionCalibration);
 
-    painter_.drawImage(this->width() / 2 + 400, 0, currentFrame,
-                       this->width() / 2 + 400, 0, 60, 30);
+        painter_.drawImage(this->width() / 2 - 400 - 60, 0, currentFrame,
+                           this->width() / 2 - 400 - 60, 0, 60, 30);
+
+        painter_.drawImage(this->width() / 2 + 400, 0, currentFrame,
+                           this->width() / 2 + 400, 0, 60, 30);
+    }
 
     painter_.end();
 

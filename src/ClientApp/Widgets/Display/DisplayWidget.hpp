@@ -37,6 +37,8 @@ private:
 
     static void PaintDepthIndicator(QPainter &painter, int width, int height, float depth, int valueRange);
 
+    static void PaintTextInfo(QPainter &painter, int width, int height, std::array<int8_t, 4> calibration);
+
 private:
 
     lib::processing::VideoStream stream_;

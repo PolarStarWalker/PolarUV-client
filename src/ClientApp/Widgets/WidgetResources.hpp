@@ -34,9 +34,17 @@ struct SensorsStruct {
     bool Euler = true;
 };
 
+/// ToDo: что-то с этим сделать
+struct SensorsSettingsStruct {
+    float DepthOffset = 0.0f;
+    int MaxDepth = 10;
+    bool IndicatorsEnabled = true;
+};
+
 struct WidgetResources {
 
     SensorsStruct Sensors{};
+    SensorsSettingsStruct SensorsSettings{};
 
     lib::network::Network Network{};
     std::string ClientIp{};
