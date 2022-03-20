@@ -24,6 +24,9 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
     constexpr const float rectWidth = 110.0f;
     constexpr const float rectHeight = 40.0f;
 
+    /// Converting rollAngle from 0..360 to -180..180
+    rollAngle = (rollAngle <= 180) ? rollAngle : -(rollAngle - 180);
+
     float y = pitchAngle;
     if (y < 0) y = 0;
     else if (y > 360) y = 360;
@@ -36,7 +39,7 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
 
     painter.save();
     painter.translate((float) width / 2, (float) height / 2);
-    painter.rotate(-rollAngle);
+    painter.rotate(rollAngle);
 
     /// Counting indicator borders
     float indicatorRightBorder = (float) width / 2 - offsetFromCenter;
@@ -189,23 +192,22 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
 
     /// Painting the arc
     QPainterPath arcPath;
-    arcPath.moveTo(0, (float) centralHeight / 2 + 20);
-    arcPath.arcTo((float) -centralHeight / 2 - 20,
-                  (float) -centralHeight / 2 - 20,
-                  centralHeight + 40,
-                  centralHeight + 40,
-                  270, rollAngle);
-    //arcPath.moveTo(0, (float) _centralHeight / 2 + 20 + (float) _lineWidth);
-    arcPath.arcTo((float) -centralHeight / 2 - 20 - (float) lineWidth,
-                  (float) -centralHeight / 2 - 20 - (float) lineWidth,
-                  (float) centralHeight + 40 + (float) lineWidth * 2,
-                  (float) centralHeight + 40 + (float) lineWidth * 2,
-                  270 + rollAngle, -rollAngle);
-    //arcPath.closeSubpath();
+    arcPath.moveTo(0, (float) centralHeight / 2 + 5);
+    arcPath.arcTo((float) -centralHeight / 2 - 5,
+                  (float) -centralHeight / 2 - 5,
+                  centralHeight + 10,
+                  centralHeight + 10,
+                  270,
+                  -rollAngle);
+    arcPath.arcTo((float) -centralHeight / 2 - 5 - (float) lineWidth,
+                  (float) -centralHeight / 2 - 5 - (float) lineWidth,
+                  (float) centralHeight + 10 + (float) lineWidth * 2,
+                  (float) centralHeight + 10 + (float) lineWidth * 2,
+                  270 - rollAngle,
+                  rollAngle);
     painter.setPen(QPen(Qt::black, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
     painter.setBrush(Qt::white);
     painter.drawPath(arcPath);
-
 
     painter.restore();
     painter.save();
@@ -342,7 +344,7 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
     /// Painting angle
     QPainterPath rollAnglePath;
     rollAnglePath.addText((float) width / 2 - (float) offsetX,
-                          (float) height / 2 + (float) centralHeight / 2 + 70,
+                          (float) height / 2 + (float) centralHeight / 2 + 45,
                           font,
                           QString::number((int32_t) rollAngle) + QString("°"));
     painter.setPen(QPen(Qt::black, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
@@ -357,33 +359,33 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
             //
             // 4         3
             QPointF((float) width / 2,
-                    (float) height / 2 + (float) centralHeight / 2 + 40),
+                    (float) height / 2 + (float) centralHeight / 2 + 15),
             QPointF((float) (width + 90) / 2,
-                    (float) height / 2 + (float) centralHeight / 2 + 40),
+                    (float) height / 2 + (float) centralHeight / 2 + 15),
             QPointF((float) (width + 90) / 2,
-                    (float) height / 2 + (float) centralHeight / 2 + 40 + 40),
+                    (float) height / 2 + (float) centralHeight / 2 + 15 + 40),
             QPointF((float) (width - 90) / 2,
-                    (float) height / 2 + (float) centralHeight / 2 + 40 + 40),
+                    (float) height / 2 + (float) centralHeight / 2 + 15 + 40),
             QPointF((float) (width - 90) / 2,
-                    (float) height / 2 + (float) centralHeight / 2 + 40),
+                    (float) height / 2 + (float) centralHeight / 2 + 15),
             QPointF((float) width / 2,
-                    (float) height / 2 + (float) centralHeight / 2 + 40),
+                    (float) height / 2 + (float) centralHeight / 2 + 15),
             // Outer contour
             // 2   1|6   5
             //
             // 3         4
             QPointF((float) width / 2,
-                    (float) height / 2 + (float) centralHeight / 2 + 40 + (float) lineWidth),
+                    (float) height / 2 + (float) centralHeight / 2 + 15 + (float) lineWidth),
             QPointF((float) (width - 90) / 2 + (float) lineWidth,
-                    (float) height / 2 + (float) centralHeight / 2 + 40 + (float) lineWidth),
+                    (float) height / 2 + (float) centralHeight / 2 + 15 + (float) lineWidth),
             QPointF((float) (width - 90) / 2 + (float) lineWidth,
-                    (float) height / 2 + (float) centralHeight / 2 + 40 + 40 - (float) lineWidth),
+                    (float) height / 2 + (float) centralHeight / 2 + 15 + 40 - (float) lineWidth),
             QPointF((float) (width + 90) / 2 - (float) lineWidth,
-                    (float) height / 2 + (float) centralHeight / 2 + 40 + 40 - (float) lineWidth),
+                    (float) height / 2 + (float) centralHeight / 2 + 15 + 40 - (float) lineWidth),
             QPointF((float) (width + 90) / 2 - (float) lineWidth,
-                    (float) height / 2 + (float) centralHeight / 2 + 40 + (float) lineWidth),
+                    (float) height / 2 + (float) centralHeight / 2 + 15 + (float) lineWidth),
             QPointF((float) width / 2,
-                    (float) height / 2 + (float) centralHeight / 2 + 40 + (float) lineWidth),
+                    (float) height / 2 + (float) centralHeight / 2 + 15 + (float) lineWidth),
     };
     rollAngleFramePath.addPolygon(rollAngleFramePolygon);
     painter.setPen(QPen(Qt::black, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
@@ -394,7 +396,7 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
     QPainterPath rollAnglePatchPath;
     rollAnglePatchPath.addRect(
             ((float) width - lineWidth) / 2,
-            (float) height / 2 + (float) centralHeight / 2 + 40 + (float) outlineWidth,
+            (float) height / 2 + (float) centralHeight / 2 + 15 + (float) outlineWidth,
             lineWidth,
             lineWidth - (outlineWidth * 2));
 

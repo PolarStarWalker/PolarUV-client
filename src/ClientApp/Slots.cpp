@@ -45,9 +45,9 @@ void MainWindow::HideSideBar() {
 }
 
 void MainWindow::SwitchWindowMode() {
-    if (this->windowState() == Qt::WindowNoState)
+    if (this->windowState() != Qt::WindowFullScreen)
         this->setWindowState(Qt::WindowFullScreen);
-    else if (this->windowState() == Qt::WindowFullScreen)
+    else
         this->setWindowState(Qt::WindowNoState);
 }
 
