@@ -41,9 +41,9 @@ void DisplayWidget::resizeGL(int w, int h) {
 void DisplayWidget::paintGL() {
 
     const auto &sensors = resources_.Sensors;
-    const auto &isIndicatorEnabled = resources_.SensorsSettings.IndicatorsEnabled;
+    const auto &sensorsSettings = resources_.SensorsSettings;
 
-    QImage currentFrame;
+    QImage currentFrame{};
 
     if (stream_.IsOnline()) {
         auto videoFrame = stream_.GetQImage();
@@ -62,10 +62,10 @@ void DisplayWidget::paintGL() {
             .SetResolution(width(), height())
             .DrawImage(0, 0, currentFrame);
 
-    if (isIndicatorEnabled) {
+    if (sensorsSettings.IndicatorsEnabled) {
         drawer_.Draw(PaintYawIndicator, sensors.Rotation[SensorsStruct::Z])
                 .Draw(PaintCentralIndicator, sensors.Rotation[SensorsStruct::X], sensors.Rotation[SensorsStruct::Y])
-                .Draw(PaintDepthIndicator, sensors.Depth, 10)
+                .Draw(PaintDepthIndicator, sensors.Depth - sensorsSettings.DepthOffset, sensorsSettings.MaxDepth)
                 .Draw(PaintTextInfo, sensors.MotionCalibration);
     }
 

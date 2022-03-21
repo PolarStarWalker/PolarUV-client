@@ -25,7 +25,8 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
     constexpr const float rectHeight = 40.0f;
 
     /// Converting rollAngle from 0..360 to -180..180
-    rollAngle = (rollAngle <= 180) ? rollAngle : -(rollAngle - 180);
+    //rollAngle = (rollAngle <= 180) ? rollAngle : -(rollAngle - 180);
+    rollAngle = -(rollAngle - 180);
 
     float y = pitchAngle;
     if (y < 0) y = 0;

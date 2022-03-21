@@ -3,7 +3,8 @@
 
 using namespace control;
 
-constexpr float cameraSpeed = 0.005;
+constexpr float CameraSpeed = 0.005;
+constexpr float LightSpeed = 0.0005;
 
 inline XINPUT_STATE GetGamepadState(int id) {
     XINPUT_STATE state{};
@@ -13,14 +14,15 @@ inline XINPUT_STATE GetGamepadState(int id) {
 
 inline double GasFunction(double X) {
     if (X > 0)
-        return 0.398522 * X -0.22634 * X * X + 0.819158 * X * X * X;
+        return 0.398522 * X - 0.22634 * X * X + 0.819158 * X * X * X;
 
     return 0.398522 * X + 0.22634 * X * X + 0.819158 * X * X * X;
 }
 
 Gamepad::Gamepad(int id) {
     id_ = id;
-    _cameraPosition = 0.15;
+    cameraPosition_ = 0.5;
+    lightPosition_ = 0.0015;
 }
 
 void Gamepad::SetVibration(uint16_t left, uint16_t right) const {
@@ -123,5 +125,38 @@ CommandsStruct Gamepad::GetCommands(const GamepadSettingsStruct &settings) const
     commands.Hand[HandEnum::Hand5] = GetAnalogValueByAxis(state, settings.AnalogActionsIds[AnalogActionEnum::Hand5]);
     commands.Hand[HandEnum::Hand6] = GetAnalogValueByAxis(state, settings.AnalogActionsIds[AnalogActionEnum::Hand6]);
 
+
+
+    ///ToDo убрать
+    if (state.Gamepad.wButtons & Triangle) {
+        cameraPosition_ += CameraSpeed;
+        if (cameraPosition_ > 1)
+            cameraPosition_ = 1;
+    } else if (state.Gamepad.wButtons & Cross) {
+        cameraPosition_ -= CameraSpeed;
+        if (cameraPosition_ < 0)
+            cameraPosition_ = 0;
+
+    } else if (state.Gamepad.wButtons & RightStick) {
+        cameraPosition_ = 0.5;
+    }
+
+    if (state.Gamepad.wButtons & Circle) {
+        lightPosition_ += LightSpeed;
+        if (lightPosition_ > 1)
+            lightPosition_ = 1;
+    } else if (state.Gamepad.wButtons & Rectangle) {
+        lightPosition_ -= LightSpeed;
+        if (lightPosition_ < 0)
+            lightPosition_ = 0;
+    }
+
+    //Фара
+    commands.LowPWM[0] = 20000 * lightPosition_;
+    //commands.LowPWM[1] = 0;
+    //рука
+    commands.LowPWM[2] = 1000 * cameraPosition_ + 1000;
+    //commands.LowPWM[3] = 0;
+    std::cout << lightPosition_ << std::endl;
     return commands;
 }

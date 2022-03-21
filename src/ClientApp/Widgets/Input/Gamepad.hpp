@@ -54,7 +54,8 @@ namespace control {
 
     private:
         std::atomic<int> id_;
-        mutable float _cameraPosition;
+        mutable float cameraPosition_;
+        mutable float lightPosition_;
     };
 
     inline std::vector<int> GetGamepadsIds() {
