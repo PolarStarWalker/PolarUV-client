@@ -33,6 +33,13 @@ namespace lib {
             return *this;
         }
 
+        inline Painter &DrawImage(int x, int y, const QImage &img, float angle) {
+            painter_.rotate(angle);
+            painter_.drawImage(QPointF(x, y), img);
+            painter_.rotate(-angle);
+            return *this;
+        }
+
         inline Painter &DrawImage(int x, int y, const QImage &img, int sx, int sy, int sw, int sh,
                                   Qt::ImageConversionFlags flags = Qt::AutoColor) {
             painter_.drawImage(x, y, img, sx, sy, sw, sh, flags);

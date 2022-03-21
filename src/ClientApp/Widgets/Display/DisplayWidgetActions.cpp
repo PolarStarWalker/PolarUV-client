@@ -60,7 +60,7 @@ void DisplayWidget::paintGL() {
     drawer_.Begin(this)
             .SetRenderHint(QPainter::Antialiasing)
             .SetResolution(width(), height())
-            .DrawImage(0, 0, currentFrame);
+            .DrawImage(0, 0, currentFrame, 180);
 
     if (sensorsSettings.IndicatorsEnabled) {
         drawer_.Draw(PaintYawIndicator, sensors.Rotation[SensorsStruct::Z])
