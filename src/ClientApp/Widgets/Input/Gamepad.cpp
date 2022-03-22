@@ -153,10 +153,11 @@ CommandsStruct Gamepad::GetCommands(const GamepadSettingsStruct &settings) const
 
     //Фара
     commands.LowPWM[0] = 20000 * lightPosition_;
+    //std::cout << 20000 * lightPosition_ << std::endl;
     //commands.LowPWM[1] = 0;
     //рука
     commands.LowPWM[2] = 1000 * cameraPosition_ + 1000;
     //commands.LowPWM[3] = 0;
-    std::cout << lightPosition_ << std::endl;
+
     return commands;
 }

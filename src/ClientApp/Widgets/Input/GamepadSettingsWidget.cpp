@@ -42,7 +42,7 @@ GamepadSettingsStruct CommandsSettingsWidget::GetGamepadSettings() {
     AnalogActions[AnalogActionsEnum::MoveY] = {AnalogAxisEnum::LeftStickX, false};
     AnalogActions[AnalogActionsEnum::MoveZ] = {AnalogAxisEnum::LeftStickY, false};
     AnalogActions[AnalogActionsEnum::RotateX] = {AnalogAxisEnum::LeftTrigger, false};
-    AnalogActions[AnalogActionsEnum::RotateY] = {AnalogAxisEnum::RightTrigger, false};
+    AnalogActions[AnalogActionsEnum::RotateY] = {AnalogAxisEnum::RightTrigger, true};
     AnalogActions[AnalogActionsEnum::RotateZ] = {AnalogAxisEnum::RightStickX, true};
 
     AnalogActions[AnalogActionsEnum::Hand1] = {AnalogAxisEnum::DPadY, false};

@@ -49,7 +49,7 @@ void DisplayWidget::paintGL() {
         auto videoFrame = stream_.GetQImage();
 
         if (!videoFrame.isNull()) {
-            videoFrame_ = std::move(videoFrame);
+            videoFrame_ = std::move(videoFrame).mirrored(true,true);
         }
 
         currentFrame = videoFrame_.scaled(this->width(), this->height());
@@ -60,7 +60,7 @@ void DisplayWidget::paintGL() {
     drawer_.Begin(this)
             .SetRenderHint(QPainter::Antialiasing)
             .SetResolution(width(), height())
-            .DrawImage(0, 0, currentFrame, 180);
+            .DrawImage(0, 0, currentFrame);
 
     if (sensorsSettings.IndicatorsEnabled) {
         drawer_.Draw(PaintYawIndicator, sensors.Rotation[SensorsStruct::Z])
