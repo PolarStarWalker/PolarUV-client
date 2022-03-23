@@ -252,14 +252,14 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
     markerPath.addPolygon(QPolygonF(markerPolygon));
     // Calculating text offset
     float textOffsetX;
-    if (-90 <= (int32_t) (y / 3) && (int32_t) (y / 3) < -9) textOffsetX = 70.0f;       // 4 символа (включая °)
-    else if (0 <= (int32_t) (y / 3) && (int32_t) (y / 3) < 10) textOffsetX = 52.0f;    // 2 символа (включая °)
-    else textOffsetX = 62.0f;                                                          // 3 символа (включая °)
+    if (-90 <= (int32_t) (y / 3) && (int32_t) (y / 3) < -9) textOffsetX = 62.0f;       // 4 символа
+    else if (0 <= (int32_t) (y / 3) && (int32_t) (y / 3) < 10) textOffsetX = 44.0f;    // 2 символа
+    else textOffsetX = 54.0f;                                                          // 3 символа
     //
     markerPath.addText((float) indicatorRightBorder - 30 - 10 - textOffsetX,
                        (float) y + fontSize / 2 + textOffsetY,
                        font,
-                       QString::number((int32_t) (y / 3)) + QString("°"));
+                       QString::number((int32_t) (y / 3)));
     painter.setPen(QPen(Qt::black, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
     painter.setBrush(Qt::white);
     painter.drawPath(markerPath);
@@ -283,15 +283,15 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
                           lineWidth);
         // Calculating text offset
         float textOffsetX2;
-        if (-90 <= (i / 3) && (i / 3) < -9) textOffsetX2 = 57.0f;       // 4 символа (включая °)
-        else if (0 <= (i / 3) && (i / 3) < 10) textOffsetX2 = 28.0f;    // 2 символа (включая °)
-        else textOffsetX2 = 45.0f;                                      // 3 символа (включая °)
+        if (-90 <= (i / 3) && (i / 3) < -9) textOffsetX2 = 49.0f;       // 4 символа
+        else if (0 <= (i / 3) && (i / 3) < 10) textOffsetX2 = 20.0f;    // 2 символа
+        else textOffsetX2 = 37.0f;                                      // 3 символа
         //
         if (abs(i - (int32_t) y) >= 45) { // if the marker is far enough
             scalePath.addText((float) indicatorRightBorder - 25 - 10 - textOffsetX2,
                               (float) i + fontSize / 2,
                               font,
-                              QString::number(i / 3) + QString("°"));
+                              QString::number(i / 3));
         }
     }
     painter.setPen(QPen(Qt::black, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
@@ -337,17 +337,17 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
     painter.drawPath(framePath);
 
     int32_t offsetX;
-    if (rollAngle < -99) offsetX = 38;
-    else if ((-99 <= rollAngle && rollAngle < -9) || (100 < rollAngle)) offsetX = 30;
-    else if ((-9 <= rollAngle && rollAngle < 0) || (10 <= rollAngle && rollAngle < 100)) offsetX = 22;
-    else offsetX = 14;
+    if (rollAngle < -99) offsetX = 34;
+    else if ((-99 <= rollAngle && rollAngle < -9) || (100 < rollAngle)) offsetX = 26;
+    else if ((-9 <= rollAngle && rollAngle < 0) || (10 <= rollAngle && rollAngle < 100)) offsetX = 18;
+    else offsetX = 10;
 
     /// Painting angle
     QPainterPath rollAnglePath;
     rollAnglePath.addText((float) width / 2 - (float) offsetX,
                           (float) height / 2 + (float) centralHeight / 2 + 45,
                           font,
-                          QString::number((int32_t) rollAngle) + QString("°"));
+                          QString::number((int32_t) rollAngle));
     painter.setPen(QPen(Qt::black, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
     painter.setBrush(Qt::white);
     painter.drawPath(rollAnglePath);
