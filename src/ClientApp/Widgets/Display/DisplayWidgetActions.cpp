@@ -26,10 +26,6 @@ void DisplayWidget::TakeScreenshot() {
 
 }
 
-void DisplayWidget::SwitchSendingCommands() {
-
-}
-
 void DisplayWidget::initializeGL() {
 
 }
@@ -63,7 +59,10 @@ void DisplayWidget::paintGL() {
             .DrawImage(0, 0, currentFrame);
 
     if (sensorsSettings.IndicatorsEnabled) {
-        drawer_.Draw(PaintYawIndicator, sensors.Rotation[SensorsStruct::Z])
+        float rotationZ = (sensors.Rotation[SensorsStruct::Z] >= sensorsSettings.OrientationOffsetZ) ?
+                          sensors.Rotation[SensorsStruct::Z] - sensorsSettings.OrientationOffsetZ :
+                          sensors.Rotation[SensorsStruct::Z] - sensorsSettings.OrientationOffsetZ + 360;
+        drawer_.Draw(PaintYawIndicator, rotationZ)
                 .Draw(PaintCentralIndicator, sensors.Rotation[SensorsStruct::X], sensors.Rotation[SensorsStruct::Y])
                 .Draw(PaintDepthIndicator, sensors.Depth - sensorsSettings.DepthOffset, sensorsSettings.MaxDepth)
                 .Draw(PaintTextInfo, sensors.MotionCalibration);

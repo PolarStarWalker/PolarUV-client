@@ -27,6 +27,8 @@ DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources
     ui->SideBarButton->hide();
     ui->ScreenshotLabel->hide();
     ui->RecordingLabel->hide();
+    ui->ScreenshotButton->hide();
+    ui->RecordingButton->hide();
 
     QWidget *elements[] = {
             ui->SideBarButton, ui->ScreenshotButton, ui->CameraButton, ui->RecordingButton,

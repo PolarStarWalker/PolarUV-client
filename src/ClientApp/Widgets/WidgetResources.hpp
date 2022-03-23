@@ -36,8 +36,9 @@ struct SensorsStruct {
 
 /// ToDo: что-то с этим сделать
 struct SensorsSettingsStruct {
+    float OrientationOffsetZ = 0.0f;
     float DepthOffset = 0.0f;
-    int MaxDepth = 10;
+    int MaxDepth = 5;
     bool IndicatorsEnabled = true;
 };
 

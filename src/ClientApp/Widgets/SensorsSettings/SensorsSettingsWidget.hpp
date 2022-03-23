@@ -29,7 +29,8 @@ private:
 private slots:
     void UpdateIndicatorsState(int state);
     void UpdateMaxDepth(int value);
-    void UpdateCalibration();
+    void UpdateOrientationOffsetZ();
+    void UpdateDepthOffset();
 };
 
 

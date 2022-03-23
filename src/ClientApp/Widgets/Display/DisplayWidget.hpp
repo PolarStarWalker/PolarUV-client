@@ -71,8 +71,6 @@ private slots:
 
     void TakeScreenshot();
 
-    void SwitchSendingCommands();
-
     void HideSideBarButton();
 
 };

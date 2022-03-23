@@ -11,7 +11,8 @@ SensorsSettingsWidget::SensorsSettingsWidget(QWidget *parent, WidgetResources &r
 
     connect(ui->ShowIndicatorsCheckBox, SIGNAL(stateChanged(int)), this, SLOT(UpdateIndicatorsState(int)));
     connect(ui->MaxDepthSlider, SIGNAL(valueChanged(int)), this, SLOT(UpdateMaxDepth(int)));
-    connect(ui->DepthCalibrationButton, SIGNAL(pressed()), this, SLOT(UpdateCalibration()));
+    connect(ui->OrientationSensorOffsetZButton, SIGNAL(pressed()), this, SLOT(UpdateOrientationOffsetZ()));
+    connect(ui->DepthCalibrationButton, SIGNAL(pressed()), this, SLOT(UpdateDepthOffset()));
 }
 
 SensorsSettingsWidget::~SensorsSettingsWidget() {
@@ -33,13 +34,17 @@ void SensorsSettingsWidget::UpdateIndicatorsState(int state) {
 }
 
 void SensorsSettingsWidget::UpdateMaxDepth(int value) {
-    ui->MaxDepthSlider->setValue(value - (value % 10));
-    ui->MaxDepthEdit->setText(QString::number(value - (value % 10)));
+    ui->MaxDepthSlider->setValue(value - (value % ui->MaxDepthSlider->singleStep()));
+    ui->MaxDepthEdit->setText(QString::number(value - (value % ui->MaxDepthSlider->singleStep())));
 
-    resources_.SensorsSettings.MaxDepth = value - (value % 10);
+    resources_.SensorsSettings.MaxDepth = value - (value % ui->MaxDepthSlider->singleStep());
 }
 
-void SensorsSettingsWidget::UpdateCalibration() {
+void SensorsSettingsWidget::UpdateOrientationOffsetZ() {
+    resources_.SensorsSettings.OrientationOffsetZ = ui->OrientationSensorOffsetZEdit->text().toFloat();
+}
+
+void SensorsSettingsWidget::UpdateDepthOffset() {
     float currentDepth = resources_.Sensors.Depth;
     resources_.SensorsSettings.DepthOffset = currentDepth;
     ui->DepthOffsetEdit->setText(QString::number(currentDepth));
