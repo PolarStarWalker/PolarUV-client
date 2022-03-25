@@ -2,7 +2,7 @@
 #include "ui_DisplayWidget.h"
 
 #include <QPainter>
-
+#include <QMessageBox>
 #include <iostream>
 
 void DisplayWidget::SwitchVideoStream() {
@@ -22,8 +22,8 @@ void DisplayWidget::SwitchVideoCapture() {
 
 }
 
-void DisplayWidget::TakeScreenshot() {
-
+void DisplayWidget::SetScreenshotFlag() {
+    screenshotFlag_ = true;
 }
 
 void DisplayWidget::initializeGL() {
@@ -45,7 +45,7 @@ void DisplayWidget::paintGL() {
         auto videoFrame = stream_.GetQImage();
 
         if (!videoFrame.isNull()) {
-            videoFrame_ = std::move(videoFrame).mirrored(true,true);
+            videoFrame_ = std::move(videoFrame).mirrored(true, true);
         }
 
         currentFrame = videoFrame_.scaled(this->width(), this->height());
@@ -53,12 +53,13 @@ void DisplayWidget::paintGL() {
         currentFrame = placeholderImage_.scaled(this->width(), this->height());
     }
 
-    drawer_.Begin(this)
+    drawer_.Begin(&currentFrame)
             .SetRenderHint(QPainter::Antialiasing)
             .SetResolution(width(), height())
             .DrawImage(0, 0, currentFrame);
 
     if (sensorsSettings.IndicatorsEnabled) {
+        //ToDo исправить это безобразие (перенести сразу в функции)
         float rotationZ = (sensors.Rotation[SensorsStruct::Z] >= sensorsSettings.OrientationOffsetZ) ?
                           sensors.Rotation[SensorsStruct::Z] - sensorsSettings.OrientationOffsetZ :
                           sensors.Rotation[SensorsStruct::Z] - sensorsSettings.OrientationOffsetZ + 360;
@@ -71,4 +72,17 @@ void DisplayWidget::paintGL() {
     drawer_.DrawImage(width() / 2 - 400 - 60, 0, currentFrame, width() / 2 - 400 - 60, 0, 60, 30)
             .DrawImage(width() / 2 + 400, 0, currentFrame, width() / 2 + 400, 0, 60, 30)
             .End();
+
+    if (screenshotFlag_) {
+        static size_t counter = 0;
+        screenshotFlag_ = false;
+        currentFrame.save(QString("Media/Image/screen-%1.png").arg(++counter));
+        ///ToDo неблокирующая всплывашка
+        //QMessageBox::information(nullptr, "Скриншот", "Вы жёстко сохранили скриншот");
+    }
+
+    drawer_.Begin(this)
+            .DrawImage(0, 0, currentFrame)
+            .End();
+
 }

@@ -7,8 +7,8 @@
 namespace lib {
     class Painter {
     private:
-        QPainter painter_;
-        size_t width_, height_;
+        QPainter painter_{};
+        size_t width_{}, height_{};
     public:
 
         inline Painter &SetRenderHint(QPainter::RenderHint hint, bool flag = true) {

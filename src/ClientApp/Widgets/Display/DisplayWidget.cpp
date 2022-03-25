@@ -1,6 +1,6 @@
 #include "DisplayWidget.hpp"
 #include "ui_DisplayWidget.h"
-
+#include <array>
 #include <QGraphicsDropShadowEffect>
 
 
@@ -8,7 +8,9 @@ DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources
         QOpenGLWidget(mainWindow),
         ui(new Ui::DisplayWidget),
         resources_(resources),
-        stream_() {
+        stream_(),
+        drawer_(),
+        screenshotFlag_(false){
 
     ui->setupUi(this);
 
@@ -22,17 +24,17 @@ DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources
 
     connect(ui->CameraButton, SIGNAL(clicked(bool)), this, SLOT(SwitchVideoStream()));
     connect(ui->RecordingButton, SIGNAL(clicked(bool)), this, SLOT(SwitchVideoCapture()));
-    connect(ui->ScreenshotButton, SIGNAL(clicked(bool)), this, SLOT(TakeScreenshot()));
+    connect(ui->ScreenshotButton, SIGNAL(clicked(bool)), this, SLOT(SetScreenshotFlag()));
 
     ui->SideBarButton->hide();
     ui->ScreenshotLabel->hide();
     ui->RecordingLabel->hide();
-    ui->ScreenshotButton->hide();
     ui->RecordingButton->hide();
 
-    QWidget *elements[] = {
+    std::array elements = {
             ui->SideBarButton, ui->ScreenshotButton, ui->CameraButton, ui->RecordingButton,
     };
+
     for (auto &element : elements) {
         auto *shadowEffect = new QGraphicsDropShadowEffect(this);
         shadowEffect->setOffset(0, 0);
