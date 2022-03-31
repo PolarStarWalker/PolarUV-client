@@ -1,19 +1,11 @@
 #include "Screenshotter.hpp"
 #include <QString>
 #include <ctime>
-#include <filesystem>
 
 constexpr std::string_view ImageNameTemplate = R"(Media\Image\YYYY-MM-DD:HH-MM-SS.png)";
-constexpr std::string_view VideoNameTemplate = R"(Media\Video\YYYY-MM-DD:HH-MM-SS.mkv)";
-constexpr std::string_view VideoNameMask = R"(Media\Video\%Y-%m-%d-%H-%M-%S.mkv)";
 constexpr std::string_view ImageNameMask = R"(Media\Image\%Y-%m-%d-%H-%M-%S.png)";
 
-enum ContentType : int8_t {
-    Video,
-    Image
-};
-
-QString CreateFileName(ContentType contentType) {
+QString CreateFileName() {
     std::string filename;
     filename.reserve(ImageNameTemplate.size() * 2 );
     filename.append(ImageNameTemplate);
@@ -24,7 +16,7 @@ QString CreateFileName(ContentType contentType) {
 
     strftime(filename.data(),
              ImageNameTemplate.size() * 2,
-             contentType == Video ? VideoNameMask.begin() : ImageNameMask.begin(),
+             ImageNameMask.begin(),
              timeStruct);
 
     return {filename.c_str()};
@@ -41,6 +33,6 @@ void ScreenShotter::TakeScreenshot(){
         if(screenshot.isNull())
             return;
 
-        screenshot.save(CreateFileName(Image));
+        screenshot.save(CreateFileName());
     }
 }

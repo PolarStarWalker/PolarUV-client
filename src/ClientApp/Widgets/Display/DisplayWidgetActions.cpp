@@ -53,6 +53,9 @@ void DisplayWidget::paintGL() {
         currentFrame = placeholderImage_.scaled(this->width(), this->height());
     }
 
+    auto left = currentFrame.copy(width() / 2 - 400 - 60, 0, 60, 30);
+    auto right = currentFrame.copy(width() / 2 + 400, 0, 60, 30);
+
     drawer_.Begin(&currentFrame)
             .SetRenderHint(QPainter::Antialiasing)
             .SetResolution(width(), height())
@@ -64,14 +67,14 @@ void DisplayWidget::paintGL() {
                           sensors.Rotation[SensorsStruct::Z] - sensorsSettings.OrientationOffsetZ :
                           sensors.Rotation[SensorsStruct::Z] - sensorsSettings.OrientationOffsetZ + 360;
         drawer_.Draw(PaintYawIndicator, rotationZ)
+                .DrawImage(width() / 2 - 400 - 60, 0, left)
+                .DrawImage(width() / 2 + 400, 0, right)
                 .Draw(PaintCentralIndicator, sensors.Rotation[SensorsStruct::X], sensors.Rotation[SensorsStruct::Y])
                 .Draw(PaintDepthIndicator, sensors.Depth - sensorsSettings.DepthOffset, sensorsSettings.MaxDepth)
                 .Draw(PaintTextInfo, sensors.MotionCalibration);
     }
 
-    drawer_.DrawImage(width() / 2 - 400 - 60, 0, currentFrame, width() / 2 - 400 - 60, 0, 60, 30)
-            .DrawImage(width() / 2 + 400, 0, currentFrame, width() / 2 + 400, 0, 60, 30)
-            .End();
+    drawer_.End();
 
     drawer_.Begin(this)
             .DrawImage(0, 0, currentFrame)
