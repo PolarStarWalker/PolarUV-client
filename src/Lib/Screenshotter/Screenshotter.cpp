@@ -3,10 +3,10 @@
 #include <ctime>
 #include <filesystem>
 
-constexpr std::wstring_view ImageNameTemplate = LR"(\Media\Image\YYYY-MM-DD:HH-MM-SS.png)";
-constexpr std::wstring_view VideoNameTemplate = LR"(\Media\Video\YYYY-MM-DD:HH-MM-SS.mkv)";
-constexpr std::wstring_view VideoNameMask = LR"(\Media\Video\%Y-%m-%d-%H-%M-%S.mkv)";
-constexpr std::wstring_view ImageNameMask = LR"(\Media\Image\%Y-%m-%d-%H-%M-%S.png)";
+constexpr std::string_view ImageNameTemplate = R"(Media\Image\YYYY-MM-DD:HH-MM-SS.png)";
+constexpr std::string_view VideoNameTemplate = R"(Media\Video\YYYY-MM-DD:HH-MM-SS.mkv)";
+constexpr std::string_view VideoNameMask = R"(Media\Video\%Y-%m-%d-%H-%M-%S.mkv)";
+constexpr std::string_view ImageNameMask = R"(Media\Image\%Y-%m-%d-%H-%M-%S.png)";
 
 enum ContentType : int8_t {
     Video,
@@ -14,22 +14,20 @@ enum ContentType : int8_t {
 };
 
 QString CreateFileName(ContentType contentType) {
-    auto path = std::filesystem::path();
-
-    std::wstring fileName(path.c_str());
-    size_t pathSize = fileName.size();
-    fileName += contentType == Video ? VideoNameTemplate : ImageNameTemplate;
+    std::string filename;
+    filename.reserve(ImageNameTemplate.size() * 2 );
+    filename.append(ImageNameTemplate);
 
     time_t now = time(nullptr);
 
     struct tm *timeStruct = localtime(&now);
 
-    wcsftime(fileName.data() + pathSize,
-             fileName.size(),
+    strftime(filename.data(),
+             ImageNameTemplate.size() * 2,
              contentType == Video ? VideoNameMask.begin() : ImageNameMask.begin(),
              timeStruct);
 
-    return QString::fromStdWString(fileName);
+    return {filename.c_str()};
 }
 
 ScreenShotter::ScreenShotter(): queue_(), thread_(&ScreenShotter::TakeScreenshot, this) {}
