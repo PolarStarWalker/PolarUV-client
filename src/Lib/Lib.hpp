@@ -9,6 +9,7 @@
 #include "./VideoStream/VideoStream.hpp"
 #include "./DataStructs/DataStructs.hpp"
 #include "./Drawer/Drawer.hpp"
+#include "./Screenshotter/Screenshotter.hpp"
 
 namespace lib {
     static void Setup() {

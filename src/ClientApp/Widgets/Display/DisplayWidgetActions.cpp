@@ -73,16 +73,15 @@ void DisplayWidget::paintGL() {
             .DrawImage(width() / 2 + 400, 0, currentFrame, width() / 2 + 400, 0, 60, 30)
             .End();
 
-    if (screenshotFlag_) {
-        static size_t counter = 0;
-        screenshotFlag_ = false;
-        currentFrame.save(QString("Media/Image/screen-%1.png").arg(++counter));
-        ///ToDo неблокирующая всплывашка
-        //QMessageBox::information(nullptr, "Скриншот", "Вы жёстко сохранили скриншот");
-    }
-
     drawer_.Begin(this)
             .DrawImage(0, 0, currentFrame)
             .End();
+
+    if (screenshotFlag_) {
+        screenshotFlag_ = false;
+        screenshotter_.AddToQueue(std::move(currentFrame));
+        ///ToDo неблокирующая всплывашка
+        //QMessageBox::information(nullptr, "Скриншот", "Вы жёстко сохранили скриншот");
+    }
 
 }

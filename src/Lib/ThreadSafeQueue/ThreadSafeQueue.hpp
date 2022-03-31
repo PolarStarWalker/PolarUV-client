@@ -9,7 +9,7 @@ template<typename ObjType>
 class Queue{
 public:
     void AddToQueue(ObjType &obj){
-        std::lock_guard guard(_queueMutex);
+        std::unique_lock lock(_queueMutex);
         _objQueue.push(&obj);
         _queueIsNotEmpty.notify_one();
     }

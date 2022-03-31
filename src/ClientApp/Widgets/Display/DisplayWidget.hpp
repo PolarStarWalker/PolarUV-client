@@ -11,6 +11,8 @@
 #include <Drawer/Drawer.hpp>
 
 #include "./VideoStream/VideoStream.hpp"
+#include "./Screenshotter/Screenshotter.hpp"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class DisplayWidget; }
@@ -55,6 +57,10 @@ private:
 
     QImage videoFrame_;
 
+    bool screenshotFlag_;
+
+    ScreenShotter screenshotter_;
+
 public slots:
 
     void ShowSideBarButton();
@@ -69,7 +75,7 @@ private slots:
 
     void SwitchVideoCapture();
 
-    void TakeScreenshot();
+    void SetScreenshotFlag();
 
     void HideSideBarButton();
 

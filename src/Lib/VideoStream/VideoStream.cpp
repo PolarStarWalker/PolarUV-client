@@ -12,36 +12,6 @@
 constexpr std::string_view destination = " ! udpsink host=                 port=8000";
 constexpr size_t DestinationIpPosition = destination.find('=') + 1;
 
-constexpr char ImageNameTemplate[] = R"(\Media\Image\YYYY-MM-DD:HH-MM-SS.jpg)";
-constexpr char VideoNameTemplate[] = R"(\Media\Video\YYYY-MM-DD:HH-MM-SS.mkv)";
-constexpr char VideoNameMask[] = R"(\Media\Video\%Y-%m-%d-%H-%M-%S.mkv)";
-constexpr char ImageNameMask[] = R"(\Media\Image\%Y-%m-%d-%H-%M-%S.jpg)";
-
-enum ContentType : int8_t {
-    Video,
-    Image
-};
-
-//std::string CreateFileName(ContentType contentType) {
-//char path[MAX_PATH]{};
-//GetCurrentDirectory(MAX_PATH, path);
-//    GetCurrentDirectory(MAX_PATH, path);
-//    std::string fileName(path);
-//    size_t pathSize = fileName.size();
-//    fileName += contentType == Video ? VideoNameTemplate : ImageNameTemplate;
-//
-//    time_t now = time(nullptr);
-//
-//    struct tm *timeStruct = localtime(&now);
-//
-//    strftime(fileName.data() + pathSize,
-//             fileName.size(),
-//             contentType == Video ? VideoNameMask : ImageNameMask,
-//             timeStruct);
-//
-//    return fileName;
-//}
-
 using namespace lib::processing;
 
 VideoStream::VideoStream() :
