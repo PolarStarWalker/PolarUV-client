@@ -1,6 +1,8 @@
 #include "Network.hpp"
 
+#include <array>
 #include <iostream>
+#include <zstd.h>
 
 using namespace lib::network;
 
@@ -19,11 +21,14 @@ Network::Network() :
 
 Response Network::SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId) {
     using TimePoint = std::chrono::steady_clock::time_point;
+
+    auto compressed = Compress(data);
+
     std::lock_guard guard(requestsMutex_);
 
     TimePoint requestBegin = std::chrono::steady_clock::now();
 
-    auto response = TransferData({data, type, endpointId});
+    auto response = TransferData({{compressed.data(), compressed.size()}, type, endpointId});
 
     TimePoint end = std::chrono::steady_clock::now();
     std::cout << "Request Time = "
@@ -118,4 +123,16 @@ Response Network::TransferData(const Request &request) {
         setErrorData(responseData, responseHeader, request.Header.EndpointId);
 
     return {std::move(responseData), responseHeader.Code, responseHeader.EndpointId};
+}
+
+std::vector<char> Network::Compress(const std::string_view& data){
+    auto maxCompressSize = ZSTD_compressBound(data.size());
+
+    std::vector<char>  compressed(maxCompressSize, 0);
+
+    auto compressSize = ZSTD_compress(&compressed[0], maxCompressSize, &data[0], data.size(), 0);
+
+    compressed.resize(compressSize);
+
+    return compressed;
 }

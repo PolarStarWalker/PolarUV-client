@@ -13,7 +13,7 @@ struct CommandsStruct {
         Mz = 5
     };
 
-    enum class HandEnum{
+    enum class HandEnum {
         Hand1,
         Hand2,
         Hand3,
@@ -36,6 +36,34 @@ struct CommandsStruct {
     std::array<float, 4> LowPWM{};
 
     StabilizationType Stabilization = None;
+
+    friend std::ostream &operator<<(std::ostream &out, const CommandsStruct &commands) {
+        out << "[COMMANDS STRUCT]\n"
+            << "Move: "
+            << commands.Move[MoveEnum::Fx] << ", "
+            << commands.Move[MoveEnum::Fy] << ", "
+            << commands.Move[MoveEnum::Fz] << ", "
+            << commands.Move[MoveEnum::Mx] << ", "
+            << commands.Move[MoveEnum::My] << ", "
+            << commands.Move[MoveEnum::Mz] << '\n'
+
+            << "Hand: "
+            << commands.Hand[HandEnum::Hand1] << ", "
+            << commands.Hand[HandEnum::Hand2] << ", "
+            << commands.Hand[HandEnum::Hand3] << ", "
+            << commands.Hand[HandEnum::Hand4] << ", "
+            << commands.Hand[HandEnum::Hand5] << ", "
+            << commands.Hand[HandEnum::Hand6] << '\n'
+
+            << "LowPWM: "
+            << commands.LowPWM[0] << ", "
+            << commands.LowPWM[1] << ", "
+            << commands.LowPWM[2] << ", "
+            << commands.LowPWM[3];
+
+        return out;
+    }
+
 };
 
 #endif

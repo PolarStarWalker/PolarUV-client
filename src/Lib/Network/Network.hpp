@@ -31,6 +31,8 @@ namespace lib::network {
 
         bool TryConnect(const std::string &ip);
 
+        static std::vector<char> Compress(const std::string_view&);
+
     private:
         Response TransferData(const Request &request);
 
