@@ -51,7 +51,7 @@ private:
 
     std::unique_ptr<QTimer> updateTimer_;
 
-    lib::Painter drawer_;
+    lib::Painter painter_;
 
     QImage placeholderImage_;
 

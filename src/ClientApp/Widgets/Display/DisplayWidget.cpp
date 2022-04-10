@@ -9,7 +9,7 @@ DisplayWidget::DisplayWidget(QMainWindow *mainWindow, WidgetResources &resources
         ui(new Ui::DisplayWidget),
         resources_(resources),
         stream_(),
-        drawer_(),
+        painter_(),
         screenshotFlag_(false){
 
     ui->setupUi(this);

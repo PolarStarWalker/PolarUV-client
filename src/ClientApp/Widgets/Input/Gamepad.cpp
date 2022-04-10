@@ -4,7 +4,7 @@
 using namespace control;
 
 constexpr float CameraSpeed = 0.005;
-constexpr float LightSpeed = 0.0005;
+constexpr float LightSpeed = 0.01;
 
 inline XINPUT_STATE GetGamepadState(int id) {
     XINPUT_STATE state{};
@@ -152,7 +152,7 @@ CommandsStruct Gamepad::GetCommands(const GamepadSettingsStruct &settings) const
     }
 
     //Фара
-    commands.LowPWM[0] = 20000 * lightPosition_;
+    commands.LowPWM[0] = 400 * lightPosition_ + 1100;
     //std::cout << 20000 * lightPosition_ << std::endl;
     //commands.LowPWM[1] = 0;
     //рука

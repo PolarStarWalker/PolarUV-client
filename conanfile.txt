@@ -1,9 +1,10 @@
 [requires]
     protobuf/3.19.2 #for data transfer
-    lz4/1.9.3 #maybe for compression in future
     boost/1.77.0 #for asio and more stuff
-    xsimd/8.0.3 #for crossplatform simd instructions
-    easy_profiler/2.1.0
+    zstd/1.5.2
+#    lz4/1.9.3 #maybe for compression in future
+#    xsimd/8.0.3 #for crossplatform simd instructions
+#    easy_profiler/2.1.0
 #    cpython/3.10.0 #for python for programming
 #    qt/6.2.3
 #    qt/5.15.2
