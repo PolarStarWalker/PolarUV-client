@@ -1,14 +1,10 @@
 [requires]
     protobuf/3.19.2 #for data transfer
     boost/1.77.0 #for asio and more stuff
-    zstd/1.5.2
-#    lz4/1.9.3 #maybe for compression in future
-#    xsimd/8.0.3 #for crossplatform simd instructions
-#    easy_profiler/2.1.0
-#    cpython/3.10.0 #for python for programming
-#    qt/6.2.3
-#    qt/5.15.2
-#    opencv/4.5.0@starwalker/stable
+    zstd/1.5.2 # for compressing
+    gstreamer/1.19.1 #for video-streaming
+    gst-plugins-base/1.19.1
+    glib/2.70.1
 
 [options]
     boost:shared = False
@@ -17,12 +13,8 @@
     boost:filesystem_no_deprecated = True
     boost:extra_b2_flags = "-defines=BOOST_DISABLE_THREADS"
 
-    qt:shared = False
-    qt:with_sqlite3 = False
-    qt:with_pq = False
-    qt:openssl = False
-
-    opencv:shared = False
+    gstreamer:shared=False
+    gst-plugins-base:shared=False
 
 [generators]
     cmake
