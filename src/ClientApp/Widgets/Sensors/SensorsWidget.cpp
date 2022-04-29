@@ -6,7 +6,7 @@
 SensorsWidget::SensorsWidget(QObject *parent, WidgetResources &resources) :
         QObject(parent),
         resources_(resources),
-        timer_(){
+        timer_() {
 
     connect(&timer_, SIGNAL(timeout()), this, SLOT(ReceiveTelemetry()));
 }
@@ -33,5 +33,9 @@ void SensorsWidget::ReceiveTelemetry() {
     if (sensors) {
         sensors_ = *sensors;
         resources_.Sensors = *sensors;
+        return;
     }
+
+    sensors_ = SensorsStruct{};
+    resources_.Sensors = SensorsStruct{};
 }

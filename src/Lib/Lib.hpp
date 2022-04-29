@@ -10,10 +10,13 @@
 #include "./DataStructs/DataStructs.hpp"
 #include "./Drawer/Drawer.hpp"
 #include "./Screenshotter/Screenshotter.hpp"
+#include <gst/gst.h>
 
 namespace lib {
     static void Setup() {
+        SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
         logger::Setup();
+        gst_init(nullptr, nullptr);
     }
 }
 

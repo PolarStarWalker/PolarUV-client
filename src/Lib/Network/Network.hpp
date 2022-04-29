@@ -23,7 +23,7 @@ namespace lib::network {
 #ifdef DEBUG
          std::chrono::milliseconds(200);
 #else
-        std::chrono::milliseconds(20);
+        std::chrono::milliseconds(200);
 #endif
         static constexpr size_t PORT = 2022;
 

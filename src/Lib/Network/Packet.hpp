@@ -43,7 +43,7 @@ namespace lib::network {
 
         template<typename Type>
         Type *DataAs() {
-            if (sizeof(Type) != Data.size())
+            if (sizeof(Type) != Data.size() && Header.Code == Ok)
                 return nullptr;
 
             return reinterpret_cast<Type*>(&Data[0]);
@@ -74,6 +74,31 @@ namespace lib::network {
 
         const std::string_view Data;
         const HeaderType Header;
+
+        inline friend std::ostream &operator<<(std::ostream &out, const HeaderType &header) {
+
+            out << "[REQUEST HEADER]\n"
+                << "Endpoint: " << header.EndpointId << ", Type: ";
+
+            switch (header.Type) {
+
+                case TypeEnum::R:
+                    out << 'R';
+                    break;
+                case TypeEnum::W:
+                    out << 'W';
+                    break;
+                case TypeEnum::WR:
+                    out << "RW";
+                    break;
+                default:
+                    out << "UNDEFINED";
+            }
+
+            out << ", Data length: " << header.Length;
+
+            return out;
+        }
     };
 }
 #endif

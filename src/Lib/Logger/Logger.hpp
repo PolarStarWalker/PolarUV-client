@@ -4,6 +4,7 @@
 #include <iostream>
 #include <ostream>
 #include <fstream>
+#include <sstream>
 
 namespace lib::logger {
 
@@ -19,7 +20,12 @@ namespace lib::logger {
     static LogLevelEnum LogLevel = LogLevelEnum::Error;
 
     struct Critical{
+        Critical();
         Critical& operator<<(std::string_view);
+        ~Critical();
+    private:
+        LogLevelEnum logLevel_ = LogLevel;
+        std::stringstream buf;
     };
 
     struct Error{
@@ -34,13 +40,8 @@ namespace lib::logger {
         Info& operator<<(std::string_view);
     };
 
-    static class Critical critical;
-    static class Error error;
-    static class Warning warning;
-    static class Info info;
-
     static void Setup() {
-#if DEBUG
+#if 1
         std::clog.rdbuf(std::cout.rdbuf());
 #else
         static std::fstream output("log.txt", std::ios_base::out | std::ios_base::trunc);

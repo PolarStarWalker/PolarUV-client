@@ -6,7 +6,6 @@
 
 using namespace lib::network;
 
-using Socket = boost::asio::ip::tcp::socket;
 using ErrorCode = boost::system::error_code;
 using ConstBuffer = boost::asio::const_buffer;
 using MutableBuffer = boost::asio::mutable_buffer;
@@ -24,16 +23,21 @@ Response Network::SendRequest(std::string_view data, Request::TypeEnum type, ssi
 
     auto compressed = Compress(data);
 
-    std::lock_guard guard(requestsMutex_);
+    std::unique_lock lock(requestsMutex_);
 
     TimePoint requestBegin = std::chrono::steady_clock::now();
 
-    auto response = TransferData({{compressed.data(), compressed.size()}, type, endpointId});
+    auto request = Request({compressed.data(), compressed.size()}, type, endpointId);
+
+    auto response = TransferData(request);
+
+    lock.unlock();
 
     TimePoint end = std::chrono::steady_clock::now();
-    std::cout << "Request Time = "
-              << std::chrono::duration_cast<std::chrono::microseconds>(end - requestBegin).count()
-              << "[us]" << std::endl;
+    std::cout << request.Header
+              << "\nRequest Time = "
+              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
+              << "[ns]" << std::endl;
 
     return response;
 }
@@ -45,7 +49,7 @@ bool Network::TryConnect(const std::string &ip) {
 
     endpoint_type endpoint(boost::asio::ip::make_address(ip), PORT);
 
-    socket_.async_connect(endpoint, [&](const ErrorCode &errorCode) { });
+    socket_.async_connect(endpoint, [&](const ErrorCode &errorCode) {});
 
     if (!RunFor(CONNECTION_TIMEOUT))
         return false;
@@ -125,10 +129,10 @@ Response Network::TransferData(const Request &request) {
     return {std::move(responseData), responseHeader.Code, responseHeader.EndpointId};
 }
 
-std::vector<char> Network::Compress(const std::string_view& data){
+std::vector<char> Network::Compress(const std::string_view &data) {
     auto maxCompressSize = ZSTD_compressBound(data.size());
 
-    std::vector<char>  compressed(maxCompressSize, 0);
+    std::vector<char> compressed(maxCompressSize, 0);
 
     auto compressSize = ZSTD_compress(&compressed[0], maxCompressSize, &data[0], data.size(), 0);
 

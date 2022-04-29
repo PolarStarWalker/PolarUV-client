@@ -19,7 +19,8 @@ VideoStream::VideoStream() :
         qImage_(),
         isListen_(false),
         isOnline_(false),
-        isDone_(false){
+        isDone_(false),
+        pipeline_(){
     thread_ = std::thread(&VideoStream::StartClient, this);
 }
 
