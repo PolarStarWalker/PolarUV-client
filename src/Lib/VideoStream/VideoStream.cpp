@@ -1,9 +1,6 @@
-#include <opencv2/core/core.hpp>
-#include <opencv2/videoio/videoio.hpp>
-#include <opencv2/highgui/highgui.hpp>
-
 #include "VideoStream.hpp"
 #include <fstream>
+#include <iostream>
 #include <VideoStreamMessage.pb.h>
 
 //#include <boost/filesystem.hpp>
@@ -15,68 +12,26 @@ constexpr size_t DestinationIpPosition = destination.find('=') + 1;
 using namespace lib::processing;
 
 VideoStream::VideoStream() :
-        capture_(),
-        qImage_(),
-        isListen_(false),
-        isOnline_(false),
-        isDone_(false),
-        pipeline_(){
+        isOnline_(true),
+        isDone_(false) {
     thread_ = std::thread(&VideoStream::StartClient, this);
 }
 
 void VideoStream::StartClient() {
-    while (!isDone_.load()) {
 
-        std::string pipeline;
+    if (!gstreamer_)
+        std::terminate();
 
-        {
-            std::fstream file("./Pipelines/client.txt", std::ios::in);
-            std::getline(file, pipeline);
-        }
+    gstreamer_.Setup();
 
-        isListen_.store(true);
-        capture_.open(pipeline, cv::CAP_GSTREAMER);
-        isListen_.store(false);
-        isOnline_.store(true);
+    while (!isDone_) {
+        gstreamer_.Start();
 
-        cv::Mat inFrame;
-
-        while (isOnline_.load()) {
-            capture_ >> inFrame;
-
-            if (inFrame.empty())
-                isOnline_.store(false);
-
-            SetQImage(inFrame);
-            cv::waitKey(10);
-        }
-
-        isOnline_.store(false);
     }
-}
-
-inline void VideoStream::SetQImage(const cv::Mat &frame) {
-    QImage image;
-
-    switch (frame.type()) {
-        case CV_8UC3: {
-            image = QImage(frame.data, frame.cols, frame.rows, static_cast<int>(frame.step), QImage::Format_RGB888);
-            break;
-        }
-        case CV_8UC4: {
-            image = QImage(frame.data, frame.cols, frame.rows, static_cast<int>(frame.step), QImage::Format_ARGB32);
-            break;
-        }
-    }
-
-    image = image.rgbSwapped();
-
-    std::unique_lock lock(qImageMutex_);
-    qImage_ = std::move(image);
 }
 
 void VideoStream::RestartClient() {
-    capture_.release();
+    gstreamer_.Stop();
 }
 
 std::string VideoStream::GetStartMessage(const std::string &clientIp) {
@@ -107,8 +62,8 @@ std::string VideoStream::GetStopMessage() {
 }
 
 VideoStream::~VideoStream() {
-    //ToDo: фикс закрытия
     isDone_.store(true);
-    capture_.release();
+    gstreamer_.Stop();
     thread_.detach();
 }
+

@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 
-#cet C++20
+#set C++20
 set(CMAKE_CXX_STANDARD 20)
 #link C/C++ libraries statically
-set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
-set(CMAKE_CXX_FLAGS "-fcoroutines -flto -march=x86-64-v2")
+set(CMAKE_EXE_LINKER_FLAGS)
+set(CMAKE_CXX_FLAGS "-fcoroutines -flto -static -march=x86-64-v2")
 
 set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CMAKE_COMMAND} -E time")
@@ -22,19 +22,10 @@ endif (WIN32)
 
 project(Client)
 
-#путь до gst-launch-1.0.exe
-set(GSTREAMER_DIR "D:/lib/gstreamer/1.0/msvc_x86_64/bin")
-link_directories(GSTREAMER_DIR)
-
 # Подключение библиотек python
 find_package(Python3 COMPONENTS Interpreter Development)
 include_directories(${Python_INCLUDE_DIRS})
 include_directories(${Python3_INCLUDE_DIRS})
-
-#чтобы сработало библиотека должна быть в PATH
-set(OpenCV_STATIC ON)
-find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
 
 #Путь до Qt
 set(QT_CMAKE_PREFIX_PATH "C:/Qt/5.15.2/mingw81_64/lib/cmake")
