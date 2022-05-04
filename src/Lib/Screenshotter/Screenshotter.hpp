@@ -1,9 +1,7 @@
 #ifndef CLIENT_SCREENSHOTTER_HPP
 #define CLIENT_SCREENSHOTTER_HPP
 
-
 #include <thread>
-
 
 #include "ScreenShotterQueue.hpp"
 

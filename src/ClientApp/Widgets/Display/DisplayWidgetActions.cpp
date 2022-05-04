@@ -2,7 +2,6 @@
 #include "ui_DisplayWidget.h"
 
 #include <QPainter>
-#include <QMessageBox>
 #include <iostream>
 
 void DisplayWidget::SwitchVideoStream() {
@@ -10,7 +9,6 @@ void DisplayWidget::SwitchVideoStream() {
 
     if (stream_.IsOnline()) {
         message = lib::processing::VideoStream::GetStopMessage();
-        stream_.RestartClient();
     } else {
         message = lib::processing::VideoStream::GetStartMessage(resources_.ClientIp);
     }
@@ -45,7 +43,8 @@ void DisplayWidget::paintGL() {
         auto videoFrame = stream_.GetQImage();
 
         if (!videoFrame.isNull()) {
-            videoFrame_ = std::move(videoFrame).mirrored(true, true);
+            //videoFrame_ = std::move(videoFrame).mirrored(true, true);
+            videoFrame_ = std::move(videoFrame);
         }
 
         currentFrame = videoFrame_.scaled(this->width(), this->height());

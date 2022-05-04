@@ -1,6 +1,8 @@
 #include "Screenshotter.hpp"
 #include <QString>
 #include <ctime>
+#include <string>
+#include <string_view>
 
 constexpr std::string_view ImageNameTemplate = R"(Media\Image\YYYY-MM-DD:HH-MM-SS.png)";
 constexpr std::string_view ImageNameMask = R"(Media\Image\%Y-%m-%d-%H-%M-%S.png)";

@@ -13,10 +13,9 @@
 #include <gst/gst.h>
 
 namespace lib {
-    static void Setup() {
-        SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS);
-        logger::Setup();
-        gst_init(nullptr, nullptr);
+
+    extern "C" {
+    void Setup();
     }
 }
 
