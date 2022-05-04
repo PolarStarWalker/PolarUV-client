@@ -12,7 +12,7 @@ constexpr size_t DestinationIpPosition = destination.find('=') + 1;
 using namespace lib::processing;
 
 VideoStream::VideoStream() :
-        isOnline_(true),
+        isOnline_(false),
         isDone_(false) {
     thread_ = std::thread(&VideoStream::StartClient, this);
 }
@@ -25,13 +25,22 @@ void VideoStream::StartClient() {
     gstreamer_.Setup();
 
     while (!isDone_) {
-        gstreamer_.Start();
 
+        auto foo = gstreamer_.SetStatePlaying();
+
+        for(;;){
+
+            auto newFrame = gstreamer_.GetFrame();
+            if(newFrame.isNull())
+                break;
+
+            isOnline_.store(true);
+
+            SetImage(std::move(newFrame));
+        }
+
+        isOnline_.store(false);
     }
-}
-
-void VideoStream::RestartClient() {
-    gstreamer_.Stop();
 }
 
 std::string VideoStream::GetStartMessage(const std::string &clientIp) {
@@ -63,7 +72,11 @@ std::string VideoStream::GetStopMessage() {
 
 VideoStream::~VideoStream() {
     isDone_.store(true);
-    gstreamer_.Stop();
     thread_.detach();
+}
+
+void VideoStream::SetImage(QImage&& img) {
+    std::lock_guard lock(qImageMutex_);
+    frame = img;
 }
 

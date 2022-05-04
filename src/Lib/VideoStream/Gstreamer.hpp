@@ -32,23 +32,11 @@ public:
 
     void Setup();
 
-    void Start();
-
     operator bool();
 
-    void Stop();
+    QImage GetFrame();
 
-    inline QImage GetQImage() {
-        std::unique_lock lock(qImageMutex_);
-        return std::move(frame);
-    }
-
-private:
-    static GstFlowReturn NewSampleCallback(GstElement *sink, Gstreamer *stream);
-
-    static gboolean BusCallback(GstBus *bus, GstMessage *message, Gstreamer *user_data);
-
-    static GstFlowReturn EosCallback(GstElement * appsink, Gstreamer *data);
+    bool SetStatePlaying();
 };
 
 extern "C" {
