@@ -9,7 +9,6 @@ void DisplayWidget::SwitchVideoStream() {
 
     if (stream_.IsOnline()) {
         message = lib::processing::VideoStream::GetStopMessage();
-        stream_.RestartClient();
     } else {
         message = lib::processing::VideoStream::GetStartMessage(resources_.ClientIp);
     }

@@ -14,14 +14,13 @@ namespace lib::processing {
 
         ~VideoStream();
 
-        void RestartClient();
-
         static std::string GetStartMessage(const std::string &clientIp);
 
         static std::string GetStopMessage();
 
         QImage GetQImage() {
-            return gstreamer_.GetQImage();
+            std::lock_guard lock(qImageMutex_);
+            return std::move(frame);
         }
 
         bool IsOnline() {
@@ -32,12 +31,16 @@ namespace lib::processing {
         void StartClient();
 
         std::thread thread_;
-        std::mutex qImageMutex_;
 
         std::atomic<bool> isOnline_;
         std::atomic<bool> isDone_;
 
+        std::mutex qImageMutex_;
+        QImage frame;
+
         Gstreamer gstreamer_;
+
+        void SetImage(QImage&& img);
     };
 
 }
