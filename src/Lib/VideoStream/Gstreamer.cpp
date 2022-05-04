@@ -64,13 +64,6 @@ QImage Gstreamer::GetFrame() {
 
         gst_buffer_unmap(buffer, &buffInfo);
         gst_sample_unref(sample);
-
-        auto now = std::chrono::steady_clock::now();
-        std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(now - time).count()
-                  << "[ms]" << std::endl;
-        time = now;
-    } else {
-        std::cout << "loh" << std::endl;
     }
 
     return img;
