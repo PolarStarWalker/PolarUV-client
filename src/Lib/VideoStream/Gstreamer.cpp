@@ -113,4 +113,4 @@ extern "C" void InitGstreamer() {
 
     GST_PLUGIN_STATIC_DECLARE(videoconvert);
     GST_PLUGIN_STATIC_REGISTER(videoconvert);
-};
+}

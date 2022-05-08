@@ -6,9 +6,6 @@
 //#include <boost/filesystem.hpp>
 //#include <processenv.h>
 
-constexpr std::string_view destination = " ! udpsink host=                 port=8000";
-constexpr size_t DestinationIpPosition = destination.find('=') + 1;
-
 using namespace lib::processing;
 
 VideoStream::VideoStream() :
@@ -44,28 +41,19 @@ void VideoStream::StartClient() {
 }
 
 std::string VideoStream::GetStartMessage(const std::string &clientIp) {
+    VideoSettings settings;
+    settings.set_ip(clientIp);
 
-    std::string pipeline;
-    {
-        std::fstream file("./Pipelines/robot.txt", std::ios_base::in);
-        std::getline(file, pipeline);
-    }
-
-    pipeline.append(destination);
-
-    std::memcpy(pipeline.end().base() - destination.size() + DestinationIpPosition, clientIp.c_str(), clientIp.size());
-
-    VideoStreamMessage message;
-    message.set_action(VideoStreamMessage::START);
-    message.set_pipeline(pipeline);
+    VideoMessage message;
+    message.set_action(VideoMessage::START);
+    message.set_allocated_video_settings(&settings);
 
     return message.SerializeAsString();
 }
 
 std::string VideoStream::GetStopMessage() {
-    VideoStreamMessage message;
-    message.set_action(VideoStreamMessage::STOP);
-    message.set_pipeline("");
+    VideoMessage message;
+    message.set_action(VideoMessage::STOP);
 
     return message.SerializeAsString();
 }
