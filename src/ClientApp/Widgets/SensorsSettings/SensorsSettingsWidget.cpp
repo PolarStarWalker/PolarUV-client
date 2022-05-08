@@ -4,8 +4,8 @@
 
 SensorsSettingsWidget::SensorsSettingsWidget(QWidget *parent, WidgetResources &resources) :
         QWidget(parent),
-        resources_(resources),
-        ui(new Ui::SensorsSettingsWidget) {
+        ui(new Ui::SensorsSettingsWidget),
+        resources_(resources){
 
     ui->setupUi(this);
 

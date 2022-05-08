@@ -11,8 +11,7 @@ Gstreamer::Gstreamer() :
         decode(gst_element_factory_make("d3d11h264dec", "decode")),
         videoconvert(gst_element_factory_make("videoconvert", "videoconvert")),
         sink(gst_element_factory_make("appsink", "sink")),
-        group(gst_pipeline_new("group")),
-        loop(nullptr) {}
+        group(gst_pipeline_new("group")){}
 
 Gstreamer::~Gstreamer() {
     gst_element_set_state(group, GST_STATE_NULL);

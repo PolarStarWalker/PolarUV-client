@@ -94,7 +94,7 @@ void DisplayWidget::PaintYawIndicator(QPainter &painter, int width, int height, 
     }
 
     /// Translating back to the center
-    for (size_t i = 0; i < translationNumber - 1; i++) {
+    for (int i = 0; i < translationNumber - 1; i++) {
         painter.translate(valueRectWidth + distance, 0);
         currentX += valueRectWidth + distance;
     }

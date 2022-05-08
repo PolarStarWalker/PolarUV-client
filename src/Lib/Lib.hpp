@@ -10,13 +10,9 @@
 #include "./DataStructs/DataStructs.hpp"
 #include "./Drawer/Drawer.hpp"
 #include "./Screenshotter/Screenshotter.hpp"
-#include <gst/gst.h>
 
 namespace lib {
-
-    extern "C" {
     void Setup();
-    }
 }
 
 #endif

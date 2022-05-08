@@ -12,6 +12,8 @@
 #include "ThreadSafeQueue/ThreadSafeQueue.hpp"
 #include "Packet.hpp"
 
+#include <iostream>
+
 namespace lib::network {
 
     class Network {
@@ -69,6 +71,18 @@ namespace lib::network {
             return SendRequest(std::string_view(data), type, endpointId);
         }
 
+    private:
+        template<Request::TypeEnum Type>
+        requires (Type == Request::TypeEnum::W)
+        Response NewSendRequest(ssize_t endpointId, const std::string_view &data);
+
+        template<Request::TypeEnum Type>
+        requires (Type == Request::TypeEnum::WR)
+        Response NewSendRequest(ssize_t endpointId, const std::string_view &data);
+
+        template<Request::TypeEnum Type>
+        requires (Type == Request::TypeEnum::R)
+        Response NewSendRequest(ssize_t endpointId);
 
     public:
 
@@ -80,6 +94,55 @@ namespace lib::network {
 
     };
 
+    template<Request::TypeEnum Type>
+    requires (Type == Request::TypeEnum::W)
+    Response Network::NewSendRequest(ssize_t endpointId, const std::string_view &data) {
+        using TimePoint = std::chrono::steady_clock::time_point;
+
+        auto compressed = Compress(data);
+
+        std::unique_lock lock(requestsMutex_);
+
+        TimePoint requestBegin = std::chrono::steady_clock::now();
+
+        auto request = Request({compressed.data(), compressed.size()}, Request::TypeEnum::W, endpointId);
+
+        auto response = TransferData(request);
+
+        lock.unlock();
+
+        TimePoint end = std::chrono::steady_clock::now();
+        std::cout << request.Header
+                  << "\nRequest Time = "
+                  << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
+                  << "[ns]" << std::endl;
+
+        return response;
+    }
+
+    template<Request::TypeEnum Type>
+    requires (Type == Request::TypeEnum::R)
+    Response Network::NewSendRequest(ssize_t endpointId) {
+        using TimePoint = std::chrono::steady_clock::time_point;
+
+        std::unique_lock lock(requestsMutex_);
+
+        TimePoint requestBegin = std::chrono::steady_clock::now();
+
+        auto request = Request("", Request::TypeEnum::W, endpointId);
+
+        auto response = TransferData(request);
+
+        lock.unlock();
+
+        TimePoint end = std::chrono::steady_clock::now();
+        std::cout << request.Header
+                  << "\n[REQUEST TIME]\n"
+                  << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
+                  << "[ns]" << std::endl;
+
+        return response;
+    }
 
 
     template<lib::network::Request::TypeEnum RequestCode>

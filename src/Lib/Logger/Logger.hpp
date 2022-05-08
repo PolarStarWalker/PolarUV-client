@@ -29,7 +29,7 @@ namespace lib::logger {
     };
 
     struct Error{
-        class Error& operator<<(std::string_view);
+        struct Error& operator<<(std::string_view);
     };
 
     struct Warning {
@@ -40,15 +40,8 @@ namespace lib::logger {
         Info& operator<<(std::string_view);
     };
 
-    static void Setup() {
-#if 1
-        std::clog.rdbuf(std::cout.rdbuf());
-#else
-        static std::fstream output("log.txt", std::ios_base::out | std::ios_base::trunc);
-        std::clog.rdbuf(output.rdbuf());
-#endif
-    }
+    void Setup();
 
-};
+}
 
 #endif

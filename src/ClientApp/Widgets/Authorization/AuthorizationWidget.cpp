@@ -11,8 +11,8 @@
 AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
         QWidget(parent),
         ui(new Ui::AuthorizationWidget),
-        settings_("NARFU", "PolarROVClient"),
         ioContext_(),
+        settings_("NARFU", "PolarROVClient"),
         resources_() {
 
     ui->setupUi(this);

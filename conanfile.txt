@@ -16,6 +16,9 @@
     freetype/2.11.1
     harfbuzz/4.2.1
 
+#    opencv/4.5.5
+#    ffmpeg/5.0
+
 [options]
     boost:shared = False
     boost:asio_no_deprecated = True

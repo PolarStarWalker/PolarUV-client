@@ -31,6 +31,7 @@ private:
 
     void paintGL() override;
 
+    [[maybe_unused]]
     void resizeGL(int w, int h) override;
 
     static void PaintYawIndicator(QPainter &painter, int width, int height, float yawAngle);
@@ -43,11 +44,11 @@ private:
 
 private:
 
-    lib::processing::VideoStream stream_;
+    Ui::DisplayWidget *ui;
 
     WidgetResources &resources_;
 
-    Ui::DisplayWidget *ui;
+    lib::processing::VideoStream stream_;
 
     std::unique_ptr<QTimer> updateTimer_;
 

@@ -103,7 +103,7 @@ float GetAnalogValueByAxis(const XINPUT_STATE &state, GamepadSettingsStruct::Ana
 CommandsStruct Gamepad::GetCommands(const GamepadSettingsStruct &settings) const {
 
     using AnalogActionEnum = GamepadSettingsStruct::AnalogActionEnum;
-    using DiscreteActionsEnum = GamepadSettingsStruct::DiscreteActionEnum;
+    //using DiscreteActionsEnum = GamepadSettingsStruct::DiscreteActionEnum;
     using MoveEnum = CommandsStruct::MoveEnum;
     using HandEnum = CommandsStruct::HandEnum;
 

@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16)
 set(CMAKE_CXX_STANDARD 20)
 #link C/C++ libraries statically
 set(CMAKE_EXE_LINKER_FLAGS)
-set(CMAKE_CXX_FLAGS "-fcoroutines -flto -static -march=x86-64-v2")
+set(CMAKE_CXX_FLAGS "-fcoroutines -flto -static -march=x86-64-v2 -Wall -Wextra")
 
 set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
 set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK "${CMAKE_COMMAND} -E time")
@@ -13,7 +13,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Debug")
     add_definitions(-DDEBUG)
     set(CMAKE_CXX_FLAGS_DEBUG "-g")
 else ()
-    set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+    set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 endif ()
 
 if (WIN32)

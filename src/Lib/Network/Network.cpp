@@ -86,13 +86,13 @@ Response Network::TransferData(const Request &request) {
     };
 
     auto readDataCallback = [&](const ErrorCode &errorCode, size_t bytes) {
-        if (errorCode.failed())
+        if (errorCode.failed() || bytes != responseHeader.Length)
             setErrorData(responseData, responseHeader, request.Header.EndpointId);
     };
 
     auto readHeaderCallback = [&](const ErrorCode &errorCode, size_t bytes) {
 
-        if (errorCode.failed()) {
+        if (errorCode.failed() || bytes != sizeof(Response::HeaderType)) {
             setErrorData(responseData, responseHeader, request.Header.EndpointId);
             return;
         }
@@ -106,7 +106,7 @@ Response Network::TransferData(const Request &request) {
     };
 
     auto requestCallback = [&](const ErrorCode &errorCode, size_t bytes) {
-        if (errorCode.failed()) {
+        if (errorCode.failed() || bytes != sizeof(Request::HeaderType) + request.Header.Length) {
             setErrorData(responseData, responseHeader, request.Header.EndpointId);
             return;
         }
@@ -140,3 +140,5 @@ std::vector<char> Network::Compress(const std::string_view &data) {
 
     return compressed;
 }
+
+
