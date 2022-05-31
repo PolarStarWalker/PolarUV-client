@@ -11,7 +11,8 @@ Gstreamer::Gstreamer() :
         decode(gst_element_factory_make("d3d11h264dec", "decode")),
         videoconvert(gst_element_factory_make("videoconvert", "videoconvert")),
         sink(gst_element_factory_make("appsink", "sink")),
-        group(gst_pipeline_new("group")){}
+        group(gst_pipeline_new("group")),
+        qImageMutex_(){}
 
 Gstreamer::~Gstreamer() {
     gst_element_set_state(group, GST_STATE_NULL);
@@ -47,7 +48,7 @@ QImage Gstreamer::GetFrame() {
     QImage img;
 
     auto ms = [](uint64_t ms) constexpr { return ms * 1000 * 1000; };
-    auto sample = gst_app_sink_try_pull_sample (GST_APP_SINK(sink), ms(100));
+        auto sample = gst_app_sink_try_pull_sample (GST_APP_SINK(sink), ms(500));
 
     if (sample) {
         GstMapInfo buffInfo;

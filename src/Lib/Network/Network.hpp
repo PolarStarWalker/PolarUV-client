@@ -23,9 +23,9 @@ namespace lib::network {
 
         static constexpr auto TRANSFER_TIMEOUT =
 #ifdef DEBUG
-         std::chrono::milliseconds(200);
+         std::chrono::milliseconds(2000);
 #else
-        std::chrono::milliseconds(200);
+        std::chrono::milliseconds(2000);
 #endif
         static constexpr size_t PORT = 2022;
 
@@ -34,6 +34,8 @@ namespace lib::network {
         bool TryConnect(const std::string &ip);
 
         static std::vector<char> Compress(const std::string_view&);
+
+        static std::vector<char> Decompress(const std::string&);
 
     private:
         Response TransferData(const Request &request);
@@ -71,7 +73,7 @@ namespace lib::network {
             return SendRequest(std::string_view(data), type, endpointId);
         }
 
-    private:
+    public:
         template<Request::TypeEnum Type>
         requires (Type == Request::TypeEnum::W)
         Response NewSendRequest(ssize_t endpointId, const std::string_view &data);
@@ -83,15 +85,6 @@ namespace lib::network {
         template<Request::TypeEnum Type>
         requires (Type == Request::TypeEnum::R)
         Response NewSendRequest(ssize_t endpointId);
-
-    public:
-
-        template <lib::network::Request::TypeEnum RequestCode>
-        requires (RequestCode == Request::TypeEnum::W)
-        void CheckStatusCode(){
-
-        }
-
     };
 
     template<Request::TypeEnum Type>
@@ -143,7 +136,6 @@ namespace lib::network {
 
         return response;
     }
-
 
     template<lib::network::Request::TypeEnum RequestCode>
     requires (RequestCode == Request::TypeEnum::W)

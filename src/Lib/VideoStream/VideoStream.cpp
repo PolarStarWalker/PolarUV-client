@@ -25,10 +25,10 @@ void VideoStream::StartClient() {
 
         gstreamer_.SetStatePlaying();
 
-        for(;;){
+        for (;;) {
 
             auto newFrame = gstreamer_.GetFrame();
-            if(newFrame.isNull())
+            if (newFrame.isNull())
                 break;
 
             isOnline_.store(true);
@@ -41,12 +41,19 @@ void VideoStream::StartClient() {
 }
 
 std::string VideoStream::GetStartMessage(const std::string &clientIp) {
-    VideoSettings settings;
-    settings.set_ip(clientIp);
-
     VideoMessage message;
     message.set_action(VideoMessage::START);
-    message.set_allocated_video_settings(&settings);
+
+    auto &settings = *message.mutable_video_settings();
+
+    settings.set_ip(std::string(clientIp));
+    settings.set_device_name(std::string("/dev/video2"));
+    settings.set_device_id(2);
+    settings.set_framerate_numerator(0);
+    settings.set_framerate_denumerator(0);
+    settings.set_brightness(0);
+    settings.set_contrast(0);
+
 
     return message.SerializeAsString();
 }
@@ -63,7 +70,7 @@ VideoStream::~VideoStream() {
     thread_.detach();
 }
 
-void VideoStream::SetImage(QImage&& img) {
+void VideoStream::SetImage(QImage &&img) {
     std::lock_guard lock(qImageMutex_);
     frame = img;
 }

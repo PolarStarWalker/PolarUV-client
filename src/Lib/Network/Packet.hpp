@@ -1,7 +1,6 @@
 #ifndef CLIENT_PACKET_HPP
 #define CLIENT_PACKET_HPP
 
-#include <future>
 #include <string>
 
 namespace lib::network {
