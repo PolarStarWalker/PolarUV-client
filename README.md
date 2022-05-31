@@ -3,8 +3,8 @@ This software is the part of PolarUV-project, and runs on the pilot's computer
 
 # Dependencied
 - Qt >= 5.15.2
-- gcc >= 11.3.0
-- conan >= 1.47
+- gcc >= 12.1.0
+- conan >= 1.48
 - Windows
 
 # Pre-Built binaries
