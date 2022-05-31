@@ -20,7 +20,7 @@ This is profile for the pre-build binaries
     arch=x86_64
     arch_build=x86_64
     compiler=gcc
-    compiler.cppstd=17
+    compiler.cppstd=20
     compiler.version=11.3
     compiler.threads=win32
     compiler.libcxx=libstdc++11
