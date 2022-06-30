@@ -1,9 +1,8 @@
 [requires]
-    protobuf/3.19.2 #for messages
+    protobuf/3.21.1 #for messages
 
-    boost/1.77.0 #for asio and more stuff
+    boost/1.79.0 #for asio and more stuff
     zlib/1.2.12
-
     zstd/1.5.2 # for compressing
 
     gstreamer/1.19.2 #for video-streaming
@@ -18,6 +17,8 @@
 
 #    opencv/4.5.5
 #    ffmpeg/5.0
+#
+#    tensorflow-lite/2.6.0
 
 [options]
     boost:shared = False

@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
 
-#set C++20
-set(CMAKE_CXX_STANDARD 20)
+#set C++23
+set(CMAKE_CXX_STANDARD 23)
 #link C/C++ libraries statically
 set(CMAKE_EXE_LINKER_FLAGS)
-set(CMAKE_CXX_FLAGS "-fcoroutines -march=x86-64-v2 -Wall -Wextra")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og")
+set(CMAKE_CXX_FLAGS "-fcoroutines -march=x86-64-v2")
+set(CMAKE_CXX_FLAGS_DEBUG "-Og -Wall -Wextra")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -static")
 
 set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
