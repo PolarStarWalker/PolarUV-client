@@ -3,8 +3,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent),
-        isDebug_(false),
-        ui(new Ui::MainWindow) {
+        ui(new Ui::MainWindow),
+        isDebug_(false){
 
     ui->setupUi(this);
 

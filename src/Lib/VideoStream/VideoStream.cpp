@@ -26,7 +26,7 @@ void VideoStream::StartClient() {
 
     while (!isDone_) {
 
-        auto foo = gstreamer_.SetStatePlaying();
+        gstreamer_.SetStatePlaying();
 
         for(;;){
 

@@ -25,10 +25,10 @@ CommandsSettingsWidget::~CommandsSettingsWidget() {
 
 GamepadSettingsStruct CommandsSettingsWidget::GetGamepadSettings() {
 
-    using DiscreteActionsEnum = GamepadSettingsStruct::DiscreteActionEnum;
+    //using DiscreteActionsEnum = GamepadSettingsStruct::DiscreteActionEnum;
     using AnalogActionsEnum = GamepadSettingsStruct::AnalogActionEnum;
 
-    using DiscreteAxisEnum = GamepadSettingsStruct::DiscreteAxisEnum;
+    //using DiscreteAxisEnum = GamepadSettingsStruct::DiscreteAxisEnum;
     using AnalogAxisEnum = GamepadSettingsStruct::AnalogAxisEnum;
 
     using DiscreteSettings = GamepadSettingsStruct::DiscreteSettings_t;

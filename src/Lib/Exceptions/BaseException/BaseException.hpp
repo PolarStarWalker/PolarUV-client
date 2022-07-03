@@ -16,11 +16,11 @@ namespace lib::exceptions {
     class BaseException : public std::exception {
     public:
         BaseException(std::string_view error, std::string_view& details, ExceptionType exceptionType) :
-                _exceptionType(exceptionType),
+                Error(error),
                 Details(details),
-                Error(error){}
+                _exceptionType(exceptionType){}
 
-        const  std::string_view Error;
+        const std::string_view Error;
         const std::string_view Details;
         const ExceptionType _exceptionType;
     };

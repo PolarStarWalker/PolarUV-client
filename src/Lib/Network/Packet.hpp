@@ -72,8 +72,9 @@ namespace lib::network {
 
         Request(const Request &) = delete;
 
-        const std::string_view Data;
         const HeaderType Header;
+        const std::string_view Data;
+
 
         inline friend std::ostream &operator<<(std::ostream &out, const HeaderType &header) {
 

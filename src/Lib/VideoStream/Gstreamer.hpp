@@ -18,7 +18,6 @@ private:
     GstElement *videoconvert;
     GstElement *sink;
     GstElement *group;
-    GMainLoop *loop;
     std::chrono::steady_clock::time_point time;
 
     std::mutex qImageMutex_;

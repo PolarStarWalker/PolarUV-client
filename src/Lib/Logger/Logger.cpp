@@ -5,7 +5,16 @@
 
 using namespace lib::logger;
 
-class Info &Info::operator<<(std::string_view data) {
+void lib::logger::Setup(){
+#if 1
+std::clog.rdbuf(std::cout.rdbuf());
+#else
+static std::fstream output("log.txt", std::ios_base::out | std::ios_base::trunc);
+        std::clog.rdbuf(output.rdbuf());
+#endif
+}
+
+struct Info &Info::operator<<(std::string_view data) {
     if (LogLevel >= LogLevelEnum::Info)
         std::clog << "[INFO] " << data.data();
 
@@ -13,19 +22,19 @@ class Info &Info::operator<<(std::string_view data) {
 }
 
 
-class Warning &Warning::operator<<(std::string_view data) {
+struct Warning &Warning::operator<<(std::string_view data) {
     if (LogLevel >= LogLevelEnum::Warning)
         std::clog << "[WARNING] " << data.data();
     return *this;
 }
 
-class Error &Error::operator<<(std::string_view data) {
+struct Error &Error::operator<<(std::string_view data) {
     if (LogLevel >= LogLevelEnum::Error)
         std::clog << "[ERROR] " << data.data();
     return *this;
 }
 
-class Critical &Critical::operator<<(std::string_view data) {
+struct Critical &Critical::operator<<(std::string_view data) {
     if (logLevel_ >= LogLevelEnum::Critical)
         buf << data.data();
     return *this;
@@ -36,6 +45,6 @@ lib::logger::Critical::Critical() : buf(){}
 lib::logger::Critical::~Critical() {
     if (logLevel_ >= LogLevelEnum::Critical)
         std::clog << "[Critical]" << buf.rdbuf()
-                  << "[At this point]\n"
+                  << "\n[At this point]\n"
                   << boost::stacktrace::stacktrace();
 }
