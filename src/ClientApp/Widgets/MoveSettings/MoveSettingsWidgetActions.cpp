@@ -1,3 +1,4 @@
+#include <ranges>
 #include <Exceptions/Exceptions.hpp>
 #include <QMessageBox>
 #include "./MoveSettingsWidget.hpp"
@@ -119,6 +120,28 @@ std::string MoveSettingsWidget::Serialize() const noexcept {
             message.set_motors_protocol(MoveSettingsMessage::DSHOT1200);
             break;
     }
+
+    ///add pid
+    auto X = message.mutable_pid()->Add();
+    X->set_p(ui->XAxisPCoefficientEdit->text().toFloat());
+    X->set_i(ui->XAxisICoefficientEdit->text().toFloat());
+    X->set_d(ui->XAxisDCoefficientEdit->text().toFloat());
+
+    auto Y = message.mutable_pid()->Add();
+    Y->set_p(ui->YAxisPCoefficientEdit->text().toFloat());
+    Y->set_i(ui->YAxisICoefficientEdit->text().toFloat());
+    Y->set_d(ui->YAxisDCoefficientEdit->text().toFloat());
+
+    auto Z = message.mutable_pid()->Add();
+    Z->set_p(ui->ZAxisPCoefficientEdit->text().toFloat());
+    Z->set_i(ui->ZAxisICoefficientEdit->text().toFloat());
+    Z->set_d(ui->ZAxisDCoefficientEdit->text().toFloat());
+
+    ///ToDo: depth PID interface
+    auto Depth = message.mutable_pid()->Add();
+    Depth->set_p(0);
+    Depth->set_i(0);
+    Depth->set_d(0);
 
     return message.SerializeAsString();
 }
