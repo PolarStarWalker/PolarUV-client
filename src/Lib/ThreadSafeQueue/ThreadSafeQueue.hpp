@@ -14,7 +14,7 @@ public:
         _queueIsNotEmpty.notify_one();
     }
 
-    ObjType &GetTask(){
+    ObjType &GetTask() {
         std::unique_lock guard(_queueMutex);
 
         _queueIsNotEmpty.wait(guard, [&]() noexcept { return !_objQueue.empty(); });

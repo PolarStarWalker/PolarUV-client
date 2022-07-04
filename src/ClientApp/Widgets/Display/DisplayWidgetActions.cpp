@@ -43,8 +43,8 @@ void DisplayWidget::paintGL() {
         auto videoFrame = stream_.GetQImage();
 
         if (!videoFrame.isNull()) {
-            //videoFrame_ = std::move(videoFrame).mirrored(true, true);
-            videoFrame_ = std::move(videoFrame);
+            videoFrame_ = std::move(videoFrame).mirrored(true, true);
+            //videoFrame_ = std::move(videoFrame);
         }
 
         currentFrame = videoFrame_.scaled(this->width(), this->height());
