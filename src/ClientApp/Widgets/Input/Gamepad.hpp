@@ -50,7 +50,7 @@ namespace control {
 
         void UpdateGamepadId(int id);
 
-        CommandsStruct GetCommands(const GamepadSettingsStruct& settings) const;
+        CommandsStruct GetCommands(const GamepadSettingsStruct &settings) const;
 
     private:
         std::atomic<int> id_;
@@ -58,19 +58,17 @@ namespace control {
         mutable float lightPosition_;
     };
 
-    inline std::vector<int> GetGamepadsIds() {
-        std::vector<int> ids;
-        ids.reserve(XUSER_MAX_COUNT);
+    inline std::array<bool, XUSER_MAX_COUNT> GetGamepadsIds() {
+        std::array<bool, XUSER_MAX_COUNT> ids;
 
         XINPUT_STATE state{};
-        for (int i = 0; i < XUSER_MAX_COUNT; i++) {
-            DWORD gamepadState = XInputGetState(i, &state);
-            if (gamepadState == NO_ERROR)
-                ids.push_back(i);
+        for (size_t id = 0; id < ids.size(); ++id) {
+            DWORD gamepadState = XInputGetState(id, &state);
+            ids[id] = gamepadState == NO_ERROR;
         }
 
         return ids;
-    };
+    }
 }
 
 #endif

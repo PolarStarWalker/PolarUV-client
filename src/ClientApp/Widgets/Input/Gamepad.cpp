@@ -41,7 +41,7 @@ void Gamepad::UpdateGamepadId(int id) {
 }
 
 
-float GetAnalogValueByAxis(const XINPUT_STATE &state, GamepadSettingsStruct::AnalogAxis axis) {
+float GetAnalogValueByAxis(const XINPUT_STATE &state, const GamepadSettingsStruct::AnalogAxis& axis) {
 
     double value;
 
@@ -92,7 +92,7 @@ float GetAnalogValueByAxis(const XINPUT_STATE &state, GamepadSettingsStruct::Ana
             break;
         }
         default: {
-            throw std::exception();
+            value = 0;
         }
     }
 

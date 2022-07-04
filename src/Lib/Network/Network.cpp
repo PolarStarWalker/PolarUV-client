@@ -141,4 +141,10 @@ std::vector<char> Network::Compress(const std::string_view &data) {
     return compressed;
 }
 
+std::vector<char> Network::Decompress(const std::string &) {
+
+
+    return std::vector<char>();
+}
+
 

@@ -13,7 +13,7 @@ void DisplayWidget::SwitchVideoStream() {
         message = lib::processing::VideoStream::GetStartMessage(resources_.ClientIp);
     }
 
-    resources_.Network.SendRequest(message, lib::network::Request::TypeEnum::W, 2);
+    resources_.Network.NewSendRequest<lib::network::Request::TypeEnum::W>(2, message);
 }
 
 void DisplayWidget::SwitchVideoCapture() {

@@ -6,9 +6,6 @@
 //#include <boost/filesystem.hpp>
 //#include <processenv.h>
 
-constexpr std::string_view destination = " ! udpsink host=                 port=8000";
-constexpr size_t DestinationIpPosition = destination.find('=') + 1;
-
 using namespace lib::processing;
 
 VideoStream::VideoStream() :
@@ -28,10 +25,10 @@ void VideoStream::StartClient() {
 
         gstreamer_.SetStatePlaying();
 
-        for(;;){
+        for (;;) {
 
             auto newFrame = gstreamer_.GetFrame();
-            if(newFrame.isNull())
+            if (newFrame.isNull())
                 break;
 
             isOnline_.store(true);
@@ -44,28 +41,26 @@ void VideoStream::StartClient() {
 }
 
 std::string VideoStream::GetStartMessage(const std::string &clientIp) {
+    VideoMessage message;
+    message.set_action(VideoMessage::START);
 
-    std::string pipeline;
-    {
-        std::fstream file("./Pipelines/robot.txt", std::ios_base::in);
-        std::getline(file, pipeline);
-    }
+    auto &settings = *message.mutable_video_settings();
 
-    pipeline.append(destination);
+    settings.set_ip(std::string(clientIp));
+    settings.set_device_name(std::string("/dev/video2"));
+    settings.set_device_id(2);
+    settings.set_framerate_numerator(0);
+    settings.set_framerate_denumerator(0);
+    settings.set_brightness(0);
+    settings.set_contrast(0);
 
-    std::memcpy(pipeline.end().base() - destination.size() + DestinationIpPosition, clientIp.c_str(), clientIp.size());
-
-    VideoStreamMessage message;
-    message.set_action(VideoStreamMessage::START);
-    message.set_pipeline(pipeline);
 
     return message.SerializeAsString();
 }
 
 std::string VideoStream::GetStopMessage() {
-    VideoStreamMessage message;
-    message.set_action(VideoStreamMessage::STOP);
-    message.set_pipeline("");
+    VideoMessage message;
+    message.set_action(VideoMessage::STOP);
 
     return message.SerializeAsString();
 }
@@ -75,7 +70,7 @@ VideoStream::~VideoStream() {
     thread_.detach();
 }
 
-void VideoStream::SetImage(QImage&& img) {
+void VideoStream::SetImage(QImage &&img) {
     std::lock_guard lock(qImageMutex_);
     frame = img;
 }

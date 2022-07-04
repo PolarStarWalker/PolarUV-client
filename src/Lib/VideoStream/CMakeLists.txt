@@ -1,6 +1,6 @@
 project(VideoStream)
 
-set(VIDEO_LIBRARIES gstd3d11 gstd3d11-1.0 d3d11 dxguid dxgi Ole32 Oleaut32 Imm32 Winmm Version gstcodecs-1.0 gstcodecparsers-1.0)
+set(VIDEO_LIBRARIES gstd3d11 gstd3d11-1.0 d3d11 dxguid dxgi Ole32 Oleaut32 Imm32 Winmm Version gstvideo-1.0 gstcodecs-1.0 gstcodecparsers-1.0 )
 
 #do some cmake-protobug magic
 find_package(Protobuf REQUIRED)

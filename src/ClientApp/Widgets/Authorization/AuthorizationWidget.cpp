@@ -61,8 +61,9 @@ void AuthorizationWidget::RefreshGamepadIDs() {
     auto gamepads = control::GetGamepadsIds();
     ui->GamepadComboBox->clear();
 
-    for (auto &&id: gamepads)
-        ui->GamepadComboBox->addItem(QString::number(id));
+    for(size_t id = 0; id < gamepads.size(); ++id)
+        if(gamepads[id])
+            ui->GamepadComboBox->addItem(QString::number(id));
 }
 
 void AuthorizationWidget::LaunchHandler() {
