@@ -11,14 +11,13 @@
     gst-plugins-bad/1.19.1
     glib/2.72.0
 
-#    qt/5.15.2
     freetype/2.11.1
     harfbuzz/4.2.1
 
-#    opencv/4.5.5
-#    ffmpeg/5.0
+#   opencv/4.5.5
+#   ffmpeg/5.0
 #
-#    tensorflow-lite/2.6.0
+#   tensorflow-lite/2.6.0
 
 [options]
     boost:shared = False
@@ -32,13 +31,10 @@
     gst-plugins-good:shared = False
     glib:shared = False
 
-    qt:shared = False
-    qt:opengl = dynamic
-    qt:with_libjpeg = libjpeg
+    sfml:network = False
+    sfml:audio = False
 
 [generators]
     cmake
 
 [imports]
-#bin, libg*.dll -> ./bin
-#lib/gstreamer-1.0, libgst*.dll -> ./bin

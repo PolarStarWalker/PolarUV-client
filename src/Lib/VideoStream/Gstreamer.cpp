@@ -33,8 +33,6 @@ void Gstreamer::Setup() {
 
     g_object_set(src, "port", 8000, nullptr);
 
-    g_object_set(sink, "emit-signals", TRUE, "caps", src, nullptr);
-
     gst_bin_add_many(GST_BIN (group), src, gdpdepay, rtp, h264parse, decode, videoconvert, sink, nullptr);
 
     gst_element_link_filtered(videoconvert, sink, caps);

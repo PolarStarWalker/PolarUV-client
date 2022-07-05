@@ -23,7 +23,7 @@ namespace lib::network {
 
         static constexpr auto TRANSFER_TIMEOUT =
 #ifdef DEBUG
-         std::chrono::milliseconds(2000);
+                std::chrono::milliseconds(2000);
 #else
         std::chrono::milliseconds(2000);
 #endif
@@ -33,9 +33,9 @@ namespace lib::network {
 
         bool TryConnect(const std::string &ip);
 
-        static std::vector<char> Compress(const std::string_view&);
+        static std::vector<char> Compress(const std::string_view &);
 
-        static std::vector<char> Decompress(const std::string&);
+        static std::vector<char> Decompress(const std::string &);
 
     private:
         Response TransferData(const Request &request);
@@ -52,24 +52,24 @@ namespace lib::network {
 
         ///For non-containers objects
         template<typename Type>
-        Response SendRequest(const Type& obj, Request::TypeEnum type, ssize_t endpointId){
-            return SendRequest(std::string_view((char*) &obj, sizeof(obj)), type, endpointId);
+        Response SendRequest(const Type &obj, Request::TypeEnum type, ssize_t endpointId) {
+            return SendRequest(std::string_view((const char *) &obj, sizeof(obj)), type, endpointId);
         }
 
         ///For containers objects
         template<typename Type>
-        Response SendRequest(const Type* obj, size_t size, Request::TypeEnum type, ssize_t endpointId){
-            return SendRequest(std::string_view((char*) obj, size), type, endpointId);
+        Response SendRequest(const Type *obj, size_t size, Request::TypeEnum type, ssize_t endpointId) {
+            return SendRequest(std::string_view((const char *) obj, size), type, endpointId);
         }
 
         ///For std::vector
         template<typename Type>
-        Response SendRequest(const std::vector<Type>& data, Request::TypeEnum type, ssize_t endpointId){
-            return SendRequest(std::string_view((char*) data.data(), data.size()), type, endpointId);
+        Response SendRequest(const std::vector<Type> &data, Request::TypeEnum type, ssize_t endpointId) {
+            return SendRequest(std::string_view((const char *) data.data(), data.size()), type, endpointId);
         }
 
         ///For std::strings
-        Response SendRequest(const std::string& data, Request::TypeEnum type, ssize_t endpointId){
+        Response SendRequest(const std::string &data, Request::TypeEnum type, ssize_t endpointId) {
             return SendRequest(std::string_view(data), type, endpointId);
         }
 
@@ -203,8 +203,6 @@ namespace lib::network {
 
         ExceptionHandler(nullptr, nullptr, function);
     }
-
-
 
 
 }

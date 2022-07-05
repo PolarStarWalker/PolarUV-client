@@ -49,9 +49,14 @@ bool Network::TryConnect(const std::string &ip) {
 
     endpoint_type endpoint(boost::asio::ip::make_address(ip), PORT);
 
-    socket_.async_connect(endpoint, [&](const ErrorCode &errorCode) {});
+    bool error = false;
 
-    if (!RunFor(CONNECTION_TIMEOUT))
+    socket_.async_connect(endpoint, [&](const ErrorCode &errorCode) {
+        if (errorCode.failed())
+            error = true;
+    });
+
+    if (!RunFor(CONNECTION_TIMEOUT) || error)
         return false;
 
     return true;

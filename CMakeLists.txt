@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 #link C/C++ libraries statically
 set(CMAKE_EXE_LINKER_FLAGS)
 set(CMAKE_CXX_FLAGS "-fcoroutines -march=x86-64-v2")
-set(CMAKE_CXX_FLAGS_DEBUG "-Og -Wall -Wextra")
+set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Wextra -Wpedantic -Wnon-virtual-dtor -Wduplicated-branches -Wduplicated-cond -Wfloat-equal -Wshadow=compatible-local -Wcast-qual")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -static")
 
 set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
