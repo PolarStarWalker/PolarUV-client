@@ -14,6 +14,7 @@
     freetype/2.11.1
     harfbuzz/4.2.1
 
+    sfml/2.5.1
     imgui/cci.20220621+1.88.docking
 
 #   opencv/4.5.5
