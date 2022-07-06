@@ -16,6 +16,8 @@
 
     sfml/2.5.1
     imgui/cci.20220621+1.88.docking
+    glfw/3.3.7
+    glew/2.2.0
 
 #   opencv/4.5.5
 #   ffmpeg/5.0
@@ -40,6 +42,11 @@
 [generators]
     cmake
 
+#придумать структуру проекта и написать правильные пути для отрисовщика
+
 [imports]
-#bin, libg*.dll -> ./bin
-#lib/gstreamer-1.0, libgst*.dll -> ./bin
+    ./res/bindings, imgui_impl_glfw.cpp -> ../renderer
+    ./res/bindings, imgui_impl_opengl3.cpp -> ../renderer
+    ./res/bindings, imgui_impl_glfw.h -> ../renderer
+    ./res/bindings, imgui_impl_opengl3.h -> ../renderer
+    ./res/bindings, imgui_impl_opengl3_loader.h -> ../renderer
