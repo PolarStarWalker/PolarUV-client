@@ -121,27 +121,26 @@ std::string MoveSettingsWidget::Serialize() const noexcept {
             break;
     }
 
-    ///add pid
+    /// Adding PID controllers
     auto X = message.mutable_pid()->Add();
-    X->set_p(ui->XAxisPCoefficientEdit->text().toFloat());
-    X->set_i(ui->XAxisICoefficientEdit->text().toFloat());
-    X->set_d(ui->XAxisDCoefficientEdit->text().toFloat());
+    X->set_p(ui->PIDTable->item(0,0)->text().toFloat());
+    X->set_i(ui->PIDTable->item(0,1)->text().toFloat());
+    X->set_d(ui->PIDTable->item(0,2)->text().toFloat());
 
     auto Y = message.mutable_pid()->Add();
-    Y->set_p(ui->YAxisPCoefficientEdit->text().toFloat());
-    Y->set_i(ui->YAxisICoefficientEdit->text().toFloat());
-    Y->set_d(ui->YAxisDCoefficientEdit->text().toFloat());
+    Y->set_p(ui->PIDTable->item(1,0)->text().toFloat());
+    Y->set_i(ui->PIDTable->item(1,1)->text().toFloat());
+    Y->set_d(ui->PIDTable->item(1,2)->text().toFloat());
 
     auto Z = message.mutable_pid()->Add();
-    Z->set_p(ui->ZAxisPCoefficientEdit->text().toFloat());
-    Z->set_i(ui->ZAxisICoefficientEdit->text().toFloat());
-    Z->set_d(ui->ZAxisDCoefficientEdit->text().toFloat());
+    Z->set_p(ui->PIDTable->item(2,0)->text().toFloat());
+    Z->set_i(ui->PIDTable->item(2,1)->text().toFloat());
+    Z->set_d(ui->PIDTable->item(2,2)->text().toFloat());
 
-    ///ToDo: depth PID interface
     auto Depth = message.mutable_pid()->Add();
-    Depth->set_p(0);
-    Depth->set_i(0);
-    Depth->set_d(0);
+    Depth->set_p(ui->PIDTable->item(3,0)->text().toFloat());
+    Depth->set_i(ui->PIDTable->item(3,1)->text().toFloat());
+    Depth->set_d(ui->PIDTable->item(3,2)->text().toFloat());
 
     return message.SerializeAsString();
 }
