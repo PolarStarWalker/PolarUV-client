@@ -10,6 +10,7 @@ void MainWindow::SetupSlots() {
     connect(ui->Page2_1Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2_1()));
     connect(ui->Page2_2Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2_2()));
     connect(ui->Page2_3Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2_3()));
+    connect(ui->Page2_4Button, SIGNAL(clicked(bool)), SLOT(SwitchToPage2_4()));
     connect(ui->PrimaryStackedWidget, SIGNAL(currentChanged(int)), SLOT(SwitchSideBarButton(int)));
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), SLOT(HideSideBar()));
     connect(ui->BackButton, SIGNAL(clicked(bool)), SLOT(Pause()));
@@ -107,6 +108,7 @@ void MainWindow::SwitchToPage2_1() {
     ui->Page2_1Button->setStyleSheet(activeButtonStyleSheet2);
     ui->Page2_2Button->setStyleSheet(inactiveButtonStyleSheet2);
     ui->Page2_3Button->setStyleSheet(inactiveButtonStyleSheet2);
+    ui->Page2_4Button->setStyleSheet(inactiveButtonStyleSheet2);
 }
 
 void MainWindow::SwitchToPage2_2() {
@@ -114,6 +116,7 @@ void MainWindow::SwitchToPage2_2() {
     ui->Page2_1Button->setStyleSheet(inactiveButtonStyleSheet2);
     ui->Page2_2Button->setStyleSheet(activeButtonStyleSheet2);
     ui->Page2_3Button->setStyleSheet(inactiveButtonStyleSheet2);
+    ui->Page2_4Button->setStyleSheet(inactiveButtonStyleSheet2);
 }
 
 void MainWindow::SwitchToPage2_3() {
@@ -121,6 +124,15 @@ void MainWindow::SwitchToPage2_3() {
     ui->Page2_1Button->setStyleSheet(inactiveButtonStyleSheet2);
     ui->Page2_2Button->setStyleSheet(inactiveButtonStyleSheet2);
     ui->Page2_3Button->setStyleSheet(activeButtonStyleSheet2);
+    ui->Page2_4Button->setStyleSheet(inactiveButtonStyleSheet2);
+}
+
+void MainWindow::SwitchToPage2_4() {
+    ui->SettingsStackedWidget->setCurrentIndex(3);
+    ui->Page2_1Button->setStyleSheet(inactiveButtonStyleSheet2);
+    ui->Page2_2Button->setStyleSheet(inactiveButtonStyleSheet2);
+    ui->Page2_3Button->setStyleSheet(inactiveButtonStyleSheet2);
+    ui->Page2_4Button->setStyleSheet(activeButtonStyleSheet2);
 }
 /// Конец плохого кода
 

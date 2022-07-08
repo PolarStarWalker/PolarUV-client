@@ -1,0 +1,44 @@
+#ifndef CLIENT_CAMERASETTINGSWIDGET_HPP
+#define CLIENT_CAMERASETTINGSWIDGET_HPP
+
+// This must be first include
+#include "../WidgetResources.hpp"
+
+#include <QWidget>
+
+
+QT_BEGIN_NAMESPACE
+namespace Ui { class CameraSettingsWidget; }
+QT_END_NAMESPACE
+
+class CameraSettingsWidget : public QWidget {
+Q_OBJECT
+
+public:
+    explicit CameraSettingsWidget(QWidget *parent, WidgetResources &resources);
+
+    ~CameraSettingsWidget() override;
+
+public slots:
+    void StartWidget();
+    void StopWidget();
+
+private:
+    Ui::CameraSettingsWidget *ui;
+    WidgetResources& resources_;
+
+private slots:
+
+    void RefreshCameraIDs();
+
+    void UpdateBrightnessEdit(int value);
+
+    void UpdateBrightnessSlider(const QString& string);
+
+    void UpdateContrastEdit(int value);
+
+    void UpdateContrastSlider(const QString& string);
+};
+
+
+#endif //CLIENT_CAMERASETTINGSWIDGET_HPP

@@ -8,6 +8,7 @@
 #include "./PythonEnvironment/PythonEnvironmentWidget.hpp"
 #include "./Sensors/SensorsWidget.hpp"
 #include "./SensorsSettings/SensorsSettingsWidget.hpp"
+#include "./CameraSettings/CameraSettingsWidget.hpp"
 
 void dummy();
 

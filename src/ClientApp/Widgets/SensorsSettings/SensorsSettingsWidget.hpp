@@ -1,7 +1,7 @@
 #ifndef CLIENT_SENSORSSETTINGSWIDGET_HPP
 #define CLIENT_SENSORSSETTINGSWIDGET_HPP
 
-//this must be first include
+// This must be first include
 #include "../WidgetResources.hpp"
 
 #include <QWidget>

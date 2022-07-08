@@ -103,6 +103,8 @@ private slots:
 
     void SwitchToPage2_3();
 
+    void SwitchToPage2_4();
+
     void SwitchToPage3();
 
     void SwitchToPage4();
@@ -131,6 +133,7 @@ private:
     AuthorizationWidget *authorizationWidget_;
     DisplayWidget *displayWidget_;
     MoveSettingsWidget *moveSettingsWidget_;
+    CameraSettingsWidget *cameraSettingsWidget_;
     SensorsSettingsWidget *sensorsSettingsWidget_;
     CommandsSettingsWidget *commandsSettingsWidget_;
     PythonEnvironmentWidget *pythonIDEWidget_;
