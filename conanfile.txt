@@ -41,12 +41,9 @@
 [generators]
     cmake
 
-#придумать структуру проекта и написать правильные пути для отрисовщика
-#(сейчас временные файлы imgui находятся в .imgui)
-
 [imports]
-    ./res/bindings, imgui_impl_glfw.cpp -> ../.imgui
-    ./res/bindings, imgui_impl_opengl3.cpp -> ../.imgui
-    ./res/bindings, imgui_impl_glfw.h -> ../.imgui
-    ./res/bindings, imgui_impl_opengl3.h -> ../.imgui
-    ./res/bindings, imgui_impl_opengl3_loader.h -> ../.imgui
+    ./res/bindings, imgui_impl_glfw.cpp -> ../src/.imgui
+    ./res/bindings, imgui_impl_opengl3.cpp -> ../src/.imgui
+    ./res/bindings, imgui_impl_glfw.h -> ../src/.imgui
+    ./res/bindings, imgui_impl_opengl3.h -> ../src/.imgui
+    ./res/bindings, imgui_impl_opengl3_loader.h -> ../src/.imgui
