@@ -5,6 +5,7 @@
 #include "../WidgetResources.hpp"
 
 #include <QWidget>
+#include <QSettings>
 
 
 QT_BEGIN_NAMESPACE
@@ -24,8 +25,11 @@ public slots:
     void StopWidget();
 
 private:
+    void LoadSettings();
+
     Ui::CameraSettingsWidget *ui;
     WidgetResources& resources_;
+    QSettings settings_;
 
 private slots:
 
@@ -38,6 +42,8 @@ private slots:
     void UpdateContrastEdit(int value);
 
     void UpdateContrastSlider(const QString& string);
+
+    void UpdateRotatedCheckBox(int state);
 };
 
 

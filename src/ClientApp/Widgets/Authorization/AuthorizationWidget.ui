@@ -798,7 +798,7 @@ QPushButton:hover:!pressed {
 }</string>
         </property>
         <property name="text">
-         <string>Режим отладки</string>
+         <string>Отладка</string>
         </property>
         <property name="iconSize">
          <size>

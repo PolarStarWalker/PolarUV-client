@@ -42,10 +42,20 @@ struct SensorsSettingsStruct {
     bool IndicatorsEnabled = true;
 };
 
+/// ToDo: что-то с этим сделать
+struct CameraSettingsStruct {
+    int CameraID = 0;
+    int CameraBrightness = 50;
+    int CameraContrast = 50;
+    bool CameraRotated = false;
+};
+
 struct WidgetResources {
 
     SensorsStruct Sensors{};
     SensorsSettingsStruct SensorsSettings{};
+
+    CameraSettingsStruct CameraSettings{};
 
     lib::network::Network Network{};
     std::string ClientIp{};

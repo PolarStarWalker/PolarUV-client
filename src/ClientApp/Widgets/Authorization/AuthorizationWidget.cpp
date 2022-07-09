@@ -12,7 +12,7 @@ AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
         QWidget(parent),
         ui(new Ui::AuthorizationWidget),
         ioContext_(),
-        settings_("NARFU", "PolarROVClient"),
+        settings_("NARFU", "PolarUV-Client"),
         resources_() {
 
     ui->setupUi(this);
