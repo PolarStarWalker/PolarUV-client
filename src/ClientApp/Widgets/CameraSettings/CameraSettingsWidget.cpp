@@ -12,16 +12,17 @@ CameraSettingsWidget::CameraSettingsWidget(QWidget *parent, WidgetResources &res
 
     ui->setupUi(this);
 
-    /// Зарузка настроек из реестра
+    /// Загрузка настроек из реестра
     LoadSettings();
 
     /// Привязка слотов
-    this->connect(ui->RefreshCameraIDsButton, SIGNAL(clicked(bool)), this, SLOT(RefreshCameraIDs()));
-    this->connect(ui->BrightnessSlider, SIGNAL(valueChanged(int)), SLOT(UpdateBrightnessEdit(int)));
-    this->connect(ui->BrightnessEdit, SIGNAL(textChanged(QString)), SLOT(UpdateBrightnessSlider(QString)));
-    this->connect(ui->ContrastSlider, SIGNAL(valueChanged(int)), SLOT(UpdateContrastEdit(int)));
-    this->connect(ui->ContrastEdit, SIGNAL(textChanged(QString)), SLOT(UpdateContrastSlider(QString)));
-    this->connect(ui->RotatedCheckBox, SIGNAL(stateChanged(int)), SLOT(UpdateRotatedCheckBox(int)));
+    connect(ui->RefreshCameraNamesButton, SIGNAL(clicked(bool)), SLOT(RefreshCameraNames()));
+    connect(ui->CameraNameComboBox, SIGNAL(currentTextChanged(QString)), SLOT(UpdateCameraName(QString)));
+    connect(ui->BrightnessSlider, SIGNAL(valueChanged(int)), SLOT(UpdateBrightnessEdit(int)));
+    connect(ui->BrightnessEdit, SIGNAL(textChanged(QString)), SLOT(UpdateBrightnessSlider(QString)));
+    connect(ui->ContrastSlider, SIGNAL(valueChanged(int)), SLOT(UpdateContrastEdit(int)));
+    connect(ui->ContrastEdit, SIGNAL(textChanged(QString)), SLOT(UpdateContrastSlider(QString)));
+    connect(ui->RotatedCheckBox, SIGNAL(stateChanged(int)), SLOT(UpdateRotatedCheckBox(int)));
 }
 
 CameraSettingsWidget::~CameraSettingsWidget() {
@@ -60,14 +61,22 @@ void CameraSettingsWidget::LoadSettings() {
     }
 }
 
-void CameraSettingsWidget::RefreshCameraIDs() {
+void CameraSettingsWidget::RefreshCameraNames() {
 
     auto response = resources_.Network.SendRequest(std::string(), Request::TypeEnum::R, 2);
 
-    std::cout << response.Data <<std::endl;
+    std::cout << response.Data << std::endl;
 
-    // ToDo: motov.s получение списка доступных камер
-    // ToDo: shushkov.d заполнение комбобокса индексами камер
+    /// Заполнение комбо-бокса
+    //ui->CameraNameComboBox->clear()               <- Очищаем комбо-бокс
+    //ui->CameraNameComboBox->addItem(std::string); <- Вставляем по одному элементу через цикл
+}
+
+void CameraSettingsWidget::UpdateCameraName(const QString &string) {
+    if (string != nullptr) {
+        /// Обновление переменной в ресурсах
+        resources_.CameraSettings.CameraName = string.toStdString();
+    }
 }
 
 void CameraSettingsWidget::UpdateBrightnessEdit(int value) {
@@ -101,6 +110,6 @@ void CameraSettingsWidget::UpdateContrastSlider(const QString &string) {
 void CameraSettingsWidget::UpdateRotatedCheckBox(int state) {
     /// Обновление переменной в ресурсах
     resources_.CameraSettings.CameraRotated = (state == Qt::Checked);
-    // Обновление переменной в реестре
+    /// Обновление переменной в реестре
     settings_.setValue("CameraRotated", (state == Qt::Checked));
 }

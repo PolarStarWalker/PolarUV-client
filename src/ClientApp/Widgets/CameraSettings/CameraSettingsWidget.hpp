@@ -33,7 +33,9 @@ private:
 
 private slots:
 
-    void RefreshCameraIDs();
+    void RefreshCameraNames();
+
+    void UpdateCameraName(const QString& string);
 
     void UpdateBrightnessEdit(int value);
 

@@ -44,7 +44,7 @@ struct SensorsSettingsStruct {
 
 /// ToDo: что-то с этим сделать
 struct CameraSettingsStruct {
-    int CameraID = 0;
+    std::string CameraName;
     int CameraBrightness = 50;
     int CameraContrast = 50;
     bool CameraRotated = false;

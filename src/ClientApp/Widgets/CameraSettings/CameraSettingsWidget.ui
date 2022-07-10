@@ -126,7 +126,7 @@ border-radius: 5px;</string>
        <number>5</number>
       </property>
       <item row="0" column="0">
-       <widget class="QLabel" name="CameraIDLabel">
+       <widget class="QLabel" name="CameraNameLabel">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -156,12 +156,12 @@ border: none;
 background: transparent;</string>
         </property>
         <property name="text">
-         <string>ID камеры</string>
+         <string>Имя камеры</string>
         </property>
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QPushButton" name="RefreshCameraIDsButton">
+       <widget class="QPushButton" name="RefreshCameraNamesButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -703,7 +703,7 @@ QToolTip
        </widget>
       </item>
       <item row="0" column="1" colspan="2">
-       <widget class="QComboBox" name="CameraIDComboBox">
+       <widget class="QComboBox" name="CameraNameComboBox">
         <property name="minimumSize">
          <size>
           <width>0</width>
