@@ -1,5 +1,6 @@
 #include "CameraSettingsWidget.hpp"
 #include "ui_CameraSettingsWidget.h"
+#include "VideoDevicesMessage.pb.h"
 
 using Request = lib::network::Request;
 using Response = lib::network::Response;
@@ -65,11 +66,14 @@ void CameraSettingsWidget::RefreshCameraNames() {
 
     auto response = resources_.Network.SendRequest(std::string(), Request::TypeEnum::R, 2);
 
-    std::cout << response.Data << std::endl;
+    VideoDeviceMessage message;
+    message.ParseFromString(response.Data);
 
-    /// Заполнение комбо-бокса
-    //ui->CameraNameComboBox->clear()               <- Очищаем комбо-бокс
-    //ui->CameraNameComboBox->addItem(std::string); <- Вставляем по одному элементу через цикл
+    ui->CameraNameComboBox->clear();
+
+    for(const auto& device : message.device_names())
+        ui->CameraNameComboBox->addItem(device.c_str());
+
 }
 
 void CameraSettingsWidget::UpdateCameraName(const QString &string) {

@@ -40,6 +40,7 @@ void VideoStream::StartClient() {
     }
 }
 
+//ToDo: DanShoo add filling from interface
 std::string VideoStream::GetStartMessage(const std::string &clientIp) {
     VideoMessage message;
     message.set_action(VideoMessage::START);
@@ -48,12 +49,10 @@ std::string VideoStream::GetStartMessage(const std::string &clientIp) {
 
     settings.set_ip(std::string(clientIp));
     settings.set_device_name(std::string("/dev/video2"));
-    settings.set_device_id(2);
     settings.set_framerate_numerator(0);
     settings.set_framerate_denumerator(0);
     settings.set_brightness(0);
     settings.set_contrast(0);
-
 
     return message.SerializeAsString();
 }
