@@ -1,6 +1,8 @@
 #include "CameraSettingsWidget.hpp"
 #include "ui_CameraSettingsWidget.h"
 
+using Request = lib::network::Request;
+using Response = lib::network::Response;
 
 CameraSettingsWidget::CameraSettingsWidget(QWidget *parent, WidgetResources &resources) :
         QWidget(parent),
@@ -59,6 +61,11 @@ void CameraSettingsWidget::LoadSettings() {
 }
 
 void CameraSettingsWidget::RefreshCameraIDs() {
+
+    auto response = resources_.Network.SendRequest(std::string(), Request::TypeEnum::R, 2);
+
+    std::cout << response.Data <<std::endl;
+
     // ToDo: motov.s получение списка доступных камер
     // ToDo: shushkov.d заполнение комбобокса индексами камер
 }
