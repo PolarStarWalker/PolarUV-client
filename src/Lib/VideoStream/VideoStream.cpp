@@ -49,11 +49,11 @@ std::string VideoStream::GetStartMessage(const std::string &clientIp, const Came
     auto &settings = *message.mutable_video_settings();
 
     settings.set_ip(std::string(clientIp));
-    settings.set_device_name(std::string(cameraSettings.CameraName));
+    settings.set_device_name(std::string(cameraSettings.DeviceName));
     settings.set_framerate_numerator(0);
     settings.set_framerate_denumerator(0);
-    settings.set_brightness(cameraSettings.CameraBrightness);
-    settings.set_contrast(cameraSettings.CameraContrast);
+    settings.set_brightness(cameraSettings.Brightness);
+    settings.set_contrast(cameraSettings.Contrast);
 
     return message.SerializeAsString();
 }

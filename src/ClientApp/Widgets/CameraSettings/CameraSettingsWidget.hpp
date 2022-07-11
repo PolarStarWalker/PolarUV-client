@@ -33,6 +33,10 @@ private:
 
 private slots:
 
+    void RefreshClientIPs();
+
+    void UpdateClientIP(const QString& string);
+
     void RefreshCameraNames();
 
     void UpdateCameraName(const QString& string);
@@ -44,6 +48,14 @@ private slots:
     void UpdateContrastEdit(int value);
 
     void UpdateContrastSlider(const QString& string);
+
+    void UpdateHueEdit(int value);
+
+    void UpdateHueSlider(const QString& string);
+
+    void UpdateSaturationEdit(int value);
+
+    void UpdateSaturationSlider(const QString& string);
 
     void UpdateRotatedCheckBox(int state);
 };

@@ -7,13 +7,14 @@
 
 namespace lib::processing {
 
-
-/// ToDo: что-то с этим сделать
     struct CameraSettingsStruct {
-        std::string CameraName;
-        int CameraBrightness = 0;
-        int CameraContrast = 0;
-        bool CameraRotated = false;
+        std::string ClientIP;
+        std::string DeviceName;
+        int Brightness = 0;
+        int Contrast = 0;
+        int Hue = 0;
+        int Saturation = 0;
+        bool IsRotated = false;
     };
 
     class VideoStream {

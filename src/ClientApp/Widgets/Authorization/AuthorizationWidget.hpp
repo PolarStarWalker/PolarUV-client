@@ -44,8 +44,6 @@ private:
 
 private slots:
 
-    void RefreshClientIPs();
-
     void RefreshGamepadIDs();
 
     void LaunchHandler();
