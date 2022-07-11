@@ -7,6 +7,15 @@
 
 namespace lib::processing {
 
+
+/// ToDo: что-то с этим сделать
+    struct CameraSettingsStruct {
+        std::string CameraName;
+        int CameraBrightness = 0;
+        int CameraContrast = 0;
+        bool CameraRotated = false;
+    };
+
     class VideoStream {
     public:
 
@@ -14,7 +23,7 @@ namespace lib::processing {
 
         ~VideoStream();
 
-        static std::string GetStartMessage(const std::string &clientIp);
+        static std::string GetStartMessage(const std::string &clientIp, const CameraSettingsStruct &cameraSettings);
 
         static std::string GetStopMessage();
 
