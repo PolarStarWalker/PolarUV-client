@@ -24,7 +24,7 @@ namespace lib::processing {
 
         ~VideoStream();
 
-        static std::string GetStartMessage(const std::string &clientIp, const CameraSettingsStruct &cameraSettings);
+        static std::string GetStartMessage(const CameraSettingsStruct &cameraSettings);
 
         static std::string GetStopMessage();
 
