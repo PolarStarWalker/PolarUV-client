@@ -42,8 +42,8 @@
     cmake
 
 [imports]
-    ./res/bindings, imgui_impl_glfw.cpp -> ../src/.imgui
-    ./res/bindings, imgui_impl_opengl3.cpp -> ../src/.imgui
-    ./res/bindings, imgui_impl_glfw.h -> ../src/.imgui
-    ./res/bindings, imgui_impl_opengl3.h -> ../src/.imgui
-    ./res/bindings, imgui_impl_opengl3_loader.h -> ../src/.imgui
+    ./res/bindings, imgui_impl_glfw.cpp -> ../src/renderer/.imgui
+    ./res/bindings, imgui_impl_opengl3.cpp -> ../src/renderer/.imgui
+    ./res/bindings, imgui_impl_glfw.h -> ../src/renderer/.imgui/include
+    ./res/bindings, imgui_impl_opengl3.h -> ../src/renderer/.imgui/include
+    ./res/bindings, imgui_impl_opengl3_loader.h -> ../src/renderer/.imgui/include
