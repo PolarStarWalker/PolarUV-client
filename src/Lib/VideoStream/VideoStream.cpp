@@ -1,4 +1,5 @@
 #include "VideoStream.hpp"
+#include "../../ClientApp/Widgets/WidgetResources.hpp"
 #include <fstream>
 #include <iostream>
 #include <VideoStreamMessage.pb.h>
@@ -40,20 +41,20 @@ void VideoStream::StartClient() {
     }
 }
 
-std::string VideoStream::GetStartMessage(const std::string &clientIp) {
+std::string VideoStream::GetStartMessage(const CameraSettingsStruct &cameraSettings) {
     VideoMessage message;
     message.set_action(VideoMessage::START);
 
     auto &settings = *message.mutable_video_settings();
 
-    settings.set_ip(std::string(clientIp));
-    settings.set_device_name(std::string("/dev/video2"));
-    settings.set_device_id(2);
+    settings.set_ip(std::string(cameraSettings.ClientIP));
+    settings.set_device_name(std::string(cameraSettings.DeviceName));
     settings.set_framerate_numerator(0);
     settings.set_framerate_denumerator(0);
-    settings.set_brightness(0);
-    settings.set_contrast(0);
-
+    settings.set_brightness(cameraSettings.Brightness);
+    settings.set_contrast(cameraSettings.Contrast);
+    settings.set_hue(cameraSettings.Hue);
+    settings.set_saturation(cameraSettings.Saturation);
 
     return message.SerializeAsString();
 }

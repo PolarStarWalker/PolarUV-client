@@ -22,7 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     displayWidget_ = CreateWidgetWithResources<DisplayWidget>(ui->Page1);
     moveSettingsWidget_ = CreateWidgetWithResources<MoveSettingsWidget>(ui->P2_1Widget);
     commandsSettingsWidget_ = CreateWidgetWithResources<CommandsSettingsWidget>(ui->P2_2Widget);
-    sensorsSettingsWidget_ = CreateWidgetWithResources<SensorsSettingsWidget>(ui->P2_3Widget);
+    cameraSettingsWidget_ = CreateWidgetWithResources<CameraSettingsWidget>(ui->P2_3Widget);
+    sensorsSettingsWidget_ = CreateWidgetWithResources<SensorsSettingsWidget>(ui->P2_4Widget);
     //pythonIDEWidget_ = CreateWidgetWithResources<PythonEnvironmentWidget>(ui->Page3);
     sensorsObject_ = CreateObjectWithResources<SensorsWidget>();
 

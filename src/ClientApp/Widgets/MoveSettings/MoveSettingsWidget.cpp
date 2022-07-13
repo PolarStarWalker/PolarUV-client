@@ -19,8 +19,14 @@ MoveSettingsWidget::MoveSettingsWidget(QWidget *parent, WidgetResources& resourc
     this->connect(ui->MaxSpeedEdit, SIGNAL(textChanged(QString)), SLOT(UpdateMaxSpeedSlider(QString)));
 
     /// Changing default header labels for MotorsTable
-    QStringList labelsList = {"Fx", "Fy", "Fz", "Mx", "My", "Mz"};
-    ui->MotorsTable->setHorizontalHeaderLabels(labelsList);
+    QStringList motorsLabelsList = {"Fx", "Fy", "Fz", "Mx", "My", "Mz"};
+    ui->MotorsTable->setHorizontalHeaderLabels(motorsLabelsList);
+
+    /// Changing default header labels for PIDsTable
+    QStringList pidsHLabelsList = {"P", "I", "D"};
+    QStringList pidsVLabelsList = {"Крен", "Дифферент", "Курс", "Глубина"};
+    ui->PIDTable->setHorizontalHeaderLabels(pidsHLabelsList);
+    ui->PIDTable->setVerticalHeaderLabels(pidsVLabelsList);
 }
 
 MoveSettingsWidget::~MoveSettingsWidget() {

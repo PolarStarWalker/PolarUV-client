@@ -7,6 +7,7 @@
 #include <QImage>
 
 #include <Network/Network.hpp>
+#include <VideoStream/VideoStream.hpp>
 
 #include <string>
 
@@ -42,10 +43,13 @@ struct SensorsSettingsStruct {
     bool IndicatorsEnabled = true;
 };
 
+
 struct WidgetResources {
 
     SensorsStruct Sensors{};
     SensorsSettingsStruct SensorsSettings{};
+
+    lib::processing::CameraSettingsStruct CameraSettings{};
 
     lib::network::Network Network{};
     std::string ClientIp{};

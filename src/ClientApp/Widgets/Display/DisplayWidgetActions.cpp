@@ -10,7 +10,7 @@ void DisplayWidget::SwitchVideoStream() {
     if (stream_.IsOnline()) {
         message = lib::processing::VideoStream::GetStopMessage();
     } else {
-        message = lib::processing::VideoStream::GetStartMessage(resources_.ClientIp);
+        message = lib::processing::VideoStream::GetStartMessage(resources_.CameraSettings);
     }
 
     resources_.Network.NewSendRequest<lib::network::Request::TypeEnum::W>(2, message);

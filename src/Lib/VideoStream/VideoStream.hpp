@@ -7,6 +7,16 @@
 
 namespace lib::processing {
 
+    struct CameraSettingsStruct {
+        std::string ClientIP;
+        std::string DeviceName;
+        int Brightness = 0;
+        int Contrast = 0;
+        int Hue = 0;
+        int Saturation = 0;
+        bool IsRotated = false;
+    };
+
     class VideoStream {
     public:
 
@@ -14,7 +24,7 @@ namespace lib::processing {
 
         ~VideoStream();
 
-        static std::string GetStartMessage(const std::string &clientIp);
+        static std::string GetStartMessage(const CameraSettingsStruct &cameraSettings);
 
         static std::string GetStopMessage();
 

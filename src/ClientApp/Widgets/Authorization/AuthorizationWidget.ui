@@ -81,6 +81,9 @@
      <property name="font">
       <font>
        <pointsize>16</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -95,7 +98,7 @@
 }</string>
      </property>
      <property name="text">
-      <string>Polar UV 4</string>
+      <string>Polar UV Client</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -126,7 +129,7 @@
      <property name="minimumSize">
       <size>
        <width>400</width>
-       <height>180</height>
+       <height>140</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -158,201 +161,6 @@
       <property name="spacing">
        <number>10</number>
       </property>
-      <item row="1" column="0">
-       <widget class="QLabel" name="RobotIPLabel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>MS Shell Dlg 2</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: white;
-border: none;</string>
-        </property>
-        <property name="text">
-         <string>IP Робота</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="ClientIPComboBox">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QComboBox {
-	font: 10pt &quot;MS Shell Dlg 2&quot;;
-	color: white;
-    padding: 1px 18px 1px 5px;
-}
-
-QComboBox:editable {
-    background: rgb(60,60,60);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(60,60,60);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(60,60,60);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-radius: 5px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	background-color: rgb(60,60,60);
-    selection-background-color: rgb(30,140,200);
-}</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="GamepadIDLabel">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>MS Shell Dlg 2</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: white;
-border: none;</string>
-        </property>
-        <property name="text">
-         <string>ID геймпада</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="ClientIPLabel">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>MS Shell Dlg 2</family>
-          <pointsize>12</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: white;
-border: none;</string>
-        </property>
-        <property name="text">
-         <string>IP Клиента</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="1">
        <widget class="QLineEdit" name="RobotIPEdit">
         <property name="minimumSize">
@@ -389,8 +197,14 @@ border: none;</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="GamepadComboBox">
+      <item row="1" column="0">
+       <widget class="QLabel" name="RobotIPLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -403,71 +217,25 @@ border: none;</string>
           <height>30</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <family>MS Shell Dlg 2</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
         <property name="styleSheet">
-         <string notr="true">QComboBox {
-	font: 10pt &quot;MS Shell Dlg 2&quot;;
-	color: white;
-    padding: 1px 18px 1px 5px;
-}
-
-QComboBox:editable {
-    background: rgb(60,60,60);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-}
-
-QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
-	background: rgb(60,60,60);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
-
-QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
-	background: rgb(60,60,60);
-	border: 1px solid rgb(100,100,100) ;
-    border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;
-} 
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-
-    border-top-right-radius: 5px; /* same radius as the QComboBox */
-    border-bottom-right-radius: 5px;
-}
-
-QComboBox::down-arrow {
-    image: url(Icons/ComboBoxDownArrow.png);
-	width: 10px;
-	height: 10px;
-	right: 5px;
-} 
-
-QComboBox::down-arrow:on { /* shift the arrow when popup is open */
-    image: url(Icons/ComboBoxUpArrow.png);
-}
-
-QComboBox QAbstractItemView {
-	color: white;
-	border: 1px solid rgb(100,100,100) ;
-	border-radius: 5px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 0px;
-	background-color: rgb(60,60,60);
-    selection-background-color: rgb(30,140,200);
-}</string>
+         <string notr="true">color: white;
+border: none;</string>
+        </property>
+        <property name="text">
+         <string>IP робота</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="2">
+      <item row="2" column="2">
        <widget class="QPushButton" name="RefreshGamepadIDsButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -538,108 +306,6 @@ QToolTip
         </property>
         <property name="autoDefault">
          <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="RefreshClientIPsButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>30</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Arial</family>
-          <pointsize>10</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-          <stylestrategy>PreferDefault</stylestrategy>
-          <kerning>true</kerning>
-         </font>
-        </property>
-        <property name="cursor">
-         <cursorShape>ArrowCursor</cursorShape>
-        </property>
-        <property name="toolTip">
-         <string>Обновить</string>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton {
-	color: white;
-	background-color:rgb(60,60,60);
-	border: 1px solid rgb(100,100,100);
-	border-radius:5px;
-	icon: url(Icons/ReloadIcon.png);
-}
-
-QPushButton:hover:!pressed {
-    background-color: rgb(70,70,70);
-}
-
-QToolTip
-{
-	color: white;
-	background-color: rgb(30,140,200);
-	border: 1px solid rgb(38,179,255);
-	border-radius: 3px;
-}</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="autoDefault">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="ModeLabel">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: white;
-border: none;</string>
-        </property>
-        <property name="text">
-         <string>Режим работы</string>
         </property>
        </widget>
       </item>
@@ -731,6 +397,150 @@ QComboBox QAbstractItemView {
         </item>
        </widget>
       </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="GamepadIDLabel">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>MS Shell Dlg 2</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: white;
+border: none;</string>
+        </property>
+        <property name="text">
+         <string>ID геймпада</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="GamepadComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+	font: 10pt &quot;MS Shell Dlg 2&quot;;
+	color: white;
+    padding: 1px 18px 1px 5px;
+}
+
+QComboBox:editable {
+    background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable { /* Штука не выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+QComboBox:!editable:on, QComboBox::drop-down:editable:on { /* Штука выдвинута*/
+	background: rgb(60,60,60);
+	border: 1px solid rgb(100,100,100) ;
+    border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+} 
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-top-right-radius: 5px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 5px;
+}
+
+QComboBox::down-arrow {
+    image: url(Icons/ComboBoxDownArrow.png);
+	width: 10px;
+	height: 10px;
+	right: 5px;
+} 
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    image: url(Icons/ComboBoxUpArrow.png);
+}
+
+QComboBox QAbstractItemView {
+	color: white;
+	border: 1px solid rgb(100,100,100) ;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	background-color: rgb(60,60,60);
+    selection-background-color: rgb(30,140,200);
+}</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="ModeLabel">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: white;
+border: none;</string>
+        </property>
+        <property name="text">
+         <string>Режим работы</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -798,7 +608,7 @@ QPushButton:hover:!pressed {
 }</string>
         </property>
         <property name="text">
-         <string>Режим отладки</string>
+         <string>Отладка</string>
         </property>
         <property name="iconSize">
          <size>

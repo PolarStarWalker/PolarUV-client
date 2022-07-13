@@ -6,13 +6,11 @@
 
 #include "../Input/Gamepad.hpp"
 
-#include "IPFunction.hpp"
-
 AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
         QWidget(parent),
         ui(new Ui::AuthorizationWidget),
         ioContext_(),
-        settings_("NARFU", "PolarROVClient"),
+        settings_("NARFU", "PolarUV-Client"),
         resources_() {
 
     ui->setupUi(this);
@@ -35,7 +33,6 @@ AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
 //    resources_.displayFBO = new QOpenGLFramebufferObject(1920, 1080, fboFormat_);
 
     /// Соединяем собственные слоты
-    connect(ui->RefreshClientIPsButton, SIGNAL(clicked(bool)), this, SLOT(RefreshClientIPs()));
     connect(ui->RefreshGamepadIDsButton, SIGNAL(clicked(bool)), this, SLOT(RefreshGamepadIDs()));
     connect(ui->LaunchButton, SIGNAL(clicked(bool)), this, SLOT(LaunchHandler()));
 
@@ -46,15 +43,6 @@ AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
 
 AuthorizationWidget::~AuthorizationWidget() {
     delete ui;
-}
-
-void AuthorizationWidget::RefreshClientIPs() {
-    auto addresses = GetIps();
-
-    ui->ClientIPComboBox->clear();
-
-    for (auto &&address: addresses)
-        ui->ClientIPComboBox->addItem(QString::fromStdString(address));
 }
 
 void AuthorizationWidget::RefreshGamepadIDs() {
@@ -78,9 +66,6 @@ void AuthorizationWidget::LaunchHandler() {
     }
 
     settings_.setValue("RobotIP", ui->RobotIPEdit->text());
-
-
-    resources_.ClientIp = ui->ClientIPComboBox->currentText().toStdString();
 
     emit StartWidget();
 }
