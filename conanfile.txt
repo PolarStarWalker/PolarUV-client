@@ -18,6 +18,8 @@
     glfw/3.3.7
     glew/2.2.0
 
+    libssh2/1.10.0
+
 #   opencv/4.5.5
 #   ffmpeg/5.0
 #
