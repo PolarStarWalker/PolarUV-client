@@ -22,6 +22,8 @@
 #include "imgui_impl_opengl3.h"
 #include <cstdio>
 #include <GLFW/glfw3.h> // Will drag system OpenGL headers
+#include <ranges>
+#include <iostream>
 
 static void glfw_error_callback(int error, const char* description)
 {
@@ -43,7 +45,13 @@ int main(int, char**)
     //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
 
     // Create window with graphics context
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", nullptr, nullptr);
+    int count;
+    const auto monitors = glfwGetMonitors(&count);
+
+    //Get first monitor
+    const GLFWvidmode* mode = glfwGetVideoMode(monitors[0]);
+    const auto window = glfwCreateWindow(mode->width, mode->height, "New PolarUV with Dear ImGui", monitors[0], nullptr);
+
     if (window == nullptr)
         return 1;
     glfwMakeContextCurrent(window);
@@ -53,6 +61,7 @@ int main(int, char**)
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
@@ -125,7 +134,7 @@ int main(int, char**)
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
             ImGui::End();
         }
-
+        
         // 3. Show another simple window.
         if (show_another_window)
         {
