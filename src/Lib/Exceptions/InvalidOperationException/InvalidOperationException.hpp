@@ -6,7 +6,7 @@
 namespace lib::exceptions {
     class InvalidOperationException : public BaseException {
     public:
-        explicit InvalidOperationException(std::string_view details) : BaseException("Неправильная операция", details, information) {}
+        explicit InvalidOperationException(const std::string_view& details) : BaseException("Неправильная операция", details) {}
     };
 }
 

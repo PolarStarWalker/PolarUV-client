@@ -1,4 +1,5 @@
 #include <iostream>
+#include <Exceptions/Exceptions.hpp>
 #include "Gamepad.hpp"
 
 using namespace control;
@@ -41,7 +42,7 @@ void Gamepad::UpdateGamepadId(int id) {
 }
 
 
-float GetAnalogValueByAxis(const XINPUT_STATE &state, const GamepadSettingsStruct::AnalogAxis& axis) {
+float GetAnalogValueByAxis(const XINPUT_STATE &state, const GamepadSettingsStruct::AnalogAxis &axis) {
 
     double value;
 
@@ -78,6 +79,8 @@ float GetAnalogValueByAxis(const XINPUT_STATE &state, const GamepadSettingsStruc
                 value = 1;
             else if (state.Gamepad.wButtons & DPadLeft)
                 value = -1;
+            else
+                value = 0;
             break;
         }
         case GamepadSettingsStruct::AnalogAxisEnum::DPadY: {
@@ -85,15 +88,18 @@ float GetAnalogValueByAxis(const XINPUT_STATE &state, const GamepadSettingsStruc
                 value = 1;
             else if (state.Gamepad.wButtons & DPadDown)
                 value = -1;
+            else
+                value = 0;
             break;
         }
         case GamepadSettingsStruct::AnalogAxisEnum::NoButton: {
             value = 0;
             break;
         }
-        default: {
-            value = 0;
+        default:{
+            throw lib::exceptions::BaseException("Programmer error", "some kind of terrible bug");
         }
+
     }
 
     return GasFunction(axis.IsInverted ? -value : value);

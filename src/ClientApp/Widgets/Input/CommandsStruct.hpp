@@ -13,7 +13,7 @@ struct CommandsStruct {
         Mz = 5
     };
 
-    enum class HandEnum {
+    enum class HandEnum : size_t {
         Hand1,
         Hand2,
         Hand3,
