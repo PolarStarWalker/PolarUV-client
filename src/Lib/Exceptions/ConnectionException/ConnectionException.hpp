@@ -6,7 +6,7 @@
 namespace lib::exceptions {
     class ConnectionException : public BaseException {
     public:
-        explicit ConnectionException(std::string_view details) : BaseException("Ошибка подключения", details, warning) {}
+        explicit ConnectionException(const std::string_view& details) : BaseException("Ошибка подключения", details) {}
     };
 }
 

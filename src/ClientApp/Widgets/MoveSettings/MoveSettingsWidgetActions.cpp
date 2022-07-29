@@ -10,7 +10,7 @@ void MoveSettingsWidget::SendSettings() {
 
     std::string message = Serialize();
 
-    Response response = resources_.Network.SendRequest(message, Request::TypeEnum::W, 0);
+    Response response = resources_.Network.SendWriteRequest(0, message);
 
     StatusCodeCheck<Request::TypeEnum::W>(response.Header.Code);
 
@@ -20,7 +20,7 @@ void MoveSettingsWidget::SendSettings() {
 void MoveSettingsWidget::ReceiveSettings() {
     using namespace lib::network;
 
-    Response response = resources_.Network.SendRequest(std::string(), Request::TypeEnum::R, 0);
+    Response response = resources_.Network.SendReadRequest(0);
 
     StatusCodeCheck<Request::TypeEnum::R>(response.Header.Code, [&](){ Deserialize(response.Data);});
 }

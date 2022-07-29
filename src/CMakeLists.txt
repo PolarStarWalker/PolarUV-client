@@ -13,9 +13,7 @@ set(CMAKE_AUTOUIC ON)
 
 if (WIN32)
 
-    message(STATUS ${QT_CMAKE_PREFIX_PATH})
-
-    set(QT_INSTALL_PATH "${QT_CMAKE_PREFIX_PATH}")
+    set(QT_INSTALL_PATH "${QT_PATH}")
     if (NOT EXISTS "${QT_INSTALL_PATH}/bin")
         set(QT_INSTALL_PATH "${QT_INSTALL_PATH}/..")
         if (NOT EXISTS "${QT_INSTALL_PATH}/bin")

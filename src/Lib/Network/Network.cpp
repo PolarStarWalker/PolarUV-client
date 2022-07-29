@@ -18,7 +18,33 @@ Network::Network() :
         ioContext_(),
         socket_(ioContext_) {}
 
-Response Network::SendRequest(std::string_view data, Request::TypeEnum type, ssize_t endpointId) {
+Response Network::SendReadRequest(ssize_t endpointId) {
+    using TimePoint = std::chrono::steady_clock::time_point;
+
+    std::unique_lock lock(requestsMutex_);
+
+    TimePoint requestBegin = std::chrono::steady_clock::now();
+
+    auto request = Request("", Request::TypeEnum::R, endpointId);
+
+    auto tmp = TransferData(request);
+
+    auto decompressed = Decompress(tmp.Data);
+
+    Response response(std::move(decompressed), tmp.Header.Code, tmp.Header.EndpointId);
+
+    lock.unlock();
+
+    TimePoint end = std::chrono::steady_clock::now();
+    std::cout << request.Header
+              << "\n[REQUEST TIME]\n"
+              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
+              << "[ns]" << std::endl;
+
+    return response;
+}
+
+Response Network::SendWriteRequest(ssize_t endpointId, const std::string_view &data) {
     using TimePoint = std::chrono::steady_clock::time_point;
 
     auto compressed = Compress(data);
@@ -27,7 +53,7 @@ Response Network::SendRequest(std::string_view data, Request::TypeEnum type, ssi
 
     TimePoint requestBegin = std::chrono::steady_clock::now();
 
-    auto request = Request({compressed.data(), compressed.size()}, type, endpointId);
+    auto request = Request({compressed.data(), compressed.size()}, Request::TypeEnum::W, endpointId);
 
     auto response = TransferData(request);
 
@@ -35,7 +61,32 @@ Response Network::SendRequest(std::string_view data, Request::TypeEnum type, ssi
 
     TimePoint end = std::chrono::steady_clock::now();
     std::cout << request.Header
-              << "\nRequest Time = "
+              << "\n[REQUEST TIME]\n"
+              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
+              << "[ns]" << std::endl;
+
+    return response;
+}
+
+
+Response Network::SendReadWriteRequest(ssize_t endpointId, const std::string_view &data) {
+    using TimePoint = std::chrono::steady_clock::time_point;
+
+    auto compressed = Compress(data);
+
+    std::unique_lock lock(requestsMutex_);
+
+    TimePoint requestBegin = std::chrono::steady_clock::now();
+
+    auto request = Request({compressed.data(), compressed.size()}, Request::TypeEnum::WR, endpointId);
+
+    auto response = TransferData(request);
+
+    lock.unlock();
+
+    TimePoint end = std::chrono::steady_clock::now();
+    std::cout << request.Header
+              << "\n[REQUEST TIME]\n"
               << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
               << "[ns]" << std::endl;
 
@@ -139,17 +190,25 @@ std::vector<char> Network::Compress(const std::string_view &data) {
 
     std::vector<char> compressed(maxCompressSize, 0);
 
-    auto compressSize = ZSTD_compress(&compressed[0], maxCompressSize, &data[0], data.size(), 0);
+    auto compressSize = ZSTD_compress(&compressed[0], maxCompressSize, &data[0], data.size(), COMPRESS_LVL);
 
     compressed.resize(compressSize);
 
     return compressed;
 }
 
-std::vector<char> Network::Decompress(const std::string &) {
+std::string Network::Decompress(const std::string &data) {
+    auto maxDecompressedSize = ZSTD_getDecompressedSize(data.c_str(), data.size());
 
+    std::string decompressed(maxDecompressedSize, 0);
 
-    return std::vector<char>();
+    auto decompressedSize = ZSTD_decompress(&decompressed[0], maxDecompressedSize, &data[0], data.size());
+
+    decompressed.resize(decompressedSize);
+
+    return decompressed;
 }
+
+
 
 

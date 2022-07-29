@@ -150,5 +150,5 @@ void CommandsSettingsWidget::SendCommand() {
 //
 //    std::cout << std::endl;
 
-    auto response = resources_.Network.SendRequest(commands, lib::network::Request::TypeEnum::W, 3);
+    auto response = resources_.Network.SendWriteRequest(3, {(const char*) &commands, sizeof(commands)});
 }

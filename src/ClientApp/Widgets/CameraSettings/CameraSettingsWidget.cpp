@@ -111,7 +111,7 @@ void CameraSettingsWidget::UpdateClientIP(const QString &string) {
 
 void CameraSettingsWidget::RefreshCameraNames() {
     /// Запрос данных от робота
-    auto response = resources_.Network.SendRequest(std::string(), Request::TypeEnum::R, 2);
+    auto response = resources_.Network.SendReadRequest(2);
     /// Расшифровка полученных данных
     VideoDeviceMessage message;
     message.ParseFromString(response.Data);

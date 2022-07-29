@@ -13,7 +13,7 @@ void DisplayWidget::SwitchVideoStream() {
         message = lib::processing::VideoStream::GetStartMessage(resources_.CameraSettings);
     }
 
-    resources_.Network.NewSendRequest<lib::network::Request::TypeEnum::W>(2, message);
+    resources_.Network.SendWriteRequest(2, message);
 }
 
 void DisplayWidget::SwitchVideoCapture() {

@@ -24,9 +24,8 @@ void SensorsWidget::StopWidget() {
     timer_.stop();
 }
 
-void SensorsWidget::ReceiveTelemetry() {
-    using RequestType = lib::network::Request::TypeEnum;
-    auto response = resources_.Network.SendRequest("", RequestType::R, 1);
+void SensorsWidget::ReceiveTelemetry() {;
+    auto response = resources_.Network.SendReadRequest(1);
 
     auto sensors = response.DataAs<SensorsStruct>();
 
