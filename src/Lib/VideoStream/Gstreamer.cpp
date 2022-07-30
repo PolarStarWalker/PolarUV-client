@@ -1,5 +1,5 @@
 #include "Gstreamer.hpp"
-#include <gst/gst.h>
+#include "gst/gst.h"
 #include <gst/app/gstappsink.h>
 #include <iostream>
 

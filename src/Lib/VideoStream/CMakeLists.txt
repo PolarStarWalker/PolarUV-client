@@ -1,19 +1,25 @@
 project(VideoStream)
 
-set(VIDEO_LIBRARIES gstd3d11 gstd3d11-1.0 d3d11 dxguid dxgi Ole32 Oleaut32 Imm32 Winmm Version gstvideo-1.0 gstcodecs-1.0 gstcodecparsers-1.0 )
+set(GSTREAMER_LIB_PATH C:/gstreamer/1.0/mingw_x86_64/lib)
+file(GLOB_RECURSE GSTREAMER_LIBRARIES
+        ${GSTREAMER_LIB_PATH}/*.dll
+        ${GSTREAMER_LIB_PATH}/*.dll.a
+        )
 
-#do some cmake-protobug magic
+set(VIDEO_LIBRARIES d3d11 dxguid dxgi Ole32 Oleaut32 Imm32 Winmm Version)
+
+# Do some cmake-protobuf magic
 find_package(Protobuf REQUIRED)
 
-#compile .proto to c++ code
+# Compile .proto files to C++ code
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS VideoStreamMessage.proto)
 
 include_directories(${Protobuf_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-add_library(VideoStream ${PROTO_SRCS} ${PROTO_HDRS} VideoStream.hpp VideoStream.cpp Gstreamer.cpp)
+add_library(VideoStream ${PROTO_SRCS} ${PROTO_HDRS} VideoStream.hpp VideoStream.cpp Gstreamer.hpp Gstreamer.cpp)
 
 target_link_libraries(VideoStream ${CONAN_LIBS})
-target_link_libraries(VideoStream ${GST_LIBRARIES})
 target_link_libraries(VideoStream ${VIDEO_LIBRARIES})
 target_link_libraries(VideoStream ${REQUIRED_LIBS_QUALIFIED})
+target_link_libraries(VideoStream ${GSTREAMER_LIBRARIES})

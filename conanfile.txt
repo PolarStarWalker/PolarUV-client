@@ -5,14 +5,14 @@
     zlib/1.2.12
     zstd/1.5.2 # for compressing
 
-    gstreamer/1.19.2 #for video-streaming
-    gst-plugins-base/1.19.1
-    gst-plugins-good/1.19.1
-    gst-plugins-bad/1.19.1
-    glib/2.72.0
+#    gstreamer/1.19.2 #for video-streaming
+#    gst-plugins-base/1.19.1
+#    gst-plugins-good/1.19.1
+#    gst-plugins-bad/1.19.1
+#    glib/2.72.0
 
-    freetype/2.11.1
-    harfbuzz/4.2.1
+#    freetype/2.11.1
+#    harfbuzz/4.2.1
 
     imgui/cci.20220621+1.88.docking
     glfw/3.3.7
@@ -32,10 +32,10 @@
     boost:filesystem_no_deprecated = True
     boost:extra_b2_flags = "-defines=BOOST_DISABLE_THREADS"
 
-    gstreamer:shared = False
-    gst-plugins-base:shared = False
-    gst-plugins-good:shared = False
-    glib:shared = False
+#    gstreamer:shared = False
+#    gst-plugins-base:shared = False
+#    gst-plugins-good:shared = False
+#    glib:shared = False
 
     sfml:network = False
     sfml:audio = False

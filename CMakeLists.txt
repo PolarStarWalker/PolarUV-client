@@ -29,9 +29,9 @@ endif()
 set(BASE_WARNINGS "-Wall -Wextra -Wpedantic")
 set(EXTRA_WARNINGS "-Wnon-virtual-dtor -Wduplicated-branches -Wduplicated-cond -Wfloat-equal -Wshadow=compatible-local -Wcast-qual")
 
-#set C++20
+# Set C++ standard 20
 set(CMAKE_CXX_STANDARD 20)
-#link C/C++ libraries statically
+# Link C/C++ libraries statically
 set(CMAKE_CXX_FLAGS "-fcoroutines -march=x86-64-v2")
 
 set(CMAKE_CXX_FLAGS_DEBUG "-g ${BASE_WARNINGS} ${EXTRA_WARNINGS} ${ASAN_FLAGS} ${TSAN_FLAGS} ${UBSAN_FLAGS} ${LSAN_FLAGS}")
@@ -53,24 +53,26 @@ if (WIN32)
 endif (WIN32)
 
 
-#conan
+# Conan
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-# Подключение библиотек python
+# Подключение библиотек GStreamer
+include_directories(C:/gstreamer/1.0/mingw_x86_64/include/glib-2.0)
+include_directories(C:/gstreamer/1.0/mingw_x86_64/lib/glib-2.0/include)
+include_directories(C:/gstreamer/1.0/mingw_x86_64/include/gstreamer-1.0)
+
+# Подключение библиотек Python
 find_package(Python3 COMPONENTS Interpreter Development)
 include_directories(${Python_INCLUDE_DIRS})
 include_directories(${Python3_INCLUDE_DIRS})
 
-#Путь до Qt
+# Подключение библиотек Qt
 message(STATUS "QT PATH IS: ${QT_PATH}\n")
 set(CMAKE_PREFIX_PATH ${QT_PATH})
-
 set(QT_VERSION 5)
-
 set(REQUIRED_LIBS Core Gui Widgets Test Gamepad Network)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Opengl32 Qt5::Widgets Qt5::Test Qt5::Network) # Для -l библиотек
-
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
 add_subdirectory(src)
