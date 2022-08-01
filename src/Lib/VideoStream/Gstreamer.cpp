@@ -9,7 +9,7 @@ Gstreamer::Gstreamer() :
         rtp(gst_element_factory_make("rtph264depay", "rtp")),
         h264parse(gst_element_factory_make("h264parse", "h264parse")),
         decode(gst_element_factory_make("d3d11h264dec", "decode")),
-        videoconvert(gst_element_factory_make("videoconvert", "videoconvert")),
+        videoconvert(gst_element_factory_make("autovideoconvert", "videoconvert")),
         sink(gst_element_factory_make("appsink", "sink")),
         group(gst_pipeline_new("group")),
         qImageMutex_(){}
