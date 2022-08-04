@@ -47,6 +47,7 @@ include_directories(Client PUBLIC ./Lib)
 include_directories(Client PUBLIC ./Renderer/.imgui/include)
 
 add_subdirectory(Lib)
+add_subdirectory(Renderer)
 add_subdirectory(Resources)
 add_subdirectory(ClientApp)
 
@@ -55,3 +56,5 @@ target_link_libraries(Client ClientApp)
 target_link_libraries(Client Lib)
 
 target_link_libraries(Client ${CONAN_LIBS})
+
+target_link_libraries(Client Renderer)

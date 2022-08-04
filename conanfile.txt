@@ -14,6 +14,12 @@
 #    freetype/2.11.1
 #    harfbuzz/4.2.1
 
+    imgui/cci.20220621+1.88.docking
+    glfw/3.3.7
+    glew/2.2.0
+
+    libssh2/1.10.0
+
 #   opencv/4.5.5
 #   ffmpeg/5.0
 #
@@ -31,7 +37,15 @@
 #    gst-plugins-good:shared = False
 #    glib:shared = False
 
+    sfml:network = False
+    sfml:audio = False
+
 [generators]
     cmake
 
 [imports]
+    ./res/bindings, imgui_impl_glfw.cpp -> ../src/renderer/.imgui
+    ./res/bindings, imgui_impl_opengl3.cpp -> ../src/renderer/.imgui
+    ./res/bindings, imgui_impl_glfw.h -> ../src/renderer/.imgui/include
+    ./res/bindings, imgui_impl_opengl3.h -> ../src/renderer/.imgui/include
+    ./res/bindings, imgui_impl_opengl3_loader.h -> ../src/renderer/.imgui/include
