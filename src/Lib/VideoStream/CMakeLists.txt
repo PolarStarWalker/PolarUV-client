@@ -1,9 +1,9 @@
 project(VideoStream)
 
 set(GSTREAMER_LIB_PATH C:/gstreamer/1.0/mingw_x86_64/lib)
-file(GLOB_RECURSE GSTREAMER_LIBRARIES
-        ${GSTREAMER_LIB_PATH}/*.dll
+file(GLOB GSTREAMER_LIBRARIES
         ${GSTREAMER_LIB_PATH}/*.dll.a
+        ${GSTREAMER_LIB_PATH}/gstreamer-1.0/*.dll
         )
 
 set(VIDEO_LIBRARIES d3d11 dxguid dxgi Ole32 Oleaut32 Imm32 Winmm Version)
