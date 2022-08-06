@@ -26,16 +26,19 @@ if(CMAKE_CXX_LSAN)
     set(LSAN_FLAGS "-fsanitize=leak")
 endif()
 
+# Установка стандарта C++20
+set(CMAKE_CXX_STANDARD 20)
+
+# Установка флагов компилятора для всех конфигураций
+set(CMAKE_CXX_FLAGS "-fcoroutines -march=x86-64-v2 -static")
+
+# Установка флагов компилятора для конфигурации Release
 set(BASE_WARNINGS "-Wall -Wextra -Wpedantic")
 set(EXTRA_WARNINGS "-Wnon-virtual-dtor -Wduplicated-branches -Wduplicated-cond -Wfloat-equal -Wshadow=compatible-local -Wcast-qual")
-
-# Set C++ standard 20
-set(CMAKE_CXX_STANDARD 20)
-# Link C/C++ libraries statically
-set(CMAKE_CXX_FLAGS "-fcoroutines -march=x86-64-v2")
-
 set(CMAKE_CXX_FLAGS_DEBUG "-g ${BASE_WARNINGS} ${EXTRA_WARNINGS} ${ASAN_FLAGS} ${TSAN_FLAGS} ${UBSAN_FLAGS} ${LSAN_FLAGS}")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -static")
+
+# Установка флагов компилятора для конфигурации Debug
+set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 if (CMAKE_BUILD_TYPE MATCHES "Debug")
     add_definitions(-DDEBUG)
