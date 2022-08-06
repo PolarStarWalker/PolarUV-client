@@ -37,6 +37,10 @@ private:
 
     QTimer timer_;
 
+    /// ToDo: убрать костыль
+    uint8_t reverseTicks;
+    uint8_t zeroTicks;
+
 public slots:
 
     void StartWidget();

@@ -14,6 +14,10 @@ CommandsSettingsWidget::CommandsSettingsWidget(QWidget *parent, WidgetResources 
     settings_ = std::make_unique<QSettings>("NARFU", "PolarROVClient");
     LoadSettings();
 
+    /// ToDo: убрать костыль
+    reverseTicks = false;
+    zeroTicks = 0;
+
     connect(ui->LoadClientSettingsButton, SIGNAL(clicked(bool)), SLOT(LoadSettings()));
     connect(ui->SaveClientSettingsButton, SIGNAL(clicked(bool)), SLOT(SaveSettings()));
     connect(&timer_, SIGNAL(timeout()), this, SLOT(SendCommand()));
@@ -42,7 +46,7 @@ GamepadSettingsStruct CommandsSettingsWidget::GetGamepadSettings() {
     AnalogActions[AnalogActionsEnum::MoveY] = {AnalogAxisEnum::LeftStickX, false};
     AnalogActions[AnalogActionsEnum::MoveZ] = {AnalogAxisEnum::LeftStickY, false};
     AnalogActions[AnalogActionsEnum::RotateX] = {AnalogAxisEnum::LeftTrigger, false};
-    AnalogActions[AnalogActionsEnum::RotateY] = {AnalogAxisEnum::RightTrigger, true};
+    AnalogActions[AnalogActionsEnum::RotateY] = {AnalogAxisEnum::RightTrigger, false};
     AnalogActions[AnalogActionsEnum::RotateZ] = {AnalogAxisEnum::RightStickX, true};
 
     AnalogActions[AnalogActionsEnum::Hand1] = {AnalogAxisEnum::DPadY, false};
@@ -129,6 +133,22 @@ void CommandsSettingsWidget::SendCommand() {
 
     auto commands = gamepad_.GetCommands(gamepadSettings);
 
+    /// ToDo: shushkov.d убрать костыль
+    /// Начало костыля для руки
+    if (commands.Hand[CommandsStruct::HandEnum::Hand1] < -0.1f && reverseTicks < 5) {
+        reverseTicks++;
+    } else if (commands.Hand[CommandsStruct::HandEnum::Hand1] < -0.1f && reverseTicks >= 5) {
+        zeroTicks++;
+        if (zeroTicks <= 5) {
+            commands.Hand[CommandsStruct::HandEnum::Hand1] = 0.0f;
+        }
+    } else if (commands.Hand[CommandsStruct::HandEnum::Hand1] > 0.1f && reverseTicks >= 5) {
+        reverseTicks = 0;
+        zeroTicks = 0;
+    }
+    std::cout << commands.Hand[CommandsStruct::HandEnum::Hand1] << std::endl;
+    /// Конец костыля
+
 //    using MoveEnum = CommandsStruct::MoveEnum;
 //    using HandEnum = CommandsStruct::HandEnum;
 //
@@ -150,5 +170,5 @@ void CommandsSettingsWidget::SendCommand() {
 //
 //    std::cout << std::endl;
 
-    auto response = resources_.Network.SendWriteRequest(3, {(const char*) &commands, sizeof(commands)});
+    auto response = resources_.Network.SendWriteRequest(3, {(const char *) &commands, sizeof(commands)});
 }
