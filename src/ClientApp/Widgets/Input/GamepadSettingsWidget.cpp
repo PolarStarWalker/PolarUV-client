@@ -131,7 +131,7 @@ void CommandsSettingsWidget::SendCommand() {
 
     auto gamepadSettings = GetGamepadSettings();
 
-    auto commands = gamepad_.GetCommands(gamepadSettings);
+    auto commands = gamepad_.GetCommands(gamepadSettings, resources_);
 
     /// ToDo: shushkov.d убрать костыль
     /// Начало костыля для руки
@@ -146,7 +146,6 @@ void CommandsSettingsWidget::SendCommand() {
         reverseTicks = 0;
         zeroTicks = 0;
     }
-    std::cout << commands.Hand[CommandsStruct::HandEnum::Hand1] << std::endl;
     /// Конец костыля
 
 //    using MoveEnum = CommandsStruct::MoveEnum;

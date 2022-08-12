@@ -24,6 +24,9 @@ Gamepad::Gamepad(int id) {
     id_ = id;
     cameraPosition_ = 0.5;
     lightPosition_ = 0.0015;
+
+    stabilizationState_ = false;
+    oldStabilizationState_ = false;
 }
 
 void Gamepad::SetVibration(uint16_t left, uint16_t right) const {
@@ -96,7 +99,7 @@ float GetAnalogValueByAxis(const XINPUT_STATE &state, const GamepadSettingsStruc
             value = 0;
             break;
         }
-        default:{
+        default: {
             throw lib::exceptions::BaseException("Programmer error", "some kind of terrible bug");
         }
 
@@ -106,7 +109,7 @@ float GetAnalogValueByAxis(const XINPUT_STATE &state, const GamepadSettingsStruc
 }
 
 
-CommandsStruct Gamepad::GetCommands(const GamepadSettingsStruct &settings) const {
+CommandsStruct Gamepad::GetCommands(const GamepadSettingsStruct &settings, WidgetResources &resources) {
 
     using AnalogActionEnum = GamepadSettingsStruct::AnalogActionEnum;
     //using DiscreteActionsEnum = GamepadSettingsStruct::DiscreteActionEnum;
@@ -131,39 +134,82 @@ CommandsStruct Gamepad::GetCommands(const GamepadSettingsStruct &settings) const
     commands.Hand[HandEnum::Hand5] = GetAnalogValueByAxis(state, settings.AnalogActionsIds[AnalogActionEnum::Hand5]);
     commands.Hand[HandEnum::Hand6] = GetAnalogValueByAxis(state, settings.AnalogActionsIds[AnalogActionEnum::Hand6]);
 
+    /// Установка состояния стабилизации (вкл/выкл)
+    if (state.Gamepad.wButtons & ButtonMask::Start) {
+        stabilizationState_ = true;
+    } else if (state.Gamepad.wButtons & ButtonMask::Stop) {
+        stabilizationState_ = false;
+    }
+    commands.Stabilization = stabilizationState_;
+    resources.StabilizationState = stabilizationState_;
 
+    /// Задание уставки ToDo: Убрать доступ класса к WidgetResources
+    if (!oldStabilizationState_ && stabilizationState_) {
+        /// Расчет новой уставки, если стабилизация только что была включена
+        resources.StabilizationTarget = {resources.Sensors.Rotation[SensorsStruct::Position::X],
+                                         resources.Sensors.Rotation[SensorsStruct::Position::Y],
+                                         resources.Sensors.Rotation[SensorsStruct::Position::Z],
+                                         resources.Sensors.Depth};
+    }
 
-    ///ToDo убрать
-    if (state.Gamepad.wButtons & Triangle) {
-        cameraPosition_ += CameraSpeed;
+    /// Корректировка уставки
+    if (stabilizationState_) {
+        resources.StabilizationTarget[1] -= commands.Move[MoveEnum::My];
+        resources.StabilizationTarget[3] -= commands.Move[MoveEnum::Fz] / 200;
+    }
+    /// ToDo: Разобраться с диапазонами углов. Убрать этот костыль
+    if (resources.StabilizationTarget[1] < -90.0f) {
+        resources.StabilizationTarget[1] = -90.0f;
+    } else if (resources.StabilizationTarget[1] > 90.0f) {
+        resources.StabilizationTarget[1] = 90.0f;
+    }
+    commands.StabilizationTarget = resources.StabilizationTarget;
+
+    oldStabilizationState_ = stabilizationState_;
+
+    /// Камера
+    if (state.Gamepad.
+            wButtons & Triangle
+            ) {
+        cameraPosition_ +=
+                CameraSpeed;
         if (cameraPosition_ > 1)
             cameraPosition_ = 1;
-    } else if (state.Gamepad.wButtons & Cross) {
-        cameraPosition_ -= CameraSpeed;
+    } else if (state.Gamepad.
+            wButtons & Cross
+            ) {
+        cameraPosition_ -=
+                CameraSpeed;
         if (cameraPosition_ < 0)
             cameraPosition_ = 0;
-
-    } else if (state.Gamepad.wButtons & RightStick) {
+    } else if (state.Gamepad.
+            wButtons & RightStick
+            ) {
         cameraPosition_ = 0.5;
     }
 
-    if (state.Gamepad.wButtons & Circle) {
-        lightPosition_ += LightSpeed;
+    /// Фара
+    if (state.Gamepad.
+            wButtons & Circle
+            ) {
+        lightPosition_ +=
+                LightSpeed;
         if (lightPosition_ > 1)
             lightPosition_ = 1;
-    } else if (state.Gamepad.wButtons & Rectangle) {
-        lightPosition_ -= LightSpeed;
+    } else if (state.Gamepad.
+            wButtons & Rectangle
+            ) {
+        lightPosition_ -=
+                LightSpeed;
         if (lightPosition_ < 0)
             lightPosition_ = 0;
     }
 
-    //Фара
+    /// Фара
     commands.LowPWM[0] = 400 * lightPosition_ + 1100;
-    //std::cout << 20000 * lightPosition_ << std::endl;
-    //commands.LowPWM[1] = 0;
-    //рука
+
+    /// Рука
     commands.LowPWM[2] = 1000 * cameraPosition_ + 1000;
-    //commands.LowPWM[3] = 0;
 
     return commands;
 }

@@ -5,6 +5,7 @@
 #include "../WidgetResources.hpp"
 
 #include <QWidget>
+#include <QCheckBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MoveSettingsWidget; }
@@ -14,23 +15,21 @@ class MoveSettingsWidget : public QWidget {
 Q_OBJECT
 
 public:
-    MoveSettingsWidget(QWidget *parent, WidgetResources& resources);
+    MoveSettingsWidget(QWidget *parent, WidgetResources &resources);
 
     ~MoveSettingsWidget() override;
 
-public slots:
-    void StartWidget();
-    void StopWidget();
-    
 private:
-
-    WidgetResources& resources_;
-
-    Ui::MoveSettingsWidget *ui;
 
     [[nodiscard]] std::string Serialize() const noexcept;
 
     void Deserialize(const std::string &data) noexcept;
+
+public slots:
+
+    void StartWidget();
+
+    void StopWidget();
 
 private slots:
 
@@ -44,7 +43,17 @@ private slots:
 
     void UpdateMaxSpeedEdit(int value);
 
-    void UpdateMaxSpeedSlider(const QString& string);
+    void UpdateMaxSpeedSlider(const QString &string);
+
+private:
+
+    WidgetResources &resources_;
+    Ui::MoveSettingsWidget *ui;
+
+    QCheckBox *stabilizationXCheckBox;
+    QCheckBox *stabilizationYCheckBox;
+    QCheckBox *stabilizationZCheckBox;
+    QCheckBox *stabilizationHCheckBox;
 };
 
 #endif

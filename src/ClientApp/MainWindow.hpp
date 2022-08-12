@@ -111,7 +111,17 @@ private slots:
 
     void SwitchSideBarButton(int currentIndex);
 
+    void SwitchSideBar();
+
     void HideSideBar();
+
+    void UpKeyHandler();
+
+    void DownKeyHandler();
+
+    void LeftKeyHandler();
+
+    void RightKeyHandler();
 
     void SwitchWindowMode();
 
@@ -141,8 +151,13 @@ private:
 
     bool isDebug_;
 
-    QShortcut *keyF11;
-    QShortcut *keyEsc;
+    QShortcut *keyF11_;
+    QShortcut *keyEsc_;
+    QShortcut *keyTab_;
+    QShortcut *keyUp_;
+    QShortcut *keyDown_;
+    QShortcut *keyLeft_;
+    QShortcut *keyRight_;
 };
 
 #endif

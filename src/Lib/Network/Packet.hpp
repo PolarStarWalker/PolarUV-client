@@ -77,25 +77,25 @@ namespace lib::network {
 
         inline friend std::ostream &operator<<(std::ostream &out, const HeaderType &header) {
 
-            out << "[REQUEST HEADER]\n"
-                << "Endpoint: " << header.EndpointId << ", Type: ";
-
-            switch (header.Type) {
-
-                case TypeEnum::R:
-                    out << 'R';
-                    break;
-                case TypeEnum::W:
-                    out << 'W';
-                    break;
-                case TypeEnum::WR:
-                    out << "RW";
-                    break;
-                default:
-                    out << "UNDEFINED";
-            }
-
-            out << ", Data length: " << header.Length;
+//            out << "[REQUEST HEADER]\n"
+//                << "Endpoint: " << header.EndpointId << ", Type: ";
+//
+//            switch (header.Type) {
+//
+//                case TypeEnum::R:
+//                    out << 'R';
+//                    break;
+//                case TypeEnum::W:
+//                    out << 'W';
+//                    break;
+//                case TypeEnum::WR:
+//                    out << "RW";
+//                    break;
+//                default:
+//                    out << "UNDEFINED";
+//            }
+//
+//            out << ", Data length: " << header.Length;
 
             return out;
         }

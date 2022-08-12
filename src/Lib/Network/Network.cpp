@@ -36,10 +36,10 @@ Response Network::SendReadRequest(ssize_t endpointId) {
     lock.unlock();
 
     TimePoint end = std::chrono::steady_clock::now();
-    std::cout << request.Header
-              << "\n[REQUEST TIME]\n"
-              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
-              << "[ns]" << std::endl;
+//    std::cout << request.Header
+//              << "\n[REQUEST TIME]\n"
+//              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
+//              << "[ns]" << std::endl;
 
     return response;
 }
@@ -60,10 +60,10 @@ Response Network::SendWriteRequest(ssize_t endpointId, const std::string_view &d
     lock.unlock();
 
     TimePoint end = std::chrono::steady_clock::now();
-    std::cout << request.Header
-              << "\n[REQUEST TIME]\n"
-              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
-              << "[ns]" << std::endl;
+//    std::cout << request.Header
+//              << "\n[REQUEST TIME]\n"
+//              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
+//              << "[ns]" << std::endl;
 
     return response;
 }
@@ -85,10 +85,10 @@ Response Network::SendReadWriteRequest(ssize_t endpointId, const std::string_vie
     lock.unlock();
 
     TimePoint end = std::chrono::steady_clock::now();
-    std::cout << request.Header
-              << "\n[REQUEST TIME]\n"
-              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
-              << "[ns]" << std::endl;
+//    std::cout << request.Header
+//              << "\n[REQUEST TIME]\n"
+//              << std::chrono::duration_cast<std::chrono::nanoseconds>(end - requestBegin).count()
+//              << "[ns]" << std::endl;
 
     return response;
 }

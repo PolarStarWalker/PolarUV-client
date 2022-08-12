@@ -16,8 +16,14 @@ void MainWindow::SetupSlots() {
     connect(ui->BackButton, SIGNAL(clicked(bool)), SLOT(Pause()));
     connect(ui->SideBarButton, SIGNAL(clicked(bool)), displayWidget_, SLOT(ShowSideBarButton()));
 
-    keyF11 = new QShortcut(Qt::Key_F11,this,SLOT(SwitchWindowMode()));
-    keyEsc = new QShortcut(Qt::Key_Escape,this,SLOT(SetWindowedMode()));
+    keyF11_ = new QShortcut(Qt::Key_F11, this, SLOT(SwitchWindowMode()));
+    keyEsc_ = new QShortcut(Qt::Key_Escape, this, SLOT(SetWindowedMode()));
+    keyTab_ = new QShortcut(Qt::Key_Tab, this, SLOT(SwitchSideBar()));
+
+    keyUp_ = new QShortcut(Qt::Key_Up, this, SLOT(UpKeyHandler()));
+    keyDown_ = new QShortcut(Qt::Key_Down, this, SLOT(DownKeyHandler()));
+    keyLeft_ = new QShortcut(Qt::Key_Left, this, SLOT(LeftKeyHandler()));
+    keyRight_ = new QShortcut(Qt::Key_Right, this, SLOT(RightKeyHandler()));
 }
 
 void MainWindow::Pause() {
@@ -41,8 +47,99 @@ void MainWindow::SwitchSideBarButton(int currentIndex) {
     ui->Spacer1->changeSize(20, 90, QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
+void MainWindow::SwitchSideBar() {
+    if (ui->SideBar->isVisible())
+        ui->SideBar->hide();
+    else
+        ui->SideBar->show();
+}
+
 void MainWindow::HideSideBar() {
     ui->SideBar->hide();
+}
+
+void MainWindow::UpKeyHandler () {
+    if (ui->MainStackedWidget->currentIndex() != 0) {
+        auto currentIndex = ui->PrimaryStackedWidget->currentIndex();
+        switch (currentIndex) {
+            case 0: {
+                SwitchToPage2();
+                break;
+            }
+            case 1: {
+                SwitchToPage1();
+                break;
+            }
+            default: {}
+        }
+    }
+}
+
+void MainWindow::DownKeyHandler () {
+    if (ui->MainStackedWidget->currentIndex() != 0) {
+        auto currentIndex = ui->PrimaryStackedWidget->currentIndex();
+        switch (currentIndex) {
+            case 0: {
+                SwitchToPage2();
+                break;
+            }
+            case 1: {
+                SwitchToPage1();
+                break;
+            }
+            default: {}
+        }
+    }
+}
+
+void MainWindow::LeftKeyHandler () {
+    if (ui->MainStackedWidget->currentIndex() != 0 && ui->PrimaryStackedWidget->currentIndex() == 1) {
+        auto currentIndex = ui->SettingsStackedWidget->currentIndex();
+        switch (currentIndex) {
+            case 0: {
+                SwitchToPage2_4();
+                break;
+            }
+            case 1: {
+                SwitchToPage2_1();
+                break;
+            }
+            case 2: {
+                SwitchToPage2_2();
+                break;
+            }
+            case 3: {
+                SwitchToPage2_3();
+                break;
+            }
+            default: {}
+        }
+    }
+}
+
+void MainWindow::RightKeyHandler () {
+    if (ui->MainStackedWidget->currentIndex() != 0 && ui->PrimaryStackedWidget->currentIndex() == 1) {
+        auto currentIndex = ui->SettingsStackedWidget->currentIndex();
+        switch (currentIndex) {
+            case 0: {
+                SwitchToPage2_2();
+                break;
+            }
+            case 1: {
+                SwitchToPage2_3();
+                break;
+            }
+            case 2: {
+                SwitchToPage2_4();
+                break;
+            }
+            case 3: {
+                SwitchToPage2_1();
+                break;
+            }
+            default: {}
+        }
+    }
 }
 
 void MainWindow::SwitchWindowMode() {

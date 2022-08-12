@@ -22,11 +22,11 @@ struct CommandsStruct {
         Hand6,
     };
 
-    enum StabilizationType : int8_t {
-        None = 0,
-        Rotation = 1,
-        Absolute = 2
-    };
+//    enum StabilizationType : int8_t {
+//        None = 0,
+//        Rotation = 1,
+//        Absolute = 2
+//    };
 
     using MoveArray_t = lib::StaticMap<MoveEnum, float, 6>;
     using HandArray_t = lib::StaticMap<HandEnum, float, 6>;
@@ -35,7 +35,10 @@ struct CommandsStruct {
     HandArray_t Hand{};
     std::array<float, 4> LowPWM{};
 
-    StabilizationType Stabilization = None;
+    /// Стабилизация
+    //StabilizationType Stabilization = None;
+    bool Stabilization = false;
+    std::array<float, 4> StabilizationTarget{};
 
     friend std::ostream &operator<<(std::ostream &out, const CommandsStruct &commands) {
         out << "[COMMANDS STRUCT]\n"

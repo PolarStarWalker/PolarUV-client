@@ -1,6 +1,8 @@
 #ifndef CLIENT_GAMEPAD_HPP
 #define CLIENT_GAMEPAD_HPP
 
+#include "../WidgetResources.hpp"
+
 #include "CommandsStruct.hpp"
 #include "GamepadSettingsStruct.hpp"
 
@@ -50,12 +52,15 @@ namespace control {
 
         void UpdateGamepadId(int id);
 
-        CommandsStruct GetCommands(const GamepadSettingsStruct &settings) const;
+        CommandsStruct GetCommands(const GamepadSettingsStruct &settings, WidgetResources &resources);
 
     private:
         std::atomic<int> id_;
         mutable float cameraPosition_;
         mutable float lightPosition_;
+
+        bool stabilizationState_;
+        bool oldStabilizationState_;
     };
 
     inline std::array<bool, XUSER_MAX_COUNT> GetGamepadsIds() {

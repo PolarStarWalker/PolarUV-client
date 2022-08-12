@@ -69,9 +69,13 @@ void DisplayWidget::paintGL() {
         painter_.Draw(PaintYawIndicator, rotationZ)
                 .DrawImage(width() / 2 - 400 - 60, 0, left)
                 .DrawImage(width() / 2 + 400, 0, right)
-                .Draw(PaintCentralIndicator, sensors.Rotation[SensorsStruct::X], sensors.Rotation[SensorsStruct::Y])
-                .Draw(PaintDepthIndicator, sensors.Depth - sensorsSettings.DepthOffset, sensorsSettings.MaxDepth)
-                .Draw(PaintTextInfo, sensors.MotionCalibration);
+                .Draw(PaintCentralIndicator, sensors.Rotation[SensorsStruct::X], sensors.Rotation[SensorsStruct::Y],
+                      resources_.StabilizationTarget[0], resources_.StabilizationTarget[1],
+                      resources_.StabilizationState)
+                .Draw(PaintDepthIndicator, sensors.Depth - sensorsSettings.DepthOffset,
+                      resources_.StabilizationTarget[3], sensorsSettings.MaxDepth, resources_.StabilizationState)
+                .Draw(PaintTextInfo, sensors.MotionCalibration, resources_.StabilizationState,
+                      resources_.StabilizationTarget);
     }
 
     painter_.End();

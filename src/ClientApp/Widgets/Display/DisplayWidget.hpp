@@ -36,11 +36,18 @@ private:
 
     static void PaintYawIndicator(QPainter &painter, int width, int height, float yawAngle);
 
-    static void PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle);
+    static void PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle,
+                                      float targetRoll, float targetPitch, bool stabilization);
 
-    static void PaintDepthIndicator(QPainter &painter, int width, int height, float depth, int valueRange);
+    static void PaintDepthIndicator(QPainter &painter, int width, int height, float currentDepth, float targetDepth,
+                                    int valueRange, bool stabilization);
 
-    static void PaintTextInfo(QPainter &painter, int width, int height, std::array<int8_t, 4> calibration);
+    static void PaintTextInfo(QPainter &painter,
+                              int width,
+                              int height,
+                              std::array<int8_t, 4> calibration,
+                              bool stabilizationState,
+                              std::array<float, 4> stabilizationTarget);
 
 private:
 

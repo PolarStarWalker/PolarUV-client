@@ -71,6 +71,21 @@ void MoveSettingsWidget::Deserialize(const std::string &data) noexcept {
             break;
     }
 
+    /// Writing PID coefficients
+    for(auto i : std::ranges::iota_view(0,4)) {
+        QString itemTextP = QString::number(message.pid()[i].p());
+        QString itemTextI = QString::number(message.pid()[i].i());
+        QString itemTextD = QString::number(message.pid()[i].d());
+        ui->PIDTable->setItem(i, 0, new QTableWidgetItem(itemTextP));
+        ui->PIDTable->setItem(i, 1, new QTableWidgetItem(itemTextI));
+        ui->PIDTable->setItem(i, 2, new QTableWidgetItem(itemTextD));
+    }
+
+    /// Writing PID state
+    stabilizationXCheckBox->setChecked(message.pid_enabled().x());
+    stabilizationYCheckBox->setChecked(message.pid_enabled().y());
+    stabilizationZCheckBox->setChecked(message.pid_enabled().z());
+    stabilizationHCheckBox->setChecked(message.pid_enabled().h());
 }
 
 std::string MoveSettingsWidget::Serialize() const noexcept {
@@ -141,6 +156,12 @@ std::string MoveSettingsWidget::Serialize() const noexcept {
     Depth->set_p(ui->PIDTable->item(3,0)->text().toFloat());
     Depth->set_i(ui->PIDTable->item(3,1)->text().toFloat());
     Depth->set_d(ui->PIDTable->item(3,2)->text().toFloat());
+
+    auto PIDEnabled = message.mutable_pid_enabled();
+    PIDEnabled->set_x(stabilizationXCheckBox->isChecked());
+    PIDEnabled->set_y(stabilizationYCheckBox->isChecked());
+    PIDEnabled->set_z(stabilizationZCheckBox->isChecked());
+    PIDEnabled->set_h(stabilizationHCheckBox->isChecked());
 
     return message.SerializeAsString();
 }

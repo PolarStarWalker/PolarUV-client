@@ -1035,6 +1035,11 @@ background: transparent;</string>
        <height>16777215</height>
       </size>
      </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="mouseTracking">
       <bool>false</bool>
      </property>
@@ -1078,13 +1083,13 @@ background: transparent;</string>
         </property>
         <property name="minimumSize">
          <size>
-          <width>322</width>
+          <width>327</width>
           <height>227</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>322</width>
+          <width>327</width>
           <height>227</height>
          </size>
         </property>
@@ -1132,7 +1137,7 @@ QHeaderView
 
 QHeaderView::section
 {
-	width: 20px;
+	width: 25px;
 	height: 25px;
 	background-color: rgb(55,55,55);
 	border-style: solid;
@@ -2091,13 +2096,13 @@ background: transparent;</string>
         </property>
         <property name="minimumSize">
          <size>
-          <width>242</width>
+          <width>177</width>
           <height>127</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>242</width>
+          <width>227</width>
           <height>127</height>
          </size>
         </property>
@@ -2145,7 +2150,7 @@ QHeaderView
 
 QHeaderView::section
 {
-	width: 90px;
+	width: 25px;
 	height: 25px;
 	background-color: rgb(55,55,55);
 	border-style: solid;
@@ -2160,7 +2165,45 @@ QTableView QTableCornerButton::section {
 	border-color: rgb(100,100,100);
 	border-right-width: 1px;
 	border-bottom-width: 1px;
- }</string>
+ }
+
+QCheckBox {
+    spacing: 5px;
+	border: none;
+}
+
+QCheckBox::indicator {
+	background-color: rgb(60,60,60);
+    width: 50px;
+    height: 25px;
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: rgb(60,60,60);
+	border-color: rgb(100,100,100);
+}
+
+QCheckBox::indicator::unchecked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QCheckBox::indicator:checked {
+	image: url(Icons/CheckBoxIndicator.png);
+}
+
+QCheckBox::indicator::checked:hover
+{
+	background-color: rgb(70,70,70);
+}
+
+QToolTip
+{
+	color: white;
+	background-color: rgb(30,140,200);
+	border: 1px solid rgb(38,179,255);
+	border-radius: 3px;
+}</string>
         </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
@@ -2217,7 +2260,7 @@ QTableView QTableCornerButton::section {
          <number>4</number>
         </property>
         <property name="columnCount">
-         <number>3</number>
+         <number>4</number>
         </property>
         <attribute name="horizontalHeaderVisible">
          <bool>true</bool>
@@ -2247,6 +2290,7 @@ QTableView QTableCornerButton::section {
         <row/>
         <row/>
         <row/>
+        <column/>
         <column/>
         <column/>
         <column/>

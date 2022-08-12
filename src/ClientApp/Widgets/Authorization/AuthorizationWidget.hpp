@@ -8,6 +8,7 @@
 #include <QSettings>
 #include <QWindow>
 #include <QOpenGLContext>
+#include <QShortcut>
 
 template<class Type>
 concept isWidget = std::is_convertible_v<Type*, QObject*>;
@@ -42,11 +43,16 @@ private:
     QOpenGLContext openGLContext_;
     QOpenGLFramebufferObjectFormat fboFormat_;
 
+    QShortcut *keyF1_;
+    QShortcut *keyF2_;
+
+public slots:
+
+    void LaunchHandler();
+
 private slots:
 
     void RefreshGamepadIDs();
-
-    void LaunchHandler();
 
 signals:
 

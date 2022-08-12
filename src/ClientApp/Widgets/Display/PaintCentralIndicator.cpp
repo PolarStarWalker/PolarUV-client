@@ -4,7 +4,8 @@
 #include <QPainterPath>
 
 
-void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle) {
+void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int height, float rollAngle, float pitchAngle,
+                                          float targetRoll, float targetPitch, bool stabilization) {
 
     constexpr const float lineWidth = 4.0f;
     constexpr const float outlineWidth = 1.0f;
@@ -273,6 +274,58 @@ void DisplayWidget::PaintCentralIndicator(QPainter &painter, int width, int heig
     painter.setPen(QPen(Qt::white, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
     painter.setBrush(Qt::white);
     painter.drawPath(patchPath);
+
+    /// Painting the target pitch marker
+    if (stabilization) {
+        float targetPitchMarkerWidth = 10.0f;
+        float targetPitchMarkerY = targetPitch * 3;
+        QPainterPath targetPitchMarkerPath;
+        QVector<QPointF> targetPitchMarkerPolygon = {
+                QPointF(indicatorRightBorder + 5,
+                        targetPitchMarkerY),
+                QPointF(indicatorRightBorder + 5 + 10,
+                        targetPitchMarkerY - rectHeight / 2),
+                QPointF(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth + lineWidth,
+                        targetPitchMarkerY - rectHeight / 2),
+                QPointF(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth + lineWidth,
+                        targetPitchMarkerY),
+                QPointF(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth,
+                        targetPitchMarkerY),
+                QPointF(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth,
+                        targetPitchMarkerY - rectHeight / 2 + lineWidth),
+                QPointF(indicatorRightBorder + 5 + 10 + edgeOffset,
+                        targetPitchMarkerY - rectHeight / 2 + lineWidth),
+                QPointF(indicatorRightBorder + 5 + lineWidth,
+                        targetPitchMarkerY),
+                QPointF(indicatorRightBorder + 5 + 10 + edgeOffset,
+                        targetPitchMarkerY + rectHeight / 2 - lineWidth),
+                QPointF(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth,
+                        targetPitchMarkerY + rectHeight / 2 - lineWidth),
+                QPointF(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth,
+                        targetPitchMarkerY),
+                QPointF(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth + lineWidth,
+                        targetPitchMarkerY),
+                QPointF(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth + lineWidth,
+                        targetPitchMarkerY + rectHeight / 2),
+                QPointF(indicatorRightBorder + 5 + 10,
+                        targetPitchMarkerY + rectHeight / 2),
+                QPointF(indicatorRightBorder + 5,
+                        targetPitchMarkerY)
+        };
+        targetPitchMarkerPath.addPolygon(QPolygonF(targetPitchMarkerPolygon));
+        painter.setPen(QPen(Qt::black, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
+        painter.setBrush(Qt::white);
+        painter.drawPath(targetPitchMarkerPath);
+
+        /// Painting the patch to target pitch marker frame
+        QPainterPath targetPitchMarkerPatchPath;
+        targetPitchMarkerPatchPath.addRect(indicatorRightBorder + 5 + 10 + targetPitchMarkerWidth + 1,
+                                           targetPitchMarkerY - 1,
+                                           lineWidth - 2, lineWidth);
+        painter.setPen(QPen(Qt::white, outlineWidth, Qt::SolidLine, Qt::FlatCap, Qt::RoundJoin));
+        painter.setBrush(Qt::white);
+        painter.drawPath(targetPitchMarkerPatchPath);
+    }
 
     /// Painting the scale and its values
     QPainterPath scalePath;

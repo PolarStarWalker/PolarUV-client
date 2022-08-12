@@ -23,10 +23,20 @@ MoveSettingsWidget::MoveSettingsWidget(QWidget *parent, WidgetResources& resourc
     ui->MotorsTable->setHorizontalHeaderLabels(motorsLabelsList);
 
     /// Changing default header labels for PIDsTable
-    QStringList pidsHLabelsList = {"P", "I", "D"};
-    QStringList pidsVLabelsList = {"Крен", "Дифферент", "Курс", "Глубина"};
+    QStringList pidsHLabelsList = {"П", "И", "Д", "Вкл"};
+    QStringList pidsVLabelsList = {"X", "Y", "Z", "H"};
     ui->PIDTable->setHorizontalHeaderLabels(pidsHLabelsList);
     ui->PIDTable->setVerticalHeaderLabels(pidsVLabelsList);
+
+    stabilizationXCheckBox = new QCheckBox();
+    stabilizationYCheckBox = new QCheckBox();
+    stabilizationZCheckBox = new QCheckBox();
+    stabilizationHCheckBox = new QCheckBox();
+
+    ui->PIDTable->setCellWidget(0, ui->PIDTable->columnCount()-1, stabilizationXCheckBox);
+    ui->PIDTable->setCellWidget(1, ui->PIDTable->columnCount()-1, stabilizationYCheckBox);
+    ui->PIDTable->setCellWidget(2, ui->PIDTable->columnCount()-1, stabilizationZCheckBox);
+    ui->PIDTable->setCellWidget(3, ui->PIDTable->columnCount()-1, stabilizationHCheckBox);
 }
 
 MoveSettingsWidget::~MoveSettingsWidget() {

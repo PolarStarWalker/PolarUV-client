@@ -49,6 +49,9 @@ struct WidgetResources {
     SensorsStruct Sensors{};
     SensorsSettingsStruct SensorsSettings{};
 
+    bool StabilizationState = false;
+    std::array<float, 4> StabilizationTarget{};
+
     lib::processing::CameraSettingsStruct CameraSettings{};
 
     lib::network::Network Network{};

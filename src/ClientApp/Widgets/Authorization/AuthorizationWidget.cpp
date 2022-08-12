@@ -39,6 +39,9 @@ AuthorizationWidget::AuthorizationWidget(QMainWindow *parent) :
     /// Соединяем слоты MainWindow
     connect(ui->DebugButton, SIGNAL(clicked(bool)), parent, SLOT(LaunchDebug()));
     connect(this, SIGNAL(StartWidget()), parent, SLOT(Launch()));
+
+    keyF1_ = new QShortcut(Qt::Key_F1,parent,SLOT(LaunchDebug()));
+    keyF2_ = new QShortcut(Qt::Key_F2,this,SLOT(LaunchHandler()));
 }
 
 AuthorizationWidget::~AuthorizationWidget() {
@@ -49,8 +52,8 @@ void AuthorizationWidget::RefreshGamepadIDs() {
     auto gamepads = control::GetGamepadsIds();
     ui->GamepadComboBox->clear();
 
-    for(size_t id = 0; id < gamepads.size(); ++id)
-        if(gamepads[id])
+    for (size_t id = 0; id < gamepads.size(); ++id)
+        if (gamepads[id])
             ui->GamepadComboBox->addItem(QString::number(id));
 }
 
